@@ -8,19 +8,21 @@ node_js:
 services:
   - docker
 
-notifications:
-  slack: hora-da-hora:0nFQxr2PykmKhNkJ78xYJMOP
+branches:
+  - configuracao-ambiente
+cache:
+  yarn: true
 
 stages:
   - name: deploy docker image
-    if: branch = configurar-ambiente
-
+    
 jobs:
   include:
     - stage: deploy docker image
       script: 
         - bash scripts/deploy_image.sh
-
+      on:
+        branch: configuracao-ambiente
 addons:
   apt:
     packages:
