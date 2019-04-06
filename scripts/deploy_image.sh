@@ -4,6 +4,6 @@ set -ev
 
 echo "Deployment init"
 
-echo "$DOCKERPASSWORD" | docker login -u "$DOCKERUSER" --password-stdin
-docker tag frontend maismonitoria/frontend:latest
-docker push maismonitoria/frontend:latest
+docker build . -t maismonitoria/frontend:latest
+docker login -p $DOCKERPASSWORD -u $DOCKERUSERNAME
+docker push maismonitoria/frontend:latest  
