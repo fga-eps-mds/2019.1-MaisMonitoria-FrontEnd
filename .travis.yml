@@ -8,6 +8,9 @@ node_js:
 services:
   - docker
 
+notifications:
+  slack: hora-da-hora:0nFQxr2PykmKhNkJ78xYJMOP
+
 stages:
   - name: deploy docker image
     if: branch = configurar-ambiente
