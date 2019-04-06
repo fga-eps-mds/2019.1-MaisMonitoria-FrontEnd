@@ -4,12 +4,18 @@ language: node_js
 
 node_js:
   - "10.15.3"
-
-branches:
-  - master
-
 services:
   - docker
+
+cache:
+  yarn: true
+
+branches:
+  only:
+    - master
+    
+notifications:
+  slack: hora-da-hora:nrnWEevu7LsNkubXbVAgfdVR
 
 script:
   - docker build -t frontend .
