@@ -8,9 +8,9 @@ node_js:
 services:
   - docker
 
-branches:
-- master
-- develop
+stages:
+  - Build image
+  - Build docker image
 
 #notifications:
 #  slack: hora-da-hora:0nFQxr2PykmKhNkJ78xYJMOP
@@ -20,10 +20,12 @@ before_script:
 
 jobs:
   include:
-    - stage: Build image
+    - stage: "Build image"
+      name: "Construindo image"
       script:
         - docker run maismonitoria/frontend yarn build 
-    - stage: Build docker image
+    - stage: "Build docker image"
+      name: "Publicando image"
       if: branch = develop
       script: 
         - bash scripts/deploy_image.sh
