@@ -9,7 +9,7 @@ services:
   - docker
 
 branches:
-  - configuracao-ambiente
+  - configurar-ambiente
 cache:
   yarn: true
 
@@ -22,7 +22,7 @@ jobs:
       script: 
         - bash scripts/deploy_image.sh
       on:
-        branch: configuracao-ambiente
+        branch: configurar-ambiente
 addons:
   apt:
     packages:
