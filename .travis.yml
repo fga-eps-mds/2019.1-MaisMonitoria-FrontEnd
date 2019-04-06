@@ -9,8 +9,7 @@ services:
   - docker
 
 branches:
-  - configurar-ambiente
-
+  - configurar-ambiente    
 notifications:
   slack: hora-da-hora:0nFQxr2PykmKhNkJ78xYJMOP
 
@@ -18,11 +17,12 @@ before_script:
   - docker build -t frontend .
 
 script:
-  - docker run frontend yarn build
+  - docker run frontend npm run build
   
 deploy:
   - provider: script
     script: bash scripts/deploy_image.sh
+    skip_cleanup: true
     on:
       branch: configurar-ambiente
 
