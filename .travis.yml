@@ -11,15 +11,8 @@ branches:
 services:
   - docker
 
-before_script:
-  - docker build -t frontend .
-
 script:
-  - docker run frontend yarn start
-
-after_script:
-  - docker stop frontend
-  - docker rm frontend
+  - docker build -t frontend .
 
 deploy:
   - provider: script
