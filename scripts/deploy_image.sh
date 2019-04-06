@@ -5,5 +5,5 @@ set -ev
 echo "Deployment init"
 
 docker build . -t maismonitoria/frontend:latest
-docker login -p $DOCKERPASSWORD -u $DOCKERUSERNAME
+echo "$DOCKERPASSWORD" | docker login -u "$DOCKERUSERNAME" --password-stdin
 docker push maismonitoria/frontend:latest  
