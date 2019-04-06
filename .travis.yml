@@ -10,12 +10,16 @@ services:
 
 branches:
   - configurar-ambiente
-cache:
-  yarn: true
 
 stages:
   - name: deploy docker image
     
+before_script:
+  - docker build -t maismonitoria/frontend .
+
+script:
+  - docker run maismonitoria/frontend yarn build
+
 jobs:
   include:
     - stage: deploy docker image
