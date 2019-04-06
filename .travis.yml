@@ -18,11 +18,11 @@ branches:
 before_script:
   - docker build -t maismonitoria/frontend .
 
-script:
-  - docker run maismonitoria/frontend yarn build 
-
 jobs:
   include:
+    - stage: Build image
+      script:
+        - docker run maismonitoria/frontend yarn build 
     - stage: Build docker image
       if: branch = develop
       script: 
