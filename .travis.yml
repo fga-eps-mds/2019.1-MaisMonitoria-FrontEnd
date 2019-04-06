@@ -1,0 +1,28 @@
+sudo: required
+
+language: node_js
+
+node_js:
+  - "10.15.3"
+
+branches:
+  - master
+
+services:
+  - docker
+
+script:
+  - docker build -t frontend .
+
+deploy:
+  - provider: script
+    script: bash scripts/deploy_image.sh
+    on:
+      branch: master
+
+
+addons:
+  apt:
+    packages:
+      - docker-ce
+
