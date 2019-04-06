@@ -10,7 +10,7 @@ services:
 
 branches:
   - configurar-ambiente
-      
+
 notifications:
   slack: hora-da-hora:0nFQxr2PykmKhNkJ78xYJMOP
 
@@ -18,7 +18,7 @@ before_script:
   - docker build -t frontend .
 
 script:
-  - docker run frontend npm run build
+  - docker run frontend yarn build
   
 deploy:
   - provider: script
