@@ -13,10 +13,6 @@ branches:
 
 stages:
   - name: deploy docker image
-    
-before_script:
-  - docker build -t maismonitoria/frontend .
-  - docker run maismonitoria/frontend yarn build 
         
 jobs:
   include:
