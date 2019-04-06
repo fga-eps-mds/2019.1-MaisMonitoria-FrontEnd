@@ -10,10 +10,7 @@ services:
 
 branches:
   - configurar-ambiente
-  
-cache:
-  yarn: true
-    
+      
 notifications:
   slack: hora-da-hora:0nFQxr2PykmKhNkJ78xYJMOP
 
