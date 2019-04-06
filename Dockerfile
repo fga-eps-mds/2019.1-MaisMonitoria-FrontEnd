@@ -9,7 +9,7 @@ RUN apk update && \
 
 RUN apk add --no-cache bash
 
-RUN npm install
+RUN yarn install
 
 ADD . /app
 
