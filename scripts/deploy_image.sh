@@ -1,9 +1,6 @@
 #!/bin/bash
 
 set -ev
-
-docker build -t maismonitoria/frontend .
-docker run maismonitoria/frontend yarn build 
     
 echo "Deployment init"
 
