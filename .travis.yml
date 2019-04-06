@@ -19,6 +19,9 @@ notifications:
 
 before_script:
   - docker build -t frontend .
+
+script:
+  - docker run frontend npm run build
   
 deploy:
   - provider: script
