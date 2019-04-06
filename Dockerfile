@@ -4,9 +4,8 @@ RUN mkdir -p /app
 WORKDIR /app
 
 RUN apk update && \
-    apk upgrade && \
-    apk add git
-
+    apk upgrade
+    
 RUN apk add --no-cache bash
 
 ADD . /app

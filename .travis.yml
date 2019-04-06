@@ -9,13 +9,9 @@ services:
 
 cache:
   yarn: true
-
-branches:
-  only:
-    - master
     
 notifications:
-  slack: hora-da-hora:nrnWEevu7LsNkubXbVAgfdVR
+  slack: hora-da-hora:0nFQxr2PykmKhNkJ78xYJMOP
 
 script:
   - docker build -t frontend .
@@ -23,9 +19,6 @@ script:
 deploy:
   - provider: script
     script: bash scripts/deploy_image.sh
-    on:
-      branch: master
-
 
 addons:
   apt:
