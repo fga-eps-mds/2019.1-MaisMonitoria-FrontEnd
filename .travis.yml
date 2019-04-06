@@ -4,29 +4,27 @@ language: node_js
 
 node_js:
   - "10.15.3"
+
 services:
   - docker
 
-cache:
-  yarn: true
-
-branches:
-  only:
-    - master
-    
 notifications:
-  slack: hora-da-hora:nrnWEevu7LsNkubXbVAgfdVR
+  slack: hora-da-hora:0nFQxr2PykmKhNkJ78xYJMOP
 
-script:
-  - docker build -t frontend .
+before_script:
+  - docker build -t maismonitoria/frontend .
+  - docker run maismonitoria/frontend yarn build 
 
-deploy:
-  - provider: script
-    script: bash scripts/deploy_image.sh
-    on:
-      branch: master
-
-
+stages:
+  - name: deploy docker image
+  
+jobs:
+  include:
+    - stage: deploy docker image
+      script: 
+        - bash scripts/deploy_image.sh
+      on:
+        branch: master
 addons:
   apt:
     packages:
