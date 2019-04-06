@@ -16,14 +16,12 @@ stages:
     
 before_script:
   - docker build -t maismonitoria/frontend .
-
-script:
-  - docker run maismonitoria/frontend yarn build
-
+  - docker run maismonitoria/frontend yarn build 
+        
 jobs:
   include:
     - stage: deploy docker image
-      script: 
+      script:
         - bash scripts/deploy_image.sh
       on:
         branch: configurar-ambiente
