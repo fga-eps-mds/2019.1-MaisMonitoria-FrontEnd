@@ -4,9 +4,12 @@ language: node_js
 
 node_js:
   - "10.15.3"
+
 services:
   - docker
 
+branches:
+  - configurar-ambiente
 cache:
   yarn: true
     
@@ -19,6 +22,8 @@ script:
 deploy:
   - provider: script
     script: bash scripts/deploy_image.sh
+    on:
+      branch: configurar-ambiente
 
 addons:
   apt:
