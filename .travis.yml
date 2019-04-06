@@ -17,13 +17,19 @@ before_script:
 script:
   - docker run frontend yarn start
 
+after_script:
+  - docker stop frontend
+  - docker rm frontend
+
 deploy:
   - provider: script
     script: bash scripts/deploy_image.sh
     on:
       branch: master
-  
+
+
 addons:
   apt:
     packages:
       - docker-ce
+
