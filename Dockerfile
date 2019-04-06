@@ -9,8 +9,8 @@ RUN apk update && \
 
 RUN apk add --no-cache bash
 
-RUN yarn install
-
 ADD . /app
+
+RUN yarn install
 
 EXPOSE 3000
