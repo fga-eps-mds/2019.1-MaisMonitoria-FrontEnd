@@ -5,14 +5,15 @@ import { Grid } from '@material-ui/core' ;
 /* import TelaRegister from './Components/TelaRegister/TelaRegister.js'; */
 // import TelaRegister from './Components/EsqueceuSenha/EsqueceuSenha.js';
 // import ModificarSenha from './Components/ModificarSenha/ModificarSenha.js';
-import CadastrarMonitoria from './Components/CadastrarMonitoria/CadastrarMonitoria.js';
+// import CadastrarMonitoria from './Components/CadastrarMonitoria/CadastrarMonitoria.js';
+import EditarPerfil from './Components/EditarPerfil/EditarPerfil.js';
 
 class App extends Component {
   render() {
     return (
       <body className="BodyPrincipal">
-      <Grid>
-          <CadastrarMonitoria />
+      <Grid container  justify="center" >
+          <EditarPerfil/>
       </Grid>
       </body>
     );

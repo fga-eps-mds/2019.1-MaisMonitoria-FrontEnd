@@ -5,7 +5,10 @@ import logo from '../../Assets/img/Logo.png';
 
 
 
+
+
 class TelaLogin extends Component {
+  
   render() {
     return (
       <div>
@@ -31,12 +34,12 @@ class TelaLogin extends Component {
         </Grid>
           <Grid container alignContent="center" justify="center" direction="column" spacing="24" alignItems="center" style={{marginTop: 25}}>
             <Grid item >
-              <Button variant="outlined">
+              <Button  variant="outlined">
                   Login
                 </Button>
               </Grid>
               <Grid item>
-                <Button variant="outlined">
+                <Button  variant="outlined">
                   Registrar
                 </Button>
               </Grid>

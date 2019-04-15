@@ -5,15 +5,18 @@ import AppBar from '../AppBar/AppBar.js';
 
 
 class CadastrarMonitoria extends Component {
+    
   render() {
+      
     return (
     
-        <div>
-            <Grid container  dirdirection="column" justify="center" alignItems="stretch" spacing="16">
+        <div >
+       
+            <Grid container   justify="center" alignItems="stretch">
                 <AppBar/>
             </Grid>    
-            <Grid container  alignContent="center" justify="center" direction="column" alignItems="center" spacing="16">
-            
+            <Grid container  alignContent="center" justify="center" direction="column" alignItems="center" spacing="16" style={{ padding: 60 }}>
+                
                 <Grid item md-auto>
                     <TextField
                     id="temaTextField"
@@ -21,7 +24,7 @@ class CadastrarMonitoria extends Component {
                     margin="normal"
                     />
                 </Grid>
-                <Grid  item md-auto>
+                <Grid item md-auto>
                     <TextField
                     id="InicioTexfild"
                     label="Inicio"
@@ -44,10 +47,10 @@ class CadastrarMonitoria extends Component {
                   
                       />
                 </Grid>
-                <Grid item md-auto >
+                <Grid item md-auto>
                   <TextField
                         id="date"
-                        label="Birthday"
+                        label="Data"
                         type="date"
                         defaultValue="00-00-0000"
                         InputLabelProps={{
@@ -55,7 +58,7 @@ class CadastrarMonitoria extends Component {
                         }}
                         />
                 </Grid >
-                <Grid item md-auto >
+                <Grid  item md-auto>
                     <TextField
                         id="descricaoTextfild"
                         label="Descrição"
@@ -66,20 +69,20 @@ class CadastrarMonitoria extends Component {
                         />
                     
                 </Grid>
-                <Grid item md-auto> 
+                <Grid item> 
                      <Button variant="outlined" color="primary">
                         Registrar
                     </Button>
                 </Grid>
             </Grid>
-            <Grid container  alignContent="center" justify="center" direction="column" alignItems="stretch" spacing="16"> 
+            <Grid container  > 
                 
-                <Grid item md-auto>
+                <Grid >
                 <BottomBar>
                 </BottomBar>
                 </Grid>
             </Grid>
-            
+          
         </div>
     
     );   

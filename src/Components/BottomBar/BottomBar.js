@@ -3,18 +3,24 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import Icon from '@material-ui/core/Icon';
-import RestoreIcon from '@material-ui/icons/Restore';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
+// import Icon from '@material-ui/core/Icon';
+// import RestoreIcon from '@material-ui/icons/Restore';
+// import FavoriteIcon from '@material-ui/icons/Favorite';
+// import LocationOnIcon from '@material-ui/icons/LocationOn';
 import SvgIcon from "@material-ui/core/SvgIcon";
-import Tabs from '@material-ui/core';
+// import Tabs from '@material-ui/core';
 
 
 const styles = {
   root: {
-    width: 500,
+    width: '100%',
+    position: 'fixed',
+    bottom:0,
+    left:0,
+
+    
   },
+  
 };
 function HomeIcon(props) {
   return (
