@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
-import './TelaLogin.css';
 import { Grid, Button, TextField } from '@material-ui/core' ;
 import logo from '../../Assets/img/Logo.png';
 
 
 
-class TelaLogin extends Component {
+class TelaRegister extends Component {
   render() {
     return (
       <div>
         <Grid container alignContent="center" justify="center" direction="column" alignItems="center">
-          <img src={logo} alt="Logo" />
-          
+          <img src={logo} alt="Logo" width="120" height="120"/>
+          <Grid item >
+            <TextField
+            id="nomeTextField"
+            label="Nome"
+            margin="normal"
+            />
+
+          </Grid>
           <Grid item >
             <TextField
               id="emailTextField"
@@ -28,26 +34,34 @@ class TelaLogin extends Component {
              
               />
           </Grid>
-        </Grid>
-          <Grid container alignContent="center" justify="center" direction="column" spacing="24" alignItems="center" style={{marginTop: 25}}>
-            <Grid item >
-              <Button variant="outlined">
-                  Login
-                </Button>
-              </Grid>
-              <Grid item>
-                <Button variant="outlined">
-                  Registrar
-                </Button>
-              </Grid>
-              <a href="#">Esqueceu sua senha ?</a>  
+          <Grid item >
+            <TextField
+              id="repetirSenhaTextField"
+              label="Repetir senha"
+              margin="normal"
+              type="password"
+             
+              />
           </Grid>
+          </Grid>
+          <Grid container alignContent="center" justify="center" direction="column" spacing="24" alignItems="center" style={{marginTop: 25}}>
+          <Grid item >
+              <Button variant="outlined">
+                Registrar
+              </Button>
+              </Grid>
+            <Grid item>
+              <Button variant="outlined" color= "ffffff">
+                Cancelar
+              </Button>
+            </Grid>
+      
+        </Grid>
             
             
-          
         </div>
     );   
   }
 }
 
-export default TelaLogin;
+export default TelaRegister;
