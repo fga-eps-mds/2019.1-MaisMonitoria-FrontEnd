@@ -1,27 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-// import Icon from '@material-ui/core/Icon';
-// import RestoreIcon from '@material-ui/icons/Restore';
-// import FavoriteIcon from '@material-ui/icons/Favorite';
-// import LocationOnIcon from '@material-ui/icons/LocationOn';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
 import SvgIcon from "@material-ui/core/SvgIcon";
-// import Tabs from '@material-ui/core';
+import { Grid, Button, TextField } from '@material-ui/core' ;
+import { palette } from '@material-ui/system';
+import Paper from '@material-ui/core/Paper';
 
-
-const styles = {
+const styles = theme => ({
   root: {
     width: '100%',
     position: 'fixed',
     bottom:0,
     left:0,
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.paper,
 
-    
   },
   
-};
+});
 function HomeIcon(props) {
   return (
     <SvgIcon {...props}>
@@ -68,11 +68,22 @@ function SearchIcon(props) {
   );
 }
 
-class LabelBottomNavigation extends React.Component {
-  state = {
-    value: 'recents',
-  };
+function TabContainer(props) {
+  return (
+    <Typography component="div" style={{ padding: 8 * 3 }}>
+      {props.children}
+    </Typography>
+  );
+}
 
+TabContainer.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+class IconLabelTabs extends React.Component {
+  state = {
+    value: 0,
+  };
 
   handleChange = (event, value) => {
     this.setState({ value });
@@ -80,39 +91,29 @@ class LabelBottomNavigation extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { value } = this.state;
 
     return (
+      <Paper square className={classes.root}>
+        <Tabs
+          value={this.state.value}
+          onChange={this.handleChange}
+          variant="fullWidth"
+          indicatorColor="primary"
+          textColor="secondary"
+        >
+          <Tab icon={<HomeIcon />} />
+          <Tab icon={<Profile />} />
+          <Tab icon={<RankIcon />} />
+          <Tab icon={<SearchIcon />} />
 
-      <BottomNavigation
-        value={value}
-        onChange={this.handleChange}
-        className={classes.root}
-      >
-      
-        <BottomNavigationAction label="Home" value="Home" icon={<HomeIcon />} />
-        <BottomNavigationAction
-          label="Ranking"
-          value="Ranking"
-          icon={<RankIcon />}
-        />
-        <BottomNavigationAction
-          label="Perfil"
-          value="Perfil"
-          icon={<Profile />}
-        />
-        <BottomNavigationAction
-          label="Pesquisa"
-          value="Pesquisa"
-          icon={<SearchIcon />}
-        />
-      </BottomNavigation>
+        </Tabs>
+      </Paper>
     );
   }
 }
 
-LabelBottomNavigation.propTypes = {
+IconLabelTabs.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(LabelBottomNavigation);
+export default withStyles(styles)(IconLabelTabs);

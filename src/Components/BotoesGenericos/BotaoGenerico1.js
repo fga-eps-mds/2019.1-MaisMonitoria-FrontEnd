@@ -67,18 +67,7 @@ function CustomizedButtons(props) {
 
   return (
     <div>
-      <Button
-        variant="contained"
-        color="primary"
-        className={classNames(classes.margin, classes.cssRoot)}
-      >
-        Custom CSS
-      </Button>
-      <MuiThemeProvider theme={theme}>
-        <Button variant="contained" color="primary" className={classes.margin}>
-          MuiThemeProvider
-        </Button>
-      </MuiThemeProvider>
+      
       <Button
         variant="contained"
         color="primary"

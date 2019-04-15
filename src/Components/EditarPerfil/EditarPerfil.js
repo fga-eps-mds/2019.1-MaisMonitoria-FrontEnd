@@ -5,7 +5,7 @@ import AppBar from '../AppBar/AppBar.js';
 import Pp from '../../Assets/img/Pp.png';
 
 
-class CadastrarMonitoria extends Component {
+class EditarPerfil extends Component {
     
   render() {
       
@@ -16,7 +16,7 @@ class CadastrarMonitoria extends Component {
             <Grid container   justify="center" alignItems="stretch">
                 <AppBar/>
             </Grid>    
-            <Grid container  alignContent="center" justify="center" direction="column" alignItems="center" spacing="16" style={{ padding: 100 }}>
+            <Grid container  alignContent="center" justify="center" direction="column" alignItems="center" spacing="8" style={{ padding: 100 }}>
                 <Grid item auto-md > 
                 <img src={Pp} alt="pp" width="120" height="120"/>
                 </Grid>
@@ -81,4 +81,4 @@ class CadastrarMonitoria extends Component {
   }
 }
 
-export default CadastrarMonitoria;
+export default EditarPerfil;
