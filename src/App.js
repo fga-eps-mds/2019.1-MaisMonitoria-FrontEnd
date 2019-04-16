@@ -7,14 +7,15 @@ import { Grid } from '@material-ui/core' ;
 // import ModificarSenha from './Components/ModificarSenha/ModificarSenha.js';
 // import CadastrarMonitoria from './Components/CadastrarMonitoria/CadastrarMonitoria.js';
 // import EditarPerfil from './Components/EditarPerfil/EditarPerfil.js';
-import AvaliarMonitor from './Components/AvaliarMonitor/AvaliarMonitor.js';
+import TelaFeed from './Components/TelaFeed/TelaFeed.js';
+ 
 
 class App extends Component {
   render() {
     return (
       <body className="BodyPrincipal">
       <Grid container  justify="center" >
-          <AvaliarMonitor/>
+          <TelaFeed/>
       </Grid>
       </body>
     );
