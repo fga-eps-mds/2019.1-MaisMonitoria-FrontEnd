@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Grid, Button, TextField } from '@material-ui/core' ;
-import BottomBar from '../BottomBar/BottomBar.js';
+import BottomBar from '../Tab/Tab.js';
 import AppBar from '../AppBar/AppBar.js';
 
 
-class CadastrarMonitoria extends Component {
+class RegisterMonitoring extends Component {
     
   render() {
       
@@ -89,4 +89,4 @@ class CadastrarMonitoria extends Component {
   }
 }
 
-export default CadastrarMonitoria;
+export default RegisterMonitoring;

@@ -1,27 +1,35 @@
 import React, { Component } from 'react';
 import { Grid, Button, TextField } from '@material-ui/core' ;
 import logo from '../../Assets/img/Logo.png';
+import './SignUp.css';
 
 
 
-class ModificarSenha extends Component {
+class SignUp extends Component {
   render() {
     return (
-      <div>
+      <div className="SignUpBackground">
         <Grid container alignContent="center" justify="center" direction="column" alignItems="center">
-          <img src={logo} alt="Logo" />
-          
+          <img src={logo} alt="Logo" width="120" height="120"/>
           <Grid item >
             <TextField
-              id="codigoTextField"
-              label="Código:"
+            id="nomeTextField"
+            label="Nome"
+            margin="normal"
+            />
+
+          </Grid>
+          <Grid item >
+            <TextField
+              id="emailTextField"
+              label="Email"
               margin="normal"
               />
           </Grid>
           <Grid item >
             <TextField
-              id="novaSenhaTextField"
-              label="Nova Senha"
+              id="senhaTextField"
+              label="Senha"
               margin="normal"
               type="password"
              
@@ -29,31 +37,32 @@ class ModificarSenha extends Component {
           </Grid>
           <Grid item >
             <TextField
-              id="confirmarSenhaTextField"
-              label="Confirmar nova Senha"
+              id="repetirSenhaTextField"
+              label="Repetir senha"
               margin="normal"
               type="password"
+             
               />
           </Grid>
           </Grid>
           <Grid container alignContent="center" justify="center" direction="column" spacing="24" alignItems="center" style={{marginTop: 25}}>
           <Grid item >
               <Button variant="outlined">
-                Enviar
+                Registrar
               </Button>
               </Grid>
             <Grid item>
-              <Button variant="outlined">
-                Voltar
+              <Button variant="outlined" >
+                Cancelar
               </Button>
             </Grid>
-            </Grid>
+      
+        </Grid>
             
             
-          
         </div>
     );   
   }
 }
 
-export default ModificarSenha;
+export default SignUp;

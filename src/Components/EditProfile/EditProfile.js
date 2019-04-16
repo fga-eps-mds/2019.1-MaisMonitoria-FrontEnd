@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Grid, Button, TextField } from '@material-ui/core' ;
-import BottomBar from '../BottomBar/BottomBar.js';
+import BottomBar from '../Tab/Tab.js';
 import AppBar from '../AppBar/AppBar.js';
 import Pp from '../../Assets/img/Pp.png';
 
 
-class EditarPerfil extends Component {
+class EditProfile extends Component {
     
   render() {
       
@@ -81,4 +81,4 @@ class EditarPerfil extends Component {
   }
 }
 
-export default EditarPerfil;
+export default EditProfile;

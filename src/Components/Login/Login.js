@@ -1,23 +1,20 @@
 import React, { Component } from 'react';
+import './Login.css';
 import { Grid, Button, TextField } from '@material-ui/core' ;
 import logo from '../../Assets/img/Logo.png';
 
 
 
-class TelaRegister extends Component {
+
+
+class Login extends Component {
+  
   render() {
     return (
-      <div>
+      <div className="LoginBackground">
         <Grid container alignContent="center" justify="center" direction="column" alignItems="center">
-          <img src={logo} alt="Logo" width="120" height="120"/>
-          <Grid item >
-            <TextField
-            id="nomeTextField"
-            label="Nome"
-            margin="normal"
-            />
-
-          </Grid>
+          <img src={logo} alt="Logo" />
+          
           <Grid item >
             <TextField
               id="emailTextField"
@@ -34,34 +31,26 @@ class TelaRegister extends Component {
              
               />
           </Grid>
-          <Grid item >
-            <TextField
-              id="repetirSenhaTextField"
-              label="Repetir senha"
-              margin="normal"
-              type="password"
-             
-              />
-          </Grid>
-          </Grid>
-          <Grid container alignContent="center" justify="center" direction="column" spacing="24" alignItems="center" style={{marginTop: 25}}>
-          <Grid item >
-              <Button variant="outlined">
-                Registrar
-              </Button>
-              </Grid>
-            <Grid item>
-              <Button variant="outlined" color= "ffffff">
-                Cancelar
-              </Button>
-            </Grid>
-      
         </Grid>
+          <Grid container alignContent="center" justify="center" direction="column" spacing="24" alignItems="center" style={{marginTop: 25}}>
+            <Grid item >
+              <Button  variant="outlined">
+                  Login
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button  variant="outlined">
+                  Registrar
+                </Button>
+              </Grid>
+              <a href="#">Esqueceu sua senha ?</a>  
+          </Grid>
             
             
+          
         </div>
     );   
   }
 }
 
-export default TelaRegister;
+export default Login;

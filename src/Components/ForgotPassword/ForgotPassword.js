@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Grid, Button, TextField } from '@material-ui/core' ;
 import logo from '../../Assets/img/Logo.png';
+import './ForgotPassword.css';
 
 
-
-class EsqueceuSenha extends Component {
+class ForgotPassword extends Component {
   render() {
     return (
-      <div style={{ padding: 80 }}>
+      <div className="ForgotPasswordBackground" style={{ padding: 80 }}>
         <Grid container  direction="column" justify="center" alignItems="center" spacing="24">
           <img src={logo} alt="Logo" />
           
@@ -35,9 +35,9 @@ class EsqueceuSenha extends Component {
             
             
           
-        </div>
+      </div>
     );   
   }
 }
 
-export default EsqueceuSenha;
+export default ForgotPassword;

@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Grid} from '@material-ui/core' ;
 import BottomBar from '../BottomBar/BottomBar.js';
 import AppBar from './AppBar.js';
-import Pesquisa from './pesquisa.js';
+import Search from './Search.js';
 import Paper from './paper.js';
 
 
-class CadastrarMonitoria extends Component {
+class Search extends Component {
     
   render() {
       
@@ -19,10 +19,8 @@ class CadastrarMonitoria extends Component {
             </Grid>    
             <Grid container  alignContent="center" justify="stretch" direction="column" alignItems="center" spacing="16" style={{ padding: 60 }}>
                 
-                <Grid item md-auto >
-                    <Pesquisa/>
-                </Grid>
-                <Grid item md-auto alignItems="center">
+               
+                <Grid item md-auto>
                     <Paper/>
                 </Grid>
                 <Grid item md-auto>
@@ -49,4 +47,4 @@ class CadastrarMonitoria extends Component {
   }
 }
 
-export default CadastrarMonitoria;
+export default Search;
