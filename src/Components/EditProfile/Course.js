@@ -52,7 +52,7 @@ class SimpleSelect extends React.Component {
             }}
             htmlFor="outlined-age-simple"
           >
-            Menção
+            Curso
           </InputLabel>
           <Select
             value={this.state.age}
@@ -68,11 +68,11 @@ class SimpleSelect extends React.Component {
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            <MenuItem value={0}>II</MenuItem>
-            <MenuItem value={3}>MI</MenuItem>
-            <MenuItem value={5}>MM</MenuItem>
-            <MenuItem value={7}>MS</MenuItem>
-            <MenuItem value={10}>SS</MenuItem>
+            <MenuItem value={0}>Engenharia de Software</MenuItem>
+            <MenuItem value={1}>Engenharia Aeroespacial</MenuItem>
+            <MenuItem value={2}>Engenharia Eletrônica</MenuItem>
+            <MenuItem value={3}>Engenharia Automotiva</MenuItem>
+            <MenuItem value={4}>Engenharia de Energia</MenuItem>
           </Select>
         </FormControl>
         

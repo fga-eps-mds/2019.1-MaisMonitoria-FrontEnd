@@ -2,6 +2,16 @@ import React, { Component } from 'react';
 import { Grid, Button, TextField } from '@material-ui/core' ;
 import logo from '../../Assets/img/Logo.png';
 import './SignUp.css';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import lightBlue from '@material-ui/core/colors/lightBlue';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: { main: lightBlue[50] },
+    secondary: { main: '#11cb5f' },
+  },
+  typography: { useNextVariants: true },
+});
 
 
 
@@ -24,6 +34,9 @@ class SignUp extends Component {
               id="emailTextField"
               label="Email"
               margin="normal"
+              type="email"
+             
+             
               />
           </Grid>
           <Grid item >
@@ -37,6 +50,8 @@ class SignUp extends Component {
           </Grid>
           <Grid item >
             <TextField
+              
+              
               id="repetirSenhaTextField"
               label="Repetir senha"
               margin="normal"
@@ -46,19 +61,22 @@ class SignUp extends Component {
           </Grid>
           </Grid>
           <Grid container alignContent="center" justify="center" direction="column" spacing="24" alignItems="center" style={{marginTop: 25}}>
-          <Grid item >
-              <Button variant="outlined">
-                Registrar
-              </Button>
-              </Grid>
+            <Grid item >
+              <MuiThemeProvider theme={theme}>
+                <Button variant="outlined" color="primary">
+                 Registrar
+                </Button>
+              </MuiThemeProvider>
+            </Grid>
             <Grid item>
-              <Button variant="outlined" >
-                Cancelar
-              </Button>
+              <MuiThemeProvider theme={theme}>
+                <Button variant="outlined" color="primary" >
+                  Cancelar
+                </Button>
+              </MuiThemeProvider>
             </Grid>
       
-        </Grid>
-            
+          </Grid>
             
         </div>
     );   

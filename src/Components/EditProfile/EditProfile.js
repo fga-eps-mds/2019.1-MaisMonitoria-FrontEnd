@@ -3,6 +3,7 @@ import { Grid, Button, TextField } from '@material-ui/core' ;
 import BottomBar from '../Tab/Tab.js';
 import AppBar from '../AppBar/AppBar.js';
 import Pp from '../../Assets/img/Pp.png';
+import Course from './Course.js';
 
 
 class EditProfile extends Component {
@@ -45,11 +46,7 @@ class EditProfile extends Component {
                     />
                 </Grid>
                 <Grid item md-auto>
-                    <TextField
-                    id="cursoTextField"
-                    label="Curso"
-                    margin="normal"
-                    
+                    <Course
                     />
                 </Grid>
                 <Grid item md-auto>

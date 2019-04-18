@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Grid} from '@material-ui/core' ;
-import BottomBar from '../BottomBar/BottomBar.js';
+import BottomBar from '../Tab/Tab.js';
 import AppBar from './AppBar.js';
-import Search from './Search.js';
 import Paper from './paper.js';
 
 
@@ -14,10 +13,10 @@ class Search extends Component {
     
         <div >
        
-            <Grid container   justify="center" alignItems="stretch">
+            <Grid container  justify="center" alignItems="stretch">
                 <AppBar/>
             </Grid>    
-            <Grid container  alignContent="center" justify="stretch" direction="column" alignItems="center" spacing="16" style={{ padding: 60 }}>
+            <Grid container  alignContent="center" justify="stretch" direction="column" alignItems="center" spacing="16" style={{ padding: 80 }}>
                 
                
                 <Grid item md-auto>

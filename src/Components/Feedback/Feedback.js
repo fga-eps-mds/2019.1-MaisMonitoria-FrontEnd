@@ -3,7 +3,7 @@ import { Grid, Button, TextField } from '@material-ui/core' ;
 import BottomBar from '../Tab/Tab.js';
 import AppBar from '../AppBar/AppBar.js';
 import Pp from '../../Assets/img/Pp.png';
-import Mencao from './Mencao.js';
+import Mencao from './Mention.js';
 
 
 

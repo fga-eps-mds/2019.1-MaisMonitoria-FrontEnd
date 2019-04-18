@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { withStyles, createMuiTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import blue from '@material-ui/core/colors/blue';
 import green from '@material-ui/core/colors/green';
@@ -21,11 +21,11 @@ const styles = theme => ({
     boxShadow: 'none',
     textTransform: 'none',
     fontSize: 16,
-    padding: '3px 7px',
+    padding: '4px 12px',
     border: '1px solid',
     lineHeight: 1.3,
-    backgroundColor: '#1da1f2',
-    borderColor: '#1da1f2',
+    backgroundColor: 'transparent',
+    borderColor: '#ffffff',
     fontFamily: [
       '-apple-system',
       'BlinkMacSystemFont',
@@ -39,8 +39,9 @@ const styles = theme => ({
       '"Segoe UI Symbol"',
     ].join(','),
     '&:hover': {
-      backgroundColor: '#0069d9',
-      borderColor: '#0062cc',
+      opacity: 0.7,
+      backgroundColor: '#a6a7a8',
+      borderColor: '##a6a7a8',
     },
     '&:active': {
       boxShadow: 'none',

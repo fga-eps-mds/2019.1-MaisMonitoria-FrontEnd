@@ -5,3 +5,8 @@
     background: linear-gradient(180deg, #1DA1F2 65.09%, #1DA1F2 65.1%, #0E4C72 99.99%, #0E4C72 100%);
 
 }
+.ForgotPasswordLink{
+    color: white;
+    text-decoration: none;
+    padding: 2%;
+}
