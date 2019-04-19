@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
-import { Grid, Button, } from '@material-ui/core' ;
-import BottomBar from '../BottomBar/BottomBar.js';
+import { Grid, Button } from '@material-ui/core' ;
+import Tab from '../Tab/Tab.js';
 import AppBar from '../AppBar/AppBar.js';
 import Card from './Card.js';
+import SvgIcon from '@material-ui/core/SvgIcon';
+import IconButton from '@material-ui/core/IconButton';
+import Add from '../GenericButtons/Add.js';
+
+
+
+
 
 class TelaFeed extends Component {
     
@@ -29,11 +36,13 @@ class TelaFeed extends Component {
                     <Card/>
                 </Grid>
             </Grid>
-            <Grid container  > 
-                
+            <Grid container  justify="center" direction="column" alignItems="center">
+                <Add/>
+            </Grid>
+            <Grid container  >                
                 <Grid >
-                <BottomBar>
-                </BottomBar>
+                <Tab>
+                </Tab>
                 </Grid>
             </Grid>
           

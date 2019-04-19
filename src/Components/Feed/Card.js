@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
@@ -13,9 +12,18 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import red from '@material-ui/core/colors/red';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import SvgIcon from '@material-ui/core/SvgIcon'
+
+function Add(props) {
+  return (
+    <SvgIcon {...props}>
+      <svg>
+        <path fill="#000000" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+      </svg>
+    </SvgIcon>
+  );
+}
 
 const styles = theme => ({
   card: {
@@ -67,7 +75,7 @@ class RecipeReviewCard extends React.Component {
         />
         <CardActions className={classes.actions} disableActionSpacing>
           <IconButton aria-label="Add to favorites">
-            <FavoriteIcon />
+            <Add />
           </IconButton>
           <IconButton
             className={classnames(classes.expand, {

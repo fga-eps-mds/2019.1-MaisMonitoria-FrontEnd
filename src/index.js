@@ -1,23 +1,26 @@
 import React from 'react';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import ForgotPassword from ''
-ReactDOM.render(
+import App from './App';
+import TelaFeed from './Components/Feed/Feed';
+import SignUp from './Components/SignUP/SignUp';
+import ForgotPassword from './Components/ForgotPassword/ForgotPassword';
+import ModifyPassword from './Components/ModifyPassword/ModifyPassword';
+import Search from './Components/Search/Search';
+import EditProfile from './Components/EditProfile/EditProfile';
+import './index.css';
+import {BrowserRouter as Router, Route,Switch} from 'react-router-dom';
 
-    <BrowserRouter>
-        <Switch>
-            <Route path="/" exact={true} component={App} />
-            <Route path="/Login" component={Login} />
-            <Route path="/RSignUp" component={SignUP}/>
-            <Route path="/ForgotPassword" component={ForgotPassword}/>
-        </Switch>
-    </ BrowserRouter>
-,document.getElementById('root'));
+ReactDOM.render((
+        <Router>
+                    <Switch>            
+                        <Route exact path="/" component={App}/>
+                        <Route path="/Feed" component={TelaFeed}/>
+                        <Route path="/SignUp" component={SignUp}/>
+                        <Route path="/ForgotPassword" component={ForgotPassword}/>
+                        <Route path="/ModifyPassword" component={ModifyPassword}/>
+                        <Route path="/Search" component={Search}/>  
+                        <Route path="/EditProfile" component={EditProfile}/>               
+                    </Switch>            
+        </Router>
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+), document.getElementById('root'));

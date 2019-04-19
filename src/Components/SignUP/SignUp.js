@@ -4,6 +4,7 @@ import logo from '../../Assets/img/Logo.png';
 import './SignUp.css';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import lightBlue from '@material-ui/core/colors/lightBlue';
+import {Link} from 'react-router-dom';
 
 const theme = createMuiTheme({
   palette: {
@@ -63,14 +64,14 @@ class SignUp extends Component {
           <Grid container alignContent="center" justify="center" direction="column" spacing="24" alignItems="center" style={{marginTop: 25}}>
             <Grid item >
               <MuiThemeProvider theme={theme}>
-                <Button variant="outlined" color="primary">
+                <Button component={Link} to="/" variant="outlined" color="primary">
                  Registrar
                 </Button>
               </MuiThemeProvider>
             </Grid>
             <Grid item>
               <MuiThemeProvider theme={theme}>
-                <Button variant="outlined" color="primary" >
+                <Button component={Link} to="/" variant="outlined" color="primary" >
                   Cancelar
                 </Button>
               </MuiThemeProvider>

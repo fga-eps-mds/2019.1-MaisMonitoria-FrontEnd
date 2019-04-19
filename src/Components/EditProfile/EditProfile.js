@@ -4,7 +4,7 @@ import BottomBar from '../Tab/Tab.js';
 import AppBar from '../AppBar/AppBar.js';
 import Pp from '../../Assets/img/Pp.png';
 import Course from './Course.js';
-
+import { Link } from 'react-router-dom';
 
 class EditProfile extends Component {
     
@@ -59,7 +59,7 @@ class EditProfile extends Component {
                     />
                 </Grid>
                 <Grid item> 
-                     <Button variant="outlined" color="primary">
+                     <Button component={Link} to="/Feed" variant="outlined" color="primary">
                         Alterar
                     </Button>
                 </Grid>

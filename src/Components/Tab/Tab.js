@@ -9,6 +9,7 @@ import SvgIcon from "@material-ui/core/SvgIcon";
 import { Grid, Button, TextField } from '@material-ui/core' ;
 import { palette } from '@material-ui/system';
 import Paper from '@material-ui/core/Paper';
+import {Link} from 'react-router-dom';
 
 const styles = theme => ({
   root: {
@@ -101,10 +102,10 @@ class IconLabelTabs extends React.Component {
           indicatorColor="primary"
           textColor="secondary"
         >
-          <Tab icon={<HomeIcon />} />
-          <Tab icon={<Profile />} />
-          <Tab icon={<RankIcon />} />
-          <Tab icon={<SearchIcon />} />
+          <Tab component={Link} to="/Feed" icon={<HomeIcon />} />
+          <Tab component={Link} to="/EditProfile" icon={<Profile />} />
+          <Tab component={Link} to="/Ranking" icon={<RankIcon />} />
+          <Tab component={Link} to="/Search" icon={<SearchIcon />} />
 
         </Tabs>
       </Paper>

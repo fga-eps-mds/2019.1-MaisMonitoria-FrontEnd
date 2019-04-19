@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './Login.css';
-import { Grid, Button, TextField, Link } from '@material-ui/core' ;
+import { Grid, Button, TextField,} from '@material-ui/core' ;
 import logo from '../../Assets/img/Logo.png';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import lightBlue from '@material-ui/core/colors/lightBlue';
-import { Link } from 'react-router-dom';
+import  {Link}  from 'react-router-dom';
 
 const theme = createMuiTheme({
   palette: {
@@ -40,10 +40,10 @@ class Login extends Component {
               />
           </Grid>
         </Grid>
-          <Grid component={Link} to="/Feed" container alignContent="center" justify="center" direction="column" spacing="24" alignItems="center" style={{marginTop: 25}}>
+          <Grid  container alignContent="center" justify="center" direction="column" spacing="24" alignItems="center" style={{marginTop: 25}}>
             <Grid item >
             <MuiThemeProvider theme={theme}>
-              <Button  variant="outlined" color="primary" >
+              <Button component={Link} to="/Feed" variant="outlined" color="primary" >
                   Login
                 </Button>
                 </MuiThemeProvider>
