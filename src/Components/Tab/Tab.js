@@ -10,6 +10,7 @@ import { Grid, Button, TextField } from '@material-ui/core' ;
 import { palette } from '@material-ui/system';
 import Paper from '@material-ui/core/Paper';
 import {Link} from 'react-router-dom';
+import Add from '../GenericButtons/Add.js';
 
 const styles = theme => ({
   root: {
@@ -106,8 +107,9 @@ class IconLabelTabs extends React.Component {
           <Tab component={Link} to="/EditProfile" icon={<Profile />} />
           <Tab component={Link} to="/Ranking" icon={<RankIcon />} />
           <Tab component={Link} to="/Search" icon={<SearchIcon />} />
-
+          
         </Tabs>
+        
       </Paper>
     );
   }

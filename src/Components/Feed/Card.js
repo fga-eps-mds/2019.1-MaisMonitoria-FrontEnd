@@ -11,9 +11,10 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import red from '@material-ui/core/colors/red';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import SvgIcon from '@material-ui/core/SvgIcon'
+import { Grid } from "@material-ui/core";
+import axios from 'axios';
 
 function Add(props) {
   return (
@@ -52,7 +53,18 @@ const styles = theme => ({
 });
 
 class RecipeReviewCard extends React.Component {
-  state = { expanded: false };
+  
+ 
+    state =  {lista : [],name_monitoring:'', matter:'', expanded: false}
+    async componentDidMount() {
+     await axios.get(`https://gist.githubusercontent.com/caiooliv/17243478be5bddb4f26fcba90b25a031/raw/fa9049b4ae9aa6d283edadd0d2e2e1ec81cb81bc/teste.json`)
+      .then(res => {
+        console.log('entrou')
+        const person = res.data
+        this.setState({name_monitoring:person['name_monitoring'], matter: person['matter'] })
+      })
+  }
+
 
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
@@ -63,16 +75,18 @@ class RecipeReviewCard extends React.Component {
 
     return (
       <Card className={classes.card}>
+      <Grid container
+  direction="column"
+  justify="center"
+  alignItems="center">
+  
         <CardHeader
-          avatar={
-            <Avatar aria-label="Recipe" className={classes.avatar}>
-              M
-            </Avatar>
-          }
+         
+          title={this.state.name_monitoring}
+          subheader={this.state.matter}
           
-          title="Tema: Calculo 1"
-          subheader="Monitor: Cristo"
         />
+        </Grid>
         <CardActions className={classes.actions} disableActionSpacing>
           <IconButton aria-label="Add to favorites">
             <Add />
