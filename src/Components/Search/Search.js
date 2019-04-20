@@ -16,21 +16,13 @@ class Search extends Component {
             <Grid container  justify="center" alignItems="stretch">
                 <AppBar/>
             </Grid>    
-            <Grid container  alignContent="center" justify="stretch" direction="column" alignItems="center" spacing="16" style={{ padding: 80 }}>
+            <Grid container  justify="center" direction="column" alignItems="center" spacing="16" style={{ padding: 80 }}>
                 
                
-                <Grid item md-auto>
+                <Grid item >
                     <Paper/>
                 </Grid>
-                <Grid item md-auto>
-                    <Paper/>
-                </Grid>
-                <Grid item md-auto>
-                    <Paper/>
-                </Grid>
-                <Grid item md-auto>
-                    <Paper/>
-                </Grid>
+                
             </Grid>
             <Grid container  > 
                 

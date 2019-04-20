@@ -14,7 +14,7 @@ import red from '@material-ui/core/colors/red';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import SvgIcon from '@material-ui/core/SvgIcon'
 import { Grid } from "@material-ui/core";
-import axios from 'axios';
+
 
 function Add(props) {
   return (
@@ -56,14 +56,8 @@ class RecipeReviewCard extends React.Component {
   
  
     state =  {lista : [],name_monitoring:'', matter:'', expanded: false}
-    async componentDidMount() {
-     await axios.get(`https://gist.githubusercontent.com/caiooliv/17243478be5bddb4f26fcba90b25a031/raw/fa9049b4ae9aa6d283edadd0d2e2e1ec81cb81bc/teste.json`)
-      .then(res => {
-        console.log('entrou')
-        const person = res.data
-        this.setState({name_monitoring:person['name_monitoring'], matter: person['matter'] })
-      })
-  }
+    
+  
 
 
   handleExpandClick = () => {
@@ -75,15 +69,12 @@ class RecipeReviewCard extends React.Component {
 
     return (
       <Card className={classes.card}>
-      <Grid container
-  direction="column"
-  justify="center"
-  alignItems="center">
+      <Grid container direction="column" justify="center" alignItems="center">
   
         <CardHeader
          
-          title={this.state.name_monitoring}
-          subheader={this.state.matter}
+          title={'Tema: '+this.props.name_monitoring}
+          subheader={'Monitor: '+this.props.matter}
           
         />
         </Grid>
@@ -106,7 +97,7 @@ class RecipeReviewCard extends React.Component {
           <CardContent>
             <Typography paragraph>Descrição:</Typography>
             <Typography paragraph>
-              Lorem Ipsum 
+            {this.props.deion}
             </Typography>
           </CardContent>
         </Collapse>
