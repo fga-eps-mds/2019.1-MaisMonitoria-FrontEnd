@@ -25,3 +25,10 @@ Requisitos para conseguir rodar o projeto.
 > make run
 6. Agora que está dentro do container, inicie a aplicação na porta 3000
 > yarn start
+
+
+## Outros repositorios
+* [+Monitoria DOCS](https://github.com/fga-eps-mds/2019.1-MaisMonitoria)
+* [+Monitoria API Monitorias](https://github.com/fga-eps-mds/2019.1-MaisMonitoria-ApiMonitorias)
+* [+Monitoria API Gateway](https://github.com/fga-eps-mds/2019.1-MaisMonitoria-api)
+
