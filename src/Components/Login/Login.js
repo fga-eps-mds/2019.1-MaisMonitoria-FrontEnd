@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './Components/Login/Login.css';
+import './Login.css';
 import { Grid, Button, TextField,} from '@material-ui/core' ;
-import logo from './Assets/img/Logo.png';
+import logo from '../../Assets/img/Logo.png';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import  {Link}  from 'react-router-dom';
@@ -15,8 +15,8 @@ const theme = createMuiTheme({
 });
 
 
-
-class App extends Component {
+class Login extends Component {
+  
   render() {
     return (
       <div className="LoginBackground">
@@ -52,20 +52,20 @@ class App extends Component {
               <Grid item>
               <MuiThemeProvider theme={theme}>
 
-                <Button component={Link} to="/SignUp"variant="outlined" color="primary">
+                <Button component={Link} to="/RSignUp" variant="outlined" color="primary">
                   Registrar
                 </Button>
                 </MuiThemeProvider>
 
               </Grid>
-              <a  className="ForgotPasswordLink"><Link to="/ForgotPassword" >Esqueceu sua senha ?</Link></a>  
+              <a  className="ForgotPasswordLink" href="#">Esqueceu sua senha ?</a>  
           </Grid>
             
             
           
         </div>
-    );
+    );   
   }
 }
 
-export default App;
+export default Login;
