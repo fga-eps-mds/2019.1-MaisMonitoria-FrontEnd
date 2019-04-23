@@ -1,0 +1,794 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Feedback component Test if feedback renders correctly 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Feedback />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <WithStyles(Grid)
+          alignItems="stretch"
+          container={true}
+          justify="center"
+        >
+          <WithStyles(SimpleAppBar) />
+        </WithStyles(Grid)>,
+        <WithStyles(Grid)
+          alignContent="center"
+          alignItems="center"
+          container={true}
+          direction="column"
+          justify="center"
+          spacing="24"
+          style={
+            Object {
+              "padding": 100,
+            }
+          }
+        >
+          <WithStyles(Grid)
+            auto-md={true}
+            item={true}
+          >
+            <img
+              alt="pp"
+              height="120"
+              src="Pp.png"
+              width="120"
+            />
+          </WithStyles(Grid)>
+          <WithStyles(Grid)
+            item={true}
+            md-auto={true}
+          >
+            <p>
+              Monitor: Lucas Alexandre
+            </p>
+          </WithStyles(Grid)>
+          <WithStyles(Grid)
+            item={true}
+            md-auto={true}
+          >
+            <p>
+              Tema: Cálculo 1
+            </p>
+          </WithStyles(Grid)>
+          <WithStyles(Grid)
+            item={true}
+            md-auto={true}
+          >
+            <p>
+              Data: 14/04/2019
+            </p>
+          </WithStyles(Grid)>
+          <WithStyles(Grid)
+            item={true}
+            md-auto={true}
+          >
+            <WithStyles(SimpleSelect) />
+          </WithStyles(Grid)>
+          <WithStyles(Grid)
+            item={true}
+          >
+            <WithStyles(Button)
+              color="primary"
+              variant="outlined"
+            >
+              Avaliar
+            </WithStyles(Button)>
+          </WithStyles(Grid)>
+        </WithStyles(Grid)>,
+        <WithStyles(Grid)
+          container={true}
+        >
+          <WithStyles(Grid)>
+            <WithStyles(IconLabelTabs) />
+          </WithStyles(Grid)>
+        </WithStyles(Grid)>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "alignItems": "stretch",
+          "children": <WithStyles(SimpleAppBar) />,
+          "container": true,
+          "justify": "center",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "alignContent": "center",
+          "alignItems": "center",
+          "children": Array [
+            <WithStyles(Grid)
+              auto-md={true}
+              item={true}
+            >
+              <img
+                alt="pp"
+                height="120"
+                src="Pp.png"
+                width="120"
+              />
+            </WithStyles(Grid)>,
+            <WithStyles(Grid)
+              item={true}
+              md-auto={true}
+            >
+              <p>
+                Monitor: Lucas Alexandre
+              </p>
+            </WithStyles(Grid)>,
+            <WithStyles(Grid)
+              item={true}
+              md-auto={true}
+            >
+              <p>
+                Tema: Cálculo 1
+              </p>
+            </WithStyles(Grid)>,
+            <WithStyles(Grid)
+              item={true}
+              md-auto={true}
+            >
+              <p>
+                Data: 14/04/2019
+              </p>
+            </WithStyles(Grid)>,
+            <WithStyles(Grid)
+              item={true}
+              md-auto={true}
+            >
+              <WithStyles(SimpleSelect) />
+            </WithStyles(Grid)>,
+            <WithStyles(Grid)
+              item={true}
+            >
+              <WithStyles(Button)
+                color="primary"
+                variant="outlined"
+              >
+                Avaliar
+              </WithStyles(Button)>
+            </WithStyles(Grid)>,
+          ],
+          "container": true,
+          "direction": "column",
+          "justify": "center",
+          "spacing": "24",
+          "style": Object {
+            "padding": 100,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "auto-md": true,
+              "children": <img
+                alt="pp"
+                height="120"
+                src="Pp.png"
+                width="120"
+              />,
+              "item": true,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "alt": "pp",
+                "height": "120",
+                "src": "Pp.png",
+                "width": "120",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "img",
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <p>
+                Monitor: Lucas Alexandre
+              </p>,
+              "item": true,
+              "md-auto": true,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Monitor: Lucas Alexandre",
+              },
+              "ref": null,
+              "rendered": "Monitor: Lucas Alexandre",
+              "type": "p",
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <p>
+                Tema: Cálculo 1
+              </p>,
+              "item": true,
+              "md-auto": true,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Tema: Cálculo 1",
+              },
+              "ref": null,
+              "rendered": "Tema: Cálculo 1",
+              "type": "p",
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <p>
+                Data: 14/04/2019
+              </p>,
+              "item": true,
+              "md-auto": true,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Data: 14/04/2019",
+              },
+              "ref": null,
+              "rendered": "Data: 14/04/2019",
+              "type": "p",
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <WithStyles(SimpleSelect) />,
+              "item": true,
+              "md-auto": true,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {},
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <WithStyles(Button)
+                color="primary"
+                variant="outlined"
+              >
+                Avaliar
+              </WithStyles(Button)>,
+              "item": true,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "Avaliar",
+                "color": "primary",
+                "variant": "outlined",
+              },
+              "ref": null,
+              "rendered": "Avaliar",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <WithStyles(Grid)>
+            <WithStyles(IconLabelTabs) />
+          </WithStyles(Grid)>,
+          "container": true,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <WithStyles(IconLabelTabs) />,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {},
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <WithStyles(Grid)
+            alignItems="stretch"
+            container={true}
+            justify="center"
+          >
+            <WithStyles(SimpleAppBar) />
+          </WithStyles(Grid)>,
+          <WithStyles(Grid)
+            alignContent="center"
+            alignItems="center"
+            container={true}
+            direction="column"
+            justify="center"
+            spacing="24"
+            style={
+              Object {
+                "padding": 100,
+              }
+            }
+          >
+            <WithStyles(Grid)
+              auto-md={true}
+              item={true}
+            >
+              <img
+                alt="pp"
+                height="120"
+                src="Pp.png"
+                width="120"
+              />
+            </WithStyles(Grid)>
+            <WithStyles(Grid)
+              item={true}
+              md-auto={true}
+            >
+              <p>
+                Monitor: Lucas Alexandre
+              </p>
+            </WithStyles(Grid)>
+            <WithStyles(Grid)
+              item={true}
+              md-auto={true}
+            >
+              <p>
+                Tema: Cálculo 1
+              </p>
+            </WithStyles(Grid)>
+            <WithStyles(Grid)
+              item={true}
+              md-auto={true}
+            >
+              <p>
+                Data: 14/04/2019
+              </p>
+            </WithStyles(Grid)>
+            <WithStyles(Grid)
+              item={true}
+              md-auto={true}
+            >
+              <WithStyles(SimpleSelect) />
+            </WithStyles(Grid)>
+            <WithStyles(Grid)
+              item={true}
+            >
+              <WithStyles(Button)
+                color="primary"
+                variant="outlined"
+              >
+                Avaliar
+              </WithStyles(Button)>
+            </WithStyles(Grid)>
+          </WithStyles(Grid)>,
+          <WithStyles(Grid)
+            container={true}
+          >
+            <WithStyles(Grid)>
+              <WithStyles(IconLabelTabs) />
+            </WithStyles(Grid)>
+          </WithStyles(Grid)>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "alignItems": "stretch",
+            "children": <WithStyles(SimpleAppBar) />,
+            "container": true,
+            "justify": "center",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {},
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "alignContent": "center",
+            "alignItems": "center",
+            "children": Array [
+              <WithStyles(Grid)
+                auto-md={true}
+                item={true}
+              >
+                <img
+                  alt="pp"
+                  height="120"
+                  src="Pp.png"
+                  width="120"
+                />
+              </WithStyles(Grid)>,
+              <WithStyles(Grid)
+                item={true}
+                md-auto={true}
+              >
+                <p>
+                  Monitor: Lucas Alexandre
+                </p>
+              </WithStyles(Grid)>,
+              <WithStyles(Grid)
+                item={true}
+                md-auto={true}
+              >
+                <p>
+                  Tema: Cálculo 1
+                </p>
+              </WithStyles(Grid)>,
+              <WithStyles(Grid)
+                item={true}
+                md-auto={true}
+              >
+                <p>
+                  Data: 14/04/2019
+                </p>
+              </WithStyles(Grid)>,
+              <WithStyles(Grid)
+                item={true}
+                md-auto={true}
+              >
+                <WithStyles(SimpleSelect) />
+              </WithStyles(Grid)>,
+              <WithStyles(Grid)
+                item={true}
+              >
+                <WithStyles(Button)
+                  color="primary"
+                  variant="outlined"
+                >
+                  Avaliar
+                </WithStyles(Button)>
+              </WithStyles(Grid)>,
+            ],
+            "container": true,
+            "direction": "column",
+            "justify": "center",
+            "spacing": "24",
+            "style": Object {
+              "padding": 100,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "auto-md": true,
+                "children": <img
+                  alt="pp"
+                  height="120"
+                  src="Pp.png"
+                  width="120"
+                />,
+                "item": true,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "alt": "pp",
+                  "height": "120",
+                  "src": "Pp.png",
+                  "width": "120",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": "img",
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <p>
+                  Monitor: Lucas Alexandre
+                </p>,
+                "item": true,
+                "md-auto": true,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Monitor: Lucas Alexandre",
+                },
+                "ref": null,
+                "rendered": "Monitor: Lucas Alexandre",
+                "type": "p",
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <p>
+                  Tema: Cálculo 1
+                </p>,
+                "item": true,
+                "md-auto": true,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Tema: Cálculo 1",
+                },
+                "ref": null,
+                "rendered": "Tema: Cálculo 1",
+                "type": "p",
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <p>
+                  Data: 14/04/2019
+                </p>,
+                "item": true,
+                "md-auto": true,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Data: 14/04/2019",
+                },
+                "ref": null,
+                "rendered": "Data: 14/04/2019",
+                "type": "p",
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <WithStyles(SimpleSelect) />,
+                "item": true,
+                "md-auto": true,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {},
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <WithStyles(Button)
+                  color="primary"
+                  variant="outlined"
+                >
+                  Avaliar
+                </WithStyles(Button)>,
+                "item": true,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "Avaliar",
+                  "color": "primary",
+                  "variant": "outlined",
+                },
+                "ref": null,
+                "rendered": "Avaliar",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <WithStyles(Grid)>
+              <WithStyles(IconLabelTabs) />
+            </WithStyles(Grid)>,
+            "container": true,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <WithStyles(IconLabelTabs) />,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {},
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+  Symbol(enzyme.__childContext__): null,
+}
+`;
