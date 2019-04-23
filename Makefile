@@ -10,7 +10,7 @@ run:
 run-d:
 	docker-compose up -d
 
-test: 
+tests: 
 	docker-compose exec frontend yarn test
 
 test-coverage:
