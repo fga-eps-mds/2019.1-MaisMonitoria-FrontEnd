@@ -5,8 +5,19 @@ build:
 	docker-compose build
 
 run:
+	docker-compose up
+
+run-d:
 	docker-compose up -d
-	docker exec -it frontend bash -c "yarn; bash" 
+
+test: 
+	docker-compose exec frontend yarn test
+
+test-coverage:
+	docker-compose exec frontend yarn test --coverage
+
+enter:
+	docker-compose exec frontend bash
 
 down:
 	docker-compose down

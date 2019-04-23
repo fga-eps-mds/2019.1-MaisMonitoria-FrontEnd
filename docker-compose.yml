@@ -3,7 +3,7 @@ services:
   frontend:
     container_name: "frontend"
     build: ./
-    command: bash -c "bash"
+    command: bash -c "yarn start"
     ports:
       - "3000:3000"
     volumes:
