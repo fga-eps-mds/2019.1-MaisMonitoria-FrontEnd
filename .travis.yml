@@ -10,7 +10,7 @@ cache:
   directories:
     - node_modules
 
-    stages:
+stages:
   - Unit test
 
 #notifications:
