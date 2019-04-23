@@ -14,7 +14,7 @@ tests:
 	docker-compose -f docker-compose.yml exec frontend yarn test
 	
 test-coverage:
-	docker-compose -f docker-compose.yml exec frontend yarn test -- --coverage
+	docker-compose -f docker-compose.yml run frontend yarn test --coverage
 
 enter:
 	docker-compose -f docker-compose.yml exec frontend bash
