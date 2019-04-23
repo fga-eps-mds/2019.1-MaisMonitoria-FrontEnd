@@ -14,15 +14,12 @@ const theme = createMuiTheme({
   typography: { useNextVariants: true },
 });
 
-
-
 class App extends Component {
   render() {
     return (
       <div className="LoginBackground">
         <Grid container alignContent="center" justify="center" direction="column" alignItems="center">
           <img src={logo} alt="Logo" />
-          
           <Grid item >
             <TextField
               id="emailTextField"
@@ -36,32 +33,26 @@ class App extends Component {
               label="Senha"
               margin="normal"
               type="password"
-              
               />
           </Grid>
         </Grid>
-          <Grid  container alignContent="center" justify="center" direction="column" spacing="24" alignItems="center" style={{marginTop: 25}}>
-            <Grid item >
+        <Grid  container alignContent="center" justify="center" direction="column" spacing="24" alignItems="center" style={{marginTop: 25}}>
+          <Grid item >
             <MuiThemeProvider theme={theme}>
               <Button component={Link} to="/Feed" variant="outlined" color="primary" >
                   Login
-                </Button>
-                </MuiThemeProvider>
-              </Grid>
-              
-              <Grid item>
-              <MuiThemeProvider theme={theme}>
-
-                <Button component={Link} to="/SignUp"variant="outlined" color="primary">
-                  Registrar
-                </Button>
-                </MuiThemeProvider>
-
-              </Grid>
-              <a  className="ForgotPasswordLink"><Link to="/ForgotPassword" >Esqueceu sua senha ?</Link></a>  
+              </Button>
+            </MuiThemeProvider>
+          </Grid>  
+          <Grid item>
+            <MuiThemeProvider theme={theme}>
+              <Button component={Link} to="/SignUp"variant="outlined" color="primary">
+                Registrar
+              </Button>
+              </MuiThemeProvider>
           </Grid>
-            
-            
+              <a  className="ForgotPasswordLink"><Link to="/ForgotPassword" >Esqueceu sua senha ?</Link></a>  
+        </Grid>
           
         </div>
     );

@@ -24,14 +24,13 @@ jobs:
       name: "Construindo image"
       script:
         - docker run maismonitoria/frontend yarn build 
-    - stage: "Build docker image"
-      name: "Publicando image"
-      if: branch = develop
-      script: 
-        - bash scripts/deploy_image.sh
+#    - stage: "Build docker image"
+#      name: "Publicando image"
+#      if: branch = develop
+#      script: 
+#        - bash scripts/deploy_image.sh
       
 addons:
   apt:
     packages:
       - docker-ce
-
