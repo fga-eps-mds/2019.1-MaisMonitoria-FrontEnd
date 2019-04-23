@@ -9,3 +9,10 @@ services:
     volumes:
       - ./:/app
     tty: true  
+    networks:
+      - api-backend
+      
+networks:
+  api-backend:
+    external:
+      name: api-backend  
