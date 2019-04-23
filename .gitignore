@@ -1,6 +1,5 @@
 /node_modules
 *.log
-
 /build
-
 package-lock.json
+/coverage
