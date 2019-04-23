@@ -23,4 +23,7 @@ down:
 	docker-compose down
 
 stop:
-	make down
+	docker-compose stop
+
+start:
+	docker-compose start
