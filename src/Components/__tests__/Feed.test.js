@@ -1,13 +1,12 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
-import { MemoryRouter as Router } from 'react-router-dom';
 import Feed from '../Feed/Feed';
+import { shallow } from 'enzyme';
 
 const feed = jest.fn();
 
-test('Logout renders a snapshot properly', () => {
-  const tree = renderer.create(
-    <Router><Feed feed={feed}/></Router>
-  ).toJSON();
-  expect(tree).toMatchSnapshot();
+describe('Testing Feed component', () => {
+    it('Test if Feed renders correctly', () =>{
+        const tree = shallow(<Feed/>);
+        expect(tree).toMatchSnapshot();
+    });
 });

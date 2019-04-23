@@ -1,14 +1,11 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
-import { MemoryRouter as Router } from 'react-router-dom';
-
 import Course from '../EditProfile/Course';
+import { shallow } from 'enzyme';
 
-const course = jest.fn();
 
-test('Logout renders a snapshot properly', () => {
-  const tree = renderer.create(
-    <Router><Course course={course}/></Router>
-  ).toJSON();
-  expect(tree).toMatchSnapshot();
+describe('Testing Course component', () => {
+  it('Test if card renders correctly', () =>{
+      const tree = shallow(<Course/>);
+      expect(tree).toMatchSnapshot();
+  });
 });
