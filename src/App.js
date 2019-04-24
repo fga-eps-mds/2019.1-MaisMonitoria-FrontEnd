@@ -5,6 +5,8 @@ import logo from './Assets/img/Logo.png';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import  {Link}  from 'react-router-dom';
+import firebase from 'firebase';
+
 
 const theme = createMuiTheme({
   palette: {
@@ -14,7 +16,47 @@ const theme = createMuiTheme({
   typography: { useNextVariants: true },
 });
 
+firebase.initializeApp({
+  apiKey:"AIzaSyCrE2NKARsLRCPoy-dF8flrIG0CYoovkUE",
+  authDomain: "maismonitoria-fe31c.firebaseapp.com"
+});
+
 class App extends Component {
+  state = {
+    email: '',
+    password: '',
+    isAuthenticated: false
+  };
+  
+
+  login = async () => {
+    const { email, password } = this.state;
+
+    try{
+      const user = await firebase.auth()
+        .signInWithEmailAndPassword(email, password);
+
+        this.setState({isAuthenticated: true});
+        console.log(user);
+    }catch(e){
+      console.log(e);
+    }
+  }
+
+  registro = async () => {
+    const { email, password } = this.state;
+
+    try{
+      const user = await firebase.auth()
+        .createUserWithEmailAndPassword(email, password);
+
+        this.setState({isAuthenticated: true});
+        console.log(user);
+    }catch(e){
+      console.log(e);
+    }
+  }
+
   render() {
     return (
       <div className="LoginBackground">
@@ -25,6 +67,10 @@ class App extends Component {
               id="emailTextField"
               label="Email"
               margin="normal"
+              value={this.state.email}
+              onChange={(event)=>this.setState({
+                email: event.target.value,
+              })}
               />
           </Grid>
           <Grid item >
@@ -33,20 +79,24 @@ class App extends Component {
               label="Senha"
               margin="normal"
               type="password"
+              value={this.state.password}
+              onChange={(event)=>this.setState({
+                password: event.target.value,
+              })}
               />
           </Grid>
         </Grid>
         <Grid  container alignContent="center" justify="center" direction="column" spacing="24" alignItems="center" style={{marginTop: 25}}>
           <Grid item >
             <MuiThemeProvider theme={theme}>
-              <Button component={Link} to="/Feed" variant="outlined" color="primary" >
+              <Button component={Link} to="/Feed" variant="outlined" color="primary" onClick={this.login}>
                   Login
               </Button>
             </MuiThemeProvider>
           </Grid>  
           <Grid item>
             <MuiThemeProvider theme={theme}>
-              <Button component={Link} to="/SignUp"variant="outlined" color="primary">
+              <Button component={Link} to="/SignUp" variant="outlined" color="primary">
                 Registrar
               </Button>
               </MuiThemeProvider>
