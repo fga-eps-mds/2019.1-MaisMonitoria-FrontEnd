@@ -5,6 +5,8 @@ import './SignUp.css';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import {Link} from 'react-router-dom';
+import firebase from 'firebase';
+
 
 const theme = createMuiTheme({
   palette: {
@@ -15,8 +17,34 @@ const theme = createMuiTheme({
 });
 
 
-
 class SignUp extends Component {
+  state = {
+    email: '',
+    password: '',
+    name: '',
+    isAuthenticated: false
+  };
+  
+  register = async () => {
+    const { email, password, name } = this.state;  
+    try{
+      const user = await firebase.auth()
+        .createUserWithEmailAndPassword(email, password);
+        this.setState({isAuthenticated: true});
+        firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+              user.getIdToken().then(function(idToken) {  
+                var userData = {name: name, user_token: idToken}
+                userData = JSON.stringify(userData)
+              });
+          }
+      });    
+      
+      }catch(e){
+      console.log(e);
+    }
+  }
+  
   render() {
     return (
       <div className="SignUpBackground">
@@ -27,6 +55,9 @@ class SignUp extends Component {
             id="nomeTextField"
             label="Nome"
             margin="normal"
+            onChange={(event)=>this.setState({
+              name: event.target.value,
+            })}
             />
 
           </Grid>
@@ -36,8 +67,9 @@ class SignUp extends Component {
               label="Email"
               margin="normal"
               type="email"
-             
-             
+              onChange={(event)=>this.setState({
+                email: event.target.value,
+              })}
               />
           </Grid>
           <Grid item >
@@ -46,6 +78,9 @@ class SignUp extends Component {
               label="Senha"
               margin="normal"
               type="password"
+              onChange={(event)=>this.setState({
+                password: event.target.value,
+              })}
              
               />
           </Grid>
@@ -64,7 +99,7 @@ class SignUp extends Component {
           <Grid container alignContent="center" justify="center" direction="column" spacing="24" alignItems="center" style={{marginTop: 25}}>
             <Grid item >
               <MuiThemeProvider theme={theme}>
-                <Button component={Link} to="/" variant="outlined" color="primary">
+                <Button component={Link} to="/SignUp" variant="outlined" onClick={this.register} color="primary">
                  Registrar
                 </Button>
               </MuiThemeProvider>
