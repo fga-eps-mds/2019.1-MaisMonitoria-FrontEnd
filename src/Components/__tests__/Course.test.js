@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 
 
 describe('Testing Course component', () => {
-  it('Test if card renders correctly', () =>{
+  it('Test if Course renders correctly', () =>{
       const tree = shallow(<Course/>);
       expect(tree).toMatchSnapshot();
   });
