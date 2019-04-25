@@ -23,7 +23,7 @@ jobs:
     - stage: "Build image"
       name: "Construindo image"
       script:
-        - docker run maismonitoria/frontend yarn build 
+        - yarn test --coverage
 #    - stage: "Build docker image"
 #      name: "Publicando image"
 #      if: branch = develop
