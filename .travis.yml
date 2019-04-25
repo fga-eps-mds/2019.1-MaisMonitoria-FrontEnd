@@ -9,7 +9,7 @@ services:
   - docker
 
 stages:
-  - Build image
+  - Unit test
   - Build docker image
 
 notifications:
@@ -20,10 +20,11 @@ before_script:
 
 jobs:
   include:
-    - stage: "Build image"
-      name: "Construindo image"
+    - stage: "Unit test"
+      name: "Unit test"
       script:
         - yarn run test -u --coverage
+        - ./node_modules/.bin/codecov -t ${CODECOV_TOKEN}
 #    - stage: "Build docker image"
 #      name: "Publicando image"
 #      if: branch = develop
