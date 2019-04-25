@@ -23,7 +23,7 @@ jobs:
     - stage: "Build image"
       name: "Construindo image"
       script:
-        - yarn test --coverage
+        - yarn run test -u --coverage
 #    - stage: "Build docker image"
 #      name: "Publicando image"
 #      if: branch = develop
