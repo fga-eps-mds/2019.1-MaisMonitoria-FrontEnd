@@ -1,326 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Testing Search component Test if Search renders correctly 1`] = `
-ShallowWrapper {
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <Search />,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "checkPropTypes": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateError": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "host",
-    "props": Object {
-      "children": Array [
-        <WithStyles(Grid)
-          alignItems="stretch"
-          container={true}
-          justify="center"
-        >
-          <WithStyles(SearchAppBar) />
-        </WithStyles(Grid)>,
-        <WithStyles(Grid)
-          alignItems="center"
-          container={true}
-          direction="column"
-          justify="center"
-          spacing="16"
-          style={
-            Object {
-              "padding": 80,
-            }
-          }
-        >
-          <WithStyles(Grid)
-            item={true}
-          >
-            <WithStyles(PaperSheet) />
-          </WithStyles(Grid)>
-        </WithStyles(Grid)>,
-        <WithStyles(Grid)
-          container={true}
-        >
-          <WithStyles(Grid)>
-            <WithStyles(IconLabelTabs) />
-          </WithStyles(Grid)>
-        </WithStyles(Grid)>,
-      ],
-    },
-    "ref": null,
-    "rendered": Array [
+<div>
+  <WithStyles(Grid)
+    alignItems="stretch"
+    container={true}
+    justify="center"
+  >
+    <WithStyles(SearchAppBar) />
+  </WithStyles(Grid)>
+  <WithStyles(Grid)
+    alignItems="center"
+    container={true}
+    direction="column"
+    justify="center"
+    spacing="16"
+    style={
       Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "alignItems": "stretch",
-          "children": <WithStyles(SearchAppBar) />,
-          "container": true,
-          "justify": "center",
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {},
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "alignItems": "center",
-          "children": <WithStyles(Grid)
-            item={true}
-          >
-            <WithStyles(PaperSheet) />
-          </WithStyles(Grid)>,
-          "container": true,
-          "direction": "column",
-          "justify": "center",
-          "spacing": "16",
-          "style": Object {
-            "padding": 80,
-          },
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": <WithStyles(PaperSheet) />,
-            "item": true,
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {},
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          "type": [Function],
-        },
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": <WithStyles(Grid)>
-            <WithStyles(IconLabelTabs) />
-          </WithStyles(Grid)>,
-          "container": true,
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": <WithStyles(IconLabelTabs) />,
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {},
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          "type": [Function],
-        },
-        "type": [Function],
-      },
-    ],
-    "type": "div",
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": Array [
-          <WithStyles(Grid)
-            alignItems="stretch"
-            container={true}
-            justify="center"
-          >
-            <WithStyles(SearchAppBar) />
-          </WithStyles(Grid)>,
-          <WithStyles(Grid)
-            alignItems="center"
-            container={true}
-            direction="column"
-            justify="center"
-            spacing="16"
-            style={
-              Object {
-                "padding": 80,
-              }
-            }
-          >
-            <WithStyles(Grid)
-              item={true}
-            >
-              <WithStyles(PaperSheet) />
-            </WithStyles(Grid)>
-          </WithStyles(Grid)>,
-          <WithStyles(Grid)
-            container={true}
-          >
-            <WithStyles(Grid)>
-              <WithStyles(IconLabelTabs) />
-            </WithStyles(Grid)>
-          </WithStyles(Grid)>,
-        ],
-      },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "alignItems": "stretch",
-            "children": <WithStyles(SearchAppBar) />,
-            "container": true,
-            "justify": "center",
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {},
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "alignItems": "center",
-            "children": <WithStyles(Grid)
-              item={true}
-            >
-              <WithStyles(PaperSheet) />
-            </WithStyles(Grid)>,
-            "container": true,
-            "direction": "column",
-            "justify": "center",
-            "spacing": "16",
-            "style": Object {
-              "padding": 80,
-            },
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": <WithStyles(PaperSheet) />,
-              "item": true,
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {},
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            "type": [Function],
-          },
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": <WithStyles(Grid)>
-              <WithStyles(IconLabelTabs) />
-            </WithStyles(Grid)>,
-            "container": true,
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": <WithStyles(IconLabelTabs) />,
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {},
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            "type": [Function],
-          },
-          "type": [Function],
-        },
-      ],
-      "type": "div",
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
-        "legacyContextMode": "parent",
-        "lifecycles": Object {
-          "componentDidUpdate": Object {
-            "onSetState": true,
-          },
-          "getChildContext": Object {
-            "calledByRenderer": false,
-          },
-          "getDerivedStateFromError": true,
-          "getDerivedStateFromProps": Object {
-            "hasShouldComponentUpdateBug": false,
-          },
-          "getSnapshotBeforeUpdate": true,
-          "setState": Object {
-            "skipsComponentDidUpdateOnNullish": true,
-          },
-        },
-      },
-    },
-  },
-  Symbol(enzyme.__childContext__): null,
-}
+        "padding": 80,
+      }
+    }
+  >
+    <WithStyles(Grid)
+      item={true}
+    >
+      <WithStyles(PaperSheet) />
+    </WithStyles(Grid)>
+  </WithStyles(Grid)>
+  <WithStyles(Grid)
+    container={true}
+  >
+    <WithStyles(Grid)>
+      <WithStyles(IconLabelTabs) />
+    </WithStyles(Grid)>
+  </WithStyles(Grid)>
+</div>
 `;

@@ -1,1066 +1,117 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Testing EditProfile component Test if EditProfile renders correctly 1`] = `
-ShallowWrapper {
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <EditProfile />,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "checkPropTypes": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateError": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "host",
-    "props": Object {
-      "children": Array [
-        <WithStyles(Grid)
-          alignItems="stretch"
-          container={true}
-          justify="center"
-        >
-          <WithStyles(SimpleAppBar) />
-        </WithStyles(Grid)>,
-        <WithStyles(Grid)
-          alignContent="center"
-          alignItems="center"
-          container={true}
-          direction="column"
-          justify="center"
-          spacing="8"
-          style={
-            Object {
-              "padding": 100,
-            }
-          }
-        >
-          <WithStyles(Grid)
-            auto-md={true}
-            item={true}
-          >
-            <img
-              alt="pp"
-              height="120"
-              src="Pp.png"
-              width="120"
-            />
-          </WithStyles(Grid)>
-          <WithStyles(Grid)
-            auto-md={true}
-            item={true}
-          >
-            <WithStyles(Button)
-              color="primary"
-              size="small"
-              variant="outlined"
-            >
-              Alterar foto
-            </WithStyles(Button)>
-          </WithStyles(Grid)>
-          <WithStyles(Grid)
-            item={true}
-            md-auto={true}
-          >
-            <TextField
-              id="nomeTextField"
-              label="Nome"
-              margin="normal"
-              required={false}
-              select={false}
-              variant="standard"
-            />
-          </WithStyles(Grid)>
-          <WithStyles(Grid)
-            item={true}
-            md-auto={true}
-          >
-            <TextField
-              autoComplete="email"
-              id="emailTextField"
-              label="Email"
-              margin="normal"
-              name="email"
-              required={false}
-              select={false}
-              type="email"
-              variant="standard"
-            />
-          </WithStyles(Grid)>
-          <WithStyles(Grid)
-            item={true}
-            md-auto={true}
-          >
-            <WithStyles(SimpleSelect) />
-          </WithStyles(Grid)>
-          <WithStyles(Grid)
-            item={true}
-            md-auto={true}
-          >
-            <TextField
-              id="telefone    TextField"
-              label="Telefone"
-              margin="normal"
-              required={false}
-              select={false}
-              variant="standard"
-            />
-          </WithStyles(Grid)>
-          <WithStyles(Grid)
-            item={true}
-          >
-            <WithStyles(Button)
-              color="primary"
-              component={[Function]}
-              to="/Feed"
-              variant="outlined"
-            >
-              Alterar
-            </WithStyles(Button)>
-          </WithStyles(Grid)>
-        </WithStyles(Grid)>,
-        <WithStyles(Grid)
-          container={true}
-        >
-          <WithStyles(Grid)>
-            <WithStyles(IconLabelTabs) />
-          </WithStyles(Grid)>
-        </WithStyles(Grid)>,
-      ],
-    },
-    "ref": null,
-    "rendered": Array [
+<div>
+  <WithStyles(Grid)
+    alignItems="stretch"
+    container={true}
+    justify="center"
+  >
+    <WithStyles(SimpleAppBar) />
+  </WithStyles(Grid)>
+  <WithStyles(Grid)
+    alignContent="center"
+    alignItems="center"
+    container={true}
+    direction="column"
+    justify="center"
+    spacing="8"
+    style={
       Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "alignItems": "stretch",
-          "children": <WithStyles(SimpleAppBar) />,
-          "container": true,
-          "justify": "center",
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {},
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "alignContent": "center",
-          "alignItems": "center",
-          "children": Array [
-            <WithStyles(Grid)
-              auto-md={true}
-              item={true}
-            >
-              <img
-                alt="pp"
-                height="120"
-                src="Pp.png"
-                width="120"
-              />
-            </WithStyles(Grid)>,
-            <WithStyles(Grid)
-              auto-md={true}
-              item={true}
-            >
-              <WithStyles(Button)
-                color="primary"
-                size="small"
-                variant="outlined"
-              >
-                Alterar foto
-              </WithStyles(Button)>
-            </WithStyles(Grid)>,
-            <WithStyles(Grid)
-              item={true}
-              md-auto={true}
-            >
-              <TextField
-                id="nomeTextField"
-                label="Nome"
-                margin="normal"
-                required={false}
-                select={false}
-                variant="standard"
-              />
-            </WithStyles(Grid)>,
-            <WithStyles(Grid)
-              item={true}
-              md-auto={true}
-            >
-              <TextField
-                autoComplete="email"
-                id="emailTextField"
-                label="Email"
-                margin="normal"
-                name="email"
-                required={false}
-                select={false}
-                type="email"
-                variant="standard"
-              />
-            </WithStyles(Grid)>,
-            <WithStyles(Grid)
-              item={true}
-              md-auto={true}
-            >
-              <WithStyles(SimpleSelect) />
-            </WithStyles(Grid)>,
-            <WithStyles(Grid)
-              item={true}
-              md-auto={true}
-            >
-              <TextField
-                id="telefone    TextField"
-                label="Telefone"
-                margin="normal"
-                required={false}
-                select={false}
-                variant="standard"
-              />
-            </WithStyles(Grid)>,
-            <WithStyles(Grid)
-              item={true}
-            >
-              <WithStyles(Button)
-                color="primary"
-                component={[Function]}
-                to="/Feed"
-                variant="outlined"
-              >
-                Alterar
-              </WithStyles(Button)>
-            </WithStyles(Grid)>,
-          ],
-          "container": true,
-          "direction": "column",
-          "justify": "center",
-          "spacing": "8",
-          "style": Object {
-            "padding": 100,
-          },
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "auto-md": true,
-              "children": <img
-                alt="pp"
-                height="120"
-                src="Pp.png"
-                width="120"
-              />,
-              "item": true,
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "alt": "pp",
-                "height": "120",
-                "src": "Pp.png",
-                "width": "120",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": "img",
-            },
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "auto-md": true,
-              "children": <WithStyles(Button)
-                color="primary"
-                size="small"
-                variant="outlined"
-              >
-                Alterar foto
-              </WithStyles(Button)>,
-              "item": true,
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": "Alterar foto",
-                "color": "primary",
-                "size": "small",
-                "variant": "outlined",
-              },
-              "ref": null,
-              "rendered": "Alterar foto",
-              "type": [Function],
-            },
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": <TextField
-                id="nomeTextField"
-                label="Nome"
-                margin="normal"
-                required={false}
-                select={false}
-                variant="standard"
-              />,
-              "item": true,
-              "md-auto": true,
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "id": "nomeTextField",
-                "label": "Nome",
-                "margin": "normal",
-                "required": false,
-                "select": false,
-                "variant": "standard",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": <TextField
-                autoComplete="email"
-                id="emailTextField"
-                label="Email"
-                margin="normal"
-                name="email"
-                required={false}
-                select={false}
-                type="email"
-                variant="standard"
-              />,
-              "item": true,
-              "md-auto": true,
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "autoComplete": "email",
-                "id": "emailTextField",
-                "label": "Email",
-                "margin": "normal",
-                "name": "email",
-                "required": false,
-                "select": false,
-                "type": "email",
-                "variant": "standard",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": <WithStyles(SimpleSelect) />,
-              "item": true,
-              "md-auto": true,
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {},
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": <TextField
-                id="telefone    TextField"
-                label="Telefone"
-                margin="normal"
-                required={false}
-                select={false}
-                variant="standard"
-              />,
-              "item": true,
-              "md-auto": true,
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "id": "telefone    TextField",
-                "label": "Telefone",
-                "margin": "normal",
-                "required": false,
-                "select": false,
-                "variant": "standard",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": <WithStyles(Button)
-                color="primary"
-                component={[Function]}
-                to="/Feed"
-                variant="outlined"
-              >
-                Alterar
-              </WithStyles(Button)>,
-              "item": true,
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": "Alterar",
-                "color": "primary",
-                "component": [Function],
-                "to": "/Feed",
-                "variant": "outlined",
-              },
-              "ref": null,
-              "rendered": "Alterar",
-              "type": [Function],
-            },
-            "type": [Function],
-          },
-        ],
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": <WithStyles(Grid)>
-            <WithStyles(IconLabelTabs) />
-          </WithStyles(Grid)>,
-          "container": true,
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": <WithStyles(IconLabelTabs) />,
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {},
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          "type": [Function],
-        },
-        "type": [Function],
-      },
-    ],
-    "type": "div",
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": Array [
-          <WithStyles(Grid)
-            alignItems="stretch"
-            container={true}
-            justify="center"
-          >
-            <WithStyles(SimpleAppBar) />
-          </WithStyles(Grid)>,
-          <WithStyles(Grid)
-            alignContent="center"
-            alignItems="center"
-            container={true}
-            direction="column"
-            justify="center"
-            spacing="8"
-            style={
-              Object {
-                "padding": 100,
-              }
-            }
-          >
-            <WithStyles(Grid)
-              auto-md={true}
-              item={true}
-            >
-              <img
-                alt="pp"
-                height="120"
-                src="Pp.png"
-                width="120"
-              />
-            </WithStyles(Grid)>
-            <WithStyles(Grid)
-              auto-md={true}
-              item={true}
-            >
-              <WithStyles(Button)
-                color="primary"
-                size="small"
-                variant="outlined"
-              >
-                Alterar foto
-              </WithStyles(Button)>
-            </WithStyles(Grid)>
-            <WithStyles(Grid)
-              item={true}
-              md-auto={true}
-            >
-              <TextField
-                id="nomeTextField"
-                label="Nome"
-                margin="normal"
-                required={false}
-                select={false}
-                variant="standard"
-              />
-            </WithStyles(Grid)>
-            <WithStyles(Grid)
-              item={true}
-              md-auto={true}
-            >
-              <TextField
-                autoComplete="email"
-                id="emailTextField"
-                label="Email"
-                margin="normal"
-                name="email"
-                required={false}
-                select={false}
-                type="email"
-                variant="standard"
-              />
-            </WithStyles(Grid)>
-            <WithStyles(Grid)
-              item={true}
-              md-auto={true}
-            >
-              <WithStyles(SimpleSelect) />
-            </WithStyles(Grid)>
-            <WithStyles(Grid)
-              item={true}
-              md-auto={true}
-            >
-              <TextField
-                id="telefone    TextField"
-                label="Telefone"
-                margin="normal"
-                required={false}
-                select={false}
-                variant="standard"
-              />
-            </WithStyles(Grid)>
-            <WithStyles(Grid)
-              item={true}
-            >
-              <WithStyles(Button)
-                color="primary"
-                component={[Function]}
-                to="/Feed"
-                variant="outlined"
-              >
-                Alterar
-              </WithStyles(Button)>
-            </WithStyles(Grid)>
-          </WithStyles(Grid)>,
-          <WithStyles(Grid)
-            container={true}
-          >
-            <WithStyles(Grid)>
-              <WithStyles(IconLabelTabs) />
-            </WithStyles(Grid)>
-          </WithStyles(Grid)>,
-        ],
-      },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "alignItems": "stretch",
-            "children": <WithStyles(SimpleAppBar) />,
-            "container": true,
-            "justify": "center",
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {},
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "alignContent": "center",
-            "alignItems": "center",
-            "children": Array [
-              <WithStyles(Grid)
-                auto-md={true}
-                item={true}
-              >
-                <img
-                  alt="pp"
-                  height="120"
-                  src="Pp.png"
-                  width="120"
-                />
-              </WithStyles(Grid)>,
-              <WithStyles(Grid)
-                auto-md={true}
-                item={true}
-              >
-                <WithStyles(Button)
-                  color="primary"
-                  size="small"
-                  variant="outlined"
-                >
-                  Alterar foto
-                </WithStyles(Button)>
-              </WithStyles(Grid)>,
-              <WithStyles(Grid)
-                item={true}
-                md-auto={true}
-              >
-                <TextField
-                  id="nomeTextField"
-                  label="Nome"
-                  margin="normal"
-                  required={false}
-                  select={false}
-                  variant="standard"
-                />
-              </WithStyles(Grid)>,
-              <WithStyles(Grid)
-                item={true}
-                md-auto={true}
-              >
-                <TextField
-                  autoComplete="email"
-                  id="emailTextField"
-                  label="Email"
-                  margin="normal"
-                  name="email"
-                  required={false}
-                  select={false}
-                  type="email"
-                  variant="standard"
-                />
-              </WithStyles(Grid)>,
-              <WithStyles(Grid)
-                item={true}
-                md-auto={true}
-              >
-                <WithStyles(SimpleSelect) />
-              </WithStyles(Grid)>,
-              <WithStyles(Grid)
-                item={true}
-                md-auto={true}
-              >
-                <TextField
-                  id="telefone    TextField"
-                  label="Telefone"
-                  margin="normal"
-                  required={false}
-                  select={false}
-                  variant="standard"
-                />
-              </WithStyles(Grid)>,
-              <WithStyles(Grid)
-                item={true}
-              >
-                <WithStyles(Button)
-                  color="primary"
-                  component={[Function]}
-                  to="/Feed"
-                  variant="outlined"
-                >
-                  Alterar
-                </WithStyles(Button)>
-              </WithStyles(Grid)>,
-            ],
-            "container": true,
-            "direction": "column",
-            "justify": "center",
-            "spacing": "8",
-            "style": Object {
-              "padding": 100,
-            },
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "auto-md": true,
-                "children": <img
-                  alt="pp"
-                  height="120"
-                  src="Pp.png"
-                  width="120"
-                />,
-                "item": true,
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "alt": "pp",
-                  "height": "120",
-                  "src": "Pp.png",
-                  "width": "120",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": "img",
-              },
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "auto-md": true,
-                "children": <WithStyles(Button)
-                  color="primary"
-                  size="small"
-                  variant="outlined"
-                >
-                  Alterar foto
-                </WithStyles(Button)>,
-                "item": true,
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": "Alterar foto",
-                  "color": "primary",
-                  "size": "small",
-                  "variant": "outlined",
-                },
-                "ref": null,
-                "rendered": "Alterar foto",
-                "type": [Function],
-              },
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": <TextField
-                  id="nomeTextField"
-                  label="Nome"
-                  margin="normal"
-                  required={false}
-                  select={false}
-                  variant="standard"
-                />,
-                "item": true,
-                "md-auto": true,
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "id": "nomeTextField",
-                  "label": "Nome",
-                  "margin": "normal",
-                  "required": false,
-                  "select": false,
-                  "variant": "standard",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": <TextField
-                  autoComplete="email"
-                  id="emailTextField"
-                  label="Email"
-                  margin="normal"
-                  name="email"
-                  required={false}
-                  select={false}
-                  type="email"
-                  variant="standard"
-                />,
-                "item": true,
-                "md-auto": true,
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "autoComplete": "email",
-                  "id": "emailTextField",
-                  "label": "Email",
-                  "margin": "normal",
-                  "name": "email",
-                  "required": false,
-                  "select": false,
-                  "type": "email",
-                  "variant": "standard",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": <WithStyles(SimpleSelect) />,
-                "item": true,
-                "md-auto": true,
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {},
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": <TextField
-                  id="telefone    TextField"
-                  label="Telefone"
-                  margin="normal"
-                  required={false}
-                  select={false}
-                  variant="standard"
-                />,
-                "item": true,
-                "md-auto": true,
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "id": "telefone    TextField",
-                  "label": "Telefone",
-                  "margin": "normal",
-                  "required": false,
-                  "select": false,
-                  "variant": "standard",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": <WithStyles(Button)
-                  color="primary"
-                  component={[Function]}
-                  to="/Feed"
-                  variant="outlined"
-                >
-                  Alterar
-                </WithStyles(Button)>,
-                "item": true,
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": "Alterar",
-                  "color": "primary",
-                  "component": [Function],
-                  "to": "/Feed",
-                  "variant": "outlined",
-                },
-                "ref": null,
-                "rendered": "Alterar",
-                "type": [Function],
-              },
-              "type": [Function],
-            },
-          ],
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": <WithStyles(Grid)>
-              <WithStyles(IconLabelTabs) />
-            </WithStyles(Grid)>,
-            "container": true,
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": <WithStyles(IconLabelTabs) />,
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {},
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            "type": [Function],
-          },
-          "type": [Function],
-        },
-      ],
-      "type": "div",
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
-        "legacyContextMode": "parent",
-        "lifecycles": Object {
-          "componentDidUpdate": Object {
-            "onSetState": true,
-          },
-          "getChildContext": Object {
-            "calledByRenderer": false,
-          },
-          "getDerivedStateFromError": true,
-          "getDerivedStateFromProps": Object {
-            "hasShouldComponentUpdateBug": false,
-          },
-          "getSnapshotBeforeUpdate": true,
-          "setState": Object {
-            "skipsComponentDidUpdateOnNullish": true,
-          },
-        },
-      },
-    },
-  },
-  Symbol(enzyme.__childContext__): null,
-}
+        "padding": 100,
+      }
+    }
+  >
+    <WithStyles(Grid)
+      auto-md={true}
+      item={true}
+    >
+      <img
+        alt="pp"
+        height="120"
+        src="Pp.png"
+        width="120"
+      />
+    </WithStyles(Grid)>
+    <WithStyles(Grid)
+      auto-md={true}
+      item={true}
+    >
+      <WithStyles(Button)
+        color="primary"
+        size="small"
+        variant="outlined"
+      >
+        Alterar foto
+      </WithStyles(Button)>
+    </WithStyles(Grid)>
+    <WithStyles(Grid)
+      item={true}
+      md-auto={true}
+    >
+      <TextField
+        id="nomeTextField"
+        label="Nome"
+        margin="normal"
+        required={false}
+        select={false}
+        variant="standard"
+      />
+    </WithStyles(Grid)>
+    <WithStyles(Grid)
+      item={true}
+      md-auto={true}
+    >
+      <TextField
+        autoComplete="email"
+        id="emailTextField"
+        label="Email"
+        margin="normal"
+        name="email"
+        required={false}
+        select={false}
+        type="email"
+        variant="standard"
+      />
+    </WithStyles(Grid)>
+    <WithStyles(Grid)
+      item={true}
+      md-auto={true}
+    >
+      <WithStyles(SimpleSelect) />
+    </WithStyles(Grid)>
+    <WithStyles(Grid)
+      item={true}
+      md-auto={true}
+    >
+      <TextField
+        id="telefone    TextField"
+        label="Telefone"
+        margin="normal"
+        required={false}
+        select={false}
+        variant="standard"
+      />
+    </WithStyles(Grid)>
+    <WithStyles(Grid)
+      item={true}
+    >
+      <WithStyles(Button)
+        color="primary"
+        component={[Function]}
+        to="/Feed"
+        variant="outlined"
+      >
+        Alterar
+      </WithStyles(Button)>
+    </WithStyles(Grid)>
+  </WithStyles(Grid)>
+  <WithStyles(Grid)
+    container={true}
+  >
+    <WithStyles(Grid)>
+      <WithStyles(IconLabelTabs) />
+    </WithStyles(Grid)>
+  </WithStyles(Grid)>
+</div>
 `;

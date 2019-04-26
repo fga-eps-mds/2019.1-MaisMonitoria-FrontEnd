@@ -1,12 +1,11 @@
 import React from 'react';
 import Feed from '../Feed/Feed';
 import { shallow } from 'enzyme';
-
-const feed = jest.fn();
+import toJson from 'enzyme-to-json';
 
 describe('Testing Feed component', () => {
     it('Test if Feed renders correctly', () =>{
         const tree = shallow(<Feed/>);
-        expect(tree).toMatchSnapshot();
+        expect(toJson(tree)).toMatchSnapshot();
     });
 });

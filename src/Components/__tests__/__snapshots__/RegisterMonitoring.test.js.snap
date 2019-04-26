@@ -1,1134 +1,129 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Testing RegisterMonitoring component Test if RegisterMonitoring renders correctly 1`] = `
-ShallowWrapper {
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <RegisterMonitoring />,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "checkPropTypes": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateError": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "host",
-    "props": Object {
-      "children": Array [
-        <WithStyles(Grid)
-          alignItems="stretch"
-          container={true}
-          justify="center"
-        >
-          <WithStyles(SimpleAppBar) />
-        </WithStyles(Grid)>,
-        <WithStyles(Grid)
-          alignContent="center"
-          alignItems="center"
-          container={true}
-          direction="column"
-          justify="center"
-          spacing="16"
-          style={
-            Object {
-              "padding": 60,
-            }
+<div>
+  <WithStyles(Grid)
+    alignItems="stretch"
+    container={true}
+    justify="center"
+  >
+    <WithStyles(SimpleAppBar) />
+  </WithStyles(Grid)>
+  <WithStyles(Grid)
+    alignContent="center"
+    alignItems="center"
+    container={true}
+    direction="column"
+    justify="center"
+    spacing="16"
+    style={
+      Object {
+        "padding": 60,
+      }
+    }
+  >
+    <WithStyles(Grid)
+      item={true}
+      md-auto={true}
+    >
+      <TextField
+        id="temaTextField"
+        label="Tema"
+        margin="normal"
+        required={false}
+        select={false}
+        variant="standard"
+      />
+    </WithStyles(Grid)>
+    <WithStyles(Grid)
+      item={true}
+      md-auto={true}
+    >
+      <TextField
+        InputLabelProps={
+          Object {
+            "shrink": true,
           }
-        >
-          <WithStyles(Grid)
-            item={true}
-            md-auto={true}
-          >
-            <TextField
-              id="temaTextField"
-              label="Tema"
-              margin="normal"
-              required={false}
-              select={false}
-              variant="standard"
-            />
-          </WithStyles(Grid)>
-          <WithStyles(Grid)
-            item={true}
-            md-auto={true}
-          >
-            <TextField
-              InputLabelProps={
-                Object {
-                  "shrink": true,
-                }
-              }
-              id="InicioTexfild"
-              label="Inicio"
-              margin="normal"
-              required={false}
-              select={false}
-              type="time"
-              variant="standard"
-            />
-          </WithStyles(Grid)>
-          <WithStyles(Grid)
-            item={true}
-            md-auto={true}
-          >
-            <TextField
-              InputLabelProps={
-                Object {
-                  "shrink": true,
-                }
-              }
-              id="terminoTexfild"
-              label="Termino"
-              margin="normal"
-              required={false}
-              select={false}
-              type="time"
-              variant="standard"
-            />
-          </WithStyles(Grid)>
-          <WithStyles(Grid)
-            item={true}
-            md-auto={true}
-          >
-            <TextField
-              InputLabelProps={
-                Object {
-                  "shrink": true,
-                }
-              }
-              defaultValue="00-00-0000"
-              id="date"
-              label="Data"
-              required={false}
-              select={false}
-              type="date"
-              variant="standard"
-            />
-          </WithStyles(Grid)>
-          <WithStyles(Grid)
-            item={true}
-            md-auto={true}
-          >
-            <TextField
-              id="descricaoTextfild"
-              label="Descrição"
-              margin="normal"
-              multiline={true}
-              placeholder="Descrição"
-              required={false}
-              select={false}
-              variant="outlined"
-            />
-          </WithStyles(Grid)>
-          <WithStyles(Grid)
-            item={true}
-          >
-            <WithStyles(Button)
-              color="primary"
-              variant="outlined"
-            >
-              Registrar
-            </WithStyles(Button)>
-          </WithStyles(Grid)>
-        </WithStyles(Grid)>,
-        <WithStyles(Grid)
-          container={true}
-        >
-          <WithStyles(Grid)>
-            <WithStyles(IconLabelTabs) />
-          </WithStyles(Grid)>
-        </WithStyles(Grid)>,
-      ],
-    },
-    "ref": null,
-    "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "alignItems": "stretch",
-          "children": <WithStyles(SimpleAppBar) />,
-          "container": true,
-          "justify": "center",
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {},
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "alignContent": "center",
-          "alignItems": "center",
-          "children": Array [
-            <WithStyles(Grid)
-              item={true}
-              md-auto={true}
-            >
-              <TextField
-                id="temaTextField"
-                label="Tema"
-                margin="normal"
-                required={false}
-                select={false}
-                variant="standard"
-              />
-            </WithStyles(Grid)>,
-            <WithStyles(Grid)
-              item={true}
-              md-auto={true}
-            >
-              <TextField
-                InputLabelProps={
-                  Object {
-                    "shrink": true,
-                  }
-                }
-                id="InicioTexfild"
-                label="Inicio"
-                margin="normal"
-                required={false}
-                select={false}
-                type="time"
-                variant="standard"
-              />
-            </WithStyles(Grid)>,
-            <WithStyles(Grid)
-              item={true}
-              md-auto={true}
-            >
-              <TextField
-                InputLabelProps={
-                  Object {
-                    "shrink": true,
-                  }
-                }
-                id="terminoTexfild"
-                label="Termino"
-                margin="normal"
-                required={false}
-                select={false}
-                type="time"
-                variant="standard"
-              />
-            </WithStyles(Grid)>,
-            <WithStyles(Grid)
-              item={true}
-              md-auto={true}
-            >
-              <TextField
-                InputLabelProps={
-                  Object {
-                    "shrink": true,
-                  }
-                }
-                defaultValue="00-00-0000"
-                id="date"
-                label="Data"
-                required={false}
-                select={false}
-                type="date"
-                variant="standard"
-              />
-            </WithStyles(Grid)>,
-            <WithStyles(Grid)
-              item={true}
-              md-auto={true}
-            >
-              <TextField
-                id="descricaoTextfild"
-                label="Descrição"
-                margin="normal"
-                multiline={true}
-                placeholder="Descrição"
-                required={false}
-                select={false}
-                variant="outlined"
-              />
-            </WithStyles(Grid)>,
-            <WithStyles(Grid)
-              item={true}
-            >
-              <WithStyles(Button)
-                color="primary"
-                variant="outlined"
-              >
-                Registrar
-              </WithStyles(Button)>
-            </WithStyles(Grid)>,
-          ],
-          "container": true,
-          "direction": "column",
-          "justify": "center",
-          "spacing": "16",
-          "style": Object {
-            "padding": 60,
-          },
-        },
-        "ref": null,
-        "rendered": Array [
+        }
+        id="InicioTexfild"
+        label="Inicio"
+        margin="normal"
+        required={false}
+        select={false}
+        type="time"
+        variant="standard"
+      />
+    </WithStyles(Grid)>
+    <WithStyles(Grid)
+      item={true}
+      md-auto={true}
+    >
+      <TextField
+        InputLabelProps={
           Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": <TextField
-                id="temaTextField"
-                label="Tema"
-                margin="normal"
-                required={false}
-                select={false}
-                variant="standard"
-              />,
-              "item": true,
-              "md-auto": true,
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "id": "temaTextField",
-                "label": "Tema",
-                "margin": "normal",
-                "required": false,
-                "select": false,
-                "variant": "standard",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            "type": [Function],
-          },
+            "shrink": true,
+          }
+        }
+        id="terminoTexfild"
+        label="Termino"
+        margin="normal"
+        required={false}
+        select={false}
+        type="time"
+        variant="standard"
+      />
+    </WithStyles(Grid)>
+    <WithStyles(Grid)
+      item={true}
+      md-auto={true}
+    >
+      <TextField
+        InputLabelProps={
           Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": <TextField
-                InputLabelProps={
-                  Object {
-                    "shrink": true,
-                  }
-                }
-                id="InicioTexfild"
-                label="Inicio"
-                margin="normal"
-                required={false}
-                select={false}
-                type="time"
-                variant="standard"
-              />,
-              "item": true,
-              "md-auto": true,
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "InputLabelProps": Object {
-                  "shrink": true,
-                },
-                "id": "InicioTexfild",
-                "label": "Inicio",
-                "margin": "normal",
-                "required": false,
-                "select": false,
-                "type": "time",
-                "variant": "standard",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": <TextField
-                InputLabelProps={
-                  Object {
-                    "shrink": true,
-                  }
-                }
-                id="terminoTexfild"
-                label="Termino"
-                margin="normal"
-                required={false}
-                select={false}
-                type="time"
-                variant="standard"
-              />,
-              "item": true,
-              "md-auto": true,
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "InputLabelProps": Object {
-                  "shrink": true,
-                },
-                "id": "terminoTexfild",
-                "label": "Termino",
-                "margin": "normal",
-                "required": false,
-                "select": false,
-                "type": "time",
-                "variant": "standard",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": <TextField
-                InputLabelProps={
-                  Object {
-                    "shrink": true,
-                  }
-                }
-                defaultValue="00-00-0000"
-                id="date"
-                label="Data"
-                required={false}
-                select={false}
-                type="date"
-                variant="standard"
-              />,
-              "item": true,
-              "md-auto": true,
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "InputLabelProps": Object {
-                  "shrink": true,
-                },
-                "defaultValue": "00-00-0000",
-                "id": "date",
-                "label": "Data",
-                "required": false,
-                "select": false,
-                "type": "date",
-                "variant": "standard",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": <TextField
-                id="descricaoTextfild"
-                label="Descrição"
-                margin="normal"
-                multiline={true}
-                placeholder="Descrição"
-                required={false}
-                select={false}
-                variant="outlined"
-              />,
-              "item": true,
-              "md-auto": true,
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "id": "descricaoTextfild",
-                "label": "Descrição",
-                "margin": "normal",
-                "multiline": true,
-                "placeholder": "Descrição",
-                "required": false,
-                "select": false,
-                "variant": "outlined",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": <WithStyles(Button)
-                color="primary"
-                variant="outlined"
-              >
-                Registrar
-              </WithStyles(Button)>,
-              "item": true,
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": "Registrar",
-                "color": "primary",
-                "variant": "outlined",
-              },
-              "ref": null,
-              "rendered": "Registrar",
-              "type": [Function],
-            },
-            "type": [Function],
-          },
-        ],
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": <WithStyles(Grid)>
-            <WithStyles(IconLabelTabs) />
-          </WithStyles(Grid)>,
-          "container": true,
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": <WithStyles(IconLabelTabs) />,
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {},
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          "type": [Function],
-        },
-        "type": [Function],
-      },
-    ],
-    "type": "div",
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": Array [
-          <WithStyles(Grid)
-            alignItems="stretch"
-            container={true}
-            justify="center"
-          >
-            <WithStyles(SimpleAppBar) />
-          </WithStyles(Grid)>,
-          <WithStyles(Grid)
-            alignContent="center"
-            alignItems="center"
-            container={true}
-            direction="column"
-            justify="center"
-            spacing="16"
-            style={
-              Object {
-                "padding": 60,
-              }
-            }
-          >
-            <WithStyles(Grid)
-              item={true}
-              md-auto={true}
-            >
-              <TextField
-                id="temaTextField"
-                label="Tema"
-                margin="normal"
-                required={false}
-                select={false}
-                variant="standard"
-              />
-            </WithStyles(Grid)>
-            <WithStyles(Grid)
-              item={true}
-              md-auto={true}
-            >
-              <TextField
-                InputLabelProps={
-                  Object {
-                    "shrink": true,
-                  }
-                }
-                id="InicioTexfild"
-                label="Inicio"
-                margin="normal"
-                required={false}
-                select={false}
-                type="time"
-                variant="standard"
-              />
-            </WithStyles(Grid)>
-            <WithStyles(Grid)
-              item={true}
-              md-auto={true}
-            >
-              <TextField
-                InputLabelProps={
-                  Object {
-                    "shrink": true,
-                  }
-                }
-                id="terminoTexfild"
-                label="Termino"
-                margin="normal"
-                required={false}
-                select={false}
-                type="time"
-                variant="standard"
-              />
-            </WithStyles(Grid)>
-            <WithStyles(Grid)
-              item={true}
-              md-auto={true}
-            >
-              <TextField
-                InputLabelProps={
-                  Object {
-                    "shrink": true,
-                  }
-                }
-                defaultValue="00-00-0000"
-                id="date"
-                label="Data"
-                required={false}
-                select={false}
-                type="date"
-                variant="standard"
-              />
-            </WithStyles(Grid)>
-            <WithStyles(Grid)
-              item={true}
-              md-auto={true}
-            >
-              <TextField
-                id="descricaoTextfild"
-                label="Descrição"
-                margin="normal"
-                multiline={true}
-                placeholder="Descrição"
-                required={false}
-                select={false}
-                variant="outlined"
-              />
-            </WithStyles(Grid)>
-            <WithStyles(Grid)
-              item={true}
-            >
-              <WithStyles(Button)
-                color="primary"
-                variant="outlined"
-              >
-                Registrar
-              </WithStyles(Button)>
-            </WithStyles(Grid)>
-          </WithStyles(Grid)>,
-          <WithStyles(Grid)
-            container={true}
-          >
-            <WithStyles(Grid)>
-              <WithStyles(IconLabelTabs) />
-            </WithStyles(Grid)>
-          </WithStyles(Grid)>,
-        ],
-      },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "alignItems": "stretch",
-            "children": <WithStyles(SimpleAppBar) />,
-            "container": true,
-            "justify": "center",
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {},
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "alignContent": "center",
-            "alignItems": "center",
-            "children": Array [
-              <WithStyles(Grid)
-                item={true}
-                md-auto={true}
-              >
-                <TextField
-                  id="temaTextField"
-                  label="Tema"
-                  margin="normal"
-                  required={false}
-                  select={false}
-                  variant="standard"
-                />
-              </WithStyles(Grid)>,
-              <WithStyles(Grid)
-                item={true}
-                md-auto={true}
-              >
-                <TextField
-                  InputLabelProps={
-                    Object {
-                      "shrink": true,
-                    }
-                  }
-                  id="InicioTexfild"
-                  label="Inicio"
-                  margin="normal"
-                  required={false}
-                  select={false}
-                  type="time"
-                  variant="standard"
-                />
-              </WithStyles(Grid)>,
-              <WithStyles(Grid)
-                item={true}
-                md-auto={true}
-              >
-                <TextField
-                  InputLabelProps={
-                    Object {
-                      "shrink": true,
-                    }
-                  }
-                  id="terminoTexfild"
-                  label="Termino"
-                  margin="normal"
-                  required={false}
-                  select={false}
-                  type="time"
-                  variant="standard"
-                />
-              </WithStyles(Grid)>,
-              <WithStyles(Grid)
-                item={true}
-                md-auto={true}
-              >
-                <TextField
-                  InputLabelProps={
-                    Object {
-                      "shrink": true,
-                    }
-                  }
-                  defaultValue="00-00-0000"
-                  id="date"
-                  label="Data"
-                  required={false}
-                  select={false}
-                  type="date"
-                  variant="standard"
-                />
-              </WithStyles(Grid)>,
-              <WithStyles(Grid)
-                item={true}
-                md-auto={true}
-              >
-                <TextField
-                  id="descricaoTextfild"
-                  label="Descrição"
-                  margin="normal"
-                  multiline={true}
-                  placeholder="Descrição"
-                  required={false}
-                  select={false}
-                  variant="outlined"
-                />
-              </WithStyles(Grid)>,
-              <WithStyles(Grid)
-                item={true}
-              >
-                <WithStyles(Button)
-                  color="primary"
-                  variant="outlined"
-                >
-                  Registrar
-                </WithStyles(Button)>
-              </WithStyles(Grid)>,
-            ],
-            "container": true,
-            "direction": "column",
-            "justify": "center",
-            "spacing": "16",
-            "style": Object {
-              "padding": 60,
-            },
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": <TextField
-                  id="temaTextField"
-                  label="Tema"
-                  margin="normal"
-                  required={false}
-                  select={false}
-                  variant="standard"
-                />,
-                "item": true,
-                "md-auto": true,
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "id": "temaTextField",
-                  "label": "Tema",
-                  "margin": "normal",
-                  "required": false,
-                  "select": false,
-                  "variant": "standard",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": <TextField
-                  InputLabelProps={
-                    Object {
-                      "shrink": true,
-                    }
-                  }
-                  id="InicioTexfild"
-                  label="Inicio"
-                  margin="normal"
-                  required={false}
-                  select={false}
-                  type="time"
-                  variant="standard"
-                />,
-                "item": true,
-                "md-auto": true,
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "InputLabelProps": Object {
-                    "shrink": true,
-                  },
-                  "id": "InicioTexfild",
-                  "label": "Inicio",
-                  "margin": "normal",
-                  "required": false,
-                  "select": false,
-                  "type": "time",
-                  "variant": "standard",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": <TextField
-                  InputLabelProps={
-                    Object {
-                      "shrink": true,
-                    }
-                  }
-                  id="terminoTexfild"
-                  label="Termino"
-                  margin="normal"
-                  required={false}
-                  select={false}
-                  type="time"
-                  variant="standard"
-                />,
-                "item": true,
-                "md-auto": true,
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "InputLabelProps": Object {
-                    "shrink": true,
-                  },
-                  "id": "terminoTexfild",
-                  "label": "Termino",
-                  "margin": "normal",
-                  "required": false,
-                  "select": false,
-                  "type": "time",
-                  "variant": "standard",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": <TextField
-                  InputLabelProps={
-                    Object {
-                      "shrink": true,
-                    }
-                  }
-                  defaultValue="00-00-0000"
-                  id="date"
-                  label="Data"
-                  required={false}
-                  select={false}
-                  type="date"
-                  variant="standard"
-                />,
-                "item": true,
-                "md-auto": true,
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "InputLabelProps": Object {
-                    "shrink": true,
-                  },
-                  "defaultValue": "00-00-0000",
-                  "id": "date",
-                  "label": "Data",
-                  "required": false,
-                  "select": false,
-                  "type": "date",
-                  "variant": "standard",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": <TextField
-                  id="descricaoTextfild"
-                  label="Descrição"
-                  margin="normal"
-                  multiline={true}
-                  placeholder="Descrição"
-                  required={false}
-                  select={false}
-                  variant="outlined"
-                />,
-                "item": true,
-                "md-auto": true,
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "id": "descricaoTextfild",
-                  "label": "Descrição",
-                  "margin": "normal",
-                  "multiline": true,
-                  "placeholder": "Descrição",
-                  "required": false,
-                  "select": false,
-                  "variant": "outlined",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": <WithStyles(Button)
-                  color="primary"
-                  variant="outlined"
-                >
-                  Registrar
-                </WithStyles(Button)>,
-                "item": true,
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": "Registrar",
-                  "color": "primary",
-                  "variant": "outlined",
-                },
-                "ref": null,
-                "rendered": "Registrar",
-                "type": [Function],
-              },
-              "type": [Function],
-            },
-          ],
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": <WithStyles(Grid)>
-              <WithStyles(IconLabelTabs) />
-            </WithStyles(Grid)>,
-            "container": true,
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": <WithStyles(IconLabelTabs) />,
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {},
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            "type": [Function],
-          },
-          "type": [Function],
-        },
-      ],
-      "type": "div",
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
-        "legacyContextMode": "parent",
-        "lifecycles": Object {
-          "componentDidUpdate": Object {
-            "onSetState": true,
-          },
-          "getChildContext": Object {
-            "calledByRenderer": false,
-          },
-          "getDerivedStateFromError": true,
-          "getDerivedStateFromProps": Object {
-            "hasShouldComponentUpdateBug": false,
-          },
-          "getSnapshotBeforeUpdate": true,
-          "setState": Object {
-            "skipsComponentDidUpdateOnNullish": true,
-          },
-        },
-      },
-    },
-  },
-  Symbol(enzyme.__childContext__): null,
-}
+            "shrink": true,
+          }
+        }
+        defaultValue="00-00-0000"
+        id="date"
+        label="Data"
+        required={false}
+        select={false}
+        type="date"
+        variant="standard"
+      />
+    </WithStyles(Grid)>
+    <WithStyles(Grid)
+      item={true}
+      md-auto={true}
+    >
+      <TextField
+        id="descricaoTextfild"
+        label="Descrição"
+        margin="normal"
+        multiline={true}
+        placeholder="Descrição"
+        required={false}
+        select={false}
+        variant="outlined"
+      />
+    </WithStyles(Grid)>
+    <WithStyles(Grid)
+      item={true}
+    >
+      <WithStyles(Button)
+        color="primary"
+        variant="outlined"
+      >
+        Registrar
+      </WithStyles(Button)>
+    </WithStyles(Grid)>
+  </WithStyles(Grid)>
+  <WithStyles(Grid)
+    container={true}
+  >
+    <WithStyles(Grid)>
+      <WithStyles(IconLabelTabs) />
+    </WithStyles(Grid)>
+  </WithStyles(Grid)>
+</div>
 `;
