@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Testing Course component Test if Course renders correctly 1`] = `
+exports[`Testing AppBarSearch component Test if AppBarSearch renders correctly 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <WithStyles(SimpleSelect) />,
+  Symbol(enzyme.__unrendered__): <WithStyles(SearchAppBar) />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "checkPropTypes": [Function],
@@ -16,12 +16,16 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "class",
+    "nodeType": "function",
     "props": Object {
       "classes": Object {
-        "formControl": "SimpleSelect-formControl-2",
-        "root": "SimpleSelect-root-1",
-        "selectEmpty": "SimpleSelect-selectEmpty-3",
+        "grow": "SearchAppBar-grow-2",
+        "inputInput": "SearchAppBar-inputInput-7",
+        "inputRoot": "SearchAppBar-inputRoot-6",
+        "root": "SearchAppBar-root-1",
+        "search": "SearchAppBar-search-4",
+        "searchIcon": "SearchAppBar-searchIcon-5",
+        "title": "SearchAppBar-title-3",
       },
     },
     "ref": null,
@@ -32,12 +36,16 @@ ShallowWrapper {
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "class",
+      "nodeType": "function",
       "props": Object {
         "classes": Object {
-          "formControl": "SimpleSelect-formControl-2",
-          "root": "SimpleSelect-root-1",
-          "selectEmpty": "SimpleSelect-selectEmpty-3",
+          "grow": "SearchAppBar-grow-2",
+          "inputInput": "SearchAppBar-inputInput-7",
+          "inputRoot": "SearchAppBar-inputRoot-6",
+          "root": "SearchAppBar-root-1",
+          "search": "SearchAppBar-search-4",
+          "searchIcon": "SearchAppBar-searchIcon-5",
+          "title": "SearchAppBar-title-3",
         },
       },
       "ref": null,

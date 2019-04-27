@@ -1,16 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import SvgIcon from "@material-ui/core/SvgIcon";
-import { Grid, Button, TextField } from '@material-ui/core' ;
-import { palette } from '@material-ui/system';
 import Paper from '@material-ui/core/Paper';
 import {Link} from 'react-router-dom';
-import Add from '../GenericButtons/Add.js';
+
 
 const styles = theme => ({
   root: {

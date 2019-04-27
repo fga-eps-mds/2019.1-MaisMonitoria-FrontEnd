@@ -7,7 +7,6 @@ import lightBlue from '@material-ui/core/colors/lightBlue';
 import  {Link}  from 'react-router-dom';
 import firebase from 'firebase';
 
-
 const theme = createMuiTheme({
   palette: {
     primary: { main: lightBlue[50] },
@@ -24,20 +23,29 @@ firebase.initializeApp({
 class Login extends Component {
   state = {
     email: '',
-    password: ''
+    password: '',
+    isAuthenticated: false,
+    error: ""
   };
+  
 
-  login = async () => {
+  login = async (e) => {
+    
     const { email, password } = this.state;
+    if(!email || !password){
+      this.setState({ error: "Preencha e-mail e senha para continuar!" });
+      e.preventDefault();
+    }else{
+      try{
+        await firebase.auth().signInWithEmailAndPassword(email, password).then((user)=>{
+          console.log(user);
+          this.setState({isAuthenticated: true});  
+        })
 
-    try{
-      const user = await firebase.auth()
-        .signInWithEmailAndPassword(email, password);
-
-        this.setState({isAuthenticated: true});
-        console.log(user);
-    }catch(e){
-      console.log(e);
+      }catch(e){
+        this.setState({ error: "Preencha e-mail e senha para continuar!" });
+        e.preventDefault();
+      }
     }
   }
 
@@ -45,14 +53,17 @@ class Login extends Component {
     return (
       <div className="LoginBackground">
         <Grid container alignContent="center" justify="center" direction="column" alignItems="center">
-          <img src={logo} alt="Logo" />
           
+          <img src={logo} alt="Logo" />
           <Grid item >
             <TextField
               id="emailTextField"
               label="Email"
               margin="normal"
-              onChangeText={email => this.setState({email})}
+              value={this.state.email}
+              onChange={(event)=>this.setState({
+                email: event.target.value,
+              })}
               />
           </Grid>
           <Grid item >
@@ -61,35 +72,34 @@ class Login extends Component {
               label="Senha"
               margin="normal"
               type="password"
-              onChangeText={password => this.setState({password})}
+              value={this.state.password}
+              onChange={(event)=>this.setState({
+                password: event.target.value,
+              })}
               />
           </Grid>
+          {this.state.error && <p>{this.state.error}</p>}
         </Grid>
-          <Grid  container alignContent="center" justify="center" direction="column" spacing="24" alignItems="center" style={{marginTop: 25}}>
-            <Grid item >
+        <Grid  container alignContent="center" justify="center" direction="column" spacing="24" alignItems="center" style={{marginTop: 25}}>
+          <Grid item >
             <MuiThemeProvider theme={theme}>
-              <Button component={Link} to="/Feed" variant="outlined" color="primary" onPress={this.login}>
+              <Button component={Link} to="/Feed" variant="outlined" color="primary" onClick={this.login}>
                   Login
-                </Button>
-                </MuiThemeProvider>
-              </Grid>
-              
-              <Grid item>
-              <MuiThemeProvider theme={theme}>
-
-                <Button component={Link} to="/RSignUp" variant="outlined" color="primary">
-                  Registrar
-                </Button>
-                </MuiThemeProvider>
-
-              </Grid>
-              <a  className="ForgotPasswordLink" href="#">Esqueceu sua senha ?</a>  
+              </Button>
+            </MuiThemeProvider>
+          </Grid>  
+          <Grid item>
+            <MuiThemeProvider theme={theme}>
+              <Button component={Link} to="/SignUp" variant="outlined" color="primary">
+                Registrar
+              </Button>
+              </MuiThemeProvider>
           </Grid>
-            
-            
+              <a  className="ForgotPasswordLink"><Link to="/ForgotPassword" >Esqueceu sua senha ?</Link></a>  
+        </Grid>
           
         </div>
-    );   
+    );
   }
 }
 

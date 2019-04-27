@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Testing Course component Test if Course renders correctly 1`] = `
+exports[`Testing PaperSearch component Test if PaperSearch renders correctly 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <WithStyles(SimpleSelect) />,
+  Symbol(enzyme.__unrendered__): <WithStyles(PaperSheet) />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "checkPropTypes": [Function],
@@ -16,12 +16,10 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "class",
+    "nodeType": "function",
     "props": Object {
       "classes": Object {
-        "formControl": "SimpleSelect-formControl-2",
-        "root": "SimpleSelect-root-1",
-        "selectEmpty": "SimpleSelect-selectEmpty-3",
+        "root": "PaperSheet-root-1",
       },
     },
     "ref": null,
@@ -32,12 +30,10 @@ ShallowWrapper {
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "class",
+      "nodeType": "function",
       "props": Object {
         "classes": Object {
-          "formControl": "SimpleSelect-formControl-2",
-          "root": "SimpleSelect-root-1",
-          "selectEmpty": "SimpleSelect-selectEmpty-3",
+          "root": "PaperSheet-root-1",
         },
       },
       "ref": null,
