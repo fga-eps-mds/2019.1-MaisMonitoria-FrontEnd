@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { Grid, Button } from '@material-ui/core' ;
-import Tab from '../Tab/Tab.js';
-import AppBar from '../AppBar/AppBar.js';
-import Card from './Card.js';
-import Add from '../GenericButtons/Add.js';
+import { Grid, Button, Card } from '@material-ui/core' ;
+import AppBar from '../AppBar/AppBar';
+import Tab from '../Tab/Tab'
 import './feed.css';
 import axios from 'axios';
 
@@ -23,34 +21,22 @@ class TelaFeed extends Component {
       
     return (
     
-        <div >
-            
-            <Grid container   justify="center" alignItems="stretch">
-                <AppBar/>
-                
-            </Grid> 
-        
-            <Grid container  justify="center" direction="column" alignItems="center" spacing="8" style={{ padding: 80 }}>
-                
-                <Grid item xs={12} sm container>
-                    <Card name_monitoring={this.state.name_monitoring} matter={this.state.matter} deion={this.state.deion}/>
-                </Grid>
+      <div>
+      
+        <Grid container justify="center" alignItems="stretch">
+          <AppBar/>
+        </Grid> 
+        <Grid container justify="center" direction="column" alignItems="center" spacing={8} style={{ padding: 80 }}>
+          <Grid item>
+          </Grid>
+        </Grid>
 
-            </Grid>
-            <Grid container>
-                <Grid>
-                    <Add/>
-                    </Grid>
-                </Grid>
-            <Grid container  >                
-                <Grid >
-                <Tab>
-                </Tab>
-                </Grid>
-            
-            </Grid>
+        <Grid container alignContent="center" justify="center" direction="row" alignItems="center">
+          <Tab/>
+        </Grid>
           
-        </div>
+      </div>
+  
     
     );   
   }
