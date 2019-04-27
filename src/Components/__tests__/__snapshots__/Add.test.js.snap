@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Add component Test if Add renders correctly 1`] = `
+<ButtonSizes
+  classes={
+    Object {
+      "fab": "ButtonSizes-fab-1",
+    }
+  }
+/>
+`;

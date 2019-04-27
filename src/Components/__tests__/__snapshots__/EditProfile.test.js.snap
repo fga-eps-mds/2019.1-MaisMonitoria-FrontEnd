@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing EditProfile component Test if EditProfile renders correctly 1`] = `
+<div>
+  <WithStyles(Grid)
+    alignItems="stretch"
+    container={true}
+    justify="center"
+  >
+    <WithStyles(SimpleAppBar) />
+  </WithStyles(Grid)>
+  <WithStyles(Grid)
+    alignContent="center"
+    alignItems="center"
+    container={true}
+    direction="column"
+    justify="center"
+    spacing="8"
+    style={
+      Object {
+        "padding": 100,
+      }
+    }
+  >
+    <WithStyles(Grid)
+      auto-md={true}
+      item={true}
+    >
+      <img
+        alt="pp"
+        height="120"
+        src="Pp.png"
+        width="120"
+      />
+    </WithStyles(Grid)>
+    <WithStyles(Grid)
+      auto-md={true}
+      item={true}
+    >
+      <WithStyles(Button)
+        color="primary"
+        size="small"
+        variant="outlined"
+      >
+        Alterar foto
+      </WithStyles(Button)>
+    </WithStyles(Grid)>
+    <WithStyles(Grid)
+      item={true}
+      md-auto={true}
+    >
+      <TextField
+        id="nomeTextField"
+        label="Nome"
+        margin="normal"
+        required={false}
+        select={false}
+        variant="standard"
+      />
+    </WithStyles(Grid)>
+    <WithStyles(Grid)
+      item={true}
+      md-auto={true}
+    >
+      <TextField
+        autoComplete="email"
+        id="emailTextField"
+        label="Email"
+        margin="normal"
+        name="email"
+        required={false}
+        select={false}
+        type="email"
+        variant="standard"
+      />
+    </WithStyles(Grid)>
+    <WithStyles(Grid)
+      item={true}
+      md-auto={true}
+    >
+      <WithStyles(SimpleSelect) />
+    </WithStyles(Grid)>
+    <WithStyles(Grid)
+      item={true}
+      md-auto={true}
+    >
+      <TextField
+        id="telefone    TextField"
+        label="Telefone"
+        margin="normal"
+        required={false}
+        select={false}
+        variant="standard"
+      />
+    </WithStyles(Grid)>
+    <WithStyles(Grid)
+      item={true}
+    >
+      <WithStyles(Button)
+        color="primary"
+        component={[Function]}
+        to="/Feed"
+        variant="outlined"
+      >
+        Alterar
+      </WithStyles(Button)>
+    </WithStyles(Grid)>
+  </WithStyles(Grid)>
+  <WithStyles(Grid)
+    container={true}
+  >
+    <WithStyles(Grid)>
+      <WithStyles(IconLabelTabs) />
+    </WithStyles(Grid)>
+  </WithStyles(Grid)>
+</div>
+`;

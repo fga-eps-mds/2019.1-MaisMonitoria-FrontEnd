@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Feedback component Test if Feedback renders correctly 1`] = `
+<div>
+  <WithStyles(Grid)
+    alignItems="stretch"
+    container={true}
+    justify="center"
+  >
+    <WithStyles(SimpleAppBar) />
+  </WithStyles(Grid)>
+  <WithStyles(Grid)
+    alignContent="center"
+    alignItems="center"
+    container={true}
+    direction="column"
+    justify="center"
+    spacing="24"
+    style={
+      Object {
+        "padding": 100,
+      }
+    }
+  >
+    <WithStyles(Grid)
+      auto-md={true}
+      item={true}
+    >
+      <img
+        alt="pp"
+        height="120"
+        src="Pp.png"
+        width="120"
+      />
+    </WithStyles(Grid)>
+    <WithStyles(Grid)
+      item={true}
+      md-auto={true}
+    >
+      <p>
+        Monitor: Lucas Alexandre
+      </p>
+    </WithStyles(Grid)>
+    <WithStyles(Grid)
+      item={true}
+      md-auto={true}
+    >
+      <p>
+        Tema: Cálculo 1
+      </p>
+    </WithStyles(Grid)>
+    <WithStyles(Grid)
+      item={true}
+      md-auto={true}
+    >
+      <p>
+        Data: 14/04/2019
+      </p>
+    </WithStyles(Grid)>
+    <WithStyles(Grid)
+      item={true}
+      md-auto={true}
+    >
+      <WithStyles(SimpleSelect) />
+    </WithStyles(Grid)>
+    <WithStyles(Grid)
+      item={true}
+    >
+      <WithStyles(Button)
+        color="primary"
+        variant="outlined"
+      >
+        Avaliar
+      </WithStyles(Button)>
+    </WithStyles(Grid)>
+  </WithStyles(Grid)>
+  <WithStyles(Grid)
+    container={true}
+  >
+    <WithStyles(Grid)>
+      <WithStyles(IconLabelTabs) />
+    </WithStyles(Grid)>
+  </WithStyles(Grid)>
+</div>
+`;

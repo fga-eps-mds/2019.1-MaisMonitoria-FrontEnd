@@ -52,13 +52,13 @@ class Login extends Component {
               <Grid item>
               <MuiThemeProvider theme={theme}>
 
-                <Button component={Link} to="/RSignUp" variant="outlined" color="primary">
+                <Button component={Link} to="/SignUp" variant="outlined" color="primary">
                   Registrar
                 </Button>
                 </MuiThemeProvider>
 
               </Grid>
-              <a  className="ForgotPasswordLink" href="#">Esqueceu sua senha ?</a>  
+              <Link  className="ForgotPasswordLink" href="#" to="/ForgotPassword">Esqueceu sua senha ?</Link>  
           </Grid>
             
             

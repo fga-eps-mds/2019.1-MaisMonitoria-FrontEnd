@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing PaperSearch component Test if PaperSearch renders correctly 1`] = `
+<PaperSheet
+  classes={
+    Object {
+      "root": "PaperSheet-root-1",
+    }
+  }
+/>
+`;

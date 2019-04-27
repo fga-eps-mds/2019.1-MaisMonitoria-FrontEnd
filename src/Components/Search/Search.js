@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Grid} from '@material-ui/core' ;
 import BottomBar from '../Tab/Tab.js';
-import AppBar from './AppBar.js';
-import Paper from './paper.js';
+import AppBar from './AppBarSearch';
+import Paper from './PaperSearch';
 
 
 class Search extends Component {
