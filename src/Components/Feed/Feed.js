@@ -14,7 +14,6 @@ class TelaFeed extends Component {
     async componentDidMount() {
      await axios.get(`https://gist.githubusercontent.com/caiooliv/17243478be5bddb4f26fcba90b25a031/raw/fa9049b4ae9aa6d283edadd0d2e2e1ec81cb81bc/teste.json`)
       .then(res => {
-        console.log('entrou')
         const person = res.data
         this.setState({name_monitoring:person['name_monitoring'], matter: person['matter'], deion: person['deion'] })
       })

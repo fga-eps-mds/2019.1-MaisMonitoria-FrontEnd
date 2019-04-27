@@ -1,16 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Testing Paper component Test if Paper renders correctly 1`] = `
-<RecipeReviewCard
-  classes={
-    Object {
-      "actions": "RecipeReviewCard-actions-3",
-      "avatar": "RecipeReviewCard-avatar-6",
-      "card": "RecipeReviewCard-card-1",
-      "expand": "RecipeReviewCard-expand-4",
-      "expandOpen": "RecipeReviewCard-expandOpen-5",
-      "media": "RecipeReviewCard-media-2",
-    }
-  }
-/>
-`;
+exports[`Testing Paper component Test if Paper renders correctly 1`] = `undefined`;
