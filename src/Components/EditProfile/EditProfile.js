@@ -4,31 +4,30 @@ import AppBar from '../AppBar/AppBar.js';
 import Pp from '../../Assets/img/Pp.png';
 import Course from './Course.js';
 import { Link } from 'react-router-dom';
-import { async } from 'q';
+
 
 class EditProfile extends Component {
     state = {
-        name:'',
+        name:'batatinha',
         course: 1,
         telgram: '',
     }
 
-    editProfile = async() =>{
-        const {newName, newCourse, newTelegram} = this.state
-        let newUserData  = {name: newName, course: newCourse, telegram: newTelegram}
-        console.log(newUserData)
+    editProfile = () =>{
+        const {name,course,telegram} = this.state
+        let newUserData  = {name: name, course: course, telegram: telegram}
 
     }    
   render() {
     return (
         
-        <div className="editBackground"> 
+        <div style={{overflowX:'hidden'}} className="editBackground"> 
             <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
                 <AppBar/>
             </Grid>   
             <Grid container justify="center" alignContent="center" alignItems="center">
                 <Grid item> 
-                    <img src={Pp} style={{width: 130,height:130,padding:80}} ></img>
+                    <img src={Pp} alt="Profilepic" style={{width: 130,height:130,padding:80}} ></img>
                 </Grid>
             </Grid>
             <Grid container justify="center" alignContent="center" alignItems="center" direction="column" >
@@ -38,11 +37,11 @@ class EditProfile extends Component {
                         label="Nome"
                         multiline
                         Maxrows="4"
-                        defaultValue={this.state.name}
                         margin="normal"
+                        defaultValue={this.state.name}
                         onChange={(event)=>this.setState({
                             name: event.target.value,
-                          })}
+                        })}
                     />
                 </Grid>
                 <Grid item> 
@@ -51,12 +50,11 @@ class EditProfile extends Component {
                         label="Telegram"
                         multiline
                         Maxrows="4"
-                        defaultValue={this.state.telgram}
                         placeholder="@"
                         margin="normal"
                         onChange={(event)=>this.setState({
-                            telgram: event.target.value,
-                          })}
+                            telegram: event.target.value,
+                        })}
                     />
                 </Grid>
                 <Grid item style={{padding:30}}>
@@ -77,7 +75,7 @@ class EditProfile extends Component {
             </Grid>
             
         </div>
-    
+        
     );   
   }
 }

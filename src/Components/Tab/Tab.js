@@ -8,7 +8,6 @@ import SvgIcon from "@material-ui/core/SvgIcon";
 import Paper from '@material-ui/core/Paper';
 import {Link} from 'react-router-dom';
 
-
 const styles = theme => ({
   root: {
     width: '100%',
@@ -86,12 +85,14 @@ class IconLabelTabs extends React.Component {
 
   handleChange = (event, value) => {
     this.setState({ value });
+    console.log(this.state.value)
   };
 
   render() {
     const { classes } = this.props;
 
     return (
+      
       <Paper square className={classes.root}>
         <Tabs
           value={this.state.value}
@@ -99,15 +100,16 @@ class IconLabelTabs extends React.Component {
           variant="fullWidth"
           indicatorColor="primary"
           textColor="secondary"
+          centered
         >
-          <Tab component={Link} to="/Feed" icon={<HomeIcon />} />
-          <Tab component={Link} to="/EditProfile" icon={<Profile />} />
-          <Tab component={Link} to="/Ranking" icon={<RankIcon />} />
-          <Tab component={Link} to="/Search" icon={<SearchIcon />} />
-          
+          <Tab value={0} component={Link} to="/Feed" icon={<HomeIcon />} />
+          <Tab value={1} component={Link} to="/EditProfile" icon={<Profile />} />
+          <Tab value={2} component={Link} to="/Ranking" icon={<RankIcon />} />
+          <Tab value={3} component={Link} to="/Search" icon={<SearchIcon />} />
         </Tabs>
         
       </Paper>
+    
     );
   }
 }

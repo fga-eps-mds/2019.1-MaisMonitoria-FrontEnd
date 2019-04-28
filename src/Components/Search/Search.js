@@ -9,7 +9,7 @@ class Search extends Component {
   render() {
       
     return (
-        <div >
+        <div style={{overflowX:'hidden'}} >
             <Grid container  justify="center" alignItems="stretch">
                 <AppBar/>
             </Grid>    

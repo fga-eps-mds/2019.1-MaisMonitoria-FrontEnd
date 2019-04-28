@@ -24,7 +24,7 @@ const styles = theme => ({
 
 class SimpleSelect extends React.Component {
   state = {
-    selectedCourse: 0,
+    selectedCourse:0,
     labelWidth: 0,
   };
 

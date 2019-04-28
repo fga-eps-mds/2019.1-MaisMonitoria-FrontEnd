@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Grid, Button } from '@material-ui/core' ;
-import Tab from '../Tab/Tab.js';
 import AppBar from '../AppBar/AppBar.js';
 import Card from './Card.js';
 import ButtonSizes from '../GenericButtons/Add.js';
@@ -61,7 +60,7 @@ class TelaFeed extends Component {
   render() {
       
     return (
-        <div className="FeedBackground">
+        <div style={{overflowX:'hidden'}} className="FeedBackground">
             <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
                 <AppBar/>    
             </Grid> 

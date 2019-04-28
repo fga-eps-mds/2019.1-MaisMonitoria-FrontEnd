@@ -22,7 +22,7 @@ ReactDOM.render((
                         <Route path="/Search" component={Search}/>  
                         <Route path="/EditProfile" component={EditProfile}/>               
                     </Switch>
-                    <div style={{position:'fixed'}}>
+                    <div>
                         <Tab/>            
                     </div>
         </Router>

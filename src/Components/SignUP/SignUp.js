@@ -6,7 +6,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import {Link} from 'react-router-dom';
 import firebase from 'firebase';
-
+import Course from '../EditProfile/Course'
 
 const theme = createMuiTheme({
   palette: {
@@ -26,7 +26,7 @@ class SignUp extends Component {
   };
   
   register = async () => {
-    const { email, password, name } = this.state;  
+    const { email, password, name, telegram, course } = this.state;  
     try{
       const user = await firebase.auth()
         .createUserWithEmailAndPassword(email, password);
@@ -34,8 +34,9 @@ class SignUp extends Component {
         firebase.auth().onAuthStateChanged(function(user) {
           if (user) {
               user.getIdToken().then(function(idToken) {  
-                var userData = {name: name, user_token: idToken}
+                var userData = {name: name, telegram:telegram, course: course, user_token: idToken}
                 userData = JSON.stringify(userData)
+                console.log(userData);
               });
           }
       });    
@@ -47,71 +48,91 @@ class SignUp extends Component {
   
   render() {
     return (
-      <div className="SignUpBackground">
-        <Grid container alignContent="center" justify="center" direction="column" alignItems="center">
-          <img src={logo} alt="Logo" width="120" height="120"/>
-          <Grid item >
-            <TextField
-            id="nomeTextField"
-            label="Nome"
-            margin="normal"
-            onChange={(event)=>this.setState({
-              name: event.target.value,
-            })}
-            />
-
+      <div className="SignUpBackground" style={{overflowY:'scroll'}}>
+        <Grid style={{paddingLeft:10}}>
+          <Grid container alignContent="center" justify="center" direction="column" alignItems="center" spacing={12}>
+            <img src={logo} alt="Logo" width="120" height="120"/>
           </Grid>
-          <Grid item >
-            <TextField
-              id="emailTextField"
-              label="Email"
-              margin="normal"
-              type="email"
-              onChange={(event)=>this.setState({
-                email: event.target.value,
-              })}
-              />
-          </Grid>
-          <Grid item >
-            <TextField
-              id="senhaTextField"
-              label="Senha"
-              margin="normal"
-              type="password"
-              onChange={(event)=>this.setState({
-                password: event.target.value,
-              })}
-             
-              />
-          </Grid>
-          <Grid item >
-            <TextField
-              
-              
-              id="repetirSenhaTextField"
-              label="Repetir senha"
-              margin="normal"
-              type="password"
-             
-              />
-          </Grid>
-          </Grid>
-          <Grid container alignContent="center" justify="center" direction="column" spacing="24" alignItems="center" style={{marginTop: 25}}>
+          <Grid container alignContent="center" justify="center" direction="row" alignItems="center" spacing={24}>
             <Grid item >
-              <MuiThemeProvider theme={theme}>
-                <Button component={Link} to="/SignUp" variant="outlined" onClick={this.register} color="primary">
-                 Registrar
-                </Button>
-              </MuiThemeProvider>
+              <TextField 
+              id="nomeTextField"
+              label="Nome"
+              margin="normal"
+              onChange={(event)=>this.setState({
+                name: event.target.value,
+              })}
+              />
+            </Grid>
+            <Grid item >
+              <TextField
+                id="emailTextField"
+                label="Email"
+                margin="normal"
+                type="email"
+                onChange={(event)=>this.setState({
+                  email: event.target.value,
+                })}
+                />
+            </Grid>
+          </Grid>
+
+          <Grid container alignContent="center" justify="center" direction="row" alignItems="center" spacing={24}>
+            <Grid item >
+              <TextField
+                id="emailTextField"
+                label="Telegram"
+                margin="normal"
+                placeholder="@"
+                type="text"
+                onChange={(event)=>this.setState({
+                  telegram: event.target.value,
+                })}
+                />
             </Grid>
             <Grid item>
-              <MuiThemeProvider theme={theme}>
-                <Button component={Link} to="/" variant="outlined" color="primary" >
-                  Cancelar
-                </Button>
-              </MuiThemeProvider>
+                <Course />
             </Grid>
-      
+          </Grid>
+          <Grid container alignContent="center" justify="center" direction="row" alignItems="center" spacing={24}>
+            <Grid item >
+              <TextField
+                id="senhaTextField"
+                label="Senha"
+                margin="normal"
+                type="password"
+                onChange={(event)=>this.setState({
+                  password: event.target.value,
+                })}
+              
+                />
+            </Grid>
+            <Grid item >
+              <TextField
+                id="repetirSenhaTextField"
+                label="Repetir senha"
+                margin="normal"
+                type="password"
+                />
+            </Grid>
+            </Grid>
+            <Grid container alignContent="center" justify="center" direction="row" spacing="24" alignItems="center" style={{marginTop: 25}}>
+              <Grid item >
+                <MuiThemeProvider theme={theme}>
+                  <Button component={Link} to="/SignUp" variant="outlined" onClick={this.register} color="primary">
+                  Registrar
+                  </Button>
+                </MuiThemeProvider>
+              </Grid>
+              <Grid item>
+                <MuiThemeProvider theme={theme}>
+                  <Button component={Link} to="/" variant="outlined" color="primary" >
+                    Cancelar
+                  </Button>
+                </MuiThemeProvider>
+              </Grid>
+        
+            </Grid>
           </Grid>
             
         </div>
