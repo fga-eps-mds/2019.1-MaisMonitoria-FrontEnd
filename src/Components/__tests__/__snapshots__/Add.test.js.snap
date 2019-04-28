@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Testing ForgotPassword component Test if ForgotPassword renders correctly 1`] = `
+exports[`Testing Add component Test if Add renders correctly 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <WithStyles(ButtonSizes) />,
