@@ -15,9 +15,6 @@ stages:
 notifications:
   slack: hora-da-hora:0nFQxr2PykmKhNkJ78xYJMOP
 
-before_script:
-  - docker build -t maismonitoria/frontend .
-
 jobs:
   include:
     - stage: "Unit test"
@@ -25,12 +22,19 @@ jobs:
       script:
         - yarn run test -u --coverage
         - ./node_modules/.bin/codecov -t ${CODECOV_TOKEN}
-#    - stage: "Build docker image"
-#      name: "Publicando image"
-#      if: branch = develop
-#      script: 
-#        - bash scripts/deploy_image.sh
-      
+
+deploy:
+    - provider: script
+      skip_cleanup: true
+      script: bash ./scripts/deploy_prod.sh
+      on:
+        branch: master
+    - provider: script
+      skip_cleanup: true
+      script: bash ./scripts/deploy_homolog.sh
+      on:
+        branch: devel
+
 addons:
   apt:
     packages:
