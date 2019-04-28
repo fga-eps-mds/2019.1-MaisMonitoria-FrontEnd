@@ -36,7 +36,6 @@ class SignUp extends Component {
               user.getIdToken().then(function(idToken) {  
                 var userData = {name: name, telegram:telegram, course: course, user_token: idToken}
                 userData = JSON.stringify(userData)
-                console.log(userData);
               });
           }
       });    

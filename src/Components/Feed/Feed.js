@@ -5,9 +5,6 @@ import Card from './Card.js';
 import ButtonSizes from '../GenericButtons/Add.js';
 import './feed.css';
 import axios from 'axios';
-import { relative } from 'upath';
-
-
 
 class TelaFeed extends Component {
     state =  {expanded: false,data : [{

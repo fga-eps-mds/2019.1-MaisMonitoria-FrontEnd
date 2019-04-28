@@ -15,16 +15,19 @@ ReactDOM.render((
         <Router>
                     <Switch>            
                         <Route exact path="/" component={App}/>
-                        <Route path="/Feed" component={TelaFeed}/>
                         <Route path="/SignUp" component={SignUp}/>
                         <Route path="/ForgotPassword" component={ForgotPassword}/>
-                        <Route path="/ModifyPassword" component={ModifyPassword}/>
-                        <Route path="/Search" component={Search}/>  
-                        <Route path="/EditProfile" component={EditProfile}/>               
+                        <Route path="/ModifyPassword" component={ModifyPassword}/>    
+                        <div>
+                            <Route path="/Feed" component={TelaFeed}/>
+                            <Route path="/Search" component={Search}/>  
+                            <Route path="/EditProfile" component={EditProfile}/>
+                            <div>
+                                <Tab/>            
+                            </div>
+                        </div>               
                     </Switch>
-                    <div>
-                        <Tab/>            
-                    </div>
+                    
         </Router>
 
 ), document.getElementById('root'));

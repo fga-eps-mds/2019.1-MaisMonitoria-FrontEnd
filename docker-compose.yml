@@ -3,11 +3,8 @@ services:
   frontend:
     container_name: "frontend"
     build: ./
-    command: bash -c "bash"
     ports:
       - "3000:3000"
     volumes:
       - ./:/app
-    environment:
-      - PATH_KEY=${PATH_KEY}
     tty: true  
