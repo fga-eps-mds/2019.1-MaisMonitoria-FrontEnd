@@ -9,6 +9,7 @@ import Search from './Components/Search/Search';
 import EditProfile from './Components/EditProfile/EditProfile';
 import './index.css';
 import {BrowserRouter as Router, Route,Switch} from 'react-router-dom';
+import Tab from './Components/Tab/Tab.js';
 
 ReactDOM.render((
         <Router>
@@ -20,7 +21,10 @@ ReactDOM.render((
                         <Route path="/ModifyPassword" component={ModifyPassword}/>
                         <Route path="/Search" component={Search}/>  
                         <Route path="/EditProfile" component={EditProfile}/>               
-                    </Switch>            
+                    </Switch>
+                    <div style={{position:'fixed'}}>
+                        <Tab/>            
+                    </div>
         </Router>
 
 ), document.getElementById('root'));

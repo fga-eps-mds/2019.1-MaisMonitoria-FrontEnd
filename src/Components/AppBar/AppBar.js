@@ -15,7 +15,6 @@ const styles = {
     flexGrow: 1,
     zIndex: 100,
     
-    
   },
 };
 

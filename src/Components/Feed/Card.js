@@ -55,10 +55,7 @@ const styles = theme => ({
 class RecipeReviewCard extends React.Component {
   
  
-    state =  {lista : [],name_monitoring:'', matter:'', expanded: false}
-    
-  
-
+  state =  {lista : [],name_monitoring:'', matter:'', expanded: false}
 
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
@@ -68,7 +65,7 @@ class RecipeReviewCard extends React.Component {
     const { classes } = this.props;
 
     return (
-      <Card className={classes.card}>
+      <Card className={classes.card} >
       <Grid container direction="column" justify="center" alignItems="center">
   
         <CardHeader
