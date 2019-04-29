@@ -7,4 +7,11 @@ services:
       - "3000:3000"
     volumes:
       - ./:/app
-    tty: true  
+    tty: true 
+    networks:
+      - api-backend
+
+networks:
+  api-backend:
+    external:
+      name: api-backend

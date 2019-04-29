@@ -7,6 +7,7 @@ import lightBlue from '@material-ui/core/colors/lightBlue';
 import {Link} from 'react-router-dom';
 import firebase from 'firebase';
 import Course from '../EditProfile/Course'
+import axios from 'axios';
 
 const theme = createMuiTheme({
   palette: {
@@ -22,27 +23,27 @@ class SignUp extends Component {
     email: '',
     password: '',
     name: '',
-    isAuthenticated: false
+    isAuthenticated: false,
+    course: "SOFTWARE"
   };
   
   register = async () => {
     const { email, password, name, telegram, course } = this.state;  
-    try{
-      const user = await firebase.auth()
-        .createUserWithEmailAndPassword(email, password);
-        this.setState({isAuthenticated: true});
-        firebase.auth().onAuthStateChanged(function(user) {
-          if (user) {
-              user.getIdToken().then(function(idToken) {  
-                var userData = {name: name, telegram:telegram, course: course, user_token: idToken}
-                userData = JSON.stringify(userData)
-              });
-          }
-      });    
-      
-      }catch(e){
-      console.log(e);
-    }
+    var userData = {}
+          
+    await firebase.auth()
+      .createUserWithEmailAndPassword(email, password).then((user)=>{
+        firebase.auth().currentUser.getIdToken().then(function(idToken) {  
+          userData = {"name": name, "course": course, "access_token": idToken}
+          
+        });
+      }).catch((error)=>{
+        console.log(error);
+      })
+    
+    await axios.post("http://localhost:8000/create_user/", userData).catch(error=>{
+      console.log(error);
+    });
   }
   
   render() {
@@ -118,7 +119,7 @@ class SignUp extends Component {
             <Grid container alignContent="center" justify="center" direction="row" spacing="24" alignItems="center" style={{marginTop: 25}}>
               <Grid item >
                 <MuiThemeProvider theme={theme}>
-                  <Button component={Link} to="/SignUp" variant="outlined" onClick={this.register} color="primary">
+                  <Button component={Link} to="/" variant="outlined" onClick={this.register} color="primary">
                   Registrar
                   </Button>
                 </MuiThemeProvider>

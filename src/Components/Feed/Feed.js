@@ -7,48 +7,15 @@ import './feed.css';
 import axios from 'axios';
 
 class TelaFeed extends Component {
-    state =  {expanded: false,data : [{
-        "id_monitoring": 1,
-        "name_monitoring": "chapa halls",
-        "matter": "Matematica",
-        "deion": "asdasdasdasdsfdlfdojfop",
-        "status_monitoring": true,
-        "create_date": "2019-04-20T18:57:56.361863Z"
-        },{
-            "id_monitoring": 2,
-            "name_monitoring": "chapa halls",
-            "matter": "Matematica",
-            "deion": "asdasdasdasdsfdlfdojfop",
-            "status_monitoring": true,
-            "create_date": "2019-04-20T18:57:56.361863Z"
-        },{
-            "id_monitoring": 2,
-            "name_monitoring": "chapa halls",
-            "matter": "Matematica",
-            "deion": "asdasdasdasdsfdlfdojfop",
-            "status_monitoring": true,
-            "create_date": "2019-04-20T18:57:56.361863Z"
-        },{
-            "id_monitoring": 2,
-            "name_monitoring": "chapa halls",
-            "matter": "Matematica",
-            "deion": "asdasdasdasdsfdlfdojfop",
-            "status_monitoring": true,
-            "create_date": "2019-04-20T18:57:56.361863Z"
-        },{
-            "id_monitoring": 2,
-            "name_monitoring": "chapa halls",
-            "matter": "Matematica",
-            "deion": "asdasdasdasdsfdlfdojfop",
-            "status_monitoring": true,
-            "create_date": "2019-04-20T18:57:56.361863Z"
-        }]}
+    state =  {expanded: false,data : []}
+
     async componentDidMount() {
-     await axios.get(`https://gist.githubusercontent.com/caiooliv/17243478be5bddb4f26fcba90b25a031/raw/fa9049b4ae9aa6d283edadd0d2e2e1ec81cb81bc/teste.json`)
+     await axios.get("http://localhost:8000/all_tutoring/")
       .then(res => {
-        console.log('entrou')
         const person = res.data
-        this.setState({name_monitoring:person['name_monitoring'], matter: person['matter'], deion: person['deion'] })
+        this.setState({data:person})
+      }).catch(error=>{
+          console.log("error");
       })
   }
 

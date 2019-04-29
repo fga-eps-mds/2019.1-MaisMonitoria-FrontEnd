@@ -13,7 +13,7 @@ import Tab from './Components/Tab/Tab.js';
 
 ReactDOM.render((
         <Router>
-                    <Switch>            
+                    <Switch> 
                         <Route exact path="/" component={App}/>
                         <Route path="/SignUp" component={SignUp}/>
                         <Route path="/ForgotPassword" component={ForgotPassword}/>
