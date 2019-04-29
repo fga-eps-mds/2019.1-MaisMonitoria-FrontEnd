@@ -24,7 +24,7 @@ const styles = theme => ({
 
 class SimpleSelect extends React.Component {
   state = {
-    selectedCourse:0,
+    selectedCourse:'',
     labelWidth: 0,
   };
 
@@ -35,6 +35,7 @@ class SimpleSelect extends React.Component {
   }
 
   handleChange = event => {
+    this.props.action(event.target.value);
     this.setState({ selectedCourse: event.target.value });
   };
 
@@ -63,12 +64,12 @@ class SimpleSelect extends React.Component {
               />
             }
           >
-            <MenuItem value={0}>Engenharias</MenuItem>
-            <MenuItem value={1}>Engenharia de Software</MenuItem>
-            <MenuItem value={2}>Engenharia Aeroespacial</MenuItem>
-            <MenuItem value={3}>Engenharia Eletrônica</MenuItem>
-            <MenuItem value={4}>Engenharia Automotiva</MenuItem>
-            <MenuItem value={5}>Engenharia de Energia</MenuItem>        
+            <MenuItem value={"ENGENHARIAS"}>Engenharias</MenuItem>
+            <MenuItem value={"SOFTWARE"}>Engenharia de Software</MenuItem>
+            <MenuItem value={"AERO"}>Engenharia Aeroespacial</MenuItem>
+            <MenuItem value={"ELETRONICA"}>Engenharia Eletrônica</MenuItem>
+            <MenuItem value={"AUTOMOTIVA"}>Engenharia Automotiva</MenuItem>
+            <MenuItem value={"ENERGIA"}>Engenharia de Energia</MenuItem>        
           </Select>
         </FormControl>
       </form>

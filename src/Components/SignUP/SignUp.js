@@ -24,7 +24,7 @@ class SignUp extends Component {
     password: '',
     name: '',
     isAuthenticated: false,
-    course: "SOFTWARE"
+    course: ''
   };
   
   register = async () => {
@@ -91,7 +91,7 @@ class SignUp extends Component {
                 />
             </Grid>
             <Grid item>
-                <Course />
+                <Course action={(course)=>{this.setState({course})}}/>
             </Grid>
           </Grid>
           <Grid container alignContent="center" justify="center" direction="row" alignItems="center" spacing={24}>

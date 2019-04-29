@@ -1,12 +1,17 @@
 import React from 'react';
 import Feed from '../Feed/Feed';
-import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
+import renderer from 'react-test-renderer';
+import { MemoryRouter as Router } from 'react-router-dom';
 
-const feed = jest.fn();
+const telafeed = jest.fn();
+
 
 describe('Testing Feed component', () => {
     it('Test if Feed renders correctly', () =>{
-        const tree = shallow(<Feed/>);
-        expect(tree).toMatchSnapshot();
+        const tree = renderer.create(
+            <Router><Feed telafeed={telafeed}/></Router>
+          )
+        expect(toJson(tree)).toMatchSnapshot()
     });
 });
