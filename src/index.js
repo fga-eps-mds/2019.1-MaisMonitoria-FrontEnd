@@ -8,6 +8,7 @@ import ModifyPassword from './Components/ModifyPassword/ModifyPassword';
 import Search from './Components/Search/Search';
 import EditProfile from './Components/EditProfile/EditProfile';
 import RegisterMonitoring from './Components/RegisterMonitoring/RegisterMonitoring'
+import Profile from './Components/Profile/Profile'
 
 import './index.css';
 import {BrowserRouter as Router, Route,Switch} from 'react-router-dom';
@@ -25,6 +26,7 @@ ReactDOM.render((
                             <Route path="/Feed" component={TelaFeed}/>
                             <Route path="/Search" component={Search}/>  
                             <Route path="/EditProfile" component={EditProfile}/>
+                            <Route path="/Profile" component={Profile}/>
                             <div>
                                 <Tab/>            
                             </div>

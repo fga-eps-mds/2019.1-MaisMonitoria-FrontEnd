@@ -4,20 +4,66 @@ import AppBar from '../AppBar/AppBar.js';
 import Pp from '../../Assets/img/Pp.png';
 import Course from './Course.js';
 import { Link } from 'react-router-dom';
+import { async } from 'q';
+import axios from 'axios';
+import firebase from 'firebase';
 
 
 class EditProfile extends Component {
+
+
     state = {
-        name:'batatinha',
-        course: 1,
+        name:'',
+        course: '',
         telgram: '',
+        email: '',
+        isSignedin: false
+    }
+
+    componentDidMount(){
+        this.getUserData();
+    }
+
+    getUserData = () =>{
+        let userData = {};
+        let token = {}
+        firebase.auth().onAuthStateChanged(user =>{
+            if(user){
+                firebase.auth().currentUser.getIdToken().then(function(idToken){
+                    token["access_token"] = idToken;
+                })
+              
+                axios.post("http://localhost:8000/get_user/", token).then(user=>{
+                    userData = user.data;
+                    this.setState({name:userData["name"],course:userData["course"],email:userData["email"]}) 
+                   
+                });  
+            }     
+        })
     }
 
     editProfile = () =>{
-        const {name,course,telegram} = this.state
-        let newUserData  = {name: name, course: course, telegram: telegram}
-
-    }    
+        
+        let userData = {};
+        let token = {}
+        const {name,course,email} = this.state;
+        firebase.auth().onAuthStateChanged(user =>{
+            if(user){
+                firebase.auth().currentUser.getIdToken().then(function(idToken){
+                    token["access_token"] = idToken;
+                    token["name"] = name;
+                    token["course"] = course;
+                    token["email"] = email;
+                })
+              
+                axios.post("http://localhost:8000/update_user/",token).then(user=>{
+                    console.log(token);
+                     
+                });  
+            }     
+        })
+    }
+    
   render() {
     return (
         
@@ -58,7 +104,7 @@ class EditProfile extends Component {
                     />
                 </Grid>
                 <Grid item style={{padding:30}}>
-                    <Course/>
+                    <Course action={(course)=>{this.setState({course})}}/>
                 </Grid>
             </Grid>
             <Grid container justify="center" alignContent="center" alignItems="center" direction="row" spacing={24}>
