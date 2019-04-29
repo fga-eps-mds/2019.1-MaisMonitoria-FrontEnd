@@ -5,19 +5,32 @@ import Card from './Card.js';
 import ButtonSizes from '../GenericButtons/Add.js';
 import './feed.css';
 import axios from 'axios';
+import firebase from 'firebase';
+
 
 class TelaFeed extends Component {
     state =  {expanded: false,data : []}
 
-    async componentDidMount() {
-     await axios.get("http://localhost:8000/all_tutoring/")
-      .then(res => {
-        const person = res.data
-        this.setState({data:person})
-      }).catch(error=>{
-          console.log("error");
-      })
-  }
+    componentDidMount() {
+        var token = {};
+
+        firebase.auth().onAuthStateChanged(user =>{
+            this.setState({isSignedIn: !!user});
+            if(user){
+                firebase.auth().currentUser.getIdToken().then(function(idToken){
+                    token["access_token"] = idToken;
+                });
+                
+                axios.post("http://localhost:8000/all_tutoring/", token)
+                    .then(res => {
+                        const person = res.data
+                        this.setState({data:person})
+                    }).catch(error=>{
+                        console.log("error");
+                });
+            }
+          });
+    }
 
   
 
@@ -33,18 +46,18 @@ class TelaFeed extends Component {
                 {this.state.data.map(function(item, i){
                     return (
                         <Grid item key={i} lg={12} sm={12} container >
-                            <Card name_monitoring={item.name_monitoring} matter={item.matter} deion={item.deion}/>
+                            <Card name_monitoring={item.name} matter={item.subject} deion={item.description}/>
                         </Grid>
                     );
                 })}
             </Grid>
             </div>
             <div>    
-            <Grid container>
-                <Grid>
-                    <ButtonSizes/>
+                <Grid container>
+                    <Grid>
+                        <ButtonSizes />
+                    </Grid>
                 </Grid>
-            </Grid>
             </div>
             
         </div>

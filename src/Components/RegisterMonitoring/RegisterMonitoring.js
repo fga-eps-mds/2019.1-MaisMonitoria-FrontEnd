@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Grid, Button, TextField } from '@material-ui/core' ;
-import BottomBar from '../Tab/Tab.js';
 import AppBar from '../AppBar/AppBar.js';
 
 
@@ -10,9 +9,9 @@ class RegisterMonitoring extends Component {
       
     return (
     
-        <div >
+        <div style={{overflowX:'hidden'}}>
        
-            <Grid container   justify="center" alignItems="stretch">
+            <Grid container justify="center" alignItems="stretch">
                 <AppBar/>
             </Grid>    
             <Grid container  alignContent="center" justify="center" direction="column" alignItems="center" spacing="16" style={{ padding: 60 }}>
@@ -75,14 +74,6 @@ class RegisterMonitoring extends Component {
                     </Button>
                 </Grid>
             </Grid>
-            <Grid container  > 
-                
-                <Grid >
-                <BottomBar>
-                </BottomBar>
-                </Grid>
-            </Grid>
-          
         </div>
     
     );   

@@ -71,7 +71,7 @@ class RecipeReviewCard extends React.Component {
         <CardHeader
          
           title={'Tema: '+this.props.name_monitoring}
-          subheader={'Monitor: '+this.props.matter}
+          subheader={'Disciplina: '+this.props.matter}
           
         />
         </Grid>

@@ -33,7 +33,7 @@ deploy:
       skip_cleanup: true
       script: bash ./scripts/deploy_homolog.sh
       on:
-        branch: devel
+        branch: develop
 
 addons:
   apt:
