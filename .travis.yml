@@ -9,7 +9,7 @@ services:
   - docker
 
 stages:
-#  - Unit test
+  - Unit test
   - Build docker image
 
 notifications:
@@ -17,21 +17,24 @@ notifications:
 
 jobs:
   include:
-    - stage: "Build docker image"
-      name: "Build docker image"
+    - stage: "Unit test"
+      name: "Unit test"
       script:
-        - bash ./scripts/deploy_homolog.sh
-        
-#deploy:
-#    - provider: script
-#      skip_cleanup: true
-#      script: bash ./scripts/deploy_prod.sh
-#      on:
-#        branch: master
-#    - provider: script
-#      skip_cleanup: true
-#      script: bash ./scripts/deploy_homolog.sh
-      
+        - yarn run test -u --coverage
+        - ./node_modules/.bin/codecov -t ${CODECOV_TOKEN}
+
+deploy:
+    - provider: script
+      skip_cleanup: true
+      script: bash ./scripts/deploy_prod.sh
+      on:
+        branch: master
+    - provider: script
+      skip_cleanup: true
+      script: bash ./scripts/deploy_homolog.sh
+      on:
+        branch: develop
+
 addons:
   apt:
     packages:
