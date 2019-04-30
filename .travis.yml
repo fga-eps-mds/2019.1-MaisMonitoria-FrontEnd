@@ -15,23 +15,22 @@ stages:
 notifications:
   slack: hora-da-hora:0nFQxr2PykmKhNkJ78xYJMOP
 
-#jobs:
-#  include:
-#    - stage: "Unit test"
-#      name: "Unit test"
-#      script:
-#        - yarn run test -u --coverage
-#        - ./node_modules/.bin/codecov -t ${CODECOV_TOKEN}
-
-deploy:
-    - provider: script
-      skip_cleanup: true
-      script: bash ./scripts/deploy_prod.sh
-      on:
-        branch: master
-    - provider: script
-      skip_cleanup: true
-      script: bash ./scripts/deploy_homolog.sh
+jobs:
+  include:
+    - stage: "Build docker image"
+      name: "Build docker image"
+      script:
+        - bash ./scripts/deploy_homolog.sh
+        
+#deploy:
+#    - provider: script
+#      skip_cleanup: true
+#      script: bash ./scripts/deploy_prod.sh
+#      on:
+#        branch: master
+#    - provider: script
+#      skip_cleanup: true
+#      script: bash ./scripts/deploy_homolog.sh
       
 addons:
   apt:
