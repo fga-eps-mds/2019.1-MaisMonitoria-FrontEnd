@@ -24,8 +24,7 @@ const styles = theme => ({
 
 class SimpleSelect extends React.Component {
   state = {
-    age: '',
-    name: 'hai',
+    selectedCourse:'',
     labelWidth: 0,
   };
 
@@ -36,7 +35,8 @@ class SimpleSelect extends React.Component {
   }
 
   handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
+    this.props.action(event.target.value);
+    this.setState({ selectedCourse: event.target.value });
   };
 
   render() {
@@ -55,27 +55,23 @@ class SimpleSelect extends React.Component {
             Curso
           </InputLabel>
           <Select
-            value={this.state.age}
+            value={this.state.selectedCourse}
             onChange={this.handleChange}
             input={
               <OutlinedInput
                 labelWidth={this.state.labelWidth}
-                name="age"
-                id="outlined-age-simple"
+                id="course"
               />
             }
           >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={0}>Engenharia de Software</MenuItem>
-            <MenuItem value={1}>Engenharia Aeroespacial</MenuItem>
-            <MenuItem value={2}>Engenharia Eletrônica</MenuItem>
-            <MenuItem value={3}>Engenharia Automotiva</MenuItem>
-            <MenuItem value={4}>Engenharia de Energia</MenuItem>
+            <MenuItem value={"ENGENHARIAS"}>Engenharias</MenuItem>
+            <MenuItem value={"SOFTWARE"}>Engenharia de Software</MenuItem>
+            <MenuItem value={"AERO"}>Engenharia Aeroespacial</MenuItem>
+            <MenuItem value={"ELETRONICA"}>Engenharia Eletrônica</MenuItem>
+            <MenuItem value={"AUTOMOTIVA"}>Engenharia Automotiva</MenuItem>
+            <MenuItem value={"ENERGIA"}>Engenharia de Energia</MenuItem>        
           </Select>
         </FormControl>
-        
       </form>
     );
   }

@@ -1,7 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Testing Search component Test if Search renders correctly 1`] = `
-<div>
+<div
+  style={
+    Object {
+      "overflowX": "hidden",
+    }
+  }
+>
   <WithStyles(Grid)
     alignItems="stretch"
     container={true}
@@ -25,13 +31,6 @@ exports[`Testing Search component Test if Search renders correctly 1`] = `
       item={true}
     >
       <WithStyles(PaperSheet) />
-    </WithStyles(Grid)>
-  </WithStyles(Grid)>
-  <WithStyles(Grid)
-    container={true}
-  >
-    <WithStyles(Grid)>
-      <WithStyles(IconLabelTabs) />
     </WithStyles(Grid)>
   </WithStyles(Grid)>
 </div>

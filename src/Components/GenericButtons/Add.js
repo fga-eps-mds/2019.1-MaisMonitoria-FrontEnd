@@ -4,13 +4,18 @@ import { withStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import '../Feed/feed.css';
+import RegisterMonitoring from '../RegisterMonitoring/RegisterMonitoring'
 
 const styles = theme =>({
   
   fab: {
-    position: 'absolute',
-    bottom: theme.spacing.unit * 2,
-    right: theme.spacing.unit * 2,
+    margin: 0,
+    top: 'auto',
+    right: 20,
+    bottom: 65,
+    left: 'auto',
+    position: 'fixed',
+    margin: theme.spacing.unit,
   },
   
 });
@@ -18,7 +23,9 @@ const styles = theme =>({
 function ButtonSizes(props) {
   const { classes } = props;
   return (
-      <Fab size="medium" color="secondary" aria-label="Add" className={classes.margin}>
+      <Fab size="medium" style={{backgroundColor: '#1DA1F2',
+          color: 'white'}} aria-label="Add" className={classes.fab}>
+          
           <AddIcon />
       </Fab>
   );

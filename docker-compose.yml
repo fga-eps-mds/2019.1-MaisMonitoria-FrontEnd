@@ -3,9 +3,16 @@ services:
   frontend:
     container_name: "frontend"
     build: ./
-    command: bash -c "bash"
     ports:
       - "3000:3000"
     volumes:
       - ./:/app
-    tty: true  
+    environment:
+      - PATH_KEY="${PATH_KEY}"
+    networks:
+      - api-backend
+
+networks:
+  api-backend:
+    external:
+      name: api-backend

@@ -22,8 +22,10 @@ exports[`Testing Login component Test if Login renders correctly 1`] = `
         id="emailTextField"
         label="Email"
         margin="normal"
+        onChange={[Function]}
         required={false}
         select={false}
+        value=""
         variant="standard"
       />
     </WithStyles(Grid)>
@@ -34,9 +36,11 @@ exports[`Testing Login component Test if Login renders correctly 1`] = `
         id="senhaTextField"
         label="Senha"
         margin="normal"
+        onChange={[Function]}
         required={false}
         select={false}
         type="password"
+        value=""
         variant="standard"
       />
     </WithStyles(Grid)>
@@ -429,7 +433,8 @@ exports[`Testing Login component Test if Login renders correctly 1`] = `
         <WithStyles(Button)
           color="primary"
           component={[Function]}
-          to="/Feed"
+          onClick={[Function]}
+          to="/"
           variant="outlined"
         >
           Login
@@ -818,13 +823,15 @@ exports[`Testing Login component Test if Login renders correctly 1`] = `
         </WithStyles(Button)>
       </MuiThemeProviderOld>
     </WithStyles(Grid)>
-    <Link
+    <a
       className="ForgotPasswordLink"
-      href="#"
-      to="/ForgotPassword"
     >
-      Esqueceu sua senha ?
-    </Link>
+      <Link
+        to="/ForgotPassword"
+      >
+        Esqueceu sua senha ?
+      </Link>
+    </a>
   </WithStyles(Grid)>
 </div>
 `;
