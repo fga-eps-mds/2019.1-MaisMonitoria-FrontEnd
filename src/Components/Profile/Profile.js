@@ -5,6 +5,9 @@ import Pp from '../../Assets/img/Pp.png';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import ProfileTab from '../ProfileTab/ProfileTab';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import firebase from 'firebase';
+
 
 const theme = createMuiTheme({
     palette: {
@@ -15,34 +18,34 @@ const theme = createMuiTheme({
   });
 
 class Profile extends Component {
-    /*
+
+    state = {   
+        name:'',
+        course: '',
+        email: '',
+    }
+    
 
     componentDidMount() {
-        var token = {};
-
+        let userData = {};
+        let token = {}
         firebase.auth().onAuthStateChanged(user =>{
-            this.setState({isSignedIn: !!user});
             if(user){
                 firebase.auth().currentUser.getIdToken().then(function(idToken){
                     token["access_token"] = idToken;
-                });
-                
-                axios.post("http://localhost:8000/get_user/", token)
-                    .then(res => {
-                        const person = res.data
-                        this.setState({data:person})
-                    }).catch(error=>{
-                        console.log("error");
-                });
-            }
-          });
+                })
+              
+                axios.post("http://localhost:8000/get_user/", token).then(user=>{
+                    userData = user.data;
+                    this.setState({name:userData["name"],course:userData["course"]}) 
+                    console.log(userData)
+                });  
+            }     
+        })
     }
 
-    */
-    state = {
-        name:'Teste'
-    }
     
+   
     render(){
         return(
             <div style={{overflowX:'hidden'}}>
@@ -59,7 +62,10 @@ class Profile extends Component {
                         <Grid item>
                             <Grid container justify={'flex-start'} direction={'column'} alignContent={'flex-start'} alignItems={'flex-start'} spacing={24}  style={{paddingTop:100}} alignItems={'center'}>
                                 <Grid item>
-                                    Name:{this.state.name}
+                                    Name: {this.state.name}
+                                </Grid>
+                                <Grid item>
+                                    Curso: {this.state.course}
                                 </Grid>
                                 <Grid item>
                                     <Button variant="outlined" component={Link} to="/EditProfile"  color="primary">

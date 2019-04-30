@@ -57,8 +57,7 @@ class EditProfile extends Component {
                 })
               
                 axios.post("http://localhost:8000/update_user/",token).then(user=>{
-                    console.log(token);
-                     
+                    console.log(token["access_token"]);
                 });  
             }     
         })
@@ -109,12 +108,12 @@ class EditProfile extends Component {
             </Grid>
             <Grid container justify="center" alignContent="center" alignItems="center" direction="row" spacing={24}>
                 <Grid item>
-                    <Button component={Link} to="/EditProfile" variant="outlined" onClick={this.editProfile} color="primary">
+                    <Button component={Link} to="/Feed" variant="outlined" onClick={this.editProfile} color="primary">
                         Confirmar
                     </Button>
                 </Grid>
                 <Grid item>
-                    <Button component={Link} to="/Feed" variant="outlined" color="primary">
+                    <Button component={Link} to="/Profile" variant="outlined" color="primary">
                         Cancelar
                     </Button>
                 </Grid>
