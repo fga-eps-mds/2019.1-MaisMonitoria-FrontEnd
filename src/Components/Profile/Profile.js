@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Grid, Button } from '@material-ui/core' ;
 import AppBar from '../AppBar/AppBar'
+import Card from '../Feed/Card'
 import Pp from '../../Assets/img/Pp.png';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import ProfileTab from '../ProfileTab/ProfileTab';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import firebase from 'firebase';
+
 
 
 const theme = createMuiTheme({
@@ -23,6 +25,10 @@ class Profile extends Component {
         name:'',
         course: '',
         email: '',
+        nameMonitoring: 'Derivada',
+        subject: 'Cálculo 1',
+        description: 'Aula sobre derivadas.',
+        monitor: 'Batatinha'
     }
     
 
@@ -81,8 +87,8 @@ class Profile extends Component {
                         <Grid item xs={12} style={{marginTop:10}}>
                             <ProfileTab/>
                         </Grid>
-                        <Grid item>
-                            Monitorias
+                        <Grid item lg={12} sm={12} container style={{paddingTop:20}} >
+                            <Card name_monitoring={this.state.nameMonitoring} matter={this.state.subject} monitor={this.state.monitor} deion={this.state.description}/>
                         </Grid>
                     </Grid>
                 </div>
