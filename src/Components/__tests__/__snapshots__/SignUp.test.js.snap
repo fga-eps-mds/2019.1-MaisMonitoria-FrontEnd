@@ -93,7 +93,9 @@ exports[`Testing SignUp component Test if SignUp renders correctly 1`] = `
       <WithStyles(Grid)
         item={true}
       >
-        <WithStyles(SimpleSelect) />
+        <WithStyles(SimpleSelect)
+          action={[Function]}
+        />
       </WithStyles(Grid)>
     </WithStyles(Grid)>
     <WithStyles(Grid)

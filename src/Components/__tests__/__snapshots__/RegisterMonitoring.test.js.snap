@@ -1,129 +1,188 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Testing RegisterMonitoring component Test if RegisterMonitoring renders correctly 1`] = `
-<div>
-  <WithStyles(Grid)
-    alignItems="stretch"
-    container={true}
-    justify="center"
-  >
-    <WithStyles(SimpleAppBar) />
-  </WithStyles(Grid)>
-  <WithStyles(Grid)
-    alignContent="center"
-    alignItems="center"
-    container={true}
-    direction="column"
-    justify="center"
-    spacing="16"
-    style={
-      Object {
-        "padding": 60,
-      }
+<div
+  style={
+    Object {
+      "overflowX": "hidden",
     }
-  >
+  }
+>
+  <div>
     <WithStyles(Grid)
-      item={true}
-      md-auto={true}
+      alignItems="stretch"
+      container={true}
+      justify="center"
     >
-      <TextField
-        id="temaTextField"
-        label="Tema"
-        margin="normal"
-        required={false}
-        select={false}
-        variant="standard"
-      />
+      <WithStyles(SimpleAppBar) />
     </WithStyles(Grid)>
+  </div>
+  <div>
     <WithStyles(Grid)
-      item={true}
-      md-auto={true}
-    >
-      <TextField
-        InputLabelProps={
-          Object {
-            "shrink": true,
-          }
+      alignContent="center"
+      alignItems="center"
+      container={true}
+      direction="column"
+      justify="center"
+      spacing={16}
+      style={
+        Object {
+          "padding": 60,
         }
-        id="InicioTexfild"
-        label="Inicio"
-        margin="normal"
-        required={false}
-        select={false}
-        type="time"
-        variant="standard"
-      />
-    </WithStyles(Grid)>
-    <WithStyles(Grid)
-      item={true}
-      md-auto={true}
+      }
     >
-      <TextField
-        InputLabelProps={
-          Object {
-            "shrink": true,
-          }
-        }
-        id="terminoTexfild"
-        label="Termino"
-        margin="normal"
-        required={false}
-        select={false}
-        type="time"
-        variant="standard"
-      />
-    </WithStyles(Grid)>
-    <WithStyles(Grid)
-      item={true}
-      md-auto={true}
-    >
-      <TextField
-        InputLabelProps={
-          Object {
-            "shrink": true,
-          }
-        }
-        defaultValue="00-00-0000"
-        id="date"
-        label="Data"
-        required={false}
-        select={false}
-        type="date"
-        variant="standard"
-      />
-    </WithStyles(Grid)>
-    <WithStyles(Grid)
-      item={true}
-      md-auto={true}
-    >
-      <TextField
-        id="descricaoTextfild"
-        label="Descrição"
-        margin="normal"
-        multiline={true}
-        placeholder="Descrição"
-        required={false}
-        select={false}
-        variant="outlined"
-      />
-    </WithStyles(Grid)>
-    <WithStyles(Grid)
-      item={true}
-    >
-      <WithStyles(Button)
-        color="primary"
-        variant="outlined"
+      <WithStyles(Grid)
+        item={true}
+        md-auto={true}
       >
-        Registrar
-      </WithStyles(Button)>
+        <TextField
+          id="temaTextField"
+          label="Tema"
+          margin="normal"
+          onChange={[Function]}
+          required={false}
+          select={false}
+          variant="standard"
+        />
+      </WithStyles(Grid)>
+      <WithStyles(Grid)
+        item={true}
+        md-auto={true}
+      >
+        <TextField
+          id="temaTextField"
+          label="Matéria"
+          margin="normal"
+          onChange={[Function]}
+          required={false}
+          select={false}
+          variant="standard"
+        />
+      </WithStyles(Grid)>
+      <WithStyles(Grid)
+        item={true}
+      >
+        <WithStyles(Grid)
+          alignContent="center"
+          alignItems="center"
+          container={true}
+          direction="row"
+          justify="center"
+          spacing={16}
+        >
+          <WithStyles(Grid)
+            item={true}
+            md-auto={true}
+          >
+            <TextField
+              InputLabelProps={
+                Object {
+                  "shrink": true,
+                }
+              }
+              id="InicioTexfild"
+              label="Inicio"
+              margin="normal"
+              required={false}
+              select={false}
+              type="time"
+              variant="standard"
+            />
+          </WithStyles(Grid)>
+          <WithStyles(Grid)
+            item={true}
+            md-auto={true}
+          >
+            <TextField
+              InputLabelProps={
+                Object {
+                  "shrink": true,
+                }
+              }
+              id="terminoTexfild"
+              label="Termino"
+              margin="normal"
+              required={false}
+              select={false}
+              type="time"
+              variant="standard"
+            />
+          </WithStyles(Grid)>
+        </WithStyles(Grid)>
+      </WithStyles(Grid)>
+      <WithStyles(Grid)
+        item={true}
+        md-auto={true}
+      >
+        <TextField
+          InputLabelProps={
+            Object {
+              "shrink": true,
+            }
+          }
+          defaultValue="00-00-0000"
+          id="date"
+          label="Data"
+          required={false}
+          select={false}
+          type="date"
+          variant="standard"
+        />
+      </WithStyles(Grid)>
+      <WithStyles(Grid)
+        item={true}
+        md-auto={true}
+      >
+        <TextField
+          id="descricaoTextfild"
+          label="Descrição"
+          margin="normal"
+          multiline={true}
+          onChange={[Function]}
+          placeholder="Descrição"
+          required={false}
+          select={false}
+          variant="outlined"
+        />
+      </WithStyles(Grid)>
+      <WithStyles(Grid)
+        alignContent="center"
+        alignItems="center"
+        container={true}
+        direction="row"
+        justify="center"
+        spacing={16}
+        style={
+          Object {
+            "paddingTop": 40,
+          }
+        }
+      >
+        <WithStyles(Grid)
+          item={true}
+        >
+          <WithStyles(Button)
+            color="primary"
+            onClick={[Function]}
+            variant="outlined"
+          >
+            Registrar
+          </WithStyles(Button)>
+        </WithStyles(Grid)>
+        <WithStyles(Grid)
+          item={true}
+        >
+          <WithStyles(Button)
+            color="primary"
+            component={[Function]}
+            to="/Feed"
+            variant="outlined"
+          >
+            Cancelar
+          </WithStyles(Button)>
+        </WithStyles(Grid)>
+      </WithStyles(Grid)>
     </WithStyles(Grid)>
-  </WithStyles(Grid)>
-  <WithStyles(Grid)
-    container={true}
-  >
-    <WithStyles(Grid)>
-      <WithStyles(IconLabelTabs) />
-    </WithStyles(Grid)>
-  </WithStyles(Grid)>
+  </div>
 </div>
 `;
