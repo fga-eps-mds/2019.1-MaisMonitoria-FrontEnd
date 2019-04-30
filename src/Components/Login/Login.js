@@ -16,7 +16,7 @@ const theme = createMuiTheme({
 });
 
 firebase.initializeApp({
-  apiKey:"AIzaSyCrE2NKARsLRCPoy-dF8flrIG0CYoovkUE",
+  apiKey: "AIzaSyCrE2NKARsLRCPoy-dF8flrIG0CYoovkUE",
   authDomain: "maismonitoria-fe31c.firebaseapp.com"
 });
 
@@ -30,6 +30,7 @@ class Login extends Component {
   
 
   login = async (e) => {
+    console.log(process.env.PATH_KEY);
     
     const { email, password } = this.state;
     if(!email || !password){

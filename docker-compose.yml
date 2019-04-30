@@ -7,7 +7,8 @@ services:
       - "3000:3000"
     volumes:
       - ./:/app
-    tty: true 
+    environment:
+      - PATH_KEY="${PATH_KEY}"
     networks:
       - api-backend
 
