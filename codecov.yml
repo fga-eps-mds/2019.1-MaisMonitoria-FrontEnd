@@ -1,11 +1,7 @@
-codecov:
-  notify:
-    slack: hora-da-hora:0nFQxr2PykmKhNkJ78xYJMOP
-
 coverage:
   precision: 2
   round: down
-  range: "80...100"
+  range: "70...100"
 
   status:
     project: yes
