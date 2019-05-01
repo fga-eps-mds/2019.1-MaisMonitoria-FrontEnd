@@ -25,9 +25,15 @@ class RegisterMonitoring extends Component {
                     token["access_token"] = idToken;
                     token["subject"] = subject;
                     token["description"] = description;
+                    console.log(token)
                 });
                 
-                axios.post(process.env.REACT_APP_URL+"/create_tutoring/", token);
+                axios.post(process.env.REACT_APP_URL+"/create_tutoring/", token)
+                    .then(res => {
+                        console.log(res)
+                    }).catch(error=>{
+                        console.log("error");
+                });
             }
           });
     }
