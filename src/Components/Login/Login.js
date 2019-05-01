@@ -47,7 +47,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="LoginBackground">
+      <div className="LoginBackground" style={{overflowY:'auto',overflowX:'hidden'}}>
         <Grid container alignContent="center" justify="center" direction="column" alignItems="center">
           
           <img src={logo} alt="Logo" />
