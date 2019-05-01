@@ -40,7 +40,6 @@ class Login extends Component {
         this.setState({isAuthenticated: true});  
       }).catch((except)=>{
         this.setState({ error: "Usuário inválido" });
-        e.preventDefault();
       });
     }
   }
@@ -79,7 +78,7 @@ class Login extends Component {
         <Grid  container alignContent="center" justify="center" direction="column" spacing="24" alignItems="center" style={{marginTop: 25}}>
           <Grid item >
             <MuiThemeProvider theme={theme}>
-              <Button component={Link} to="/Feed" variant="outlined" color="primary" onClick={this.login}>
+              <Button component={Link} to={this.state.isAuthenticated?"/Feed":"/"} variant="outlined" color="primary" onClick={this.login}>
                   Login
               </Button>
             </MuiThemeProvider>
