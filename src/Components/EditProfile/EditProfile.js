@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { async } from 'q';
 import axios from 'axios';
 import firebase from 'firebase';
-
+import './EditProfile.css'
 
 class EditProfile extends Component {
 
@@ -72,7 +72,7 @@ class EditProfile extends Component {
             </Grid>   
             <Grid container justify="center" alignContent="center" alignItems="center">
                 <Grid item> 
-                    <img src={Pp} alt="Profilepic" style={{width: 130,height:130,padding:80}} ></img>
+                    <img src={Pp} className="ProfilePic" alt="Profilepic" style={{width: 130,height:130,margin:80,borderRadius:2}} ></img>
                 </Grid>
             </Grid>
             <Grid container justify="center" alignContent="center" alignItems="center" direction="column" >
