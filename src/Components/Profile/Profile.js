@@ -42,10 +42,9 @@ class Profile extends Component {
                     token["access_token"] = idToken;
                 })
               
-                axios.post("http://localhost:8000/get_user/", token).then(user=>{
+                axios.post(process.env.REACT_APP_URL+"/get_user/", token).then(user=>{
                     userData = user.data;
                     this.setState({name:userData["name"],course:userData["course"]}) 
-                    console.log(userData)
                 });  
             }     
         })

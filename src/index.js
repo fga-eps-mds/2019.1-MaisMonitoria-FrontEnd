@@ -9,7 +9,7 @@ import Search from './Components/Search/Search';
 import EditProfile from './Components/EditProfile/EditProfile';
 import RegisterMonitoring from './Components/RegisterMonitoring/RegisterMonitoring'
 import Profile from './Components/Profile/Profile'
-
+import * as serviceWorker from './serviceWorker';
 import './index.css';
 import {BrowserRouter as Router, Route,Switch} from 'react-router-dom';
 import Tab from './Components/Tab/Tab.js';
@@ -36,3 +36,4 @@ ReactDOM.render((
         </Router>
 
 ), document.getElementById('root'));
+serviceWorker.register()

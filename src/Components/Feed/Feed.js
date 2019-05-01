@@ -22,13 +22,11 @@ class TelaFeed extends Component {
                     token["access_token"] = idToken;
                 });
                 
-                axios.post("http://localhost:8000/all_tutoring/", token)
+                axios.post(process.env.REACT_APP_URL+"/all_tutoring/", token)
                     .then(res => {
                         const person = res.data
                         this.setState({data:person})
-                    }).catch(error=>{
-                        console.log("error");
-                });
+                    });
             }
           });
     }
