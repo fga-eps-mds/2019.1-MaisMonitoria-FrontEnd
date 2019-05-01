@@ -7,7 +7,9 @@ services:
       - "3000:3000"
     volumes:
       - ./:/app
-    tty: true 
+    environment:
+      - REACT_APP_PATH_KEY=${REACT_APP_PATH_KEY}
+      - REACT_APP_AUTH=${REACT_APP_AUTH}
     networks:
       - api-backend
 
