@@ -28,7 +28,7 @@ class RegisterMonitoring extends Component {
                     console.log(token)
                 });
                 
-                axios.post(process.env.REACT_APP_URL+"/create_tutoring/", token)
+                axios.post(process.env.REACT_APP_GATEWAY+"/create_tutoring/", token)
                     .then(res => {
                         console.log(res)
                     }).catch(error=>{
