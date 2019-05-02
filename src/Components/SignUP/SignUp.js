@@ -39,7 +39,7 @@ class SignUp extends Component {
         });
       });
     
-    await axios.post(process.env.REACT_APP_URL+"/create_user/", userData);
+    await axios.post(process.env.REACT_APP_GATEWAY+"/create_user/", userData);
   }
   
   render() {
