@@ -25,14 +25,10 @@ class RegisterMonitoring extends Component {
                     token["access_token"] = idToken;
                     token["subject"] = subject;
                     token["description"] = description;
-                    console.log(token)
                 });
                 
-                axios.post(process.env.REACT_APP_GATEWAY+"/create_tutoring/", token)
-                    .then(res => {
-                        console.log(res)
-                    }).catch(error=>{
-                        console.log("error");
+                axios.post(process.env.REACT_APP_GATEWAY+"/create_tutoring/", token).catch(error=>{
+                    console.log("error");
                 });
             }
           });
@@ -86,7 +82,7 @@ class RegisterMonitoring extends Component {
                     </Grid>
                     <Grid container  alignContent="center" justify="center" direction="row" alignItems="center" spacing={16} style={{paddingTop:40}}>
                         <Grid item>
-                            <Button variant="outlined" color="primary" onClick={this.registerMonitoring} >
+                            <Button variant="outlined" component={Link} to="/Feed" color="primary" onClick={this.registerMonitoring} >
                                 Registrar
                             </Button>
                         </Grid>

@@ -21,7 +21,6 @@ class TelaFeed extends Component {
                 firebase.auth().currentUser.getIdToken().then(function(idToken){
                     token["access_token"] = idToken;
                 });
-                console.log(process.env.REACT_APP_GATEWAY);
                 axios.post(process.env.REACT_APP_GATEWAY+"/all_tutoring/", token)
                     .then(res => {
                         const person = res.data
