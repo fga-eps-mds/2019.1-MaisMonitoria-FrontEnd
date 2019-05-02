@@ -37,13 +37,9 @@ class SignUp extends Component {
           userData = {"name": name, "course": course, "access_token": idToken}
           
         });
-      }).catch((error)=>{
-        console.log(error);
-      })
+      });
     
-    await axios.post("http://localhost:8000/create_user/", userData).catch(error=>{
-      console.log(error);
-    });
+    await axios.post(process.env.REACT_APP_URL+"/create_user/", userData);
   }
   
   render() {

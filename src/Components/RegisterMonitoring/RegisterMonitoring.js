@@ -28,7 +28,7 @@ class RegisterMonitoring extends Component {
                     console.log(token)
                 });
                 
-                axios.post("http://localhost:8000/create_tutoring/", token)
+                axios.post(process.env.REACT_APP_URL+"/create_tutoring/", token)
                     .then(res => {
                         console.log(res)
                     }).catch(error=>{
@@ -70,45 +70,6 @@ class RegisterMonitoring extends Component {
                         })}
                         />
                     </Grid>
-                    <Grid item>
-                        <Grid container alignContent="center" justify="center" direction="row" alignItems="center" spacing={16}>
-                            <Grid item md-auto>
-                                <TextField
-                                id="InicioTexfild"
-                                label="Inicio"
-                                type="time"
-                                margin="normal"                
-                                InputLabelProps={{
-                                shrink: true,
-                                }}
-                                    />
-                            </Grid>
-                            <Grid  item md-auto>
-                            <TextField
-                                id="terminoTexfild"
-                                label="Termino"
-                                type="time"
-                                margin="normal"                
-                                InputLabelProps={{
-                                shrink: true,
-                                }}
-                            
-                                />
-                            </Grid>
-                        </Grid>    
-                    </Grid>
-                    
-                    <Grid item md-auto>
-                    <TextField
-                            id="date"
-                            label="Data"
-                            type="date"
-                            defaultValue="00-00-0000"
-                            InputLabelProps={{
-                            shrink: true,
-                            }}
-                            />
-                    </Grid >
                     <Grid  item md-auto>
                         <TextField
                             id="descricaoTextfild"

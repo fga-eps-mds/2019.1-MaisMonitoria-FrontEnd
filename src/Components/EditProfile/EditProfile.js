@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { async } from 'q';
 import axios from 'axios';
 import firebase from 'firebase';
-
+import './EditProfile.css'
 
 class EditProfile extends Component {
 
@@ -33,7 +33,7 @@ class EditProfile extends Component {
                     token["access_token"] = idToken;
                 })
               
-                axios.post("http://localhost:8000/get_user/", token).then(user=>{
+                axios.post(process.env.REACT_APP_URL+"/get_user/", token).then(user=>{
                     userData = user.data;
                     this.setState({name:userData["name"],course:userData["course"],email:userData["email"]}) 
                    
@@ -56,9 +56,7 @@ class EditProfile extends Component {
                     token["email"] = email;
                 })
               
-                axios.post("http://localhost:8000/update_user/",token).then(user=>{
-                    console.log(token["access_token"]);
-                });  
+                axios.post(process.env.REACT_APP_URL+"/update_user/",token);  
             }     
         })
     }
@@ -72,7 +70,7 @@ class EditProfile extends Component {
             </Grid>   
             <Grid container justify="center" alignContent="center" alignItems="center">
                 <Grid item> 
-                    <img src={Pp} alt="Profilepic" style={{width: 130,height:130,padding:80}} ></img>
+                    <img src={Pp} className="ProfilePic" alt="Profilepic" style={{width: 130,height:130,margin:80,borderRadius:2}} ></img>
                 </Grid>
             </Grid>
             <Grid container justify="center" alignContent="center" alignItems="center" direction="column" >

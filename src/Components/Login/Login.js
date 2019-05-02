@@ -16,8 +16,8 @@ const theme = createMuiTheme({
 });
 
 firebase.initializeApp({
-  apiKey: "AIzaSyCrE2NKARsLRCPoy-dF8flrIG0CYoovkUE",
-  authDomain: "maismonitoria-fe31c.firebaseapp.com"
+  apiKey: process.env.REACT_APP_PATH_KEY,
+  authDomain: process.env.REACT_APP_AUTH
 });
 
 class Login extends Component {
@@ -30,7 +30,6 @@ class Login extends Component {
   
 
   login = async (e) => {
-    console.log(process.env.PATH_KEY);
     
     const { email, password } = this.state;
     if(!email || !password){
@@ -41,14 +40,13 @@ class Login extends Component {
         this.setState({isAuthenticated: true});  
       }).catch((except)=>{
         this.setState({ error: "Usuário inválido" });
-        e.preventDefault();
       });
     }
   }
 
   render() {
     return (
-      <div className="LoginBackground">
+      <div className="LoginBackground" style={{overflowY:'auto',overflowX:'hidden'}}>
         <Grid container alignContent="center" justify="center" direction="column" alignItems="center">
           
           <img src={logo} alt="Logo" />
@@ -80,7 +78,7 @@ class Login extends Component {
         <Grid  container alignContent="center" justify="center" direction="column" spacing="24" alignItems="center" style={{marginTop: 25}}>
           <Grid item >
             <MuiThemeProvider theme={theme}>
-              <Button component={Link} to={this.state.isAuthenticated? "/Feed":"/"} variant="outlined" color="primary" onClick={this.login}>
+              <Button component={Link} to={this.state.isAuthenticated?"/Feed":"/"} variant="outlined" color="primary" onClick={this.login}>
                   Login
               </Button>
             </MuiThemeProvider>
