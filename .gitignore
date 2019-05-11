@@ -3,4 +3,4 @@
 /build
 package-lock.json
 /coverage
-export.sh
+export_frontend.sh
