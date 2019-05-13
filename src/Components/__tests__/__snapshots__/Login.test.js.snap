@@ -3,6 +3,12 @@
 exports[`Testing Login component Test if Login renders correctly 1`] = `
 <div
   className="LoginBackground"
+  style={
+    Object {
+      "overflowX": "hidden",
+      "overflowY": "auto",
+    }
+  }
 >
   <WithStyles(Grid)
     alignContent="center"
