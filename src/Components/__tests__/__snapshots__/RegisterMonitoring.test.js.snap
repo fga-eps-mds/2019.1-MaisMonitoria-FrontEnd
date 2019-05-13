@@ -61,76 +61,6 @@ exports[`Testing RegisterMonitoring component Test if RegisterMonitoring renders
       </WithStyles(Grid)>
       <WithStyles(Grid)
         item={true}
-      >
-        <WithStyles(Grid)
-          alignContent="center"
-          alignItems="center"
-          container={true}
-          direction="row"
-          justify="center"
-          spacing={16}
-        >
-          <WithStyles(Grid)
-            item={true}
-            md-auto={true}
-          >
-            <TextField
-              InputLabelProps={
-                Object {
-                  "shrink": true,
-                }
-              }
-              id="InicioTexfild"
-              label="Inicio"
-              margin="normal"
-              required={false}
-              select={false}
-              type="time"
-              variant="standard"
-            />
-          </WithStyles(Grid)>
-          <WithStyles(Grid)
-            item={true}
-            md-auto={true}
-          >
-            <TextField
-              InputLabelProps={
-                Object {
-                  "shrink": true,
-                }
-              }
-              id="terminoTexfild"
-              label="Termino"
-              margin="normal"
-              required={false}
-              select={false}
-              type="time"
-              variant="standard"
-            />
-          </WithStyles(Grid)>
-        </WithStyles(Grid)>
-      </WithStyles(Grid)>
-      <WithStyles(Grid)
-        item={true}
-        md-auto={true}
-      >
-        <TextField
-          InputLabelProps={
-            Object {
-              "shrink": true,
-            }
-          }
-          defaultValue="00-00-0000"
-          id="date"
-          label="Data"
-          required={false}
-          select={false}
-          type="date"
-          variant="standard"
-        />
-      </WithStyles(Grid)>
-      <WithStyles(Grid)
-        item={true}
         md-auto={true}
       >
         <TextField
@@ -163,7 +93,9 @@ exports[`Testing RegisterMonitoring component Test if RegisterMonitoring renders
         >
           <WithStyles(Button)
             color="primary"
+            component={[Function]}
             onClick={[Function]}
+            to="/Feed"
             variant="outlined"
           >
             Registrar

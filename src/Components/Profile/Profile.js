@@ -26,10 +26,7 @@ class Profile extends Component {
         name:'',
         course: '',
         email: '',
-        nameMonitoring: 'Derivada',
-        subject: 'Cálculo 1',
-        description: 'Aula sobre derivadas.',
-        monitor: 'Batatinha'
+        monitoring: []
     }
     
 
@@ -44,7 +41,7 @@ class Profile extends Component {
               
                 axios.post(process.env.REACT_APP_GATEWAY+"/get_user/", token).then(user=>{
                     userData = user.data;
-                    this.setState({name:userData["name"],course:userData["course"]}) 
+                    this.setState({name:userData["name"], course:userData["course"], monitoring:userData["monitoring"]}) 
                 });  
             }     
         })
@@ -87,9 +84,13 @@ class Profile extends Component {
                         <Grid item xs={12} style={{marginTop:10}}>
                             <ProfileTab/>
                         </Grid>
-                        <Grid item lg={12} sm={12} container style={{paddingTop:20}} >
-                            <Card name_monitoring={this.state.nameMonitoring} matter={this.state.subject} monitor={this.state.monitor} deion={this.state.description}/>
-                        </Grid>
+                        {this.state.monitoring.map(function(item, i){
+                            return (
+                                <Grid item key={i} lg={12} sm={12} container >
+                                    <Card name_monitoring={item.name} matter={item.subject} deion={item.description}/>
+                                </Grid>
+                            );
+                        })}
                     </Grid>
                 </div>
             </div>
