@@ -33,24 +33,40 @@ class SignUp extends Component {
     validRegister: false
   };
   
-  register = async () => {
+  register = async (e) => {
     const { email, password, name, telegram, course } = this.state;  
     var userData = {}
-    
-    function validaNome(campo) {
+   
+
+    if(!course || !name || !email || !password)//valida se os campos obrigatorios foram preenchidos
+    {
+      this.setState({ error: "Digite os campos obrigatorios" });
+      this.setState({validName:false})
+      this.setState({validCourse:false})
+      this.setState({validEmail:false})
+      this.setState({validSenha:false})
+      e.preventDefault();
+    }
+
+
+    function validaNome(campo) {  //função para validar se o nome tem algum caracter especial
       var regex = /^[a-zA-ZéúíóáÉÚÍÓÁèùìòàçÇÈÙÌÒÀõãñÕÃÑêûîôâÊÛÎÔÂëÿüïöäËYÜÏÖÄ\-\ \s]+$/;
       if(campo.match(regex)) {
           return false;
       } else { return true; }
     }     
 
-    if(validaNome(name) == false){
+    if(!name){
+
+    }
+    else if(validaNome(name) == true){ // valida se o nome tem algum caracter especial
       this.setState({ error: "Nome inválido" });
       this.setState({validName:false})
+      e.preventDefault();
     }else{
       this.setState({validName:true})
+      
     }
-
 
     // if(validName == true && validSenha == true && validCourse == true && validEmail == true){
     //   this.setState({validRegister:true})
@@ -113,6 +129,9 @@ class SignUp extends Component {
                 })}
                 />
             </Grid>
+            <Grid item>
+                <Course action={(course)=>{this.setState({course})}}/>
+            </Grid>
           </Grid>
           <Grid container alignContent="center" justify="center" direction="row" alignItems="center" spacing={24}>
             <Grid item >
@@ -135,9 +154,7 @@ class SignUp extends Component {
                 type="password"
                 />
             </Grid>
-            </Grid>
-            <Grid>
-                {this.state.error && <p>{this.state.error}</p>}
+            {this.state.error && <p>{this.state.error}</p>}
             </Grid>
             <Grid container alignContent="center" justify="center" direction="row" spacing="24" alignItems="center" style={{marginTop: 25}}>
               <Grid item >
