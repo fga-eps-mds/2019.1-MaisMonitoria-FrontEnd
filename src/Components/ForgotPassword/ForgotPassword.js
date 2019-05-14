@@ -38,7 +38,7 @@ class ForgotPassword extends Component {
           this.setState({ error: "Email inválido" });
           
         });
-      }
+      };
     }
   
 
