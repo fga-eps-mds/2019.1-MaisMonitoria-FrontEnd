@@ -5,6 +5,7 @@ import './ForgotPassword.css';
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import  {Link}  from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import firebase from 'firebase';
 
 const theme = createMuiTheme({
   palette: {
@@ -14,7 +15,33 @@ const theme = createMuiTheme({
   typography: { useNextVariants: true },
 });
 
+
+
 class ForgotPassword extends Component {
+  state = {
+    
+    emailAddress:'',
+    isAuthenticated: false,
+    error: ""
+  };
+  
+    forgotpassword = async (a) => {      
+      const { emailAddress} = this.state;
+      if(!emailAddress){
+        this.setState({ error: "Preencha e-mail para continuar!" });
+        a.preventDefault();
+        
+      }else{
+        await firebase.auth().sendPasswordResetEmail(emailAddress).then(()=>{
+          this.setState({isAuthenticated: true});
+        }).catch(()=>{
+          this.setState({ error: "Email invalido" });
+          
+        });
+      }
+    }
+  
+
   render() {
     return (
       <div className="ForgotPasswordBackground">
@@ -30,14 +57,19 @@ class ForgotPassword extends Component {
               id="emailTextField"
               label="Email"
               margin="normal"
+              value={this.state.emailAddress}
+              onChange={(event)=>this.setState({
+              emailAddress: event.target.value,
+              })}
               />
           </Grid>
+          {this.state.error && <p>{this.state.error}</p>}
           </Grid>
           <Grid container alignContent="center" justify="center" direction="column" spacing="16" alignItems="center" style={{marginTop: 25}}>
           <Grid item md-auto>
             <MuiThemeProvider theme={theme}>
 
-              <Button component={Link} to="/ModifyPassword" variant="outlined" color="primary">
+              <Button component={Link} to={this.state.isAuthenticated?"/ModifyPassword":"/ForgotPassword"} variant="outlined" color="primary" onClick={this.forgotpassword}>
                 Enviar
               </Button>
             </MuiThemeProvider>
