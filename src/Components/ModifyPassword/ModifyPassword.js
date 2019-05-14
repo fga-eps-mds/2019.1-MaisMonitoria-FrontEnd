@@ -37,11 +37,10 @@ class ModificarSenha extends Component {
         else{
         await firebase.auth().currentUser.updatePassword(newPassword).then(()=>{
           this.setState({isAuthenticated: true});
-        }).catch(()=>{
-          this.setState({ error: "Senha incorreta" });
-        });
+        })
+        };
       }
-    }
+    
       
     }
 
