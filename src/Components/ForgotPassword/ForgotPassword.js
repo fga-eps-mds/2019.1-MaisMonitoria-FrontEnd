@@ -28,14 +28,14 @@ class ForgotPassword extends Component {
     forgotpassword = async (a) => {      
       const { emailAddress} = this.state;
       if(!emailAddress){
-        this.setState({ error: "Preencha e-mail para continuar!" });
+        this.setState({ error: "Digite a senha" });
         a.preventDefault();
         
       }else{
         await firebase.auth().sendPasswordResetEmail(emailAddress).then(()=>{
           this.setState({isAuthenticated: true});
         }).catch(()=>{
-          this.setState({ error: "Email invalido" });
+          this.setState({ error: "Email inválido" });
           
         });
       }
@@ -69,7 +69,7 @@ class ForgotPassword extends Component {
           <Grid item md-auto>
             <MuiThemeProvider theme={theme}>
 
-              <Button component={Link} to={this.state.isAuthenticated?"/ModifyPassword":"/ForgotPassword"} variant="outlined" color="primary" onClick={this.forgotpassword}>
+              <Button component={Link} to={this.state.isAuthenticated?"/":"/ForgotPassword"} variant="outlined" color="primary" onClick={this.forgotpassword}>
                 Enviar
               </Button>
             </MuiThemeProvider>
