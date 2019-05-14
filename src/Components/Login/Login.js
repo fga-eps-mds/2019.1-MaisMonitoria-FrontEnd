@@ -37,9 +37,13 @@ class Login extends Component {
       e.preventDefault();
     }else{
       await firebase.auth().signInWithEmailAndPassword(email, password).then((user)=>{
-        this.setState({isAuthenticated: true});  
+        this.setState({isAuthenticated: true});
+        // if(this.state.isAuthenticated == True)
+        // {
+
+        // }
       }).catch((except)=>{
-        this.setState({ error: "Usuário inválido" });
+        this.setState({ error: "Email ou Senha inválidos" });
       });
     }
   }

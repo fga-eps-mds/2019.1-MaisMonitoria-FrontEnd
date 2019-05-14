@@ -24,13 +24,38 @@ class SignUp extends Component {
     password: '',
     name: '',
     isAuthenticated: false,
-    course: ''
+    course: '',
+    error: "",
+    validName:false,
+    validEmail:false,
+    validCourse: false,
+    validSenha:false,
+    validRegister: false
   };
   
   register = async () => {
     const { email, password, name, telegram, course } = this.state;  
     var userData = {}
-          
+    
+    function validaNome(campo) {
+      var regex = /^[a-zA-ZéúíóáÉÚÍÓÁèùìòàçÇÈÙÌÒÀõãñÕÃÑêûîôâÊÛÎÔÂëÿüïöäËYÜÏÖÄ\-\ \s]+$/;
+      if(campo.match(regex)) {
+          return false;
+      } else { return true; }
+    }     
+
+    if(validaNome(name) == false){
+      this.setState({ error: "Nome inválido" });
+      this.setState({validName:false})
+    }else{
+      this.setState({validName:true})
+    }
+
+
+    // if(validName == true && validSenha == true && validCourse == true && validEmail == true){
+    //   this.setState({validRegister:true})
+    // }
+
     await firebase.auth()
       .createUserWithEmailAndPassword(email, password).then((user)=>{
         firebase.auth().currentUser.getIdToken().then(function(idToken) {  
@@ -40,6 +65,8 @@ class SignUp extends Component {
       });
     
     await axios.post(process.env.REACT_APP_GATEWAY+"/create_user/", userData);
+
+
   }
   
   render() {
@@ -86,9 +113,6 @@ class SignUp extends Component {
                 })}
                 />
             </Grid>
-            <Grid item>
-                <Course action={(course)=>{this.setState({course})}}/>
-            </Grid>
           </Grid>
           <Grid container alignContent="center" justify="center" direction="row" alignItems="center" spacing={24}>
             <Grid item >
@@ -112,10 +136,13 @@ class SignUp extends Component {
                 />
             </Grid>
             </Grid>
+            <Grid>
+                {this.state.error && <p>{this.state.error}</p>}
+            </Grid>
             <Grid container alignContent="center" justify="center" direction="row" spacing="24" alignItems="center" style={{marginTop: 25}}>
               <Grid item >
                 <MuiThemeProvider theme={theme}>
-                  <Button component={Link} to="/" variant="outlined" onClick={this.register} color="primary">
+                  <Button component={Link} to={this.state.validRegister?"/":"/SignUp"} variant="outlined" onClick={this.register} color="primary">
                   Registrar
                   </Button>
                 </MuiThemeProvider>
