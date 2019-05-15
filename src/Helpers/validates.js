@@ -31,4 +31,14 @@ export const validatepasswordconfirm = user => {
     
 }
 
+export const validateRegisterMonitoring = Monitoring => {
+    const {name,subject} = Monitoring;
+    
+     if(!name || subject) return false;
+
+     return true;
+    
+}
+
+
 export const success=({status})=> status >=200 && status <=300;

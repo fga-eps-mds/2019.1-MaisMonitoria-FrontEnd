@@ -4,27 +4,37 @@ import AppBar from '../AppBar/AppBar.js';
 import axios from 'axios';
 import firebase from 'firebase';
 import { Link } from 'react-router-dom';
+import { validateRegisterMonitoring } from '../../Helpers/validates.js';
 
 class RegisterMonitoring extends Component {
     
     state ={
-        name: '',
-        subject: '',
-        description: '',
+        monitoring:{
+            name: '',
+            subject: '',
+            description: '',
+        },
+        error:''
     }
 
-    registerMonitoring = () =>{
-        var token = {};
-        const {name,subject,description} = this.state;
 
+    registerMonitoring = (e) =>{
+        var token = {};
+        const {monitoring} = this.state;
+
+        if(!validateRegisterMonitoring(monitoring)){
+            this.setState({ error: "Digite os campos obrigatorios." });
+            e.preventDefault();
+            return;
+        }
         firebase.auth().onAuthStateChanged(user =>{
             this.setState({isSignedIn: !!user});
             if(user){
                 firebase.auth().currentUser.getIdToken().then(function(idToken){
-                    token["name"] = name;
+                    token["name"] = monitoring.name;
                     token["access_token"] = idToken;
-                    token["subject"] = subject;
-                    token["description"] = description;
+                    token["subject"] = monitoring.subject;
+                    token["description"] = monitoring.description;
                 });
                 
                 axios.post(process.env.REACT_APP_GATEWAY+"/create_tutoring/", token).catch(error=>{
@@ -51,9 +61,7 @@ class RegisterMonitoring extends Component {
                         id="temaTextField"
                         label="Tema"
                         margin="normal"
-                        onChange={(event)=>this.setState({
-                            name: event.target.value,
-                        })}
+                        onChange={(event)=>this.setState({ ...this.state, monitoring: { ...this.state.monitoring, name: event.target.value } })}
                         />
                     </Grid>
                     <Grid item md-auto>
@@ -61,9 +69,7 @@ class RegisterMonitoring extends Component {
                         id="temaTextField"
                         label="Matéria"
                         margin="normal"
-                        onChange={(event)=>this.setState({
-                            subject: event.target.value,
-                        })}
+                        onChange={(event)=>this.setState({ ...this.state, monitoring: { ...this.state.monitoring, subject: event.target.value } })}
                         />
                     </Grid>
                     <Grid  item md-auto>
@@ -74,11 +80,12 @@ class RegisterMonitoring extends Component {
                             multiline
                             margin="normal"
                             variant="outlined"
-                            onChange={(event)=>this.setState({
-                                description: event.target.value,
-                            })}
+                            onChange={(event)=>this.setState({ ...this.state, monitoring: { ...this.state.monitoring, description: event.target.value } })}
                             />
                         
+                    </Grid>
+                    <Grid>
+                        {this.state.error && <p>{this.state.error}</p>}
                     </Grid>
                     <Grid container  alignContent="center" justify="center" direction="row" alignItems="center" spacing={16} style={{paddingTop:40}}>
                         <Grid item>
