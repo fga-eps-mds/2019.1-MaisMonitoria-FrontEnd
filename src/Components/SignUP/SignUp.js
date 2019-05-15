@@ -9,7 +9,7 @@ import firebase from 'firebase';
 import Course from '../EditProfile/Course'
 import axios from 'axios';
 import { convertPatternGroupToTask } from 'fast-glob/out/managers/tasks';
-import { validateRegister, success, validateName } from '../../Helpers/validates';
+import { validateRegister, success, validateName, validatepasswordconfirm } from '../../Helpers/validates';
 import { errors } from '../../Helpers/errors';
 import {withRouter} from 'react-router-dom';
 
@@ -29,6 +29,7 @@ class SignUp extends Component {
       password: '',
       name: '',
       course: '',
+      passwordconfirm: ''
     },
     isAuthenticated: false,
     error: "",
@@ -41,14 +42,21 @@ class SignUp extends Component {
 
     if(!validateRegister(user))//valida se os campos obrigatorios foram preenchidos
     {
-      this.setState({ error: "Digite os campos obrigatorios" });
+      this.setState({ error: "Digite os campos obrigatorios." });
       e.preventDefault();
       return;
     }
 
     if(!validateName(user))//valida se os campos obrigatorios foram preenchidos
     {
-      this.setState({ error: "Nome inválido" });
+      this.setState({ error: "Nome inválido." });
+      e.preventDefault();
+      return;
+    }
+    
+    if(!validatepasswordconfirm(user))
+    {
+      this.setState({ error: "A senha não coincide." });
       e.preventDefault();
       return;
     }
@@ -132,6 +140,7 @@ class SignUp extends Component {
                 label="Repetir senha"
                 margin="normal"
                 type="password"
+                onChange={(event)=>this.setState({ ...this.state, user: { ...this.state.user, passwordconfirm: event.target.value } })}
                 />
             </Grid>
             {this.state.error && <p>{this.state.error}</p>}

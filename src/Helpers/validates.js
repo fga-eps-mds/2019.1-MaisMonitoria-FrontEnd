@@ -5,6 +5,7 @@ export const validateRegister = user => {
     return true;
     
 }
+
 export const validateName = user => {
     const {name} = user;
     
@@ -20,4 +21,14 @@ export const validateName = user => {
     return true;
     
 }
+
+export const validatepasswordconfirm = user => {
+    const {password,passwordconfirm} = user;
+    
+     if(password != passwordconfirm) return false;
+
+     return true;
+    
+}
+
 export const success=({status})=> status >=200 && status <=300;
