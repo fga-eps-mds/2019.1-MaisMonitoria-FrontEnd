@@ -28,7 +28,7 @@ class ForgotPassword extends Component {
     forgotpassword = async (a) => {      
       const { emailAddress} = this.state;
       if(!emailAddress){
-        this.setState({ error: "Digite a senha" });
+        this.setState({ error: "Digite o email" });
         a.preventDefault();
         
       }else{
