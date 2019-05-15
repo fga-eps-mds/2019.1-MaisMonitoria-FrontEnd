@@ -34,7 +34,7 @@ export const validatepasswordconfirm = user => {
 export const validateRegisterMonitoring = Monitoring => {
     const {name,subject} = Monitoring;
     
-     if(!name || subject) return false;
+     if(!name || !subject) return false;
 
      return true;
     

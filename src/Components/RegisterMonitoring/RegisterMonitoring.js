@@ -4,7 +4,8 @@ import AppBar from '../AppBar/AppBar.js';
 import axios from 'axios';
 import firebase from 'firebase';
 import { Link } from 'react-router-dom';
-import { validateRegisterMonitoring } from '../../Helpers/validates.js';
+import { validateRegisterMonitoring, success } from '../../Helpers/validates.js';
+import {withRouter} from 'react-router-dom';
 
 class RegisterMonitoring extends Component {
     
@@ -16,7 +17,6 @@ class RegisterMonitoring extends Component {
         },
         error:''
     }
-
 
     registerMonitoring = (e) =>{
         var token = {};
@@ -37,9 +37,9 @@ class RegisterMonitoring extends Component {
                     token["description"] = monitoring.description;
                 });
                 
-                axios.post(process.env.REACT_APP_GATEWAY+"/create_tutoring/", token).catch(error=>{
-                    console.log("error");
-                });
+                axios.post(process.env.REACT_APP_GATEWAY+"/create_tutoring/", token).then((x)=>{
+                    if(success(x)) this.props.history.push('/feed');
+                  });
             }
           });
     }
@@ -89,7 +89,7 @@ class RegisterMonitoring extends Component {
                     </Grid>
                     <Grid container  alignContent="center" justify="center" direction="row" alignItems="center" spacing={16} style={{paddingTop:40}}>
                         <Grid item>
-                            <Button variant="outlined" component={Link} to="/Feed" color="primary" onClick={this.registerMonitoring} >
+                            <Button variant="outlined" component={Link}  color="primary" onClick={this.registerMonitoring} >
                                 Registrar
                             </Button>
                         </Grid>
@@ -107,4 +107,4 @@ class RegisterMonitoring extends Component {
   }
 }
 
-export default RegisterMonitoring;
+export default withRouter(RegisterMonitoring);
