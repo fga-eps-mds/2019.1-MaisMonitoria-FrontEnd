@@ -9,7 +9,7 @@ import firebase from 'firebase';
 import Course from '../EditProfile/Course'
 import axios from 'axios';
 import { convertPatternGroupToTask } from 'fast-glob/out/managers/tasks';
-import { validateRegister, success } from '../../Helpers/validates';
+import { validateRegister, success, validateName } from '../../Helpers/validates';
 import { errors } from '../../Helpers/errors';
 import {withRouter} from 'react-router-dom';
 
@@ -46,6 +46,13 @@ class SignUp extends Component {
       return;
     }
 
+    if(!validateName(user))//valida se os campos obrigatorios foram preenchidos
+    {
+      this.setState({ error: "Nome inválido" });
+      e.preventDefault();
+      return;
+    }
+    
     firebase.auth().createUserWithEmailAndPassword(user.email, user.password).then((user)=>{
         
         firebase.auth().currentUser.getIdToken().then((idToken)=> {  
