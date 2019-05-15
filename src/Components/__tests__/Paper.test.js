@@ -1,23 +1,16 @@
 import React from 'react';
 import Paper from '../Feed/Paper';
 import toJson from 'enzyme-to-json';
-import {shallow, mount } from 'enzyme';
+import renderer from 'react-test-renderer';
+import { MemoryRouter as Router } from 'react-router-dom';
 
+const paperfeed = jest.fn();
 
 describe('Testing Paper component', () => {
-    it('Test if Card renders correctly', () =>{
-        const tree = shallow(<Paper/>);
-        expect(toJson(tree)).toMatchSnapshot();
+    it('Test if Paper renders correctly', () =>{
+        const tree = renderer.create(
+            <Router><Paper paperfeed={paperfeed}/></Router>
+          )
+        expect(toJson(tree)).toMatchSnapshot()
     });
-    it('allows us to set props', () => {
-        const wrapper = mount(<Paper bar="baz" />);
-        expect(wrapper.props().bar).toMatchSnapshot('baz');
-        wrapper.setProps({ bar: 'paperfeed' });
-        expect(wrapper.props().bar).toMatchSnapshot('paperfeed');
-      });
-    
 });
-;
-
-
-

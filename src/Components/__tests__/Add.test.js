@@ -8,5 +8,4 @@ describe('Testing Add component', () => {
         const tree = shallow(<Add/>);
         expect(toJson(tree)).toMatchSnapshot();
     });
-    
 });

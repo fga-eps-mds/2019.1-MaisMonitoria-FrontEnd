@@ -9,7 +9,3 @@ exports[`Testing AppBar component Test if AppBar renders correctly 1`] = `
   }
 />
 `;
-
-exports[`Testing AppBar component allows us to set props: appbar 1`] = `"appbar"`;
-
-exports[`Testing AppBar component allows us to set props: baz 1`] = `"baz"`;

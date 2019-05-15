@@ -27,7 +27,7 @@ class ModificarSenha extends Component {
   modifypassword = async (a) => {      
       const { newPassword, copyPassword} = this.state;
       if(!newPassword || !copyPassword){
-        this.setState({ error: "Digite sua senha para continuar!" });
+        this.setState({ error: "Digite sua senha continuar!" });
         a.preventDefault();        
       }else{
         if(newPassword != copyPassword){

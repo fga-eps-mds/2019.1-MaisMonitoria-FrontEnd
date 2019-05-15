@@ -28,14 +28,15 @@ class ForgotPassword extends Component {
     forgotpassword = async (a) => {      
       const { emailAddress} = this.state;
       if(!emailAddress){
-        this.setState({ error: "Digite o email" });
+        this.setState({ error: "Digite a senha" });
         a.preventDefault();
         
       }else{
         await firebase.auth().sendPasswordResetEmail(emailAddress).then(()=>{
           this.setState({isAuthenticated: true});
         }).catch(()=>{
-          this.setState({ error: "Email inválido" });  
+          this.setState({ error: "Email inválido" });
+          
         });
       };
     }
