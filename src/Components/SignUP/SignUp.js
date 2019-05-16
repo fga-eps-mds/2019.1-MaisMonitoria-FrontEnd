@@ -42,21 +42,21 @@ class SignUp extends Component {
 
     if(!validateRegister(user))//valida se os campos obrigatorios foram preenchidos
     {
-      this.setState({ error: "Digite os campos obrigatorios." });
+      this.setState({ error: "Digite os campos obrigatórios" });
       e.preventDefault();
       return;
     }
 
     if(!validateName(user))//valida se os campos obrigatorios foram preenchidos
     {
-      this.setState({ error: "Nome inválido." });
+      this.setState({ error: "Nome inválido" });
       e.preventDefault();
       return;
     }
     
     if(!validatepasswordconfirm(user))
     {
-      this.setState({ error: "A senha não coincide." });
+      this.setState({ error: "A senha não coincide" });
       e.preventDefault();
       return;
     }
@@ -143,7 +143,9 @@ class SignUp extends Component {
                 onChange={(event)=>this.setState({ ...this.state, user: { ...this.state.user, passwordconfirm: event.target.value } })}
                 />
             </Grid>
-            {this.state.error && <p>{this.state.error}</p>}
+            </Grid>
+            <Grid container alignContent="center" justify="center" direction="row" spacing="24" alignItems="center">
+                {this.state.error && <p>{this.state.error}</p>}
             </Grid>
             <Grid container alignContent="center" justify="center" direction="row" spacing="24" alignItems="center" style={{marginTop: 25}}>
               <Grid item >
