@@ -49,10 +49,10 @@ class ForgotPassword extends Component {
           <div style={{ padding: 80 }}>
       
       
-        <Grid container  alignContent="center" justify="center" direction="column" alignItems="center" spacing="24">
+        <Grid container  alignContent="center" justify="center" direction="column" alignItems="center" spacing={24}>
           <img src={logo} alt="Logo" />
           
-          <Grid item md-auto>
+          <Grid item >
             <TextField
               id="emailTextField"
               label="Email"
@@ -65,8 +65,8 @@ class ForgotPassword extends Component {
           </Grid>
           {this.state.error && <p>{this.state.error}</p>}
           </Grid>
-          <Grid container alignContent="center" justify="center" direction="column" spacing="16" alignItems="center" style={{marginTop: 25}}>
-          <Grid item md-auto>
+          <Grid container alignContent="center" justify="center" direction="column" spacing={16} alignItems="center" style={{marginTop: 25}}>
+          <Grid item >
             <MuiThemeProvider theme={theme}>
 
               <Button component={Link} to={this.state.isAuthenticated?"/":"/ForgotPassword"} variant="outlined" color="primary" onClick={this.forgotpassword}>
@@ -75,7 +75,7 @@ class ForgotPassword extends Component {
             </MuiThemeProvider>
 
               </Grid>
-            <Grid item md-auto>
+            <Grid item >
               <MuiThemeProvider theme={theme}>
                 <Button component={Link} to="/" variant="outlined" color="primary">
                   Voltar

@@ -46,7 +46,7 @@ class SignUp extends Component {
     return (
       <div className="SignUpBackground" style={{overflowY:'scroll'}}>
         <Grid style={{paddingLeft:10}}>
-          <Grid container alignContent="center" justify="center" direction="column" alignItems="center" spacing={12}>
+          <Grid container alignContent="center" justify="center" direction="column" alignItems="center" spacing={8}>
             <img src={logo} alt="Logo" width="120" height="120"/>
           </Grid>
           <Grid container alignContent="center" justify="center" direction="row" alignItems="center" spacing={24}>
@@ -76,7 +76,7 @@ class SignUp extends Component {
           <Grid container alignContent="center" justify="center" direction="row" alignItems="center" spacing={24}>
             <Grid item >
               <TextField
-                id="emailTextField"
+                id="telegramTextField"
                 label="Telegram"
                 margin="normal"
                 placeholder="@"
@@ -112,7 +112,7 @@ class SignUp extends Component {
                 />
             </Grid>
             </Grid>
-            <Grid container alignContent="center" justify="center" direction="row" spacing="24" alignItems="center" style={{marginTop: 25}}>
+            <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center" style={{marginTop: 25}}>
               <Grid item >
                 <MuiThemeProvider theme={theme}>
                   <Button component={Link} to="/" variant="outlined" onClick={this.register} color="primary">
