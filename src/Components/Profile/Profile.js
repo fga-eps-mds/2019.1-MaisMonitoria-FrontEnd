@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { Grid, Button } from '@material-ui/core' ;
-import AppBar from '../AppBar/AppBar'
-import Card from '../Feed/Card'
+import AppBar from '../AppBar/AppBar';
+import Card from '../Feed/Card';
 import Pp from '../../Assets/img/Pp.png';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import ProfileTab from '../ProfileTab/ProfileTab';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import firebase from 'firebase';
-import './Profile.css'
-
+import './Profile.css';
 
 
 const theme = createMuiTheme({

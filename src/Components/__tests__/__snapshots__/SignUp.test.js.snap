@@ -22,7 +22,7 @@ exports[`Testing SignUp component Test if SignUp renders correctly 1`] = `
       container={true}
       direction="column"
       justify="center"
-      spacing={12}
+      spacing={8}
     >
       <img
         alt="Logo"
@@ -79,7 +79,7 @@ exports[`Testing SignUp component Test if SignUp renders correctly 1`] = `
         item={true}
       >
         <TextField
-          id="emailTextField"
+          id="telegramTextField"
           label="Telegram"
           margin="normal"
           onChange={[Function]}
@@ -140,7 +140,7 @@ exports[`Testing SignUp component Test if SignUp renders correctly 1`] = `
       container={true}
       direction="row"
       justify="center"
-      spacing="24"
+      spacing={24}
       style={
         Object {
           "marginTop": 25,

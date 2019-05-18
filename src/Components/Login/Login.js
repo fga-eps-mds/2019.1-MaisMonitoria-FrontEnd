@@ -79,7 +79,7 @@ class Login extends Component {
           </Grid>
           {this.state.error && <p>{this.state.error}</p>}
         </Grid>
-        <Grid  container alignContent="center" justify="center" direction="column" spacing="24" alignItems="center" style={{marginTop: 25}}>
+        <Grid  container alignContent="center" justify="center" direction="column" spacing={24} alignItems="center" style={{marginTop: 25}}>
           <Grid item >
             <MuiThemeProvider theme={theme}>
               <Button component={Link} to={this.state.isAuthenticated?"/Feed":"/"} variant="outlined" color="primary" onClick={this.login}>
@@ -93,8 +93,8 @@ class Login extends Component {
                 Registrar
               </Button>
               </MuiThemeProvider>
-          </Grid>
-              <a  className="ForgotPasswordLink"><Link to="/ForgotPassword" >Esqueceu sua senha ?</Link></a>  
+          </Grid>  
+              <Link to="/ForgotPassword" >Esqueceu sua senha ?</Link> 
         </Grid>
           
         </div>
