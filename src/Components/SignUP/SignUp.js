@@ -12,6 +12,7 @@ import { convertPatternGroupToTask } from 'fast-glob/out/managers/tasks';
 import { validateRegister, success, validateName, validatepasswordconfirm } from '../../Helpers/validates';
 import { errors } from '../../Helpers/errors';
 import {withRouter} from 'react-router-dom';
+import SimpleModal from '../SimpleModal';
 
 const theme = createMuiTheme({
   palette: {
@@ -33,6 +34,7 @@ class SignUp extends Component {
     },
     isAuthenticated: false,
     error: "",
+    showModal: false,
   };
   
   register = (e) => {
@@ -61,12 +63,14 @@ class SignUp extends Component {
       return;
     }
     
-    firebase.auth().createUserWithEmailAndPassword(user.email, user.password).then((user)=>{
+    firebase.auth().createUserWithEmailAndPassword(user.email, user.password).then(()=>{
         
         firebase.auth().currentUser.getIdToken().then((idToken)=> {  
            userData = {...user,access_token:idToken};
            axios.post(process.env.REACT_APP_GATEWAY+"/create_user/", userData).then((x)=>{
-             if(success(x)) this.props.history.push('/');
+             if(success(x)) {
+              this.setState({showModal:true});
+             }           
            });
         });
        
@@ -83,6 +87,7 @@ class SignUp extends Component {
   render() {
     return (
       <div className="SignUpBackground" style={{overflowY:'scroll'}}>
+      {this.state.showModal? <SimpleModal title={'title'} description={'Usuario criado com sucesso'} />:null}
         <Grid style={{paddingLeft:10}}>
           <Grid container alignContent="center" justify="center" direction="column" alignItems="center" spacing={12}>
             <img src={logo} alt="Logo" width="120" height="120"/>
