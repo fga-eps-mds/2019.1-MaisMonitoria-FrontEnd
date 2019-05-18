@@ -8,6 +8,7 @@ import { async } from 'q';
 import axios from 'axios';
 import firebase from 'firebase';
 import './EditProfile.css'
+import { validateEditProfile, validateName } from '../../Helpers/validates.js';
 
 class EditProfile extends Component {
 
@@ -15,9 +16,10 @@ class EditProfile extends Component {
     state = {
         name:'',
         course: '',
-        telgram: '',
+        telegram: '',
         email: '',
-        isSignedin: false
+        isSignedin: false,
+        error: '',
     }
 
     componentDidMount(){
@@ -42,11 +44,25 @@ class EditProfile extends Component {
         })
     }
 
-    editProfile = () =>{
+    editProfile = (e) =>{
         
-        let userData = {};
+        
         let token = {}
-        const {name,course,email} = this.state;
+        const {name,course,email,error} = this.state;
+
+        if(!validateEditProfile(this.state))
+        {
+            this.setState({ error: "Digite os campos obrigatórios" });
+            e.preventDefault();
+            return; 
+        }
+
+        if(!validateName(this.state)){
+            this.setState({ error: "Nome inválido" });
+            e.preventDefault();
+            return;
+        }
+
         firebase.auth().onAuthStateChanged(user =>{
             if(user){
                 firebase.auth().currentUser.getIdToken().then(function(idToken){
@@ -103,6 +119,9 @@ class EditProfile extends Component {
                 <Grid item style={{padding:30}}>
                     <Course action={(course)=>{this.setState({course})}}/>
                 </Grid>
+            </Grid>
+            <Grid container alignContent="center" justify="center" direction="row" spacing="24" alignItems="center">
+                {this.state.error && <p>{this.state.error}</p>}
             </Grid>
             <Grid container justify="center" alignContent="center" alignItems="center" direction="row" spacing={24}>
                 <Grid item>

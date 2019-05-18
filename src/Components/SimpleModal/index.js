@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
 import {withRouter} from 'react-router-dom';
-import { Grid, Button, TextField } from '@material-ui/core' ;
+import { Button} from '@material-ui/core' ;
 
 class SimpleModal extends React.Component {
   state = {
