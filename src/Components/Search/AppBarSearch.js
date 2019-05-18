@@ -10,6 +10,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import logo from '../../Assets/img/Logo.png';
 
 
+
 const styles = theme => ({
   root: {
     width: '100%',
@@ -68,8 +69,16 @@ const styles = theme => ({
   },
 });
 
-function SearchAppBar(props) {
-  const { classes } = props;
+class SearchAppBar extends React.Component {
+
+  handleChange(e) {
+    const title = e.target.value;
+    this.props.changeTitle(title);
+  }
+
+  render() {
+    const { classes } = this.props;
+  
   return (
     <div className={classes.root}>
       <AppBar position="static" color="primary" style={{ background: '#1DA1F2' }}>
@@ -82,24 +91,28 @@ function SearchAppBar(props) {
           <div className={classes.grow} />
           <div className={classes.search}>
             <div className={classes.searchIcon}>
-              <SearchIcon />
+            <SearchIcon />
             </div>
-            <InputBase
-              placeholder="Pesquisar"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-            />
+            <InputBase value={this.props.title} onChange={this.handleChange.bind(this)} />
           </div>
         </Toolbar>
       </AppBar>
     </div>
   );
-}
 
-SearchAppBar.propTypes = {
-  classes: PropTypes.object.isRequired,
+  }
+}
+  SearchAppBar.propTypes = {
+    classes: PropTypes.object.isRequired,
+  
 };
+
+// function SearchAppBar(props) {
+//   const { classes } = props;
+  
+
+// }
+
+
 
 export default withStyles(styles)(SearchAppBar);

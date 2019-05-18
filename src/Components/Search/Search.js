@@ -8,10 +8,10 @@ import Card from '../Feed/Card';
 
 
 class Search extends Component {
-    state =  {expanded: false,data : [],pesquisa:''}
+    state =  {expanded: false,data : []}
     
-    handleChange(e){
-        const title = e.target.value;
+    changeTitle(title) {
+        this.setState({title});
         var token = {
             search: title,
         };
@@ -21,22 +21,31 @@ class Search extends Component {
                 firebase.auth().currentUser.getIdToken().then(function(idToken){
                     token["access_token"] = idToken;
                 });
-                axios.post(process.env.REACT_APP_GATEWAY+"/search_tutoring/", token)
+                if(title !==""){
+                    axios.post(process.env.REACT_APP_GATEWAY+"/search_tutoring/", token)
                     .then(res => {
-                        const person = res.data
+                        let person = res.data
                         this.setState({data:person})
-                        console.log(this.state.data);
-                    });
+                        console.log(person);
+      
+                    });         
+                }
+                else{
+                    this.setState({data:[]})
+                }
+                
             }
           });
     }
+    
+   
 
   render() {
-    console.log("renderizou");
     return (
         <div style={{overflowX:'hidden'}} >
             <Grid container  justify="center" alignItems="stretch">
-                <input value={this.props.title} onChange={this.handleChange.bind(this)} />
+                <AppBar changeTitle={this.changeTitle.bind(this)} title={this.state.title}/>
+                
             </Grid>    
             <Grid container  justify="center" direction="column" alignItems="center" spacing="16" style={{ padding: 80 }}>
             {this.state.data.map(function(item, i){
