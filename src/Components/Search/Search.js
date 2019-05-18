@@ -15,13 +15,13 @@ class Search extends Component {
         var token = {
             search: title,
         };
+        if(title !==""){
         firebase.auth().onAuthStateChanged(user =>{
             this.setState({isSignedIn: !!user});
             if(user){
                 firebase.auth().currentUser.getIdToken().then(function(idToken){
                     token["access_token"] = idToken;
                 });
-                if(title !==""){
                     axios.post(process.env.REACT_APP_GATEWAY+"/search_tutoring/", token)
                     .then(res => {
                         let person = res.data
@@ -30,12 +30,12 @@ class Search extends Component {
       
                     });         
                 }
-                else{
-                    this.setState({data:[]})
-                }
-                
-            }
           });
+        }
+        else{
+            let person = []
+            this.setState({data:person}) 
+        }
     }
     
    

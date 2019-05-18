@@ -90,10 +90,8 @@ class SearchAppBar extends React.Component {
           </Typography>
           <div className={classes.grow} />
           <div className={classes.search}>
-            <div className={classes.searchIcon}>
-            <SearchIcon />
-            </div>
-            <InputBase value={this.props.title} onChange={this.handleChange.bind(this)} />
+            
+            <InputBase placeholder="Pesquisar" value={this.props.title} onChange={this.handleChange.bind(this)} />
           </div>
         </Toolbar>
       </AppBar>
