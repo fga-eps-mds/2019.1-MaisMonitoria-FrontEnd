@@ -8,7 +8,7 @@ import { async } from 'q';
 import axios from 'axios';
 import firebase from 'firebase';
 import './EditProfile.css'
-import { validateEditProfile, validateName } from '../../Helpers/validates.js';
+import { validateEditProfile, validateName, success } from '../../Helpers/validates.js';
 
 class EditProfile extends Component {
 
@@ -72,7 +72,16 @@ class EditProfile extends Component {
                     token["email"] = email;
                 })
               
-                axios.post(process.env.REACT_APP_GATEWAY+"/update_user/",token);  
+                axios.post(process.env.REACT_APP_GATEWAY+"/update_user/",token).then((x)=>{
+                    if(success(x)) { 
+                        this.props.history.push('/Profile');
+                    //  this.setState({showModal:true});
+                    }           
+              
+             }).catch((error)=>{
+               console.log(error);
+            //    this.setState({error: errors[error.code]});
+             });
             }     
         })
     }
@@ -125,7 +134,7 @@ class EditProfile extends Component {
             </Grid>
             <Grid container justify="center" alignContent="center" alignItems="center" direction="row" spacing={24}>
                 <Grid item>
-                    <Button component={Link} to="/Feed" variant="outlined" onClick={this.editProfile} color="primary">
+                    <Button component={Link} variant="outlined" onClick={this.editProfile} color="primary">
                         Confirmar
                     </Button>
                 </Grid>
