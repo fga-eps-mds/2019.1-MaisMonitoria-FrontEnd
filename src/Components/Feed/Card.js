@@ -37,7 +37,13 @@ class ContractCard extends React.Component {
   render() {
     const { classes } = this.props;
     var photoUrl = this.props.photo;
-    photoUrl = photoUrl.replace("api-monitoria","localhost")
+    
+    if( photoUrl != null ){
+      photoUrl = photoUrl.replace("api-monitoria","localhost")
+    } else {
+      photoUrl = "https://cdn-eleicoes.gazetadopovo.com.br/fotos/sao-paulo/deputado-federal/batore-1444.jpg"
+    }
+
     return (
       
       <Card className={classes.card} >

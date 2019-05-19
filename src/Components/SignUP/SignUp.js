@@ -29,10 +29,7 @@ class SignUp extends Component {
   };
   
   register = async () => {
-    console.log(this.state)
-    
     const { email, password } = this.state;  
-    
     var aux = {}
 
     await firebase.auth()
@@ -42,15 +39,11 @@ class SignUp extends Component {
       });
     });
     
-    console.log(aux)
-    
     const fd = new FormData();
     fd.append('access_token', aux['token'])
     fd.append('name', this.state.name)
     fd.append('course', this.state.course)
     fd.append('photo', this.state.photo)
-
-    console.log(fd)
 
     const header = { headers: { 'content-type': 'multipart/form-data' } }
 
