@@ -20,7 +20,7 @@ const styles = theme => ({
     flexGrow: 1,
   },
   
-  title: {
+  search: {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
@@ -72,8 +72,8 @@ const styles = theme => ({
 class SearchAppBar extends React.Component {
 
   handleChange(e) {
-    const title = e.target.value;
-    this.props.changeTitle(title);
+    const search = e.target.value;
+    this.props.changesearch(search);
   }
 
   render() {
@@ -85,13 +85,13 @@ class SearchAppBar extends React.Component {
         <Toolbar>
         <img src={logo} alt="Logo" width="40" height="40"/>
 
-          <Typography className={classes.title} variant="h6" color="inherit" noWrap>
+          <Typography className={classes.search} variant="h6" color="inherit" noWrap>
             +Monitoria
           </Typography>
           <div className={classes.grow} />
           <div className={classes.search}>
             
-            <InputBase placeholder="Pesquisar" value={this.props.title} onChange={this.handleChange.bind(this)} />
+            <InputBase placeholder="Pesquisar" value={this.props.search} onChange={this.handleChange.bind(this)} />
           </div>
         </Toolbar>
       </AppBar>

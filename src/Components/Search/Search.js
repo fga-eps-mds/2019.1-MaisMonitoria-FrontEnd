@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import { Grid,TextField } from '@material-ui/core' ;
 import AppBar from './AppBarSearch';
@@ -6,35 +7,44 @@ import firebase from 'firebase';
 import axios from 'axios';
 import Card from '../Feed/Card';
 
+const initialState = {
+    expanded: false,
+         data : []
+};
 
 class Search extends Component {
-    state =  {expanded: false,data : []}
+
+    constructor(props){
+        super(props)
+        this.state = initialState
+    }
+    reset(){
+        this.setState(initialState)
+    }
+               
     
-    changeTitle(title) {
-        this.setState({title});
+    changesearch(search) {
+        this.setState({search});
         var token = {
-            search: title,
+            search: search,
         };
-        if(title !==""){
-        firebase.auth().onAuthStateChanged(user =>{
-            this.setState({isSignedIn: !!user});
-            if(user){
-                firebase.auth().currentUser.getIdToken().then(function(idToken){
-                    token["access_token"] = idToken;
-                });
-                    axios.post(process.env.REACT_APP_GATEWAY+"/search_tutoring/", token)
-                    .then(res => {
-                        let person = res.data
-                        this.setState({data:person})
-                        console.log(person);
-      
-                    });         
-                }
-          });
+        if(search === ""){
+            this.reset()
         }
         else{
-            let person = []
-            this.setState({data:person}) 
+            firebase.auth().onAuthStateChanged(user =>{
+                this.setState({isSignedIn: !!user});
+                if(user){
+                    firebase.auth().currentUser.getIdToken().then(function(idToken){
+                        token["access_token"] = idToken;
+                    });
+                        axios.post(process.env.REACT_APP_GATEWAY+"/search_tutoring/", token)
+                        .then(res => {
+                            let person = res.data
+                            this.setState({data:person})    
+                        });         
+                    }
+              });
         }
     }
     
@@ -44,7 +54,7 @@ class Search extends Component {
     return (
         <div style={{overflowX:'hidden'}} >
             <Grid container  justify="center" alignItems="stretch">
-                <AppBar changeTitle={this.changeTitle.bind(this)} title={this.state.title}/>
+                <AppBar changesearch={this.changesearch.bind(this)} search={this.state.search}/>
                 
             </Grid>    
             <Grid container  justify="center" direction="column" alignItems="center" spacing="16" style={{ padding: 80 }}>
