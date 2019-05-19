@@ -3,7 +3,16 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
 import {withRouter} from 'react-router-dom';
-import { Button} from '@material-ui/core' ;
+import { Button,Grid} from '@material-ui/core' ;
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: { main: '#f9fbe7' },
+    secondary: { main: '#f9fbe7' },
+  },
+  typography: { useNextVariants: true },
+});
 
 class SimpleModal extends React.Component {
   state = {
@@ -23,30 +32,35 @@ class SimpleModal extends React.Component {
   }
 
   handleClose = () => {
+    const { router } = this.props;
+    
     this.setState({ open: false });
-    this.props.history.push('/');
+    this.props.history.push(router);
   };
 
   render() {
-    const { title, description } = this.props;
+    const { title } = this.props;
 
     return (
       <div>
         <Modal
           aria-labelledby="simple-modal-title"
-          aria-describedby="simple-modal-description"
+          aria-describedby="simple-modal-router"
           open={this.state.open}
           onClose={this.handleClose}
           style={{ alignItems:'center',justifyContent:'center' }}
         >
           <div style={this.getModalStyle()} >
-            <Typography variant="h6" id="modal-title">
-              {title}
-            </Typography>
-            <Typography variant="subtitle1" id="simple-modal-description">
-              {description}
-            </Typography>
-            <Button variant="outlined" onClick={this.handleClose} color="primary">Fechar</Button>
+          <MuiThemeProvider theme={theme}>
+            <Grid container alignContent="center"  justify="center" direction="row" spacing={24} alignItems="center" style={{marginTop: 25}}>
+                <Typography variant="h6" align="center" color='primary' id="modal-title">
+                  {title}
+                </Typography>
+            </Grid>
+                <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center" style={{marginTop: 25}}>
+                  <Button variant="outlined" onClick={this.handleClose} color="primary">Fechar</Button>
+                </Grid>
+          </MuiThemeProvider>
           </div>
         </Modal>
       </div>
@@ -56,7 +70,8 @@ class SimpleModal extends React.Component {
 
 SimpleModal.propTypes = {
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  router: PropTypes.string.isRequired,
+  
 };
 
 export default withRouter(SimpleModal);

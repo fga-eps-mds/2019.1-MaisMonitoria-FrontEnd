@@ -8,7 +8,6 @@ import {Link} from 'react-router-dom';
 import firebase from 'firebase';
 import Course from '../EditProfile/Course'
 import axios from 'axios';
-import { convertPatternGroupToTask } from 'fast-glob/out/managers/tasks';
 import { validateRegister, success, validateName, validatepasswordconfirm } from '../../Helpers/validates';
 import { errors } from '../../Helpers/errors';
 import {withRouter} from 'react-router-dom';
@@ -87,7 +86,7 @@ class SignUp extends Component {
   render() {
     return (
       <div className="SignUpBackground" style={{overflowY:'scroll'}}>
-      {this.state.showModal? <SimpleModal title={'title'} description={'Usuario criado com sucesso'} />:null}
+      {this.state.showModal? <SimpleModal router={""} title={'Usuario criado com sucesso!'}  />:null}
         <Grid style={{paddingLeft:10}}>
           <Grid container alignContent="center" justify="center" direction="column" alignItems="center" spacing={8}>
             <img src={logo} alt="Logo" width="120" height="120"/>
