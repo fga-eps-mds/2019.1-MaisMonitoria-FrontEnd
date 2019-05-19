@@ -25,27 +25,38 @@ class SignUp extends Component {
     name: '',
     isAuthenticated: false,
     course: '',
-    photo: null
+    photo: null,
   };
   
   register = async () => {
     console.log(this.state)
-    const { email, password, name, telegram, course, photo } = this.state;  
-    var userData = {}
-    const fd = new FormData();
-    fd.append('image',this.state.photo)
+    
+    const { email, password } = this.state;  
+    
+    var aux = {}
+
     await firebase.auth()
       .createUserWithEmailAndPassword(email, password).then((user)=>{
         firebase.auth().currentUser.getIdToken().then(function(idToken) {  
-          userData = {"name": name, "course": course, "access_token": idToken,"photo":fd}
-          
-        });
+          aux = { 'token': idToken }        
       });
+    });
     
-    await axios.post(process.env.REACT_APP_GATEWAY+"/create_user/", userData).then(res =>{
+    console.log(aux)
+    
+    const fd = new FormData();
+    fd.append('access_token', aux['token'])
+    fd.append('name', this.state.name)
+    fd.append('course', this.state.course)
+    fd.append('photo', this.state.photo)
+
+    console.log(fd)
+
+    const header = { headers: { 'content-type': 'multipart/form-data' } }
+
+    await axios.post(process.env.REACT_APP_GATEWAY+"/create_user/", fd, header).then(res =>{
       console.log(res)
     })
-    console.log(userData)
   }
   
   render() {
