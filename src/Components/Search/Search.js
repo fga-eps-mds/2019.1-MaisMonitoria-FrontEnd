@@ -19,33 +19,37 @@ class Search extends Component {
         this.state = initialState
     }
     reset(){
+    
         this.setState(initialState)
     }
                
     
     changesearch(search) {
-        this.setState({search});
-        var token = {
-            search: search,
-        };
-        if(search === ""){
-            this.reset()
-        }
-        else{
-            firebase.auth().onAuthStateChanged(user =>{
-                this.setState({isSignedIn: !!user});
-                if(user){
-                    firebase.auth().currentUser.getIdToken().then(function(idToken){
-                        token["access_token"] = idToken;
-                    });
-                        axios.post(process.env.REACT_APP_GATEWAY+"/search_tutoring/", token)
-                        .then(res => {
-                            let person = res.data
-                            this.setState({data:person})    
-                        });         
-                    }
-              });
-        }
+        
+            this.setState({search});
+            var token = {
+                search: search,
+            };
+            if(!search ){
+                setTimeout(function() { 
+                this.reset()
+            }.bind(this), 500)
+            }
+            else{
+                firebase.auth().onAuthStateChanged(user =>{
+                    this.setState({isSignedIn: !!user});
+                    if(user){
+                        firebase.auth().currentUser.getIdToken().then(function(idToken){
+                            token["access_token"] = idToken;
+                        });
+                            axios.post(process.env.REACT_APP_GATEWAY+"/search_tutoring/", token)
+                            .then(res => {
+                                let person = res.data
+                                this.setState({data:person})    
+                            });         
+                        }
+                  });
+            }
     }
     
    
