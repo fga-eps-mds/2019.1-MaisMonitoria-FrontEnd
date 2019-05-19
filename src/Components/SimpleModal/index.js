@@ -17,6 +17,7 @@ const theme = createMuiTheme({
 class SimpleModal extends React.Component {
   state = {
     open: true,
+    
   };
 
   getModalStyle = () => {

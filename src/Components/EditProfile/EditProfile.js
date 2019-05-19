@@ -8,6 +8,8 @@ import axios from 'axios';
 import firebase from 'firebase';
 import './EditProfile.css'
 import { validateEditProfile, validateName, success } from '../../Helpers/validates.js';
+import SimpleModal from '../SimpleModal';
+
 
 class EditProfile extends Component {
 
@@ -19,6 +21,7 @@ class EditProfile extends Component {
         email: '',
         isSignedin: false,
         error: '',
+        showModal: false,
     }
 
     componentDidMount(){
@@ -89,6 +92,7 @@ class EditProfile extends Component {
     return (
         
         <div style={{overflowX:'hidden'}} className="editBackground"> 
+            {this.state.showModal? <SimpleModal router={""} title={'Usuario criado com sucesso!'}  />:null}
             <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
                 <AppBar/>
             </Grid>   

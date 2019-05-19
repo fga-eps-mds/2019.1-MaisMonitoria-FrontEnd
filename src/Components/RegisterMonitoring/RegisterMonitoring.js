@@ -6,6 +6,7 @@ import firebase from 'firebase';
 import { Link } from 'react-router-dom';
 import { validateRegisterMonitoring, success } from '../../Helpers/validates.js';
 import {withRouter} from 'react-router-dom';
+import SimpleModal from '../SimpleModal';
 
 class RegisterMonitoring extends Component {
     
@@ -15,7 +16,8 @@ class RegisterMonitoring extends Component {
             subject: '',
             description: '',
         },
-        error:''
+        error:'',
+        showModal: false,
     }
 
     registerMonitoring = (e) =>{
@@ -49,6 +51,7 @@ class RegisterMonitoring extends Component {
     return (
     
         <div style={{overflowX:'hidden'}}>
+            {this.state.showModal? <SimpleModal router={"Feed"} title={'Monitoria cadastrada com sucesso!'}  />:null}
             <div>
                 <Grid container justify="center" alignItems="stretch">
                     <AppBar/>
