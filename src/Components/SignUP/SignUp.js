@@ -12,6 +12,7 @@ import { validateRegister, success, validateName, validatepasswordconfirm } from
 import { errors } from '../../Helpers/errors';
 import {withRouter} from 'react-router-dom';
 import SimpleModal from '../SimpleModal';
+import Typography from '@material-ui/core/Typography';
 
 const theme = createMuiTheme({
   palette: {
@@ -33,6 +34,9 @@ class SignUp extends Component {
     },
     isAuthenticated: false,
     error: "",
+    errorNullField: "",
+    errorName: "",
+    errorSenha: "",
     showModal: false,
   };
   
@@ -43,21 +47,21 @@ class SignUp extends Component {
 
     if(!validateRegister(user))//valida se os campos obrigatorios foram preenchidos
     {
-      this.setState({ error: "Digite os campos obrigatórios" });
-      e.preventDefault();
+      this.setState({ errorNullField: "Digite os campos obrigatórios" });
+      // e.preventDefault();
       return;
     }
 
     if(!validateName(user))//valida se os campos obrigatorios foram preenchidos
     {
-      this.setState({ error: "Nome inválido" });
+      this.setState({ errorName: "Nome inválido" });
       e.preventDefault();
       return;
     }
     
     if(!validatepasswordconfirm(user))
     {
-      this.setState({ error: "A senha não coincide" });
+      this.setState({ errorSenha: "A senha não coincide" });
       e.preventDefault();
       return;
     }
@@ -94,6 +98,8 @@ class SignUp extends Component {
           <Grid container alignContent="center" justify="center" direction="row" alignItems="center" spacing={24}>
             <Grid item >
               <TextField 
+              error = {this.state.errorName}
+              required= "true"
               id="nomeTextField"
               label="Nome"
               margin="normal"
@@ -102,6 +108,7 @@ class SignUp extends Component {
             </Grid>
             <Grid item >
               <TextField
+                required= "true"
                 id="emailTextField"
                 label="Email"
                 margin="normal"
@@ -114,6 +121,8 @@ class SignUp extends Component {
           <Grid container alignContent="center" justify="center" direction="row" alignItems="center" spacing={24}>
             <Grid item >
               <TextField
+                
+                required= "true"
                 id="telegramTextField"
                 label="Telegram"
                 margin="normal"
@@ -131,6 +140,8 @@ class SignUp extends Component {
           <Grid container alignContent="center" justify="center" direction="row" alignItems="center" spacing={24}>
             <Grid item >
               <TextField
+                error = {this.state.errorSenha }
+                required= "true"
                 id="senhaTextField"
                 label="Senha"
                 margin="normal"
@@ -140,6 +151,8 @@ class SignUp extends Component {
             </Grid>
             <Grid item >
               <TextField
+                error = {this.state.errorSenha }
+                required= "true"
                 id="repetirSenhaTextField"
                 label="Repetir senha"
                 margin="normal"
@@ -149,7 +162,12 @@ class SignUp extends Component {
             </Grid>
             </Grid>
             <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center">
-                {this.state.error && <p>{this.state.error}</p>}
+              <Typography variant="h6" align="center" color=''>
+                {this.state.error && <p style={{color:'#f44336'}}>{this.state.error }</p> ||
+                 this.state.errorName && <p style={{color:'#f44336'}}>{this.state.errorName}</p> ||
+                 this.state.errorNullField && <p style={{color:'#f44336'}}>{this.state.errorNullField}</p> ||
+                 this.state.errorSenha && <p style={{color:'#f44336'}}>{this.state.errorSenha}</p>}
+              </Typography>
             </Grid>
             <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center" style={{marginTop: 25}}>
               <Grid item >
