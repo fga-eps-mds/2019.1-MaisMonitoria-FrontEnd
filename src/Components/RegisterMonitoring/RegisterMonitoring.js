@@ -7,6 +7,24 @@ import { Link } from 'react-router-dom';
 import { validateRegisterMonitoring, success } from '../../Helpers/validates.js';
 import {withRouter} from 'react-router-dom';
 import SimpleModal from '../SimpleModal';
+import Typography from '@material-ui/core/Typography';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
+
+const theme = createMuiTheme({
+    palette: {
+      primary: { main: '#44a1f2' },
+      secondary: { main: '#fafafa' },
+    },
+    typography: { useNextVariants: false },
+    overrides: {
+        MuiButton: {
+          raisedPrimary: {
+            color: 'white',
+          },
+        },
+    },
+  });
 
 class RegisterMonitoring extends Component {
     
@@ -61,6 +79,8 @@ class RegisterMonitoring extends Component {
                 <Grid container  alignContent="center" justify="center" direction="column" alignItems="center" spacing={16} style={{ padding: 60 }}>   
                     <Grid item md-auto>
                         <TextField
+                        error = {this.state.error}
+                        required= "true"
                         id="temaTextField"
                         label="Tema"
                         margin="normal"
@@ -69,6 +89,8 @@ class RegisterMonitoring extends Component {
                     </Grid>
                     <Grid item md-auto>
                         <TextField
+                        error = {this.state.error}
+                        required= "true"
                         id="temaTextField"
                         label="Matéria"
                         margin="normal"
@@ -88,18 +110,24 @@ class RegisterMonitoring extends Component {
                         
                     </Grid>
                     <Grid>
-                        {this.state.error && <p>{this.state.error}</p>}
+                        <Typography variant="h6" align="center" color=''>
+                            {this.state.error && <p style={{color:'#f44336'}}>{this.state.error}</p>}
+                        </Typography>
                     </Grid>
                     <Grid container  alignContent="center" justify="center" direction="row" alignItems="center" spacing={16} style={{paddingTop:40}}>
                         <Grid item>
-                            <Button variant="outlined" component={Link}  color="primary" onClick={this.registerMonitoring} >
-                                Registrar
-                            </Button>
+                            <MuiThemeProvider theme={theme}>
+                                <Button variant="contained" component={Link}  color='primary'  onClick={this.registerMonitoring} >
+                                    Registrar
+                                </Button>
+                            </MuiThemeProvider>
                         </Grid>
-                        <Grid item> 
-                            <Button variant="outlined" color="primary" component={Link} to="/Feed" >
+                        <Grid item>
+                        <MuiThemeProvider theme={theme}> 
+                            <Button variant="contained" color="primary" component={Link} to="/Feed" >
                                 Cancelar
                             </Button>
+                        </MuiThemeProvider>
                         </Grid>
                     </Grid>
                 </Grid>
