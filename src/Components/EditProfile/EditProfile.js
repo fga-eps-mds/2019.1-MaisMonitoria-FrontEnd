@@ -56,7 +56,7 @@ class EditProfile extends Component {
               
                 axios.post(process.env.REACT_APP_GATEWAY+"/get_user/", token).then(user=>{
                     userData = user.data;
-                    this.setState({name:userData["name"],course:userData["course"],email:userData["email"]}) 
+                    this.setState({name:userData["name"],course:userData["course"],email:userData["email"]})
                    
                 });  
             }     
@@ -92,15 +92,8 @@ class EditProfile extends Component {
                 })
               
                 axios.post(process.env.REACT_APP_GATEWAY+"/update_user/",token).then((x)=>{
-                    if(success(x)) { 
-                        this.props.history.push('/Profile');
-                    //  this.setState({showModal:true});
-                    }           
-              
-             }).catch((error)=>{
-               console.log(error);
-            //    this.setState({error: errors[error.code]});
-             });
+                    if(success(x)) this.setState({showModal:true});
+              })
             }     
         })
     }
@@ -109,7 +102,7 @@ class EditProfile extends Component {
     return (
         
         <div style={{overflowX:'hidden'}} className="editBackground"> 
-            {this.state.showModal? <SimpleModal router={""} title={'Usuario criado com sucesso!'}  />:null}
+            {this.state.showModal? <SimpleModal router={"Profile"} title={'Usuario alterado com sucesso!'}  />:null}
             <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
                 <AppBar/>
             </Grid>   

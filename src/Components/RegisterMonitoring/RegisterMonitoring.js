@@ -58,7 +58,7 @@ class RegisterMonitoring extends Component {
                 });
                 
                 axios.post(process.env.REACT_APP_GATEWAY+"/create_tutoring/", token).then((x)=>{
-                    if(success(x)) this.props.history.push('/feed');
+                    if(success(x)) this.setState({showModal:true});;
                   });
             }
           });
