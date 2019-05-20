@@ -1,48 +1,38 @@
 import React from 'react';
 import { Grid, Typography,Button } from "@material-ui/core";
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import lightBlue from '@material-ui/core/colors/lightBlue';
-import { hidden } from 'ansi-colors';
+import {Link} from 'react-router-dom';
 import firebase from 'firebase';
 import axios from 'axios';
 
-const theme = createMuiTheme({
-    palette: {
-      primary: { main: lightBlue[50] },
-      secondary: { main: '#11cb5f' },
-    },
-    typography: { useNextVariants: true },
-  });
-  
-
-
 class ExpandedCard extends React.Component {
-  
-    constructor(props){
-        super(props) 
-        this.state = {
-            data: {},
-        };
-       
-    }   
+    
+    state = {
+        tutoringName: '',
+        tutoringDescription: '',
+        tutoringTheme: '',
+        monitorName: '',
+        photo: '',
+    }
+
     componentDidMount() {
         var token = {};
-        const {name, description,monitor_name} = ''
+        var idTutoring = this.props.match.params.id_tutoring;
+        
         firebase.auth().onAuthStateChanged(user =>{
             this.setState({isSignedIn: !!user});
             if(user){
                 firebase.auth().currentUser.getIdToken().then(function(idToken){
                     token["access_token"] = idToken;
-                    token["id_tutoring_session"] = 2;
-                
+                    token["id_tutoring_session"] = idTutoring;
                 });
                 
                 axios.post(process.env.REACT_APP_GATEWAY+"/get_tutoring/", token)
                     .then(res => {
                         const person = res.data
+                        console.log(person)
+                        this.setState({tutoringName:person["name"], tutoringTheme:person["subject"], tutoringDescription:person["descirption"],
+                                      monitorName: person.monitor["name"], photo:person.monitor["photo"]}) 
                         
-                        this.setState({data:person})
-                        console.log(this.state)
                     });
             }
           });
@@ -50,15 +40,25 @@ class ExpandedCard extends React.Component {
           
     }
   render() {
+    var photoUrl = this.state.photo;
+    if( photoUrl != null ){
+        photoUrl = photoUrl.replace("api-monitoria","localhost")
+      } else {
+        photoUrl = "https://cdn-eleicoes.gazetadopovo.com.br/fotos/sao-paulo/deputado-federal/batore-1444.jpg"
+      }
+
     return (
-        <div style={{overflowX:hidden}}>
+                <div>
             <Grid container justify="center" alignContent="center" direction="column">
                 <Grid item alignContent="center">
-                    <h1>{this.state.data.name}</h1>
+                    <h1>{this.state.tutoringName}</h1>
+                </Grid>
+                <Grid item>
+                    <img style={{width:120, height:120}} src={photoUrl}></img>
                 </Grid>
                 <Grid item>
                     <Typography>
-                        Descrição: {this.state.data.description}
+                        Descrição: {this.state.tutoringName}
                     </Typography>
                 </Grid>
                 <Grid item>  
@@ -72,7 +72,7 @@ class ExpandedCard extends React.Component {
                   </Button>
               </Grid>
                 <Grid item>
-                    <Button  variant="outlined" color="primary" >
+                    <Button  variant="outlined" component={Link} to="/Feed" color="primary" >
                         Cancelar
                     </Button>
                 </Grid>

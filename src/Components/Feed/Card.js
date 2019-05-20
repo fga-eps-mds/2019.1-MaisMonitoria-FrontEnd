@@ -3,12 +3,9 @@ import PropTypes from 'prop-types';
 import { withStyles, Button, } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import { Link } from 'react-router-dom'
-import {BrowserRouter as Router, Route,Switch} from 'react-router-dom';
 import './Card.css'
 import CardContent from '@material-ui/core/CardContent';
-
 import { Grid, Typography } from "@material-ui/core";
-import ExpandedCard from './ExpandedCard';
 
 
 
@@ -46,8 +43,12 @@ class ContractCard extends React.Component {
   render() {
     const { classes } = this.props;
     var photoUrl = this.props.photo;
-    photoUrl = photoUrl.replace("api-monitoria","localhost")
-   
+    
+    if( photoUrl != null ){
+      photoUrl = photoUrl.replace("api-monitoria","localhost")
+    } else {
+      photoUrl = "https://cdn-eleicoes.gazetadopovo.com.br/fotos/sao-paulo/deputado-federal/batore-1444.jpg"
+    }
 
     return (
       <Card className={classes.card} >
@@ -72,10 +73,7 @@ class ContractCard extends React.Component {
                   </Typography>
                   <Typography>
                   {this.props.description}
-                  </Typography>
-                 
-                    
-                  
+                  </Typography>               
                 </CardContent>
                 </Grid>
             </Grid>

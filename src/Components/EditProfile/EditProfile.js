@@ -6,17 +6,16 @@ import Course from './Course.js';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import firebase from 'firebase';
-import './EditProfile.css';
-
+import './EditProfile.css'
 
 class EditProfile extends Component {
-
 
     state = {
         name:'',
         course: '',
         telgram: '',
         email: '',
+        photo: null,
         isSignedin: false
     }
 
@@ -35,29 +34,31 @@ class EditProfile extends Component {
               
                 axios.post(process.env.REACT_APP_GATEWAY+"/get_user/", token).then(user=>{
                     userData = user.data;
-                    this.setState({name:userData["name"],course:userData["course"],email:userData["email"]}) 
+                    this.setState({name:userData["name"],course:userData["course"],email:userData["email"], photo:userData["photo"]}) 
                    
                 });  
             }     
         })
     }
 
-    editProfile = () =>{
-        
-        let userData = {};
-        let token = {}
-        const {name,course,email} = this.state;
+    editProfile = () => {
+        var aux = {}
+        const header = { headers: { 'content-type': 'multipart/form-data' } }
+
+        const fd = new FormData();
+        fd.append('name', this.state.name)
+        fd.append('course', this.state.course)
+        fd.append('email', this.state.email)
+        fd.append('photo', this.state.photo)
+
         firebase.auth().onAuthStateChanged(user =>{
             if(user){
-                firebase.auth().currentUser.getIdToken().then(function(idToken){
-                    token["access_token"] = idToken;
-                    token["name"] = name;
-                    token["course"] = course;
-                    token["email"] = email;
+                firebase.auth().currentUser.getIdToken().then(function(idToken){  
+                    fd.append('access_token', idToken)        
                 })
-              
-                axios.post(process.env.REACT_APP_GATEWAY+"/update_user/",token);  
-            }     
+
+                axios.post(process.env.REACT_APP_GATEWAY+"/update_user/", fd, header);
+            }
         })
     }
     
@@ -70,7 +71,7 @@ class EditProfile extends Component {
             </Grid>   
             <Grid container justify="center" alignContent="center" alignItems="center">
                 <Grid item> 
-                    <img src={Pp} className="ProfilePic" alt="Profilepic" style={{width: 130,height:130,margin:80,borderRadius:2}} ></img>
+                    <img src={Pp} className="ProfilePic" alt="Profilepic" style={{width: 130,height:130,marginTop:80,borderRadius:2}} ></img>
                 </Grid>
             </Grid>
             <Grid container justify="center" alignContent="center" alignItems="center" direction="column" >
@@ -100,8 +101,24 @@ class EditProfile extends Component {
                         })}
                     />
                 </Grid>
-                <Grid item style={{padding:30}}>
+                <Grid item style={{padding:10}}>
                     <Course action={(course)=>{this.setState({course})}}/>
+                </Grid>
+                <Grid item style={{padding:30}}>              
+                <input 
+                    accept="image/*" 
+                    id="raised-button-file" 
+                    multiple 
+                    type="file" 
+                    onChange={(event)=>this.setState({
+                    photo: event.target.files[0],
+                    })}                
+                /> 
+                <label htmlFor="raised-button-file"> 
+                    <Button raised component="span" variant="outlined" color="primary" > 
+                    Escolher foto 
+                    </Button> 
+                </label>  
                 </Grid>
             </Grid>
             <Grid container justify="center" alignContent="center" alignItems="center" direction="row" spacing={24}>
