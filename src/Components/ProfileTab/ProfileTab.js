@@ -2,7 +2,22 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
+const theme = createMuiTheme({
+  palette: {
+    primary: { main: '#44a1f2' },
+    secondary: { main: '#ff0000' },
+  },
+  typography: { useNextVariants: true },
+  overrides: {
+      MuiButton: {
+        raisedPrimary: {
+          color: 'white',
+        },
+      },
+  },
+});
 class ProfileTab extends React.Component {
   state = {
     value: 0,
@@ -15,6 +30,7 @@ class ProfileTab extends React.Component {
   render() {
     return (
       <Paper square >
+      <MuiThemeProvider theme={theme}>
         <Tabs
           value={this.state.value}
           indicatorColor="primary"
@@ -27,6 +43,7 @@ class ProfileTab extends React.Component {
           <Tab label="A assistir" disabled />
           <Tab label="Historico"disabled />
         </Tabs>
+        </MuiThemeProvider>
       </Paper>
     );
   }

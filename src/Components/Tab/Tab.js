@@ -7,6 +7,22 @@ import Typography from '@material-ui/core/Typography';
 import SvgIcon from "@material-ui/core/SvgIcon";
 import Paper from '@material-ui/core/Paper';
 import {Link} from 'react-router-dom';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: { main: '#44a1f2' },
+    secondary: { main: '#1d4c72' },
+  },
+  typography: { useNextVariants: true },
+  overrides: {
+      MuiButton: {
+        raisedPrimary: {
+          color: 'white',
+        },
+      },
+  },
+});
 
 const styles = theme => ({
   root: {
@@ -93,12 +109,13 @@ class IconLabelTabs extends React.Component {
     return (
       
       <Paper square className={classes.root}>
+      <MuiThemeProvider theme={theme}>
         <Tabs
           value={this.state.value}
           onChange={this.handleChange}
           variant="fullWidth"
           indicatorColor="primary"
-          textColor="secondary"
+          textColor="primary"
           centered
         >
           <Tab value={0} component={Link} to="/Feed" icon={<HomeIcon />} />
@@ -106,7 +123,7 @@ class IconLabelTabs extends React.Component {
           <Tab value={2} component={Link} to="/Ranking" icon={<RankIcon />} />
           <Tab value={3} component={Link} to="/Search" icon={<SearchIcon />} />
         </Tabs>
-        
+      </MuiThemeProvider>
       </Paper>
     
     );
