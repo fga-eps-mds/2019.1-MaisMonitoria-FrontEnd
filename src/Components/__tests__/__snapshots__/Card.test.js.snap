@@ -14,3 +14,7 @@ exports[`Testing Card component Test if Card renders correctly 1`] = `
   }
 />
 `;
+
+exports[`Testing Card component allows us to set props: baz 1`] = `"baz"`;
+
+exports[`Testing Card component allows us to set props: card 1`] = `"card"`;

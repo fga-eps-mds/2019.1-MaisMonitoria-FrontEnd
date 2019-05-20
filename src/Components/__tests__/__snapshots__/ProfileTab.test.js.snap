@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing ProfileTab component Test if ProfileTab renders correctly 1`] = `
+<WithStyles(Paper)
+  square={true}
+>
+  <WithStyles(Tabs)
+    centered={true}
+    indicatorColor="primary"
+    onChange={[Function]}
+    textColor="primary"
+    value={0}
+    variant="fullWidth"
+  >
+    <WithStyles(Tab)
+      label="A ministrar"
+    />
+    <WithStyles(Tab)
+      disabled={true}
+      label="A assistir"
+    />
+    <WithStyles(Tab)
+      disabled={true}
+      label="Historico"
+    />
+  </WithStyles(Tabs)>
+</WithStyles(Paper)>
+`;
+
+exports[`Testing ProfileTab component allows us to set props: baz 1`] = `"baz"`;
+
+exports[`Testing ProfileTab component allows us to set props: profiletab 1`] = `"profiletab"`;

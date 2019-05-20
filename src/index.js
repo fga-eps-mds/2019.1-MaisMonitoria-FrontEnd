@@ -4,7 +4,6 @@ import App from './App';
 import TelaFeed from './Components/Feed/Feed';
 import SignUp from './Components/SignUP/SignUp';
 import ForgotPassword from './Components/ForgotPassword/ForgotPassword';
-import ModifyPassword from './Components/ModifyPassword/ModifyPassword';
 import Search from './Components/Search/Search';
 import EditProfile from './Components/EditProfile/EditProfile';
 import RegisterMonitoring from './Components/RegisterMonitoring/RegisterMonitoring'
@@ -19,8 +18,7 @@ ReactDOM.render((
                     <Switch> 
                         <Route exact path="/" component={App}/>
                         <Route path="/SignUp" component={SignUp}/>
-                        <Route path="/ForgotPassword" component={ForgotPassword}/>
-                        <Route path="/ModifyPassword" component={ModifyPassword}/>    
+                        <Route path="/ForgotPassword" component={ForgotPassword}/>   
                         <Route path="/RegisterMonitoring" component={RegisterMonitoring}/>
                         <div>
                             <Route path="/Feed" component={TelaFeed}/>
