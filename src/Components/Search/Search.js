@@ -60,7 +60,7 @@ class Search extends Component {
             <Grid container  justify="center" alignItems="stretch">
                 <AppBar changesearch={this.changesearch.bind(this)} search={this.state.search}/>
                 
-            </Grid>    
+            </Grid>
             <Grid container  justify="center" direction="column" alignItems="center" spacing="16" style={{ padding: 80 }}>
             {this.state.data.map(function(item, i){
                     return (

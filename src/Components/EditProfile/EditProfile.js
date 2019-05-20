@@ -4,10 +4,10 @@ import AppBar from '../AppBar/AppBar.js';
 import Pp from '../../Assets/img/Pp.png';
 import Course from './Course.js';
 import { Link } from 'react-router-dom';
-import { async } from 'q';
 import axios from 'axios';
 import firebase from 'firebase';
-import './EditProfile.css'
+import './EditProfile.css';
+
 
 class EditProfile extends Component {
 
@@ -116,7 +116,6 @@ class EditProfile extends Component {
                     </Button>
                 </Grid>
             </Grid>
-            
         </div>
         
     );   

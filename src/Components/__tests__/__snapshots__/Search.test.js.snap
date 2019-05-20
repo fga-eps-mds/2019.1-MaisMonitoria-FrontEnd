@@ -20,7 +20,7 @@ exports[`Testing Search component Test if Search renders correctly 1`] = `
     container={true}
     direction="column"
     justify="center"
-    spacing="16"
+    spacing={16}
     style={
       Object {
         "padding": 80,
