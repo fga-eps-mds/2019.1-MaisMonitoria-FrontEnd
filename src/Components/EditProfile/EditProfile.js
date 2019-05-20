@@ -9,7 +9,23 @@ import firebase from 'firebase';
 import './EditProfile.css'
 import { validateEditProfile, validateName, success } from '../../Helpers/validates.js';
 import SimpleModal from '../SimpleModal';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 
+const theme = createMuiTheme({
+    palette: {
+      primary: { main: '#44a1f2' },
+      secondary: { main: '#fafafa' },
+    },
+    typography: { useNextVariants: false },
+    overrides: {
+        MuiButton: {
+          raisedPrimary: {
+            color: 'white',
+          },
+        },
+    },
+  });
 
 class EditProfile extends Component {
 
@@ -22,6 +38,7 @@ class EditProfile extends Component {
         isSignedin: false,
         error: '',
         showModal: false,
+        errorName: '',
     }
 
     componentDidMount(){
@@ -60,7 +77,7 @@ class EditProfile extends Component {
         }
 
         if(!validateName(this.state)){
-            this.setState({ error: "Nome inválido" });
+            this.setState({ errorName: "Nome inválido" });
             e.preventDefault();
             return;
         }
@@ -104,6 +121,8 @@ class EditProfile extends Component {
             <Grid container justify="center" alignContent="center" alignItems="center" direction="column" >
                 <Grid item xs={12}> 
                     <TextField
+                        error = {this.state.errorName }
+                        required= "true"
                         id="name"
                         label="Nome"
                         multiline
@@ -117,6 +136,8 @@ class EditProfile extends Component {
                 </Grid>
                 <Grid item> 
                     <TextField
+                        // error = {this.state.errorSenha }
+                        required= "true"
                         id="telegram"
                         label="Telegram"
                         multiline
@@ -132,19 +153,24 @@ class EditProfile extends Component {
                     <Course action={(course)=>{this.setState({course})}}/>
                 </Grid>
             </Grid>
-            <Grid container alignContent="center" justify="center" direction="row" spacing="24" alignItems="center">
-                {this.state.error && <p>{this.state.error}</p>}
-            </Grid>
+            <Typography variant="h6" align="center" color=''>
+                {this.state.error && <p style={{color:'#f44336'}}>{this.state.error}</p> ||
+                this.state.errorName && <p style={{color:'#f44336'}}>{this.state.errorName}</p>}
+            </Typography>
             <Grid container justify="center" alignContent="center" alignItems="center" direction="row" spacing={24}>
                 <Grid item>
-                    <Button component={Link} variant="outlined" onClick={this.editProfile} color="primary">
-                        Confirmar
-                    </Button>
+                    <MuiThemeProvider theme={theme}>
+                        <Button component={Link} variant="contained" onClick={this.editProfile} color="primary">
+                            Confirmar
+                        </Button>
+                    </MuiThemeProvider>
                 </Grid>
                 <Grid item>
-                    <Button component={Link} to="/Profile" variant="outlined" color="primary">
-                        Cancelar
-                    </Button>
+                    <MuiThemeProvider theme={theme}>
+                        <Button component={Link} to="/Profile" variant="contained" color="primary">
+                            Cancelar
+                        </Button>
+                    </MuiThemeProvider>
                 </Grid>
             </Grid>
         </div>

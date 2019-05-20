@@ -13,10 +13,17 @@ import './Profile.css';
 
 const theme = createMuiTheme({
     palette: {
-      primary: { main: '#1d4c72' },
+      primary: { main: '#44a1f2' },
       secondary: { main: '#ff0000' },
     },
     typography: { useNextVariants: true },
+    overrides: {
+        MuiButton: {
+          raisedPrimary: {
+            color: 'white',
+          },
+        },
+    },
   });
 
 class Profile extends Component {
@@ -70,9 +77,11 @@ class Profile extends Component {
                                     Curso: {this.state.course}
                                 </Grid>
                                 <Grid item>
-                                    <Button variant="outlined" component={Link} to="/EditProfile"  color="primary">
-                                        Editar perfil
-                                    </Button>
+                                    <MuiThemeProvider theme={theme}>
+                                        <Button variant="contained" component={Link} to="/EditProfile"  color="primary">
+                                            Editar perfil
+                                        </Button>
+                                    </MuiThemeProvider>
                                 </Grid>
                             </Grid>
                         </Grid>
