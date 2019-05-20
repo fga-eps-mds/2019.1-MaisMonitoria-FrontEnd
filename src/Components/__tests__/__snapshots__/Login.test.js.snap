@@ -57,7 +57,7 @@ exports[`Testing Login component Test if Login renders correctly 1`] = `
     container={true}
     direction="column"
     justify="center"
-    spacing="24"
+    spacing={24}
     style={
       Object {
         "marginTop": 25,
@@ -829,15 +829,11 @@ exports[`Testing Login component Test if Login renders correctly 1`] = `
         </WithStyles(Button)>
       </MuiThemeProviderOld>
     </WithStyles(Grid)>
-    <a
-      className="ForgotPasswordLink"
+    <Link
+      to="/ForgotPassword"
     >
-      <Link
-        to="/ForgotPassword"
-      >
-        Esqueceu sua senha ?
-      </Link>
-    </a>
+      Esqueceu sua senha ?
+    </Link>
   </WithStyles(Grid)>
 </div>
 `;

@@ -13,7 +13,7 @@ class Search extends Component {
             <Grid container  justify="center" alignItems="stretch">
                 <AppBar/>
             </Grid>    
-            <Grid container  justify="center" direction="column" alignItems="center" spacing="16" style={{ padding: 80 }}>
+            <Grid container  justify="center" direction="column" alignItems="center" spacing={16} style={{ padding: 80 }}>
                 <Grid item >
                     <Paper/>
                 </Grid>
