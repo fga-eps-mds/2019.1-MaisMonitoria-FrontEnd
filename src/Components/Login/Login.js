@@ -6,11 +6,12 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import  {Link}  from 'react-router-dom';
 import firebase from 'firebase';
+import Typography from '@material-ui/core/Typography';
 
 const theme = createMuiTheme({
   palette: {
     primary: { main: lightBlue[50] },
-    secondary: { main: '#11cb5f' },
+    secondary: { main: '#f44336' },
   },
   typography: { useNextVariants: true },
 });
@@ -38,12 +39,8 @@ class Login extends Component {
     }else{
       await firebase.auth().signInWithEmailAndPassword(email, password).then((user)=>{
         this.setState({isAuthenticated: true});
-        // if(this.state.isAuthenticated == True)
-        // {
-
-        // }
       }).catch((except)=>{
-        this.setState({ error: "Email ou Senha inválidos" });
+        this.setState({ error: "Email ou Senha inválidos." });
       });
     }
   }
@@ -56,28 +53,34 @@ class Login extends Component {
           <img src={logo} alt="Logo" />
           <Grid item >
             <TextField
+              error = {this.state.error}
               id="emailTextField"
               label="Email"
               margin="normal"
+              required= "true"
               value={this.state.email}
               onChange={(event)=>this.setState({
-                email: event.target.value,
+              email: event.target.value,
               })}
               />
           </Grid>
           <Grid item >
             <TextField
+              error = {this.state.error}
               id="senhaTextField"
               label="Senha"
               margin="normal"
               type="password"
+              required= "true"
               value={this.state.password}
               onChange={(event)=>this.setState({
-                password: event.target.value,
+              password: event.target.value,
               })}
               />
           </Grid>
-          {this.state.error && <p>{this.state.error}</p>}
+            <Typography variant="h6" align="center" color=''>
+              {this.state.error && <p style={{color:'#f44336'}}>{this.state.error}</p>}
+            </Typography>
         </Grid>
         <Grid  container alignContent="center" justify="center" direction="column" spacing={24} alignItems="center" style={{marginTop: 25}}>
           <Grid item >
@@ -94,7 +97,7 @@ class Login extends Component {
               </Button>
               </MuiThemeProvider>
           </Grid>  
-              <Link to="/ForgotPassword" >Esqueceu sua senha ?</Link> 
+              <Link to="/ForgotPassword" style={{color:'#bdbdbd'}} >Esqueceu sua senha ?</Link>
         </Grid>
           
         </div>
