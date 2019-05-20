@@ -25,6 +25,7 @@ class TelaFeed extends Component {
                     .then(res => {
                         const person = res.data
                         this.setState({data:person})
+                        console.log(this.state)
                     });
             }
           });
@@ -40,8 +41,8 @@ class TelaFeed extends Component {
             <Grid container justify="center" direction="column" alignItems="center" spacing="8" style={{paddingTop:70}}>
                 {this.state.data.map(function(item, i){
                     return (
-                        <Grid item key={i} lg={12} sm={12} container >
-                            <Card name_monitoring={item.name} matter={item.subject} description={item.description} photo={item.monitor.photo} monitorName={item.monitor.name} />
+                        <Grid item key={i} lg={12} sm={12} container style={{paddingBlock:0}} >
+                            <Card name_monitoring={item.name} matter={item.subject} description={item.description} photo={item.monitor.photo} monitorName={item.monitor.name} id_tutoring={item.id_tutoring_session} />
                         </Grid>
                     );
                 })}
