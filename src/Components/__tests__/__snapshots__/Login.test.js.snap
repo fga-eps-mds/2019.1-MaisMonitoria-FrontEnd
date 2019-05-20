@@ -25,11 +25,12 @@ exports[`Testing Login component Test if Login renders correctly 1`] = `
       item={true}
     >
       <TextField
+        error=""
         id="emailTextField"
         label="Email"
         margin="normal"
         onChange={[Function]}
-        required={false}
+        required="true"
         select={false}
         value=""
         variant="standard"
@@ -39,17 +40,23 @@ exports[`Testing Login component Test if Login renders correctly 1`] = `
       item={true}
     >
       <TextField
+        error=""
         id="senhaTextField"
         label="Senha"
         margin="normal"
         onChange={[Function]}
-        required={false}
+        required="true"
         select={false}
         type="password"
         value=""
         variant="standard"
       />
     </WithStyles(Grid)>
+    <WithStyles(Typography)
+      align="center"
+      color=""
+      variant="h6"
+    />
   </WithStyles(Grid)>
   <WithStyles(Grid)
     alignContent="center"
@@ -155,10 +162,10 @@ exports[`Testing Login component Test if Login renders correctly 1`] = `
                 "main": "#e1f5fe",
               },
               "secondary": Object {
-                "contrastText": "rgba(0, 0, 0, 0.87)",
-                "dark": "rgb(11, 142, 66)",
-                "light": "rgb(64, 213, 127)",
-                "main": "#11cb5f",
+                "contrastText": "#fff",
+                "dark": "rgb(170, 46, 37)",
+                "light": "rgb(246, 104, 94)",
+                "main": "#f44336",
               },
               "text": Object {
                 "disabled": "rgba(0, 0, 0, 0.38)",
@@ -538,10 +545,10 @@ exports[`Testing Login component Test if Login renders correctly 1`] = `
                 "main": "#e1f5fe",
               },
               "secondary": Object {
-                "contrastText": "rgba(0, 0, 0, 0.87)",
-                "dark": "rgb(11, 142, 66)",
-                "light": "rgb(64, 213, 127)",
-                "main": "#11cb5f",
+                "contrastText": "#fff",
+                "dark": "rgb(170, 46, 37)",
+                "light": "rgb(246, 104, 94)",
+                "main": "#f44336",
               },
               "text": Object {
                 "disabled": "rgba(0, 0, 0, 0.38)",
@@ -830,6 +837,11 @@ exports[`Testing Login component Test if Login renders correctly 1`] = `
       </MuiThemeProviderOld>
     </WithStyles(Grid)>
     <Link
+      style={
+        Object {
+          "color": "#bdbdbd",
+        }
+      }
       to="/ForgotPassword"
     >
       Esqueceu sua senha ?
