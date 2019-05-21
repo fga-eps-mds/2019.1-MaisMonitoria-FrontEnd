@@ -12,6 +12,7 @@ import { validateRegister, success, validateName, validatepasswordconfirm } from
 import { errors } from '../../Helpers/errors';
 import {withRouter} from 'react-router-dom';
 import SimpleModal from '../SimpleModal';
+import CustomizedSnackbars from '../SimpleModal/Snackbars';
 import Typography from '@material-ui/core/Typography';
 
 const theme = createMuiTheme({
@@ -38,6 +39,7 @@ class SignUp extends Component {
     errorName: "",
     errorSenha: "",
     showModal: false,
+    
   };
   
   register = (e) => {
@@ -48,6 +50,7 @@ class SignUp extends Component {
     if(!validateRegister(user))//valida se os campos obrigatorios foram preenchidos
     {
       this.setState({ errorNullField: "Digite os campos obrigatórios" });
+      
       // e.preventDefault();
       return;
     }
@@ -162,12 +165,13 @@ class SignUp extends Component {
             </Grid>
             </Grid>
             <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center">
-              <Typography variant="h6" align="center" color=''>
-                {this.state.error && <p style={{color:'#f44336'}}>{this.state.error }</p> ||
+              <Typography variant="h6" align="center" color=''> 
+              {/* <CustomizedSnackbars error={'error'}/> */}
+                 {this.state.error && <p style={{color:'#f44336'}}>{this.state.error }</p> ||
                  this.state.errorName && <p style={{color:'#f44336'}}>{this.state.errorName}</p> ||
                  this.state.errorNullField && <p style={{color:'#f44336'}}>{this.state.errorNullField}</p> ||
-                 this.state.errorSenha && <p style={{color:'#f44336'}}>{this.state.errorSenha}</p>}
-              </Typography>
+                 this.state.errorSenha && <p style={{color:'#f44336'}}>{this.state.errorSenha}</p>} 
+              </Typography> 
             </Grid>
             <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center" style={{marginTop: 25}}>
               <Grid item >
