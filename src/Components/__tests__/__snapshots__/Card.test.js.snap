@@ -1,20 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Testing Card component Test if Card renders correctly 1`] = `
-<RecipeReviewCard
+<ContractCard
   classes={
     Object {
-      "actions": "RecipeReviewCard-actions-3",
-      "avatar": "RecipeReviewCard-avatar-6",
-      "card": "RecipeReviewCard-card-1",
-      "expand": "RecipeReviewCard-expand-4",
-      "expandOpen": "RecipeReviewCard-expandOpen-5",
-      "media": "RecipeReviewCard-media-2",
+      "card": "ContractCard-card-1",
+      "teste": "ContractCard-teste-2",
     }
   }
 />
 `;
-
-exports[`Testing Card component allows us to set props: baz 1`] = `"baz"`;
-
-exports[`Testing Card component allows us to set props: card 1`] = `"card"`;
