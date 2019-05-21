@@ -35,10 +35,10 @@ class SignUp extends Component {
     },
     isAuthenticated: false,
     error: "",
-    errorNullField: "",
-    errorName: "",
+    errorName: false,
     errorSenha: "",
     showModal: false,
+    showError: false,
     
   };
   
@@ -49,22 +49,26 @@ class SignUp extends Component {
 
     if(!validateRegister(user))//valida se os campos obrigatorios foram preenchidos
     {
-      this.setState({ errorNullField: "Digite os campos obrigatórios" });
-      
+      this.setState({ error: "Digite os campos obrigatórios" });
+      this.setState({ showError: true });
       // e.preventDefault();
       return;
     }
 
     if(!validateName(user))//valida se os campos obrigatorios foram preenchidos
     {
-      this.setState({ errorName: "Nome inválido" });
+      this.setState({ errorName: true });
+      this.setState({ error: "Nome inválido" });
+      this.setState({ showError: true });
       e.preventDefault();
       return;
     }
     
     if(!validatepasswordconfirm(user))
     {
-      this.setState({ errorSenha: "A senha não coincide" });
+      this.setState({ errorSenha: true });
+      this.setState({ error: "Nome inválido" });
+      this.setState({ showError: true });
       e.preventDefault();
       return;
     }
@@ -165,13 +169,7 @@ class SignUp extends Component {
             </Grid>
             </Grid>
             <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center">
-              <Typography variant="h6" align="center" color=''> 
-              {/* <CustomizedSnackbars error={'error'}/> */}
-                 {this.state.error && <p style={{color:'#f44336'}}>{this.state.error }</p> ||
-                 this.state.errorName && <p style={{color:'#f44336'}}>{this.state.errorName}</p> ||
-                 this.state.errorNullField && <p style={{color:'#f44336'}}>{this.state.errorNullField}</p> ||
-                 this.state.errorSenha && <p style={{color:'#f44336'}}>{this.state.errorSenha}</p>} 
-              </Typography> 
+              {this.state.showError? <CustomizedSnackbars error={this.state.error}/>:null}
             </Grid>
             <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center" style={{marginTop: 25}}>
               <Grid item >
