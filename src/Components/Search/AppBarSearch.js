@@ -10,6 +10,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import logo from '../../Assets/img/Logo.png';
 
 
+
 const styles = theme => ({
   root: {
     width: '100%',
@@ -19,7 +20,7 @@ const styles = theme => ({
     flexGrow: 1,
   },
   
-  title: {
+  search: {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
@@ -68,38 +69,48 @@ const styles = theme => ({
   },
 });
 
-function SearchAppBar(props) {
-  const { classes } = props;
+class SearchAppBar extends React.Component {
+
+  handleChange(e) {
+    const search = e.target.value;
+    this.props.changesearch(search);
+  }
+
+  render() {
+    const { classes } = this.props;
+  
   return (
     <div className={classes.root}>
       <AppBar position="static" color="primary" style={{ background: '#1DA1F2' }}>
         <Toolbar>
         <img src={logo} alt="Logo" width="40" height="40"/>
 
-          <Typography className={classes.title} variant="h6" color="inherit" noWrap>
+          <Typography className={classes.search} variant="h6" color="inherit" noWrap>
             +Monitoria
           </Typography>
           <div className={classes.grow} />
           <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Pesquisar"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-            />
+            
+            <InputBase placeholder="Pesquisar" value={this.props.search} onChange={this.handleChange.bind(this)} />
           </div>
         </Toolbar>
       </AppBar>
     </div>
   );
-}
 
-SearchAppBar.propTypes = {
-  classes: PropTypes.object.isRequired,
+  }
+}
+  SearchAppBar.propTypes = {
+    classes: PropTypes.object.isRequired,
+  
 };
+
+// function SearchAppBar(props) {
+//   const { classes } = props;
+  
+
+// }
+
+
 
 export default withStyles(styles)(SearchAppBar);
