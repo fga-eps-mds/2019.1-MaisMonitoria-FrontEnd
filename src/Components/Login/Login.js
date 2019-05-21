@@ -7,6 +7,7 @@ import lightBlue from '@material-ui/core/colors/lightBlue';
 import  {Link}  from 'react-router-dom';
 import firebase from 'firebase';
 import Typography from '@material-ui/core/Typography';
+import CustomizedSnackbars from '../SimpleModal/Snackbars';
 
 const theme = createMuiTheme({
   palette: {
@@ -26,7 +27,8 @@ class Login extends Component {
     email: '',
     password: '',
     isAuthenticated: false,
-    error: ""
+    error: "",
+    showError: false,
   };
   
 
@@ -35,12 +37,14 @@ class Login extends Component {
     const { email, password } = this.state;
     if(!email || !password){
       this.setState({ error: "Preencha e-mail e senha para continuar!" });
+      this.setState({ showError: true});
       e.preventDefault();
     }else{
       await firebase.auth().signInWithEmailAndPassword(email, password).then((user)=>{
         this.setState({isAuthenticated: true});
       }).catch((except)=>{
         this.setState({ error: "Email ou Senha inválidos." });
+        this.setState({ showError: true});
       });
     }
   }
@@ -78,9 +82,9 @@ class Login extends Component {
               })}
               />
           </Grid>
-            <Typography variant="h6" align="center" color=''>
-              {this.state.error && <p style={{color:'#f44336'}}>{this.state.error}</p>}
-            </Typography>
+          <Grid container alignContent="center" justify="center" direction="row" spacing={50} alignItems="center">
+              {this.state.showError? <CustomizedSnackbars error={this.state.error}/>:null}
+          </Grid>
         </Grid>
         <Grid  container alignContent="center" justify="center" direction="column" spacing={24} alignItems="center" style={{marginTop: 25}}>
           <Grid item >
