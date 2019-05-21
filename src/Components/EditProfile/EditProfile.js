@@ -11,6 +11,8 @@ import { validateEditProfile, validateName, success } from '../../Helpers/valida
 import SimpleModal from '../SimpleModal';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import CustomizedSnackbars from '../SimpleModal/Snackbars';
+
 
 const theme = createMuiTheme({
     palette: {
@@ -38,7 +40,8 @@ class EditProfile extends Component {
         isSignedin: false,
         error: '',
         showModal: false,
-        errorName: '',
+        errorName: false,
+        showError: false,
     }
 
     componentDidMount(){
@@ -72,12 +75,15 @@ class EditProfile extends Component {
         if(!validateEditProfile(this.state))
         {
             this.setState({ error: "Digite os campos obrigatórios" });
+            this.setState({ showError: true });
             e.preventDefault();
             return; 
         }
 
         if(!validateName(this.state)){
-            this.setState({ errorName: "Nome inválido" });
+            this.setState({ errorName: true });
+            this.setState({ error: "Nome inválido" });
+            this.setState({ showError: true });
             e.preventDefault();
             return;
         }
@@ -146,10 +152,9 @@ class EditProfile extends Component {
                     <Course action={(course)=>{this.setState({course})}}/>
                 </Grid>
             </Grid>
-            <Typography variant="h6" align="center" color=''>
-                {this.state.error && <p style={{color:'#f44336'}}>{this.state.error}</p> ||
-                this.state.errorName && <p style={{color:'#f44336'}}>{this.state.errorName}</p>}
-            </Typography>
+                <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center">
+                    {this.state.showError? <CustomizedSnackbars error={this.state.error}/>:null}
+                </Grid>
             <Grid container justify="center" alignContent="center" alignItems="center" direction="row" spacing={24}>
                 <Grid item>
                     <MuiThemeProvider theme={theme}>

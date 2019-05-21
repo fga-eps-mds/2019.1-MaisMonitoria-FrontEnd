@@ -9,7 +9,7 @@ import {withRouter} from 'react-router-dom';
 import SimpleModal from '../SimpleModal';
 import Typography from '@material-ui/core/Typography';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-
+import CustomizedSnackbars from '../SimpleModal/Snackbars';
 
 const theme = createMuiTheme({
     palette: {
@@ -36,6 +36,7 @@ class RegisterMonitoring extends Component {
         },
         error:'',
         showModal: false,
+        showError: false,
     }
 
     registerMonitoring = (e) =>{
@@ -44,6 +45,7 @@ class RegisterMonitoring extends Component {
 
         if(!validateRegisterMonitoring(monitoring)){
             this.setState({ error: "Digite os campos obrigatorios." });
+            this.setState({ showError: true });
             e.preventDefault();
             return;
         }
@@ -110,9 +112,9 @@ class RegisterMonitoring extends Component {
                         
                     </Grid>
                     <Grid>
-                        <Typography variant="h6" align="center" color=''>
-                            {this.state.error && <p style={{color:'#f44336'}}>{this.state.error}</p>}
-                        </Typography>
+                        <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center">
+                            {this.state.showError? <CustomizedSnackbars error={this.state.error}/>:null}
+                        </Grid>
                     </Grid>
                     <Grid container  alignContent="center" justify="center" direction="row" alignItems="center" spacing={16} style={{paddingTop:40}}>
                         <Grid item>
