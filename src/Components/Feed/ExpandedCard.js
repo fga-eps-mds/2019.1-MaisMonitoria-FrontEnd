@@ -3,7 +3,8 @@ import { Grid, Typography,Button } from "@material-ui/core";
 import {Link} from 'react-router-dom';
 import firebase from 'firebase';
 import axios from 'axios';
-
+import AppBar from '../AppBar/AppBar.js';
+import './ExpandedCard.css'
 class ExpandedCard extends React.Component {
     
     state = {
@@ -48,35 +49,31 @@ class ExpandedCard extends React.Component {
       }
 
     return (
-                <div>
-            <Grid container justify="center" alignContent="center" direction="column">
-                <Grid item alignContent="center">
-                    <h1>{this.state.tutoringName}</h1>
+        <div style={{overflowX:'hidden'}}>
+            
+            <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
+                <AppBar/>    
+            </Grid>
+            <Grid container justify="flex-center" direction="row" style={{paddingTop:80, paddingLeft:15,paddingBottom:15}} className="teste" >
+                <Grid item>                            
+                    <img src={photoUrl} style={{width:140, height:140}}></img>
                 </Grid>
-                <Grid item>
-                    <img style={{width:120, height:120}} src={photoUrl}></img>
-                </Grid>
-                <Grid item>
-                    <Typography>
-                        Descrição: {this.state.tutoringName}
-                    </Typography>
-                </Grid>
-                <Grid item>  
-                   
+                <Grid item>    
+                    <Grid container justify="center" direction="column" alignItems="center" alignContent="center">
+                        <Grid item style={{marginTop:50}} style={{marginLeft:50}} >
+                            <h1>Monitor</h1>
+                        </Grid>
+                        <Grid item>
+                            <Typography style={{marginLeft:50}}>
+                                Nome: {this.state.monitorName}
+                            </Typography>
+                        </Grid>
+                    </Grid>
                 </Grid>
             </Grid>
-            <Grid container alignContent="center" justify="center" direction="row" spacing="24" alignItems="center" style={{marginTop: 25}}>
-              <Grid item >
-                  <Button  variant="outlined" color="primary" >
-                  Pedir monitoria
-                  </Button>
-              </Grid>
                 <Grid item>
-                    <Button  variant="outlined" component={Link} to="/Feed" color="primary" >
-                        Cancelar
-                    </Button>
+                    <h2>Monitoria</h2>
                 </Grid>
-            </Grid>
         </div>
     );
   }

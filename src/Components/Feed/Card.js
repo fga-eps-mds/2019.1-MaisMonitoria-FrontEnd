@@ -17,13 +17,11 @@ const styles = theme => ({
   teste: {
     width:90,
     height: 90,
-    paddingLeft: 10,
-    paddingBottom: 10,
+    marginLeft: 10,
+    marginTop: 5,
+    marginBottom: 5,
     borderRadius: 50,
-    borderBottomLeftRadius: 50,
-    borderBottomRightRadius: 50,
-    borderTopLeftRadius: 50,
-    borderTopRightRadius: 50, 
+    
 
   }
 
@@ -53,7 +51,7 @@ class ContractCard extends React.Component {
     return (
       <Card className={classes.card} >
         <Link to={`/expandedcard/${this.props.id_tutoring}`}>
-        <Grid container  direction="row" >
+        <Grid container alignContent="center" direction="row" >
           <Grid item>
             <Grid container direction="column" alignContent="center" alignItems="center" >
               <Grid item>
