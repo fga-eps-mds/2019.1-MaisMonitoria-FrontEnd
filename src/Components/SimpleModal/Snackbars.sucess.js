@@ -1,15 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import Button from '@material-ui/core/Button';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import ErrorIcon from '@material-ui/icons/Error';
 import InfoIcon from '@material-ui/icons/Info';
+import CloseIcon from '@material-ui/icons/Close';
 import green from '@material-ui/core/colors/green';
 import amber from '@material-ui/core/colors/amber';
+import IconButton from '@material-ui/core/IconButton';
 import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 import WarningIcon from '@material-ui/icons/Warning';
 import { withStyles } from '@material-ui/core/styles';
+
 
 const variantIcon = {
   success: CheckCircleIcon,
@@ -58,18 +62,20 @@ function MySnackbarContent(props) {
           {message}
         </span>
       }
-    //   action={[
-    //     <IconButton
-    //       key="close"
-    //       aria-label="Close"
-    //       color="inherit"
-    //       className={classes.close}
-    //       onClick={onClose}
-    //     >
-    //       <CloseIcon className={classes.icon} />
-    //     </IconButton>,
-    //   ]}
-    //   {...other}
+      action={[
+        
+        <IconButton
+          key="close"
+          aria-label="Close"
+          color="inherit"
+          className={classes.close}
+          onClick={onClose}
+        >
+          <CloseIcon className={classes.icon} />
+        </IconButton>,
+        
+      ]}
+      {...other}
     />
   );
 }
@@ -90,7 +96,7 @@ const styles2 = theme => ({
   },
 });
 
-class CustomizedSnackbars extends React.Component {
+class SnackBarSucess extends React.Component {
   state = {
     open: false,
   };
@@ -100,15 +106,14 @@ class CustomizedSnackbars extends React.Component {
   };
 
   handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
+    const { routersucess } = this.props;
+    this.setState({ open: false });
+    this.props.history.push(routersucess)
     this.setState({ open: false });
   };
 
   render() {
-    const { classes, error } = this.props;
+    const { classes,error } = this.props;
 
     return (
       <div>
@@ -118,13 +123,12 @@ class CustomizedSnackbars extends React.Component {
             horizontal: 'left',
           }}
           open={this.state.open}
-          autoHideDuration={6000}
+          autoHideDuration={100}
           onClose={this.handleClose}
         >
-        
         </Snackbar>
         <MySnackbarContentWrapper
-          variant="error"
+          variant="success"
           className={classes.margin}
           message={error}
         />
@@ -133,9 +137,10 @@ class CustomizedSnackbars extends React.Component {
   }
 }
 
-CustomizedSnackbars.propTypes = {
+SnackBarSucess.propTypes = {
   classes: PropTypes.object.isRequired,
   error: PropTypes.string.isRequired,
+  routersucess: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles2)(CustomizedSnackbars);
+export default withStyles(styles2)(SnackBarSucess);

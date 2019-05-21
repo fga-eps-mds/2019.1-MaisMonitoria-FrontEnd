@@ -37,7 +37,7 @@ class SignUp extends Component {
     error: "",
     errorName: false,
     errorSenha: "",
-    showModal: false,
+    showModal: true,
     showError: false,
     
   };
