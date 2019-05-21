@@ -31,12 +31,12 @@ class ExpandedCard extends React.Component {
                     .then(res => {
                         const person = res.data
                         console.log(person)
-                        this.setState({tutoringName:person["name"], tutoringTheme:person["subject"], tutoringDescription:person["descirption"],
+                        this.setState({tutoringName:person["name"], tutoringTheme:person["subject"], tutoringDescription:person["description"],
                                       monitorName: person.monitor["name"], photo:person.monitor["photo"]}) 
                         
                     });
             }
-          });
+        });
       
           
     }
@@ -71,9 +71,46 @@ class ExpandedCard extends React.Component {
                     </Grid>
                 </Grid>
             </Grid>
-                <Grid item>
-                    <h2>Monitoria</h2>
+            <div>
+                <Grid item style={{paddingLeft:15}}> 
+                    <Grid container direction="column">
+                        <Grid item justify="center">
+                            <h1>Monitoria</h1>
+                        </Grid>
+                        <Grid item>
+                            <h3>Matéria:</h3>
+                            <Typography>
+                                {this.state.tutoringName}
+                            </Typography>
+                        </Grid>
+                        <Grid item>
+                            <h3>Tema:</h3>
+                            <Typography>
+                                {this.state.tutoringTheme}
+                            </Typography>
+                        </Grid>
+                        <Grid item>
+                            <h3>Descrição:</h3>
+                            <Typography>
+                                {this.state.tutoringDescription}
+                            </Typography>
+                        </Grid>
+                    </Grid>
                 </Grid>
+            </div>
+
+            <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center" style={{marginTop: 25}}>
+              <Grid item >
+                  <Button  variant="outlined" color="primary">
+                  Requisitar monitoria
+                  </Button>
+              </Grid>
+              <Grid item>
+                  <Button component={Link} to="/Feed" variant="outlined" color="primary" >
+                    Voltar
+                  </Button>
+              </Grid>
+            </Grid>
         </div>
     );
   }

@@ -51,7 +51,7 @@ class Profile extends Component {
     render(){
         return(
             <div style={{overflowX:'hidden'}}>
-                <div style={{overflowX:'hidden'}} className="FeedBackground">
+                <div style={{overflowX:'hidden'}} >
                     <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
                         <AppBar/>    
                     </Grid>
@@ -78,9 +78,9 @@ class Profile extends Component {
                         </Grid>
                     </Grid>
                 </div>
-                <div>
+                <div className="profileBackground">
                     <Grid container justify={'center'} alignContent={'center'} alignItems={'center'} >
-                        <Grid item xs={12} style={{marginTop:10}}>
+                        <Grid item xs={12} style={{marginTop:10}} className="profileBackground">
                             <ProfileTab/>
                         </Grid>
                         {this.state.monitoring.map(function(item, i){
