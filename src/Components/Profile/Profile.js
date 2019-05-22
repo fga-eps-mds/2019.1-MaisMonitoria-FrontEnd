@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Grid, Button } from '@material-ui/core' ;
 import AppBar from '../AppBar/AppBar';
 import Card from '../Feed/Card';
-import Pp from '../../Assets/img/Pp.png';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import ProfileTab from '../ProfileTab/ProfileTab';
 import { Link } from 'react-router-dom';
@@ -50,6 +49,8 @@ class Profile extends Component {
                     userData = user.data;
                     this.setState({monitorName:userData["name"], monitorCourse:userData["course"], tutoring:userData["monitoring"], photo:userData["photo"]}) 
                 });  
+            }else{
+                
             }     
         })
     }

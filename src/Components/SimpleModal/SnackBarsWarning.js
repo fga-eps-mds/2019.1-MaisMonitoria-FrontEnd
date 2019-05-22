@@ -93,7 +93,7 @@ class CustomizedSnackbars extends React.Component {
   };
 
   render() {
-    const { sucess } = this.props;
+    const { warning } = this.props;
 
     return (
       <div>
@@ -105,8 +105,8 @@ class CustomizedSnackbars extends React.Component {
         >
           <MySnackbarContentWrapper
             onClose={this.handleClose}
-            variant="success"
-            message={sucess}
+            variant="warning"
+            message={warning}
           />
         </Snackbar>
       </div>
@@ -117,7 +117,7 @@ class CustomizedSnackbars extends React.Component {
 CustomizedSnackbars.propTypes = {
   classes: PropTypes.object.isRequired,
   router: PropTypes.string.isRequired,
-  sucess: PropTypes.string.isRequired,
+  warning: PropTypes.string.isRequired,
 };
 
 CustomizedSnackbars = withRouter(CustomizedSnackbars);
