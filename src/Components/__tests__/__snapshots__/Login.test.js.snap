@@ -52,10 +52,13 @@ exports[`Testing Login component Test if Login renders correctly 1`] = `
         variant="standard"
       />
     </WithStyles(Grid)>
-    <WithStyles(Typography)
-      align="center"
-      color=""
-      variant="h6"
+    <WithStyles(Grid)
+      alignContent="center"
+      alignItems="center"
+      container={true}
+      direction="row"
+      justify="center"
+      spacing={50}
     />
   </WithStyles(Grid)>
   <WithStyles(Grid)

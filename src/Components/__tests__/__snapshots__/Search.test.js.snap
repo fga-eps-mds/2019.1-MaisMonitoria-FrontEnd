@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Testing Search component Test if Search renders correctly 1`] = `
+exports[`renders correctly 1`] = `
 <div
   style={
     Object {
@@ -8,21 +8,60 @@ exports[`Testing Search component Test if Search renders correctly 1`] = `
     }
   }
 >
-  <WithStyles(Grid)
-    alignItems="stretch"
-    container={true}
-    justify="center"
+  <div
+    className="MuiGrid-container-1 MuiGrid-justify-xs-center-18"
   >
-    <WithStyles(SearchAppBar)
-      changesearch={[Function]}
-    />
-  </WithStyles(Grid)>
-  <WithStyles(Grid)
-    alignItems="center"
-    container={true}
-    direction="column"
-    justify="center"
-    spacing={8}
+    <div
+      className="SearchAppBar-root-98"
+    >
+      <header
+        className="MuiPaper-root-113 MuiPaper-elevation4-119 MuiAppBar-root-104 MuiAppBar-positionStatic-108 MuiAppBar-colorPrimary-111"
+        style={
+          Object {
+            "background": "#1DA1F2",
+          }
+        }
+      >
+        <div
+          className="MuiToolbar-root-140 MuiToolbar-regular-142 MuiToolbar-gutters-141"
+        >
+          <img
+            alt="Logo"
+            height="40"
+            src="Logo.png"
+            width="40"
+          />
+          <h6
+            className="MuiTypography-root-144 MuiTypography-h6-161 MuiTypography-colorInherit-173 MuiTypography-noWrap-170 SearchAppBar-search-100"
+          >
+            +Monitoria
+          </h6>
+          <div
+            className="SearchAppBar-grow-99"
+          />
+          <div
+            className="SearchAppBar-search-100"
+          >
+            <div
+              className="MuiInputBase-root-180"
+              onClick={[Function]}
+            >
+              <input
+                className="MuiInputBase-input-190"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                placeholder="Pesquisar"
+                type="text"
+              />
+            </div>
+          </div>
+        </div>
+      </header>
+    </div>
+  </div>
+  <div
+    className="MuiGrid-container-1 MuiGrid-spacing-xs-8-23 MuiGrid-direction-xs-column-4 MuiGrid-align-items-xs-center-9 MuiGrid-justify-xs-center-18"
     style={
       Object {
         "paddingTop": 80,

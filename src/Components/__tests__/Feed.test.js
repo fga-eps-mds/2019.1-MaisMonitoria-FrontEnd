@@ -1,18 +1,25 @@
 import React from 'react';
-import Course from '../EditProfile/Course';
+import Feed from '../Feed/Feed';
 import toJson from 'enzyme-to-json';
 import renderer from 'react-test-renderer';
 import { MemoryRouter as Router } from 'react-router-dom';
+import firebase from 'firebase';
+
+firebase.initializeApp({
+  apiKey: '...',
+  authDomain: '...',
+  databaseURL: '...',
+  projectId: '...',
+  storageBucket: '...',
+  messagingSenderId: '...',
+});
+
+const feed = jest.fn();
 
 
-const course = jest.fn();
-
-
-describe('Testing Course component', () => {
   it('Test if Course renders correctly', () =>{
     const tree = renderer.create(
-      <Router><Course course={course}/></Router>
+      <Router><Feed feed={feed}/></Router>
       )
       expect(toJson(tree)).toMatchSnapshot()
   });
-});
