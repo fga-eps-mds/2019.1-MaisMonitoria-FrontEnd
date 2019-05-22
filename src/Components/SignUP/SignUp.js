@@ -32,7 +32,9 @@ class SignUp extends Component {
       password: '',
       name: '',
       course: '',
-      passwordconfirm: ''
+      passwordconfirm: '',
+      course: '',
+      photo: null,
     },
     isAuthenticated: false,
     error: "",
@@ -40,11 +42,13 @@ class SignUp extends Component {
     errorSenha: "",
     showModal: false,
     showError: false,
+    
   };
 
-  register = (e) => {
+  register = async (e) => {
     const { user } = this.state;  
     var userData = {}
+    var aux = {}
 
     this.setState({ error: "" });
     this.setState({ errorName: false });
@@ -80,26 +84,34 @@ class SignUp extends Component {
       return;
     }
     
-    firebase.auth().createUserWithEmailAndPassword(user.email, user.password).then(()=>{
+    await firebase.auth().createUserWithEmailAndPassword(user.email, user.password).then(()=>{
         
         firebase.auth().currentUser.getIdToken().then((idToken)=> {  
-           userData = {...user,access_token:idToken};
-           axios.post(process.env.REACT_APP_GATEWAY+"/create_user/", userData).then((x)=>{
-             if(success(x)) {
-              this.setState({showModal:true});
-             }           
-           });
-        });
-       
-      }).catch((error)=>{
-        console.log(error);
-        this.setState({error: errors[error.code]});
-        this.setState({ showError: true });
-        
-      });
-    
-  }
+
+          aux = { 'token': idToken }
+          console.log(idToken);          
+          });
+        }).catch((error)=>{
+          this.setState({error: errors[error.code]});
+          this.setState({ showError: true });
+
+    });
+    const fd = new FormData();
+    fd.append('access_token', aux['token'])
+    fd.append('name', user.name)
+    fd.append('course', user.course)
+    fd.append('photo', user.photo)
+    const header = { headers: { 'content-type': 'multipart/form-data' } }
+    console.log('fd',fd);
+    console.log('header',header);
+
+    await axios.post(process.env.REACT_APP_GATEWAY+"/create_user/", fd, header).then((x)=>{
+      if(success(x)) {
+        this.setState({showModal:true});
+      }
+    });
   
+  }
   render() {
     return (
       <div className="SignUpBackground" style={{overflowY:'scroll'}}>
@@ -108,7 +120,7 @@ class SignUp extends Component {
           <Grid container alignContent="center" justify="center" direction="column" alignItems="center" spacing={8}>
             <img src={logo} alt="Logo" width="120" height="120"/>
           </Grid>
-          <Grid container alignContent="center" justify="center" direction="row" alignItems="center" spacing={24}>
+          <Grid container alignContent="center" justify="center" direction="column" alignItems="center" spacing={24}>
             <Grid item >
               <TextField 
               error = {this.state.errorName}
@@ -129,9 +141,6 @@ class SignUp extends Component {
                 onChange={(event)=>this.setState({ ...this.state, user: { ...this.state.user, email: event.target.value } })}
                 />
             </Grid>
-          </Grid>
-
-          <Grid container alignContent="center" justify="center" direction="row" alignItems="center" spacing={24}>
             <Grid item >
               <TextField
                 
@@ -149,8 +158,7 @@ class SignUp extends Component {
             <Grid item>
                 <Course action={(course)=>{this.setState({...this.state,user: {...this.state.user, course}})}}/>
             </Grid>
-          </Grid>
-          <Grid container alignContent="center" justify="center" direction="row" alignItems="center" spacing={24}>
+                    
             <Grid item >
               <TextField
                 error = {this.state.errorSenha }
@@ -173,6 +181,26 @@ class SignUp extends Component {
                 onChange={(event)=>this.setState({ ...this.state, user: { ...this.state.user, passwordconfirm: event.target.value } })}
                 />
             </Grid>
+            <Grid item>              
+              <input 
+                accept="image/*" 
+                id="raised-button-file" 
+                multiple 
+                type="file" 
+                onChange={(event)=>this.setState({
+                  photo: event.target.files[0],
+                })}
+                
+              /> 
+              <label htmlFor="raised-button-file"> 
+              <MuiThemeProvider theme={theme}>
+                <Button raised component="span" variant="outlined" color="primary" > 
+                  Escolher foto 
+                </Button> 
+              </MuiThemeProvider>
+              </label>  
+            </Grid>
+
             </Grid>
             <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center">
               {this.state.showError? <CustomizedSnackbars error={this.state.error}/>:null}

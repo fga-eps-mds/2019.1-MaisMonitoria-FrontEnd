@@ -12,15 +12,17 @@ import * as serviceWorker from './serviceWorker';
 import './index.css';
 import {BrowserRouter as Router, Route,Switch} from 'react-router-dom';
 import Tab from './Components/Tab/Tab.js';
+import ExpandedCard from './Components/Feed/ExpandedCard';
 
 ReactDOM.render((
-        <Router>
+        <Router>    
                     <Switch> 
                         <Route exact path="/" component={App}/>
                         <Route path="/SignUp" component={SignUp}/>
                         <Route path="/ForgotPassword" component={ForgotPassword}/>   
                         <Route path="/RegisterMonitoring" component={RegisterMonitoring}/>
                         <Route path="/EditProfile" component={EditProfile}/>
+                        <Route path="/expandedcard/:id_tutoring" component={ExpandedCard}/>
                         <div>
                             <Route path="/Feed" component={TelaFeed}/>
                             <Route path="/Search" component={Search}/>  

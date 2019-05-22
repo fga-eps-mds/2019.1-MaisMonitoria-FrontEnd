@@ -10,7 +10,6 @@ import './EditProfile.css'
 import { validateEditProfile, validateName, success } from '../../Helpers/validates.js';
 import SimpleModal from '../SimpleModal';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import CustomizedSnackbars from '../SimpleModal/Snackbars';
 
 
@@ -31,7 +30,6 @@ const theme = createMuiTheme({
 
 class EditProfile extends Component {
 
-
     state = {
         name:'',
         course: '',
@@ -42,6 +40,8 @@ class EditProfile extends Component {
         showModal: false,
         errorName: false,
         showError: false,
+        photo: null,
+        isSignedin: false
     }
 
     componentDidMount(){
@@ -59,7 +59,7 @@ class EditProfile extends Component {
               
                 axios.post(process.env.REACT_APP_GATEWAY+"/get_user/", token).then(user=>{
                     userData = user.data;
-                    this.setState({name:userData["name"],course:userData["course"],email:userData["email"]})
+                    this.setState({name:userData["name"],course:userData["course"],email:userData["email"], photo:userData["photo"]}) 
                    
                 });  
             }     
@@ -67,10 +67,17 @@ class EditProfile extends Component {
     }
 
     editProfile = (e) =>{
-        
-        
+        var aux = {}
+        const header = { headers: { 'content-type': 'multipart/form-data' } }
         let token = {}
         const {name,course,email,error} = this.state;
+        const fd = new FormData();
+
+        fd.append('name', this.state.name)
+        fd.append('course', this.state.course)
+        fd.append('email', this.state.email)
+        fd.append('photo', this.state.photo)
+        
 
         this.setState({ showError: false });
         this.setState({ errorName: false });
@@ -92,14 +99,11 @@ class EditProfile extends Component {
 
         firebase.auth().onAuthStateChanged(user =>{
             if(user){
-                firebase.auth().currentUser.getIdToken().then(function(idToken){
-                    token["access_token"] = idToken;
-                    token["name"] = name;
-                    token["course"] = course;
-                    token["email"] = email;
+                firebase.auth().currentUser.getIdToken().then(function(idToken){  
+                    fd.append('access_token', idToken)        
                 })
               
-                axios.post(process.env.REACT_APP_GATEWAY+"/update_user/",token).then((x)=>{
+                axios.post(process.env.REACT_APP_GATEWAY+"/update_user/", fd, header).then((x)=>{
                     if(success(x)) this.setState({showModal:true});
               })
             }     
@@ -116,7 +120,7 @@ class EditProfile extends Component {
             </Grid>   
             <Grid container justify="center" alignContent="center" alignItems="center">
                 <Grid item> 
-                    <img src={Pp} className="ProfilePic" alt="Profilepic" style={{width: 130,height:130,margin:80,borderRadius:2}} ></img>
+                    <img src={Pp} className="ProfilePic" alt="Profilepic" style={{width: 130,height:130,marginTop:80,borderRadius:2}} ></img>
                 </Grid>
             </Grid>
             <Grid container justify="center" alignContent="center" alignItems="center" direction="column" >
@@ -150,8 +154,24 @@ class EditProfile extends Component {
                         })}
                     />
                 </Grid>
-                <Grid item style={{padding:30}}>
+                <Grid item style={{padding:10}}>
                     <Course action={(course)=>{this.setState({course})}}/>
+                </Grid>
+                <Grid item style={{padding:30}}>              
+                <input 
+                    accept="image/*" 
+                    id="raised-button-file" 
+                    multiple 
+                    type="file" 
+                    onChange={(event)=>this.setState({
+                    photo: event.target.files[0],
+                    })}                
+                /> 
+                <label htmlFor="raised-button-file"> 
+                    <Button raised component="span" variant="outlined" color="primary" > 
+                    Escolher foto 
+                    </Button> 
+                </label>  
                 </Grid>
             </Grid>
                 <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center">
