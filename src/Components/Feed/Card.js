@@ -45,7 +45,7 @@ class ContractCard extends React.Component {
     if( photoUrl != null ){
       photoUrl = photoUrl.replace("api-monitoria","localhost")
     } else {
-      photoUrl = "https://cdn-eleicoes.gazetadopovo.com.br/fotos/sao-paulo/deputado-federal/batore-1444.jpg"
+      photoUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzaLMnex1QwV83TBQgxLTaoDAQlFswsYy62L3mO4Su-CMkk3jX"
     }
 
     return (

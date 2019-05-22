@@ -42,7 +42,9 @@ class TelaFeed extends Component {
                 {this.state.data.map(function(item, i){
                     return (
                         <Grid item key={i} lg={12} sm={12} container style={{paddingBottom:3}} >
-                            <Card name_monitoring={item.name} matter={item.subject} description={item.description} photo={item.monitor.photo} monitorName={item.monitor.name} id_tutoring={item.id_tutoring_session} />
+                            <Card name_monitoring={item.name} matter={item.subject} 
+                                   description={item.description} photo={item.monitor.photo} 
+                                   monitorName={item.monitor.name} id_tutoring={item.id_tutoring_session} />
                         </Grid>
                     );
                 })}
