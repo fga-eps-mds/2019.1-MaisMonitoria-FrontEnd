@@ -6,6 +6,7 @@ import Paper from './PaperSearch';
 import firebase from 'firebase';
 import axios from 'axios';
 import Card from '../Feed/Card';
+import '../Feed/feed.css'
 
 const initialState = {
     expanded: false,
@@ -22,8 +23,7 @@ class Search extends Component {
     
         this.setState(initialState)
     }
-               
-    
+            
     changesearch(search) {
         
             this.setState({search});
@@ -52,20 +52,27 @@ class Search extends Component {
             }
     }
     
-   
-
   render() {
+    var photoUrl = this.state.photo
+
+    if( photoUrl != null ){
+        photoUrl = photoUrl.replace("api-monitoria","localhost")
+      } else {
+        photoUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzaLMnex1QwV83TBQgxLTaoDAQlFswsYy62L3mO4Su-CMkk3jX"
+      }
+
     return (
         <div style={{overflowX:'hidden'}} >
             <Grid container  justify="center" alignItems="stretch">
                 <AppBar changesearch={this.changesearch.bind(this)} search={this.state.search}/>
-                
             </Grid>
-            <Grid container  justify="center" direction="column" alignItems="center" spacing="16" style={{ padding: 80 }}>
+            <Grid container  justify="center" direction="column" alignItems="center" style={{paddingTop:80}} spacing={8} >
             {this.state.data.map(function(item, i){
                     return (
-                        <Grid item key={i} lg={12} sm={12} container >
-                            <Card name_monitoring={item.name} matter={item.subject} deion={item.description}/>
+                        <Grid item key={i} lg={12} sm={12} container style={{paddingBottom:3}} style={{backgroundColor:'#eeeeee'}} >
+                            <Card name_monitoring={item.name} matter={item.subject} 
+                                   description={item.description} photo={item.monitor.photo} 
+                                   monitorName={item.monitor.name} id_tutoring={item.id_tutoring_session}/>
                         </Grid>
                     );
                 })}

@@ -13,25 +13,21 @@ exports[`Testing Search component Test if Search renders correctly 1`] = `
     container={true}
     justify="center"
   >
-    <WithStyles(SearchAppBar) />
+    <WithStyles(SearchAppBar)
+      changesearch={[Function]}
+    />
   </WithStyles(Grid)>
   <WithStyles(Grid)
     alignItems="center"
     container={true}
     direction="column"
     justify="center"
-    spacing={16}
+    spacing={8}
     style={
       Object {
-        "padding": 80,
+        "paddingTop": 80,
       }
     }
-  >
-    <WithStyles(Grid)
-      item={true}
-    >
-      <WithStyles(PaperSheet) />
-    </WithStyles(Grid)>
-  </WithStyles(Grid)>
+  />
 </div>
 `;

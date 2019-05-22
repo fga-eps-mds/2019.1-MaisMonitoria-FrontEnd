@@ -24,22 +24,32 @@ class SignUp extends Component {
     password: '',
     name: '',
     isAuthenticated: false,
-    course: ''
+    course: '',
+    photo: null,
   };
   
   register = async () => {
-    const { email, password, name, telegram, course } = this.state;  
-    var userData = {}
-          
+    const { email, password } = this.state;  
+    var aux = {}
+
     await firebase.auth()
       .createUserWithEmailAndPassword(email, password).then((user)=>{
         firebase.auth().currentUser.getIdToken().then(function(idToken) {  
-          userData = {"name": name, "course": course, "access_token": idToken}
-          
-        });
+          aux = { 'token': idToken }        
       });
+    });
     
-    await axios.post(process.env.REACT_APP_GATEWAY+"/create_user/", userData);
+    const fd = new FormData();
+    fd.append('access_token', aux['token'])
+    fd.append('name', this.state.name)
+    fd.append('course', this.state.course)
+    fd.append('photo', this.state.photo)
+
+    const header = { headers: { 'content-type': 'multipart/form-data' } }
+
+    await axios.post(process.env.REACT_APP_GATEWAY+"/create_user/", fd, header).then(res =>{
+      console.log(res)
+    })
   }
   
   render() {
@@ -49,7 +59,7 @@ class SignUp extends Component {
           <Grid container alignContent="center" justify="center" direction="column" alignItems="center" spacing={8}>
             <img src={logo} alt="Logo" width="120" height="120"/>
           </Grid>
-          <Grid container alignContent="center" justify="center" direction="row" alignItems="center" spacing={24}>
+          <Grid container alignContent="center" justify="center" direction="column" alignItems="center" spacing={24}>
             <Grid item >
               <TextField 
               id="nomeTextField"
@@ -71,9 +81,6 @@ class SignUp extends Component {
                 })}
                 />
             </Grid>
-          </Grid>
-
-          <Grid container alignContent="center" justify="center" direction="row" alignItems="center" spacing={24}>
             <Grid item >
               <TextField
                 id="telegramTextField"
@@ -89,8 +96,7 @@ class SignUp extends Component {
             <Grid item>
                 <Course action={(course)=>{this.setState({course})}}/>
             </Grid>
-          </Grid>
-          <Grid container alignContent="center" justify="center" direction="row" alignItems="center" spacing={24}>
+                    
             <Grid item >
               <TextField
                 id="senhaTextField"
@@ -111,6 +117,26 @@ class SignUp extends Component {
                 type="password"
                 />
             </Grid>
+            <Grid item>              
+              <input 
+                accept="image/*" 
+                id="raised-button-file" 
+                multiple 
+                type="file" 
+                onChange={(event)=>this.setState({
+                  photo: event.target.files[0],
+                })}
+                
+              /> 
+              <label htmlFor="raised-button-file"> 
+              <MuiThemeProvider theme={theme}>
+                <Button raised component="span" variant="outlined" color="primary" > 
+                  Escolher foto 
+                </Button> 
+              </MuiThemeProvider>
+              </label>  
+            </Grid>
+
             </Grid>
             <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center" style={{marginTop: 25}}>
               <Grid item >

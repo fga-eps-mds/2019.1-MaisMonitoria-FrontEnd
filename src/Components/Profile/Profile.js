@@ -22,10 +22,11 @@ const theme = createMuiTheme({
 class Profile extends Component {
 
     state = {   
-        name:'',
-        course: '',
-        email: '',
-        monitoring: []
+        monitorName:'',
+        monitorCourse: '',
+        monitorEmail: '',
+        tutoring: [],
+        monitorPhoto: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzaLMnex1QwV83TBQgxLTaoDAQlFswsYy62L3mO4Su-CMkk3jX',
     }
     
 
@@ -40,18 +41,25 @@ class Profile extends Component {
               
                 axios.post(process.env.REACT_APP_GATEWAY+"/get_user/", token).then(user=>{
                     userData = user.data;
-                    this.setState({name:userData["name"], course:userData["course"], monitoring:userData["monitoring"]}) 
+                    this.setState({monitorName:userData["name"], monitorCourse:userData["course"], tutoring:userData["monitoring"], photo:userData["photo"]}) 
                 });  
             }     
         })
     }
 
-    
-   
     render(){
+
+        var photoUrl = this.state.photo
+
+        if( photoUrl != null ){
+            photoUrl = photoUrl.replace("api-monitoria","localhost")
+          } else {
+            photoUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzaLMnex1QwV83TBQgxLTaoDAQlFswsYy62L3mO4Su-CMkk3jX"
+          }
+
         return(
             <div style={{overflowX:'hidden'}}>
-                <div style={{overflowX:'hidden'}} className="FeedBackground">
+                <div style={{overflowX:'hidden'}} >
                     <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
                         <AppBar/>    
                     </Grid>
@@ -59,7 +67,7 @@ class Profile extends Component {
                 <div>   
                     <Grid container justify={'flex-start'} direction={'row'} alignContent={'center'} spacing={24} alignItems={'center'}>
                         <Grid item>
-                            <img src={Pp} className="ProfilePic" alt={"Profile pic"} style={{width: 130,height:130, marginTop:80, marginLeft:10,}}></img>
+                            <img src={photoUrl} className="ProfilePic" alt={"Profile pic"} style={{width: 130,height:130, marginTop:80, marginLeft:10,}}></img>
                         </Grid>
                         <Grid item>
                             <Grid container justify={'flex-start'} direction={'column'} alignContent={'flex-start'} alignItems={'flex-start'} spacing={24}  style={{paddingTop:100}} alignItems={'center'}>
@@ -78,15 +86,16 @@ class Profile extends Component {
                         </Grid>
                     </Grid>
                 </div>
-                <div>
+                <div className="profileBackground">
                     <Grid container justify={'center'} alignContent={'center'} alignItems={'center'} >
-                        <Grid item xs={12} style={{marginTop:10}}>
+                        <Grid item xs={12} style={{marginTop:10}} className="profileBackground">
                             <ProfileTab/>
                         </Grid>
-                        {this.state.monitoring.map(function(item, i){
+                        {this.state.tutoring.map(function(item, i){
                             return (
                                 <Grid item key={i} lg={12} sm={12} container >
-                                    <Card name_monitoring={item.name} matter={item.subject} deion={item.description}/>
+                                    <Card name_monitoring={item.name} matter={item.subject} photo={photoUrl}
+                                           description={item.description} id_tutoring={item.id_tutoring_session}/>
                                 </Grid>
                             );
                         })}
