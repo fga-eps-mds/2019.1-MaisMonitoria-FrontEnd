@@ -72,6 +72,8 @@ class EditProfile extends Component {
         let token = {}
         const {name,course,email,error} = this.state;
 
+        this.setState({ showError: false });
+        this.setState({ errorName: false });
         if(!validateEditProfile(this.state))
         {
             this.setState({ error: "Digite os campos obrigatórios" });

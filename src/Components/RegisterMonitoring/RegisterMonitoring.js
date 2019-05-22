@@ -43,6 +43,9 @@ class RegisterMonitoring extends Component {
         var token = {};
         const {monitoring} = this.state;
 
+        this.setState({ showError: false });
+        this.setState({ error: "" });
+        
         if(!validateRegisterMonitoring(monitoring)){
             this.setState({ error: "Digite os campos obrigatorios." });
             this.setState({ showError: true });
