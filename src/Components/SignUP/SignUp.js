@@ -8,6 +8,13 @@ import {Link} from 'react-router-dom';
 import firebase from 'firebase';
 import Course from '../EditProfile/Course'
 import axios from 'axios';
+import { validateRegister, success, validateName, validatepasswordconfirm } from '../../Helpers/validates';
+import { errors } from '../../Helpers/errors';
+import {withRouter} from 'react-router-dom';
+import SimpleModal from '../SimpleModal';
+import CustomizedSnackbars from '../SimpleModal/Snackbars';
+import Typography from '@material-ui/core/Typography';
+
 
 const theme = createMuiTheme({
   palette: {
@@ -20,41 +27,95 @@ const theme = createMuiTheme({
 
 class SignUp extends Component {
   state = {
-    email: '',
-    password: '',
-    name: '',
+    user :{
+      email: '',
+      password: '',
+      name: '',
+      course: '',
+      passwordconfirm: '',
+      course: '',
+      photo: null,
+    },
     isAuthenticated: false,
-    course: '',
-    photo: null,
+    error: "",
+    errorName: false,
+    errorSenha: "",
+    showModal: false,
+    showError: false,
+    
   };
-  
-  register = async () => {
-    const { email, password } = this.state;  
+
+  register = async (e) => {
+    const { user } = this.state;  
+    var userData = {}
     var aux = {}
 
-    await firebase.auth()
-      .createUserWithEmailAndPassword(email, password).then((user)=>{
-        firebase.auth().currentUser.getIdToken().then(function(idToken) {  
-          aux = { 'token': idToken }        
-      });
-    });
+    this.setState({ error: "" });
+    this.setState({ errorName: false });
+    this.setState({ errorSenha: "" });
+    this.setState({ showError: false });
+  
     
+    if(!validateRegister(user))//valida se os campos obrigatorios foram preenchidos
+    {
+      this.setState({ error: "Digite os campos obrigatórios" });
+      this.setState({ showError: true });
+      // e.preventDefault();
+      return;
+    }
+
+    if(!validateName(user))//valida se os campos obrigatorios foram preenchidos
+    {
+      this.setState({ errorName: true });
+      this.setState({ error: "Nome inválido" });
+      this.setState({ showError: true });
+      
+      e.preventDefault();
+      return;
+    }
+    
+    if(!validatepasswordconfirm(user))
+    {
+      this.setState({ errorSenha: true });
+      this.setState({ error: "Senha não coincide" });
+      this.setState({ showError: true });
+    
+      e.preventDefault();
+      return;
+    }
+    
+    await firebase.auth().createUserWithEmailAndPassword(user.email, user.password).then(()=>{
+        
+        firebase.auth().currentUser.getIdToken().then((idToken)=> {  
+
+          aux = { 'token': idToken }
+          console.log(idToken);          
+          });
+        }).catch((error)=>{
+          this.setState({error: errors[error.code]});
+          this.setState({ showError: true });
+
+    });
     const fd = new FormData();
     fd.append('access_token', aux['token'])
-    fd.append('name', this.state.name)
-    fd.append('course', this.state.course)
-    fd.append('photo', this.state.photo)
-
+    fd.append('name', user.name)
+    fd.append('course', user.course)
+    fd.append('photo', user.photo)
     const header = { headers: { 'content-type': 'multipart/form-data' } }
+    console.log('fd',fd);
+    console.log('header',header);
 
-    await axios.post(process.env.REACT_APP_GATEWAY+"/create_user/", fd, header).then(res =>{
-      console.log(res)
-    })
-  }
+    await axios.post(process.env.REACT_APP_GATEWAY+"/create_user/", fd, header).then((x)=>{
+      if(success(x)) {
+        this.setState({showModal:true});
+      }
+    });
   
+  }
   render() {
     return (
       <div className="SignUpBackground" style={{overflowY:'scroll'}}>
+      {this.state.showModal? <SimpleModal router={""} title={'Usuario criado com sucesso!'}  />:null}
         <Grid style={{paddingLeft:10}}>
           <Grid container alignContent="center" justify="center" direction="column" alignItems="center" spacing={8}>
             <img src={logo} alt="Logo" width="120" height="120"/>
@@ -62,27 +123,28 @@ class SignUp extends Component {
           <Grid container alignContent="center" justify="center" direction="column" alignItems="center" spacing={24}>
             <Grid item >
               <TextField 
+              error = {this.state.errorName}
+              required= "true"
               id="nomeTextField"
               label="Nome"
               margin="normal"
-              onChange={(event)=>this.setState({
-                name: event.target.value,
-              })}
+              onChange={(event)=>this.setState({ ...this.state, user: { ...this.state.user, name: event.target.value } })}
               />
             </Grid>
             <Grid item >
               <TextField
+                required= "true"
                 id="emailTextField"
                 label="Email"
                 margin="normal"
                 type="email"
-                onChange={(event)=>this.setState({
-                  email: event.target.value,
-                })}
+                onChange={(event)=>this.setState({ ...this.state, user: { ...this.state.user, email: event.target.value } })}
                 />
             </Grid>
             <Grid item >
               <TextField
+                
+                required= "true"
                 id="telegramTextField"
                 label="Telegram"
                 margin="normal"
@@ -94,27 +156,29 @@ class SignUp extends Component {
                 />
             </Grid>
             <Grid item>
-                <Course action={(course)=>{this.setState({course})}}/>
+                <Course action={(course)=>{this.setState({...this.state,user: {...this.state.user, course}})}}/>
             </Grid>
                     
             <Grid item >
               <TextField
+                error = {this.state.errorSenha }
+                required= "true"
                 id="senhaTextField"
                 label="Senha"
                 margin="normal"
                 type="password"
-                onChange={(event)=>this.setState({
-                  password: event.target.value,
-                })}
-              
+                onChange={(event)=>this.setState({ ...this.state, user: { ...this.state.user, password: event.target.value } })}
                 />
             </Grid>
             <Grid item >
               <TextField
+                error = {this.state.errorSenha }
+                required= "true"
                 id="repetirSenhaTextField"
                 label="Repetir senha"
                 margin="normal"
                 type="password"
+                onChange={(event)=>this.setState({ ...this.state, user: { ...this.state.user, passwordconfirm: event.target.value } })}
                 />
             </Grid>
             <Grid item>              
@@ -138,10 +202,13 @@ class SignUp extends Component {
             </Grid>
 
             </Grid>
+            <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center">
+              {this.state.showError? <CustomizedSnackbars error={this.state.error}/>:null}
+            </Grid>
             <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center" style={{marginTop: 25}}>
               <Grid item >
                 <MuiThemeProvider theme={theme}>
-                  <Button component={Link} to="/" variant="outlined" onClick={this.register} color="primary">
+                  <Button component={Link}  variant="outlined" onClick={this.register} color="primary">
                   Registrar
                   </Button>
                 </MuiThemeProvider>
@@ -162,4 +229,4 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+export default withRouter(SignUp);

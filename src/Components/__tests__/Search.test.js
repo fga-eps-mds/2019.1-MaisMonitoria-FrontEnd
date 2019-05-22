@@ -2,10 +2,23 @@ import React from 'react';
 import Search from '../Search/Search';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
+import Adapter from 'enzyme-adapter-react-16';
+import Enzyme from 'enzyme';
+import renderer from 'react-test-renderer';
 
-describe('Testing Search component', () => {
-    it('Test if Search renders correctly', () =>{
-        const tree = shallow(<Search/>);
-        expect(toJson(tree)).toMatchSnapshot();
-    });
+
+Enzyme.configure({adapter: new Adapter()});
+
+const props = {
+    state: {
+        
+    }
+  
+};
+test('renders correctly' , () => {
+  const tree = renderer
+  .create(<Search {...props} />)
+  .toJSON();
+  expect(tree).toMatchSnapshot();
 });
+

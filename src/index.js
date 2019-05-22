@@ -21,11 +21,11 @@ ReactDOM.render((
                         <Route path="/SignUp" component={SignUp}/>
                         <Route path="/ForgotPassword" component={ForgotPassword}/>   
                         <Route path="/RegisterMonitoring" component={RegisterMonitoring}/>
+                        <Route path="/EditProfile" component={EditProfile}/>
                         <Route path="/expandedcard/:id_tutoring" component={ExpandedCard}/>
                         <div>
                             <Route path="/Feed" component={TelaFeed}/>
                             <Route path="/Search" component={Search}/>  
-                            <Route path="/EditProfile" component={EditProfile}/>
                             <Route path="/Profile" component={Profile}/>
                             <div>
                                 <Tab/>            

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Testing SignUp component Test if SignUp renders correctly 1`] = `
+exports[`Testing index component Test if index renders correctly 1`] = `
 <Route>
   <Component />
 </Route>

@@ -7,14 +7,39 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import firebase from 'firebase';
 import './EditProfile.css'
+import { validateEditProfile, validateName, success } from '../../Helpers/validates.js';
+import SimpleModal from '../SimpleModal';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import CustomizedSnackbars from '../SimpleModal/Snackbars';
+
+
+const theme = createMuiTheme({
+    palette: {
+      primary: { main: '#44a1f2' },
+      secondary: { main: '#fafafa' },
+    },
+    typography: { useNextVariants: false },
+    overrides: {
+        MuiButton: {
+          raisedPrimary: {
+            color: 'white',
+          },
+        },
+    },
+  });
 
 class EditProfile extends Component {
 
     state = {
         name:'',
         course: '',
-        telgram: '',
+        telegram: '',
         email: '',
+        isSignedin: false,
+        error: '',
+        showModal: false,
+        errorName: false,
+        showError: false,
         photo: null,
         isSignedin: false
     }
@@ -41,24 +66,47 @@ class EditProfile extends Component {
         })
     }
 
-    editProfile = () => {
+    editProfile = (e) =>{
         var aux = {}
         const header = { headers: { 'content-type': 'multipart/form-data' } }
-
+        let token = {}
+        const {name,course,email,error} = this.state;
         const fd = new FormData();
+
         fd.append('name', this.state.name)
         fd.append('course', this.state.course)
         fd.append('email', this.state.email)
         fd.append('photo', this.state.photo)
+        
+
+        this.setState({ showError: false });
+        this.setState({ errorName: false });
+        if(!validateEditProfile(this.state))
+        {
+            this.setState({ error: "Digite os campos obrigatórios" });
+            this.setState({ showError: true });
+            e.preventDefault();
+            return; 
+        }
+
+        if(!validateName(this.state)){
+            this.setState({ errorName: true });
+            this.setState({ error: "Nome inválido" });
+            this.setState({ showError: true });
+            e.preventDefault();
+            return;
+        }
 
         firebase.auth().onAuthStateChanged(user =>{
             if(user){
                 firebase.auth().currentUser.getIdToken().then(function(idToken){  
                     fd.append('access_token', idToken)        
                 })
-
-                axios.post(process.env.REACT_APP_GATEWAY+"/update_user/", fd, header);
-            }
+              
+                axios.post(process.env.REACT_APP_GATEWAY+"/update_user/", fd, header).then((x)=>{
+                    if(success(x)) this.setState({showModal:true});
+              })
+            }     
         })
     }
     
@@ -66,6 +114,7 @@ class EditProfile extends Component {
     return (
         
         <div style={{overflowX:'hidden'}} className="editBackground"> 
+            {this.state.showModal? <SimpleModal router={"Profile"} title={'Usuario alterado com sucesso!'}  />:null}
             <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
                 <AppBar/>
             </Grid>   
@@ -77,6 +126,8 @@ class EditProfile extends Component {
             <Grid container justify="center" alignContent="center" alignItems="center" direction="column" >
                 <Grid item xs={12}> 
                     <TextField
+                        error = {this.state.errorName }
+                        required= "true"
                         id="name"
                         label="Nome"
                         multiline
@@ -90,6 +141,8 @@ class EditProfile extends Component {
                 </Grid>
                 <Grid item> 
                     <TextField
+                        // error = {this.state.errorSenha }
+                        required= "true"
                         id="telegram"
                         label="Telegram"
                         multiline
@@ -121,16 +174,23 @@ class EditProfile extends Component {
                 </label>  
                 </Grid>
             </Grid>
+                <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center">
+                    {this.state.showError? <CustomizedSnackbars error={this.state.error}/>:null}
+                </Grid>
             <Grid container justify="center" alignContent="center" alignItems="center" direction="row" spacing={24}>
                 <Grid item>
-                    <Button component={Link} to="/Feed" variant="outlined" onClick={this.editProfile} color="primary">
-                        Confirmar
-                    </Button>
+                    <MuiThemeProvider theme={theme}>
+                        <Button component={Link} variant="contained" onClick={this.editProfile} color="primary">
+                            Confirmar
+                        </Button>
+                    </MuiThemeProvider>
                 </Grid>
                 <Grid item>
-                    <Button component={Link} to="/Profile" variant="outlined" color="primary">
-                        Cancelar
-                    </Button>
+                    <MuiThemeProvider theme={theme}>
+                        <Button component={Link} to="/Profile" variant="contained" color="primary">
+                            Cancelar
+                        </Button>
+                    </MuiThemeProvider>
                 </Grid>
             </Grid>
         </div>

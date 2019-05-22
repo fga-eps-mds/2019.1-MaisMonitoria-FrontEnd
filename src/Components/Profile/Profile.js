@@ -13,10 +13,17 @@ import './Profile.css';
 
 const theme = createMuiTheme({
     palette: {
-      primary: { main: '#1d4c72' },
+      primary: { main: '#44a1f2' },
       secondary: { main: '#ff0000' },
     },
     typography: { useNextVariants: true },
+    overrides: {
+        MuiButton: {
+          raisedPrimary: {
+            color: 'white',
+          },
+        },
+    },
   });
 
 class Profile extends Component {
@@ -56,7 +63,7 @@ class Profile extends Component {
           } else {
             photoUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzaLMnex1QwV83TBQgxLTaoDAQlFswsYy62L3mO4Su-CMkk3jX"
           }
-
+        console.log(this.state);
         return(
             <div style={{overflowX:'hidden'}}>
                 <div style={{overflowX:'hidden'}} >
@@ -72,15 +79,17 @@ class Profile extends Component {
                         <Grid item>
                             <Grid container justify={'flex-start'} direction={'column'} alignContent={'flex-start'} alignItems={'flex-start'} spacing={24}  style={{paddingTop:100}} alignItems={'center'}>
                                 <Grid item>
-                                    Name: {this.state.name}
+                                    Name: {this.state.monitorName}
                                 </Grid>
                                 <Grid item>
-                                    Curso: {this.state.course}
+                                    Curso: {this.state.monitorCourse}
                                 </Grid>
                                 <Grid item>
-                                    <Button variant="outlined" component={Link} to="/EditProfile"  color="primary">
-                                        Editar perfil
-                                    </Button>
+                                    <MuiThemeProvider theme={theme}>
+                                        <Button variant="contained" component={Link} to="/EditProfile"  color="primary">
+                                            Editar perfil
+                                        </Button>
+                                    </MuiThemeProvider>
                                 </Grid>
                             </Grid>
                         </Grid>
