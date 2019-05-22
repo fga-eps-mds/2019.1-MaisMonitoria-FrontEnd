@@ -37,11 +37,11 @@ const styles1 = theme => ({
     fontSize: 20,
   },
   iconVariant: {
-    opacity: 0.9,
+    opacity: 1.1,
     marginRight: theme.spacing.unit,
   },
   message: {
-    display: 'flex',
+    display: 'top',
     alignItems: 'center',
   },
 });
@@ -81,7 +81,7 @@ const styles2 = theme => ({
   },
 });
 
-class CustomizedSnackbars extends React.Component {
+class SnackbarWarning extends React.Component {
   state = {
     open: true,
   };
@@ -97,13 +97,15 @@ class CustomizedSnackbars extends React.Component {
 
     return (
       <div>
-        <Snackbar
           
-          open={this.state.open}
-          autoHideDuration={1000}
-          onClose={this.handleClose}
+        <Snackbar
+        
+        open={this.state.open}
+        autoHideDuration={1000}
+        onClose={this.handleClose}
         >
           <MySnackbarContentWrapper
+            
             onClose={this.handleClose}
             variant="warning"
             message={warning}
@@ -114,11 +116,11 @@ class CustomizedSnackbars extends React.Component {
   }
 }
 
-CustomizedSnackbars.propTypes = {
+SnackbarWarning.propTypes = {
   classes: PropTypes.object.isRequired,
   router: PropTypes.string.isRequired,
   warning: PropTypes.string.isRequired,
 };
 
-CustomizedSnackbars = withRouter(CustomizedSnackbars);
-export default withStyles(styles2)(CustomizedSnackbars);
+SnackbarWarning = withRouter(SnackbarWarning);
+export default withStyles(styles2)(SnackbarWarning);

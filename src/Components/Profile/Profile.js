@@ -8,6 +8,9 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import firebase from 'firebase';
 import './Profile.css';
+import SimpleModal from '../SimpleModal';
+import {withRouter} from 'react-router-dom';
+import SnackbarWarning from '../SimpleModal/SnackBarsWarning';
 
 
 const theme = createMuiTheme({
@@ -33,6 +36,7 @@ class Profile extends Component {
         monitorEmail: '',
         tutoring: [],
         monitorPhoto: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzaLMnex1QwV83TBQgxLTaoDAQlFswsYy62L3mO4Su-CMkk3jX',
+        showWarning: false,
     }
     
 
@@ -41,8 +45,10 @@ class Profile extends Component {
         let token = {}
         firebase.auth().onAuthStateChanged(user =>{
             if(user){
+                
                 firebase.auth().currentUser.getIdToken().then(function(idToken){
                     token["access_token"] = idToken;
+                    console.log(user);
                 })
               
                 axios.post(process.env.REACT_APP_GATEWAY+"/get_user/", token).then(user=>{
@@ -50,7 +56,8 @@ class Profile extends Component {
                     this.setState({monitorName:userData["name"], monitorCourse:userData["course"], tutoring:userData["monitoring"], photo:userData["photo"]}) 
                 });  
             }else{
-                
+                console.log("entrou no else")
+                this.setState({ showWarning: true });
             }     
         })
     }
@@ -64,9 +71,12 @@ class Profile extends Component {
           } else {
             photoUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzaLMnex1QwV83TBQgxLTaoDAQlFswsYy62L3mO4Su-CMkk3jX"
           }
-        console.log(this.state);
+        
         return(
             <div style={{overflowX:'hidden'}}>
+                <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center">
+                    {this.state.showWarning? <SnackbarWarning warning={"Faça o login para acessar"} router={""}/>:null}
+                </Grid>
                 <div style={{overflowX:'hidden'}} >
                     <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
                         <AppBar/>    
