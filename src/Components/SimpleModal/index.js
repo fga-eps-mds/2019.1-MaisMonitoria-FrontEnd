@@ -5,7 +5,7 @@ import Modal from '@material-ui/core/Modal';
 import {withRouter} from 'react-router-dom';
 import { Button,Grid} from '@material-ui/core' ;
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import SnackBarSucess from '../SimpleModal/Snackbars.sucess';
+import CustomizedSnackbars from '../SimpleModal/SnackbarsSucess';
 
 
 const theme = createMuiTheme({
@@ -55,8 +55,8 @@ class SimpleModal extends React.Component {
         >
           <div style={this.getModalStyle()} >
           <MuiThemeProvider theme={theme}>
-            <Grid container alignContent="center"  justify="center" direction="row" spacing={24} alignItems="center" style={{marginTop: 25}}>
-              <SnackBarSucess error={title} routersucess={router}/>:null}
+            <Grid container direction="row" alignContent="center"  justify="center" spacing={24} alignItems="flex-start" style={{marginTop: 10}}>
+              <CustomizedSnackbars sucess={title} router={router}></CustomizedSnackbars>
             </Grid>
           </MuiThemeProvider>
           </div>

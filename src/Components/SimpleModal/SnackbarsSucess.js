@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Button from '@material-ui/core/Button';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import ErrorIcon from '@material-ui/icons/Error';
 import InfoIcon from '@material-ui/icons/Info';
@@ -13,6 +12,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 import WarningIcon from '@material-ui/icons/Warning';
 import { withStyles } from '@material-ui/core/styles';
+import {withRouter} from 'react-router-dom';
 
 
 const variantIcon = {
@@ -62,19 +62,6 @@ function MySnackbarContent(props) {
           {message}
         </span>
       }
-      action={[
-        
-        <IconButton
-          key="close"
-          aria-label="Close"
-          color="inherit"
-          className={classes.close}
-          onClick={onClose}
-        >
-          <CloseIcon className={classes.icon} />
-        </IconButton>,
-        
-      ]}
       {...other}
     />
   );
@@ -96,51 +83,44 @@ const styles2 = theme => ({
   },
 });
 
-class SnackBarSucess extends React.Component {
+class CustomizedSnackbars extends React.Component {
   state = {
-    open: false,
+    open: true,
   };
 
-  handleClick = () => {
-    this.setState({ open: true });
-  };
-
-  handleClose = (event, reason) => {
-    const { routersucess } = this.props;
-    this.setState({ open: false });
-    this.props.history.push(routersucess)
+  handleClose = () => {
+    const { router } = this.props;
+    this.props.history.push(router);
     this.setState({ open: false });
   };
 
   render() {
-    const { classes,error } = this.props;
+    const { sucess } = this.props;
 
     return (
       <div>
         <Snackbar
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-          }}
+          
           open={this.state.open}
-          autoHideDuration={100}
+          autoHideDuration={2000}
           onClose={this.handleClose}
         >
+          <MySnackbarContentWrapper
+            onClose={this.handleClose}
+            variant="success"
+            message={sucess}
+          />
         </Snackbar>
-        <MySnackbarContentWrapper
-          variant="success"
-          className={classes.margin}
-          message={error}
-        />
       </div>
     );
   }
 }
 
-SnackBarSucess.propTypes = {
+CustomizedSnackbars.propTypes = {
   classes: PropTypes.object.isRequired,
-  error: PropTypes.string.isRequired,
-  routersucess: PropTypes.string.isRequired,
+  router: PropTypes.string.isRequired,
+  sucess: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles2)(SnackBarSucess);
+CustomizedSnackbars = withRouter(CustomizedSnackbars);
+export default withStyles(styles2)(CustomizedSnackbars);

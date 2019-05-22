@@ -112,7 +112,7 @@ class RegisterMonitoring extends Component {
                         
                     </Grid>
                     <Grid>
-                        <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center">
+                        <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="flex-start">
                             {this.state.showError? <CustomizedSnackbars error={this.state.error}/>:null}
                         </Grid>
                     </Grid>

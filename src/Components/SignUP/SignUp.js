@@ -15,6 +15,7 @@ import SimpleModal from '../SimpleModal';
 import CustomizedSnackbars from '../SimpleModal/Snackbars';
 import Typography from '@material-ui/core/Typography';
 
+
 const theme = createMuiTheme({
   palette: {
     primary: { main: lightBlue[50] },
@@ -37,16 +38,20 @@ class SignUp extends Component {
     error: "",
     errorName: false,
     errorSenha: "",
-    showModal: true,
+    showModal: false,
     showError: false,
-    
   };
-  
+
   register = (e) => {
     const { user } = this.state;  
     var userData = {}
-   
 
+    this.setState({ error: "" });
+    this.setState({ errorName: false });
+    this.setState({ errorSenha: "" });
+    this.setState({ showError: false });
+  
+    
     if(!validateRegister(user))//valida se os campos obrigatorios foram preenchidos
     {
       this.setState({ error: "Digite os campos obrigatórios" });
@@ -60,6 +65,7 @@ class SignUp extends Component {
       this.setState({ errorName: true });
       this.setState({ error: "Nome inválido" });
       this.setState({ showError: true });
+      
       e.preventDefault();
       return;
     }
@@ -67,8 +73,9 @@ class SignUp extends Component {
     if(!validatepasswordconfirm(user))
     {
       this.setState({ errorSenha: true });
-      this.setState({ error: "Nome inválido" });
+      this.setState({ error: "Senha não coincide" });
       this.setState({ showError: true });
+    
       e.preventDefault();
       return;
     }
@@ -87,11 +94,10 @@ class SignUp extends Component {
       }).catch((error)=>{
         console.log(error);
         this.setState({error: errors[error.code]});
+        this.setState({ showError: true });
+        
       });
     
-   
-
-
   }
   
   render() {
