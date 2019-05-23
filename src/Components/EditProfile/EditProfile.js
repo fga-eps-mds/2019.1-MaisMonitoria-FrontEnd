@@ -6,11 +6,12 @@ import Course from './Course.js';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import firebase from 'firebase';
-import './EditProfile.css'
+import './EditProfile.css';
 import { validateEditProfile, validateName, success } from '../../Helpers/validates.js';
 import SimpleModal from '../SimpleModal';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CustomizedSnackbars from '../SimpleModal/Snackbars';
+import SnackbarWarning from '../SimpleModal/SnackBarsWarning';
 
 
 const theme = createMuiTheme({
@@ -41,7 +42,8 @@ class EditProfile extends Component {
         errorName: false,
         showError: false,
         photo: null,
-        isSignedin: false
+        isSignedin: false,
+        showWarning: false
     }
 
     componentDidMount(){
@@ -62,7 +64,10 @@ class EditProfile extends Component {
                     this.setState({name:userData["name"],course:userData["course"],email:userData["email"], photo:userData["photo"]}) 
                    
                 });  
-            }     
+            }else{
+                this.setState({ showWarning: true });
+
+            }
         })
     }
 
@@ -115,6 +120,7 @@ class EditProfile extends Component {
         
         <div style={{overflowX:'hidden'}} className="editBackground"> 
             {this.state.showModal? <SimpleModal router={"Profile"} title={'Usuario alterado com sucesso!'}  />:null}
+            {this.state.showWarning? <SnackbarWarning warning={"Faça o login para acessar"} router={""}/>:null}
             <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
                 <AppBar/>
             </Grid>   
