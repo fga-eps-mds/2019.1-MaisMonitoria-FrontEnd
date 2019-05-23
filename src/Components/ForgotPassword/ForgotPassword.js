@@ -26,7 +26,7 @@ class ForgotPassword extends Component {
     emailAddress:'',
     isAuthenticated: false,
     error: "",
-    isLoading: true
+    isLoading: false
   };
   
   forgotpassword = async (a) => {      
