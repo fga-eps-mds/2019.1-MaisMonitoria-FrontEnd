@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Button } from '@material-ui/core' ;
-import AppBar from '../AppBar/AppBar';
+import AppBarProfile from '../AppBar/AppBarProfile';
 import Card from '../Feed/Card';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import ProfileTab from '../ProfileTab/ProfileTab';
@@ -77,7 +77,7 @@ class Profile extends Component {
                 {this.state.showWarning? <SnackbarWarning warning={"Faça o login para acessar"} router={""}/>:null}
                 <div style={{overflowX:'hidden'}} >
                     <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
-                        <AppBar/>    
+                        <AppBarProfile/>    
                     </Grid>
                 </div> 
                 <div>   
