@@ -56,7 +56,7 @@ class Profile extends Component {
                     this.setState({monitorName:userData["name"], monitorCourse:userData["course"], tutoring:userData["monitoring"], photo:userData["photo"]}) 
                 });  
             }else{
-                console.log("entrou no else")
+                
                 this.setState({ showWarning: true });
             }     
         })
@@ -74,9 +74,7 @@ class Profile extends Component {
         
         return(
             <div style={{overflowX:'hidden'}}>
-                <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center">
-                    {this.state.showWarning? <SnackbarWarning warning={"Faça o login para acessar"} router={""}/>:null}
-                </Grid>
+                {this.state.showWarning? <SnackbarWarning warning={"Faça o login para acessar"} router={""}/>:null}
                 <div style={{overflowX:'hidden'}} >
                     <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
                         <AppBar/>    

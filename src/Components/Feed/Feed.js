@@ -7,10 +7,13 @@ import { Link } from 'react-router-dom';
 import './feed.css';
 import axios from 'axios';
 import firebase from 'firebase';
-
+import SnackbarWarning from '../SimpleModal/SnackBarsWarning';
 
 class TelaFeed extends Component {
-    state =  {data : []}
+    state =  {
+        data : [],
+        showWarning: false
+    }
 
     componentDidMount() {
         var token = {};
@@ -27,6 +30,8 @@ class TelaFeed extends Component {
                         this.setState({data:person})
                         console.log(this.state)
                     });
+            }else{
+                this.setState({ showWarning: true });
             }
           });
     }
@@ -34,6 +39,9 @@ class TelaFeed extends Component {
   render() {  
     return (
         <div style={{overflowX:'hidden'}} className="FeedBackground">
+            <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center">
+                {this.state.showWarning? <SnackbarWarning warning={"Faça o login para acessar"} router={""}/>:null}
+            </Grid>
             <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
                 <AppBar/>    
             </Grid> 

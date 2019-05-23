@@ -7,6 +7,9 @@ import firebase from 'firebase';
 import axios from 'axios';
 import Card from '../Feed/Card';
 import '../Feed/feed.css'
+import SimpleModal from '../SimpleModal';
+import {withRouter} from 'react-router-dom';
+import SnackbarWarning from '../SimpleModal/SnackBarsWarning';
 
 const initialState = {
     expanded: false,
@@ -18,14 +21,29 @@ class Search extends Component {
     constructor(props){
         super(props)
         this.state = initialState
+        
+    }  
+    state = {
+        
+        showWarning: false,
     }
+    
+
     reset(){
     
         this.setState(initialState)
     }
-            
+
+    componentDidMount() {   
+        firebase.auth().onAuthStateChanged(user =>{
+            if(!user){
+                this.setState({ showWarning: true });
+            }
+        })   
+    }
+
     changesearch(search) {
-        
+
             this.setState({search});
             var token = {
                 search: search,
@@ -45,9 +63,11 @@ class Search extends Component {
                             axios.post(process.env.REACT_APP_GATEWAY+"/search_tutoring/", token)
                             .then(res => {
                                 let person = res.data
-                                this.setState({data:person})    
-                            });         
-                        }
+                                this.setState({data:person})
+   
+                            }); 
+                                     
+                        }   
                   });
             }
     }
@@ -63,6 +83,7 @@ class Search extends Component {
 
     return (
         <div style={{overflowX:'hidden'}} >
+                {this.state.showWarning? <SnackbarWarning warning={"Faça o login para acessar"} router={""}/>:null}
             <Grid container  justify="center" alignItems="stretch">
                 <AppBar changesearch={this.changesearch.bind(this)} search={this.state.search}/>
             </Grid>
