@@ -39,9 +39,7 @@ class TelaFeed extends Component {
   render() {  
     return (
         <div style={{overflowX:'hidden'}} className="FeedBackground">
-            <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center">
                 {this.state.showWarning? <SnackbarWarning warning={"Faça o login para acessar"} router={""}/>:null}
-            </Grid>
             <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
                 <AppBar/>    
             </Grid> 

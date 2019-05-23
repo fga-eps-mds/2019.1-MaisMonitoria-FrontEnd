@@ -23,10 +23,10 @@ class Search extends Component {
         this.state = initialState
         
     }  
-    state = {
+    // state = {
         
-        showWarning: false,
-    }
+    //     showWarning: false,
+    // }
     
 
     reset(){
@@ -34,13 +34,13 @@ class Search extends Component {
         this.setState(initialState)
     }
 
-    componentDidMount() {   
-        firebase.auth().onAuthStateChanged(user =>{
-            if(!user){
-                this.setState({ showWarning: true });
-            }
-        })   
-    }
+    // componentDidMount() {   
+    //     firebase.auth().onAuthStateChanged(user =>{
+    //         if(!user){
+    //             this.setState({ showWarning: true });
+    //         }
+    //     })   
+    // }
 
     changesearch(search) {
 
