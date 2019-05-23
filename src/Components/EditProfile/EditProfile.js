@@ -41,7 +41,6 @@ class EditProfile extends Component {
         errorName: false,
         showError: false,
         photo: null,
-        isSignedin: false
     }
 
     componentDidMount(){
@@ -67,10 +66,7 @@ class EditProfile extends Component {
     }
 
     editProfile = (e) =>{
-        var aux = {}
         const header = { headers: { 'content-type': 'multipart/form-data' } }
-        let token = {}
-        const {name,course,email,error} = this.state;
         const fd = new FormData();
 
         fd.append('name', this.state.name)

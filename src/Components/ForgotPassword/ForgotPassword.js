@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Grid, Button, TextField } from '@material-ui/core' ;
-import logo from '../../Assets/img/Logo.png';
-import './ForgotPassword.css';
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import  {Link}  from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
@@ -9,6 +7,9 @@ import firebase from 'firebase';
 import {withRouter} from 'react-router-dom';
 
 import Spinner from '../Loader/Spinner';
+import logo from '../../Assets/img/Logo.png';
+import './ForgotPassword.css';
+
 
 const theme = createMuiTheme({
   palette: {
@@ -73,10 +74,11 @@ class ForgotPassword extends Component {
           </Grid>
           {this.state.error && <p>{this.state.error}</p>}
           </Grid>
+          {this.state.isLoading ? <Spinner />:
           <Grid container alignContent="center" justify="center" direction="column" spacing={16} alignItems="center" style={{marginTop: 25}}>
           <Grid item >
             <MuiThemeProvider theme={theme}>
-            {this.state.isLoading ? <Spinner />:null}
+            
               <Button variant="outlined" color="primary" onClick={this.forgotpassword}>
                 Enviar
               </Button>
@@ -92,6 +94,7 @@ class ForgotPassword extends Component {
             </Grid>
             
             </Grid>
+          } 
             </div>
             </Grid>  
         </div>

@@ -4,13 +4,12 @@ import { withStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import { withRouter } from 'react-router-dom'
+
 import '../Feed/feed.css';
-import RegisterMonitoring from '../RegisterMonitoring/RegisterMonitoring'
 
 const styles = theme =>({
   
   fab: {
-    margin: 0,
     top: 'auto',
     right: 20,
     bottom: 65,

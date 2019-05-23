@@ -9,7 +9,7 @@ export const validateRegister = user => {
 export const validateName = user => {
     const {name} = user;
     
-     var regex = /^[a-zA-ZéúíóáÉÚÍÓÁèùìòàçÇÈÙÌÒÀõãñÕÃÑêûîôâÊÛÎÔÂëÿüïöäËYÜÏÖÄ\-\ \s]+$/;
+     var regex = /^[a-zA-ZéúíóáÉÚÍÓÁèùìòàçÇÈÙÌÒÀõãñÕÃÑêûîôâÊÛÎÔÂëÿüïöäËYÜÏÖÄ\- \s]+$/;
      if(name.match(regex))
      {
 
@@ -25,7 +25,7 @@ export const validateName = user => {
 export const validatepasswordconfirm = user => {
     const {password,passwordconfirm} = user;
     
-     if(password != passwordconfirm) return false;
+     if(password !== passwordconfirm) return false;
 
      return true;
     

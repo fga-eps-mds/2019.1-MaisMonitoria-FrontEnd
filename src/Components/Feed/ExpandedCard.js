@@ -3,8 +3,11 @@ import { Grid, Typography,Button } from "@material-ui/core";
 import {Link} from 'react-router-dom';
 import firebase from 'firebase';
 import axios from 'axios';
+
 import AppBar from '../AppBar/AppBar.js';
 import './ExpandedCard.css'
+
+
 class ExpandedCard extends React.Component {
     
     state = {
@@ -30,7 +33,6 @@ class ExpandedCard extends React.Component {
                 axios.post(process.env.REACT_APP_GATEWAY+"/get_tutoring/", token)
                     .then(res => {
                         const person = res.data
-                        console.log(person)
                         this.setState({tutoringName:person["name"], tutoringTheme:person["subject"], tutoringDescription:person["description"],
                                       monitorName: person.monitor["name"], photo:person.monitor["photo"]}) 
                         
@@ -54,7 +56,7 @@ class ExpandedCard extends React.Component {
             <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
                 <AppBar/>    
             </Grid>
-            <Grid container justify="flex-center" direction="row" style={{paddingTop:80, paddingLeft:15,paddingBottom:15}} className="teste" >
+            <Grid container justify="center" direction="row" style={{paddingTop:80, paddingLeft:15,paddingBottom:15}} className="teste" >
                 <Grid item>                            
                     <img src={photoUrl} style={{width:140, height:140}}></img>
                 </Grid>
@@ -74,7 +76,7 @@ class ExpandedCard extends React.Component {
             <div>
                 <Grid item style={{paddingLeft:15}}> 
                     <Grid container direction="column">
-                        <Grid item justify="center">
+                        <Grid item >
                             <h1>Monitoria</h1>
                         </Grid>
                         <Grid item>

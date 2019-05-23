@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
-import SearchIcon from '@material-ui/icons/Search';
+
 import logo from '../../Assets/img/Logo.png';
 
 
@@ -20,12 +20,13 @@ const styles = theme => ({
     flexGrow: 1,
   },
   
-  search: {
+  appBar: {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
   },
+
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -40,6 +41,7 @@ const styles = theme => ({
       width: 'auto',
     },
   },
+
   searchIcon: {
     width: theme.spacing.unit * 9,
     height: '100%',
@@ -49,10 +51,12 @@ const styles = theme => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
+
   inputRoot: {
     color: 'inherit',
     width: '100%',
   },
+  
   inputInput: {
     paddingTop: theme.spacing.unit,
     paddingRight: theme.spacing.unit,
@@ -85,7 +89,7 @@ class SearchAppBar extends React.Component {
         <Toolbar>
         <img src={logo} alt="Logo" width="40" height="40"/>
 
-          <Typography className={classes.search} variant="h6" color="inherit" noWrap>
+          <Typography className={classes.appBar} variant="h6" color="inherit" noWrap>
             +Monitoria
           </Typography>
           <div className={classes.grow} />
@@ -104,13 +108,5 @@ class SearchAppBar extends React.Component {
     classes: PropTypes.object.isRequired,
   
 };
-
-// function SearchAppBar(props) {
-//   const { classes } = props;
-  
-
-// }
-
-
 
 export default withStyles(styles)(SearchAppBar);
