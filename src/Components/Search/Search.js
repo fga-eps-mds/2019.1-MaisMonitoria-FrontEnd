@@ -42,7 +42,7 @@ class Search extends Component {
             }
         })   
     }
-
+    
     changesearch(search) {
 
         this.setState({search});
