@@ -20,14 +20,13 @@ const theme = createMuiTheme({
 });
 
 
-
 class ForgotPassword extends Component {
   state = {
     
     emailAddress:'',
     isAuthenticated: false,
     error: "",
-    isLoading: false
+    isLoading: true
   };
   
   forgotpassword = async (a) => {      
@@ -41,8 +40,8 @@ class ForgotPassword extends Component {
       await firebase.auth().sendPasswordResetEmail(emailAddress)
       .then(()=>{
         this.setState({isAuthenticated: true});          
-        const rota = this.state.isAuthenticated?"/":"/ForgotPassword"
-        this.props.history.push(rota);
+        const route = this.state.isAuthenticated?"/":"/ForgotPassword"
+        this.props.history.push(route);
       }).catch(()=>{
         this.setState({ error: "Email inválido" });
       });
@@ -56,11 +55,8 @@ class ForgotPassword extends Component {
       <div className="ForgotPasswordBackground">
         <Grid container  alignContent="center" justify="center" direction="column" alignItems="center">
           <div style={{ padding: 80 }}>
-      
-      
         <Grid container  alignContent="center" justify="center" direction="column" alignItems="center" spacing={24}>
           <img src={logo} alt="Logo" />
-          
           <Grid item >
             <TextField
               id="emailTextField"
@@ -78,12 +74,10 @@ class ForgotPassword extends Component {
           <Grid container alignContent="center" justify="center" direction="column" spacing={16} alignItems="center" style={{marginTop: 25}}>
           <Grid item >
             <MuiThemeProvider theme={theme}>
-            
               <Button variant="outlined" color="primary" onClick={this.forgotpassword}>
                 Enviar
               </Button>
             </MuiThemeProvider>
-
               </Grid>
             <Grid item >
               <MuiThemeProvider theme={theme}>
