@@ -6,6 +6,9 @@ import lightBlue from '@material-ui/core/colors/lightBlue';
 import  {Link}  from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import firebase from 'firebase';
+import {withRouter} from 'react-router-dom';
+
+import Spinner from '../Loader/Spinner';
 
 const theme = createMuiTheme({
   palette: {
@@ -22,24 +25,29 @@ class ForgotPassword extends Component {
     
     emailAddress:'',
     isAuthenticated: false,
-    error: ""
+    error: "",
+    isLoading: false
   };
   
-    forgotpassword = async (a) => {      
-      const { emailAddress} = this.state;
-      if(!emailAddress){
-        this.setState({ error: "Digite o email" });
-        a.preventDefault();
+  forgotpassword = async (a) => {      
+    const { emailAddress} = this.state;
+    if(!emailAddress){
+      this.setState({ error: "Digite o email" });
+      a.preventDefault();
         
-      }else{
-        await firebase.auth().sendPasswordResetEmail(emailAddress).then(()=>{
-          this.setState({isAuthenticated: true});
-        }).catch(()=>{
-          this.setState({ error: "Email inválido" });
-          
-        });
-      };
-    }
+    }else{
+      this.setState({isLoading:true});
+      await firebase.auth().sendPasswordResetEmail(emailAddress)
+      .then(()=>{
+        this.setState({isAuthenticated: true});          
+        const rota = this.state.isAuthenticated?"/":"/ForgotPassword"
+        this.props.history.push(rota);
+      }).catch(()=>{
+        this.setState({ error: "Email inválido" });
+      });
+      this.setState({isLoading:false});  
+    };
+  }
   
 
   render() {
@@ -68,8 +76,8 @@ class ForgotPassword extends Component {
           <Grid container alignContent="center" justify="center" direction="column" spacing={16} alignItems="center" style={{marginTop: 25}}>
           <Grid item >
             <MuiThemeProvider theme={theme}>
-
-              <Button component={Link} to={this.state.isAuthenticated?"/":"/ForgotPassword"} variant="outlined" color="primary" onClick={this.forgotpassword}>
+            {this.state.isLoading ? <Spinner />:null}
+              <Button variant="outlined" color="primary" onClick={this.forgotpassword}>
                 Enviar
               </Button>
             </MuiThemeProvider>
@@ -85,12 +93,10 @@ class ForgotPassword extends Component {
             
             </Grid>
             </div>
-            </Grid>
-            
+            </Grid>  
         </div>
-      
     );   
   }
 }
 
-export default ForgotPassword;
+export default withRouter(ForgotPassword);
