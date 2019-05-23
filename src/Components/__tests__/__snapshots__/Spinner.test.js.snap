@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Spinner component Test if Spinner renders correctly 1`] = `
+<WithStyles(Grid)
+  alignItems="center"
+  container={true}
+  direction="column"
+  justify="center"
+>
+  <WithStyles(CircularProgress)
+    disableShrink={true}
+  />
+</WithStyles(Grid)>
+`;
