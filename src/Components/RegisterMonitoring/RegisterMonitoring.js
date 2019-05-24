@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Grid, Button, TextField } from '@material-ui/core' ;
-import AppBar from '../AppBar/AppBar.js';
 import axios from 'axios';
 import firebase from 'firebase';
 import { Link } from 'react-router-dom';
-import { validateRegisterMonitoring, success } from '../../Helpers/validates.js';
 import {withRouter} from 'react-router-dom';
-import SimpleModal from '../SimpleModal';
-import Typography from '@material-ui/core/Typography';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
+import { validateRegisterMonitoring, success } from '../../Helpers/validates.js';
+import AppBar from '../AppBar/AppBar.js';
+import SimpleModal from '../SimpleModal';
 import CustomizedSnackbars from '../SimpleModal/Snackbars';
 
 const theme = createMuiTheme({

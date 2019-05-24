@@ -58,7 +58,7 @@ exports[`Testing Login component Test if Login renders correctly 1`] = `
       container={true}
       direction="row"
       justify="center"
-      spacing={50}
+      spacing={40}
     />
   </WithStyles(Grid)>
   <WithStyles(Grid)

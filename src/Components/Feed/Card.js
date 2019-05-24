@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, Button, } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import { Link } from 'react-router-dom'
-import './Card.css'
 import CardContent from '@material-ui/core/CardContent';
 import { Grid, Typography } from "@material-ui/core";
 
+import './Card.css'
 
 
-const styles = theme => ({
+const styles = () => ({
   card: {
     minWidth: '100%',
   },
@@ -21,8 +21,6 @@ const styles = theme => ({
     marginTop: 5,
     marginBottom: 5,
     borderRadius: 50,
-    
-
   }
 
 });
@@ -35,9 +33,7 @@ class ContractCard extends React.Component {
     matter:'',
     id_tutoring:'',
   }
-  componentDidMount(){
-    console.log(this.props)
-  }
+
   render() {
     const { classes } = this.props;
     var photoUrl = this.props.photo;

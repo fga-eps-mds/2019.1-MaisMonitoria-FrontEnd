@@ -1,10 +1,10 @@
 
 import React, { Component } from 'react';
-import { Grid,TextField } from '@material-ui/core' ;
+import { Grid} from '@material-ui/core' ;
 import AppBar from './AppBarSearch';
-import Paper from './PaperSearch';
 import firebase from 'firebase';
 import axios from 'axios';
+
 import Card from '../Feed/Card';
 import '../Feed/feed.css'
 
