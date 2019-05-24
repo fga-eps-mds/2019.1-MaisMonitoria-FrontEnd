@@ -3,9 +3,11 @@ import { Grid, Typography,Button } from "@material-ui/core";
 import {Link} from 'react-router-dom';
 import firebase from 'firebase';
 import axios from 'axios';
-
+import Icon from '@material-ui/core/Icon';
+import IconButton from '@material-ui/core/IconButton';
 import AppBar from '../AppBar/AppBar.js';
 import './ExpandedCard.css'
+import Linke from '@material-ui/core/Link';
 
 
 class ExpandedCard extends React.Component {
@@ -16,6 +18,7 @@ class ExpandedCard extends React.Component {
         tutoringTheme: '',
         monitorName: '',
         photo: '',
+        telegram:'',
     }
 
     componentDidMount() {
@@ -34,7 +37,7 @@ class ExpandedCard extends React.Component {
                     .then(res => {
                         const person = res.data
                         this.setState({tutoringName:person["name"], tutoringTheme:person["subject"], tutoringDescription:person["description"],
-                                      monitorName: person.monitor["name"], photo:person.monitor["photo"]}) 
+                                      monitorName: person.monitor["name"], photo:person.monitor["photo"], telegram:person.monitor["telegram"]}) 
                         
                     });
             }
@@ -42,7 +45,16 @@ class ExpandedCard extends React.Component {
       
           
     }
+
+    
+        
   render() {
+
+    var texto =  this.state.telegram;
+    var er = texto;
+    texto = er.replace('@','');
+    console.log(texto);   
+        
     var photoUrl = this.state.photo;
     if( photoUrl != null ){
         photoUrl = photoUrl.replace("api-monitoria","localhost")
@@ -97,10 +109,17 @@ class ExpandedCard extends React.Component {
                                 {this.state.tutoringDescription}
                             </Typography>
                         </Grid>
+                        <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center" style={{marginTop: 25}} >
+                            <Button variant= "contained"  color="inherit" aria-label="Add an alarm">
+                              
+                            <a href={"https://"+"t.me/" + texto}>{'Telegram'}</a>  
+                                <Icon>send</Icon>
+                            </Button>                          
+                        </Grid>
                     </Grid>
                 </Grid>
             </div>
-
+              
             <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center" style={{marginTop: 25}}>
               <Grid item >
                   <Button  variant="outlined" color="primary">
