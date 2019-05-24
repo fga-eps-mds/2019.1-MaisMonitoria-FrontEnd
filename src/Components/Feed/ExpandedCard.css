@@ -6,3 +6,7 @@
 .teste{
     background-color: #eeeeee;
 }
+
+.div {
+    overflow: hidden;
+  }

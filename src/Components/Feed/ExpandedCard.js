@@ -1,14 +1,24 @@
 import React from 'react';
 import { Grid, Typography,Button } from "@material-ui/core";
-import {Link} from 'react-router-dom';
 import firebase from 'firebase';
 import axios from 'axios';
-import Icon from '@material-ui/core/Icon';
-import IconButton from '@material-ui/core/IconButton';
-import AppBar from '../AppBar/AppBar.js';
+import AppBar from './AppBar';
 import './ExpandedCard.css'
-import Linke from '@material-ui/core/Link';
 
+
+import { ReactComponent as Logo } from '../../Assets/svg/telegram.svg';
+import { ReactComponent as Like } from '../../Assets/svg/like.svg';
+import Fab from '@material-ui/core/Fab';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import {Link} from 'react-router-dom';
+
+const theme = createMuiTheme({
+    palette: {
+      primary: { main: "#44a1f2" },
+      secondary: { main: '#11cb5f' },
+    },
+    typography: { useNextVariants: true },
+});
 
 class ExpandedCard extends React.Component {
     
@@ -63,12 +73,12 @@ class ExpandedCard extends React.Component {
       }
 
     return (
-        <div style={{overflowX:'hidden'}}>
+        <div className='div'>
             
             <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
-                <AppBar/>    
-            </Grid>
-            <Grid container justify="center" direction="row" style={{paddingTop:80, paddingLeft:15,paddingBottom:15}} className="teste" >
+               <AppBar/>    
+            </Grid>            
+            <Grid container justify="center" direction="row" style={{paddingTop:80, paddingLeft:15,paddingBottom:15}} className="teste" >              
                 <Grid item>                            
                     <img src={photoUrl} style={{width:140, height:140}}></img>
                 </Grid>
@@ -81,6 +91,9 @@ class ExpandedCard extends React.Component {
                             <Typography style={{marginLeft:50}}>
                                 Nome: {this.state.monitorName}
                             </Typography>
+                        </Grid>
+                        <Grid container justify="center" direction="column" alignItems="center" alignContent="center" >
+                                                    
                         </Grid>
                     </Grid>
                 </Grid>
@@ -110,11 +123,7 @@ class ExpandedCard extends React.Component {
                             </Typography>
                         </Grid>
                         <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center" style={{marginTop: 25}} >
-                            <Button variant= "contained"  color="inherit" aria-label="Add an alarm">
-                              
-                            <a href={"https://"+"t.me/" + texto}>{'Telegram'}</a>  
-                                <Icon>send</Icon>
-                            </Button>                          
+                                                 
                         </Grid>
                     </Grid>
                 </Grid>
@@ -122,14 +131,20 @@ class ExpandedCard extends React.Component {
               
             <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center" style={{marginTop: 25}}>
               <Grid item >
-                  <Button  variant="outlined" color="primary">
-                  Requisitar monitoria
-                  </Button>
+                <MuiThemeProvider theme={theme}>
+                    <Fab color="primary" aria-label="Edit" >
+                        <Like/>
+                    </Fab>
+                </MuiThemeProvider>
               </Grid>
               <Grid item>
-                  <Button component={Link} to="/Feed" variant="outlined" color="primary" >
-                    Voltar
-                  </Button>
+                    <a href={"https://"+"t.me/" + texto}>{
+                        <MuiThemeProvider theme={theme}>
+                            <Fab color="primary" aria-label="Edit" >
+                                <Logo/>
+                            </Fab>
+                        </MuiThemeProvider>}
+                    </a>
               </Grid>
             </Grid>
         </div>
