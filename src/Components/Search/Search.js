@@ -4,12 +4,9 @@ import { Grid} from '@material-ui/core' ;
 import AppBar from './AppBarSearch';
 import firebase from 'firebase';
 import axios from 'axios';
-
 import Card from '../Feed/Card';
 import '../Feed/feed.css'
-import SimpleModal from '../SimpleModal';
-import {withRouter} from 'react-router-dom';
-import SnackbarWarning from '../SimpleModal/SnackBarsWarning';
+
 
 const initialState = {
     expanded: false,
@@ -38,7 +35,7 @@ class Search extends Component {
          firebase.auth().onAuthStateChanged(user =>{
             this.setState({isSignedIn: !!user});
              if(!user){
-                this.setState({ showWarning: true });
+                this.props.history.push('/');
             }
         })   
     }
@@ -76,7 +73,6 @@ class Search extends Component {
 
     return (
         <div style={{overflowX:'hidden'}} >
-                {this.state.showWarning? <SnackbarWarning warning={"Faça o login para acessar"} router={""}/>:null}
             <Grid container  justify="center" alignItems="stretch">
                 <AppBar changesearch={this.changesearch.bind(this)} search={this.state.search}/>
             </Grid>

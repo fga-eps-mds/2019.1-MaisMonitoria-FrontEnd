@@ -3,8 +3,8 @@ import { Grid, Button } from '@material-ui/core' ;
 import AppBarProfile from '../AppBar/AppBarProfile';
 import Card from '../Feed/Card';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Link, withRouter } from 'react-router-dom';
 import firebase from 'firebase';
 
 import AppBar from '../AppBar/AppBar';
@@ -12,8 +12,8 @@ import ProfileTab from '../ProfileTab/ProfileTab';
 
 import './Profile.css';
 import SimpleModal from '../SimpleModal';
-import {withRouter} from 'react-router-dom';
 import SnackbarWarning from '../SimpleModal/SnackBarsWarning';
+
 
 
 const theme = createMuiTheme({
@@ -60,7 +60,7 @@ class Profile extends Component {
                 });  
             }else{
                 
-                this.setState({ showWarning: true });
+                this.props.history.push('/');
             }     
         })
     }
@@ -76,7 +76,7 @@ class Profile extends Component {
           }
         return(
             <div style={{overflowX:'hidden'}}>
-                {this.state.showWarning? <SnackbarWarning warning={"Faça o login para acessar"} router={""}/>:null}
+                {/* {this.state.showWarning? <SnackbarWarning warning={"Faça o login para acessar"} router={""}/>:null} */}
                 <div style={{overflowX:'hidden'}} >
                     <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
                         <AppBarProfile/>    

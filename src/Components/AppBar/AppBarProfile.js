@@ -11,6 +11,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import {withRouter} from 'react-router-dom';
+import firebase from 'firebase';
 
 
 const styles = theme =>({
@@ -30,7 +31,7 @@ const styles = theme =>({
   },
 });
 
-const ITEM_HEIGHT = 48;
+
 
 function SimpleAppBar(props) {
   const { classes } = props;
@@ -39,15 +40,19 @@ function SimpleAppBar(props) {
   const open = Boolean(anchorEl);
   
   function handleClose() {
-    props.history.push('/');
-    setAnchorEl(null);
+    firebase.auth().signOut().then(function() {
+      props.history.push('/');
+      setAnchorEl(null);
+    }, function() {
+    });   
   }
+
+
   function handleClick(event) {
     setAnchorEl(event.currentTarget);
   }
 
   
-
   return (
 
     <div className={classes.root}>

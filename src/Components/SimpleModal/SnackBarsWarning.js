@@ -44,6 +44,14 @@ const styles1 = theme => ({
     display: 'top',
     alignItems: 'center',
   },
+  fab: {
+    margin: 0,
+    top: 0,
+    right: 4,
+    left: 'auto',
+    position: 'fixed',
+  },
+
 });
 
 function MySnackbarContent(props) {
@@ -94,9 +102,9 @@ class SnackbarWarning extends React.Component {
 
   render() {
     const { warning } = this.props;
-
+    
     return (
-      <div>
+      <div >
           
         <Snackbar
         

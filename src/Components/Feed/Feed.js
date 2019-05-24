@@ -4,17 +4,22 @@ import AppBar from '../AppBar/AppBar.js';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import firebase from 'firebase';
-import SnackbarWarning from '../SimpleModal/SnackBarsWarning';
+
 
 import Card from './Card.js';
 import ButtonSizes from '../GenericButtons/Add.js';
 import './feed.css';
+import SnackbarWarning from '../SimpleModal/SnackBarsWarning';
+
+import {withRouter} from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 
 
 class TelaFeed extends Component {
     state =  {
         data : [],
-        showWarning: false
+        showWarning: false,
     }
 
     componentDidMount() {
@@ -32,7 +37,10 @@ class TelaFeed extends Component {
                         this.setState({data:person})
                     });
             }else{
-                this.setState({ showWarning: true });
+                
+                this.props.history.push('/');
+                // this.setState({ showWarning: true });
+                
             }
           });
     }
@@ -40,7 +48,7 @@ class TelaFeed extends Component {
   render() {  
     return (
         <div style={{overflowX:'hidden'}} className="FeedBackground">
-                {this.state.showWarning? <SnackbarWarning warning={"Faça o login para acessar"} router={""}/>:null}
+                {/*  */}
             <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
                 <AppBar/>    
             </Grid> 
@@ -68,5 +76,8 @@ class TelaFeed extends Component {
     );   
   }
 }
+TelaFeed.propTypes = {
+    warning: PropTypes.bool.isRequired,
+  };
 
-export default TelaFeed;
+export default withRouter(TelaFeed);
