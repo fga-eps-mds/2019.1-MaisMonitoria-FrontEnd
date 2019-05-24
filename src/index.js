@@ -1,18 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {BrowserRouter as Router, Route,Switch} from 'react-router-dom';
+
 import App from './App';
 import TelaFeed from './Components/Feed/Feed';
 import SignUp from './Components/SignUP/SignUp';
 import ForgotPassword from './Components/ForgotPassword/ForgotPassword';
 import Search from './Components/Search/Search';
+import Tab from './Components/Tab/Tab.js';
+import ExpandedCard from './Components/Feed/ExpandedCard';
 import EditProfile from './Components/EditProfile/EditProfile';
 import RegisterMonitoring from './Components/RegisterMonitoring/RegisterMonitoring'
 import Profile from './Components/Profile/Profile'
 import * as serviceWorker from './serviceWorker';
 import './index.css';
-import {BrowserRouter as Router, Route,Switch} from 'react-router-dom';
-import Tab from './Components/Tab/Tab.js';
-import ExpandedCard from './Components/Feed/ExpandedCard';
+
 
 ReactDOM.render((
         <Router>    

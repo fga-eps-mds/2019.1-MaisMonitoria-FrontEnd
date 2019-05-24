@@ -3,10 +3,13 @@ import { Grid, Button } from '@material-ui/core' ;
 import AppBarProfile from '../AppBar/AppBarProfile';
 import Card from '../Feed/Card';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import ProfileTab from '../ProfileTab/ProfileTab';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import firebase from 'firebase';
+
+import AppBar from '../AppBar/AppBar';
+import ProfileTab from '../ProfileTab/ProfileTab';
+
 import './Profile.css';
 import SimpleModal from '../SimpleModal';
 import {withRouter} from 'react-router-dom';
@@ -71,7 +74,6 @@ class Profile extends Component {
           } else {
             photoUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzaLMnex1QwV83TBQgxLTaoDAQlFswsYy62L3mO4Su-CMkk3jX"
           }
-        
         return(
             <div style={{overflowX:'hidden'}}>
                 {this.state.showWarning? <SnackbarWarning warning={"Faça o login para acessar"} router={""}/>:null}
@@ -86,7 +88,7 @@ class Profile extends Component {
                             <img src={photoUrl} className="ProfilePic" alt={"Profile pic"} style={{width: 130,height:130, marginTop:80, marginLeft:10,}}></img>
                         </Grid>
                         <Grid item>
-                            <Grid container justify={'flex-start'} direction={'column'} alignContent={'flex-start'} alignItems={'flex-start'} spacing={24}  style={{paddingTop:100}} alignItems={'center'}>
+                            <Grid container justify={'flex-start'} direction={'column'} alignContent={'flex-start'} alignItems={'flex-start'} spacing={24}  style={{paddingTop:80}} alignItems={'center'}>
                                 <Grid item>
                                     Name: {this.state.monitorName}
                                 </Grid>

@@ -7,15 +7,12 @@ import Typography from "@material-ui/core/Typography";
 import logo from '../../Assets/img/Logo.png';
 import { Grid } from "@material-ui/core";
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
- 
+import {withRouter} from 'react-router-dom';
+
+
 const styles = {
   root: {
     position: '',
@@ -35,6 +32,7 @@ function SimpleAppBar(props) {
   const open = Boolean(anchorEl);
   
   function handleClose() {
+    props.history.push('/');
     setAnchorEl(null);
   }
   function handleClick(event) {
@@ -90,4 +88,5 @@ SimpleAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
+SimpleAppBar = withRouter(SimpleAppBar);
 export default withStyles(styles)(SimpleAppBar);

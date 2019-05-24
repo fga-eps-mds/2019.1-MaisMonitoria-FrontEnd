@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import './Login.css';
 import { Grid, Button, TextField,} from '@material-ui/core' ;
-import logo from '../../Assets/img/Logo.png';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import  {Link}  from 'react-router-dom';
 import firebase from 'firebase';
-import Typography from '@material-ui/core/Typography';
+
 import CustomizedSnackbars from '../SimpleModal/Snackbars';
+import logo from '../../Assets/img/Logo.png';
+import './Login.css';
+
 
 const theme = createMuiTheme({
   palette: {
@@ -82,7 +83,7 @@ class Login extends Component {
               })}
               />
           </Grid>
-          <Grid container alignContent="center" justify="center" direction="row" spacing={50} alignItems="center">
+          <Grid container alignContent="center" justify="center" direction="row" spacing={40} alignItems="center">
               {this.state.showError? <CustomizedSnackbars error={this.state.error}/>:null}
           </Grid>
         </Grid>

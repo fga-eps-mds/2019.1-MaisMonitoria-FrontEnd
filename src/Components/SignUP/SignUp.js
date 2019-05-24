@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import { Grid, Button, TextField } from '@material-ui/core' ;
-import logo from '../../Assets/img/Logo.png';
-import './SignUp.css';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import {Link} from 'react-router-dom';
 import firebase from 'firebase';
-import Course from '../EditProfile/Course'
 import axios from 'axios';
-import { validateRegister, success, validateName, validatepasswordconfirm } from '../../Helpers/validates';
-import { errors } from '../../Helpers/errors';
 import {withRouter} from 'react-router-dom';
+
+import Course from '../EditProfile/Course'
+import { errors } from '../../Helpers/errors';
 import SimpleModal from '../SimpleModal';
 import CustomizedSnackbars from '../SimpleModal/Snackbars';
-import Typography from '@material-ui/core/Typography';
+import logo from '../../Assets/img/Logo.png';
+import { validateRegister, success, validateName, validatepasswordconfirm } from '../../Helpers/validates';
+import './SignUp.css';
 
 
 const theme = createMuiTheme({
@@ -31,7 +31,6 @@ class SignUp extends Component {
       email: '',
       password: '',
       name: '',
-      course: '',
       passwordconfirm: '',
       course: '',
       photo: null,
@@ -47,7 +46,6 @@ class SignUp extends Component {
 
   register = async (e) => {
     const { user } = this.state;  
-    var userData = {}
     var aux = {}
 
     this.setState({ error: "" });
@@ -88,22 +86,20 @@ class SignUp extends Component {
         
         firebase.auth().currentUser.getIdToken().then((idToken)=> {  
 
-          aux = { 'token': idToken }
-          console.log(idToken);          
+          aux = { 'token': idToken };        
           });
         }).catch((error)=>{
           this.setState({error: errors[error.code]});
           this.setState({ showError: true });
 
     });
+
     const fd = new FormData();
     fd.append('access_token', aux['token'])
     fd.append('name', user.name)
     fd.append('course', user.course)
     fd.append('photo', user.photo)
     const header = { headers: { 'content-type': 'multipart/form-data' } }
-    console.log('fd',fd);
-    console.log('header',header);
 
     await axios.post(process.env.REACT_APP_GATEWAY+"/create_user/", fd, header).then((x)=>{
       if(success(x)) {

@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { Grid, Button, TextField } from '@material-ui/core' ;
-import logo from '../../Assets/img/Logo.png';
-import './ForgotPassword.css';
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import  {Link}  from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import firebase from 'firebase';
+import {withRouter} from 'react-router-dom';
+
+import Spinner from '../Loader/Spinner';
+import logo from '../../Assets/img/Logo.png';
+import './ForgotPassword.css';
+
 
 const theme = createMuiTheme({
   palette: {
@@ -16,30 +20,34 @@ const theme = createMuiTheme({
 });
 
 
-
 class ForgotPassword extends Component {
   state = {
     
     emailAddress:'',
     isAuthenticated: false,
-    error: ""
+    error: "",
+    isLoading: false
   };
   
-    forgotpassword = async (a) => {      
-      const { emailAddress} = this.state;
-      if(!emailAddress){
-        this.setState({ error: "Digite o email" });
-        a.preventDefault();
+  forgotpassword = async (a) => {      
+    const { emailAddress} = this.state;
+    if(!emailAddress){
+      this.setState({ error: "Digite o email" });
+      a.preventDefault();
         
-      }else{
-        await firebase.auth().sendPasswordResetEmail(emailAddress).then(()=>{
-          this.setState({isAuthenticated: true});
-        }).catch(()=>{
-          this.setState({ error: "Email inválido" });
-          
-        });
-      };
-    }
+    }else{
+      this.setState({isLoading:true});
+      await firebase.auth().sendPasswordResetEmail(emailAddress)
+      .then(()=>{
+        this.setState({isAuthenticated: true});          
+        const route = this.state.isAuthenticated?"/":"/ForgotPassword"
+        this.props.history.push(route);
+      }).catch(()=>{
+        this.setState({ error: "Email inválido" });
+      });
+      this.setState({isLoading:false});  
+    };
+  }
   
 
   render() {
@@ -47,11 +55,8 @@ class ForgotPassword extends Component {
       <div className="ForgotPasswordBackground">
         <Grid container  alignContent="center" justify="center" direction="column" alignItems="center">
           <div style={{ padding: 80 }}>
-      
-      
         <Grid container  alignContent="center" justify="center" direction="column" alignItems="center" spacing={24}>
           <img src={logo} alt="Logo" />
-          
           <Grid item >
             <TextField
               id="emailTextField"
@@ -65,15 +70,14 @@ class ForgotPassword extends Component {
           </Grid>
           {this.state.error && <p>{this.state.error}</p>}
           </Grid>
+          {this.state.isLoading ? <Spinner />:
           <Grid container alignContent="center" justify="center" direction="column" spacing={16} alignItems="center" style={{marginTop: 25}}>
           <Grid item >
             <MuiThemeProvider theme={theme}>
-
-              <Button component={Link} to={this.state.isAuthenticated?"/":"/ForgotPassword"} variant="outlined" color="primary" onClick={this.forgotpassword}>
+              <Button variant="outlined" color="primary" onClick={this.forgotpassword}>
                 Enviar
               </Button>
             </MuiThemeProvider>
-
               </Grid>
             <Grid item >
               <MuiThemeProvider theme={theme}>
@@ -84,13 +88,12 @@ class ForgotPassword extends Component {
             </Grid>
             
             </Grid>
+          } 
             </div>
-            </Grid>
-            
+            </Grid>  
         </div>
-      
     );   
   }
 }
 
-export default ForgotPassword;
+export default withRouter(ForgotPassword);

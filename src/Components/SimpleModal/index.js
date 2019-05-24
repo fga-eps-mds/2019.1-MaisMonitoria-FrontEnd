@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
-import {withRouter} from 'react-router-dom';
-import { Button,Grid} from '@material-ui/core' ;
+import { withRouter } from 'react-router-dom';
+import { Grid } from '@material-ui/core' ;
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
 import CustomizedSnackbars from '../SimpleModal/SnackbarsSucess';
 
 

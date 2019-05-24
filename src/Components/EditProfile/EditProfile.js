@@ -72,10 +72,7 @@ class EditProfile extends Component {
     }
 
     editProfile = (e) =>{
-        var aux = {}
         const header = { headers: { 'content-type': 'multipart/form-data' } }
-        let token = {}
-        const {name,course,email,error} = this.state;
         const fd = new FormData();
 
         fd.append('name', this.state.name)

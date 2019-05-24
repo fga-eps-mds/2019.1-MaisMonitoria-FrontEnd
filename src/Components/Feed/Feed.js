@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { Grid } from '@material-ui/core' ;
 import AppBar from '../AppBar/AppBar.js';
-import Card from './Card.js';
-import ButtonSizes from '../GenericButtons/Add.js';
 import { Link } from 'react-router-dom';
-import './feed.css';
 import axios from 'axios';
 import firebase from 'firebase';
 import SnackbarWarning from '../SimpleModal/SnackBarsWarning';
+
+import Card from './Card.js';
+import ButtonSizes from '../GenericButtons/Add.js';
+import './feed.css';
+
 
 class TelaFeed extends Component {
     state =  {
@@ -28,7 +30,6 @@ class TelaFeed extends Component {
                     .then(res => {
                         const person = res.data
                         this.setState({data:person})
-                        console.log(this.state)
                     });
             }else{
                 this.setState({ showWarning: true });

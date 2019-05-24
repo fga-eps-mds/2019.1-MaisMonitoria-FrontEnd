@@ -15,7 +15,7 @@ exports[`renders correctly 1`] = `
       className="SearchAppBar-root-98"
     >
       <header
-        className="MuiPaper-root-113 MuiPaper-elevation4-119 MuiAppBar-root-104 MuiAppBar-positionStatic-108 MuiAppBar-colorPrimary-111"
+        className="MuiPaper-root-114 MuiPaper-elevation4-120 MuiAppBar-root-105 MuiAppBar-positionStatic-109 MuiAppBar-colorPrimary-112"
         style={
           Object {
             "background": "#1DA1F2",
@@ -23,7 +23,7 @@ exports[`renders correctly 1`] = `
         }
       >
         <div
-          className="MuiToolbar-root-140 MuiToolbar-regular-142 MuiToolbar-gutters-141"
+          className="MuiToolbar-root-141 MuiToolbar-regular-143 MuiToolbar-gutters-142"
         >
           <img
             alt="Logo"
@@ -32,7 +32,7 @@ exports[`renders correctly 1`] = `
             width="40"
           />
           <h6
-            className="MuiTypography-root-144 MuiTypography-h6-161 MuiTypography-colorInherit-173 MuiTypography-noWrap-170 SearchAppBar-search-100"
+            className="MuiTypography-root-145 MuiTypography-h6-162 MuiTypography-colorInherit-174 MuiTypography-noWrap-171 SearchAppBar-appBar-100"
           >
             +Monitoria
           </h6>
@@ -40,14 +40,14 @@ exports[`renders correctly 1`] = `
             className="SearchAppBar-grow-99"
           />
           <div
-            className="SearchAppBar-search-100"
+            className="SearchAppBar-search-101"
           >
             <div
-              className="MuiInputBase-root-180"
+              className="MuiInputBase-root-181"
               onClick={[Function]}
             >
               <input
-                className="MuiInputBase-input-190"
+                className="MuiInputBase-input-191"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
