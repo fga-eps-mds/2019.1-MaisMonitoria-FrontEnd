@@ -13,7 +13,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import {withRouter} from 'react-router-dom';
 
 
-const styles = {
+const styles = theme =>({
   root: {
     position: '',
     width: '100%',  
@@ -21,7 +21,14 @@ const styles = {
     zIndex: 100,
     
   },
-};
+  fab: {
+    margin: 0,
+    top: 0,
+    right: 4,
+    left: 'auto',
+    position: 'fixed',
+  },
+});
 
 const ITEM_HEIGHT = 48;
 
@@ -52,7 +59,7 @@ function SimpleAppBar(props) {
             +Monitoria
           </Typography>
           {auth && (
-            <div>
+            <div className={classes.fab}>
               <IconButton
                 aria-owns={open ? 'long-menu' : undefined}
                 aria-haspopup="true"
@@ -64,14 +71,8 @@ function SimpleAppBar(props) {
               <Menu
                 id="long-menu"
                 anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                PaperProps={{
-                  style: {
-                    maxHeight: ITEM_HEIGHT * 48,
-                    width: 100,
-                  },
-                }}
+                open={open}                
+                
               >
                 <MenuItem onClick={handleClose}>Logout</MenuItem>
               </Menu>
