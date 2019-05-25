@@ -24,7 +24,7 @@ const styles = theme =>({
   },
   fab: {
     margin: 0,
-    top: 0,
+    top: 8,
     right: 4,
     left: 'auto',
     position: 'fixed',
@@ -38,13 +38,18 @@ function SimpleAppBar(props) {
   const [auth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+ 
   
   function handleClose() {
     firebase.auth().signOut().then(function() {
       props.history.push('/');
-      setAnchorEl(null);
+      
     }, function() {
     });   
+  }
+  function handleClose2() {
+    setAnchorEl(null);
+     
   }
 
 
@@ -76,10 +81,13 @@ function SimpleAppBar(props) {
               <Menu
                 id="long-menu"
                 anchorEl={anchorEl}
-                open={open}                
+                open={open}            
+                onClose={handleClose2}
+
+                                
                 
               >
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                <MenuItem onClick={handleClose}>Sair</MenuItem>
               </Menu>
             </div>
           )}

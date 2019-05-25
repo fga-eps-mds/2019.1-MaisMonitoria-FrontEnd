@@ -65,8 +65,7 @@ class EditProfile extends Component {
                    
                 });  
             }else{
-                this.setState({ showWarning: true });
-
+                this.props.history.push('/');
             }
         })
     }
@@ -117,7 +116,6 @@ class EditProfile extends Component {
         
         <div style={{overflowX:'hidden'}} className="editBackground"> 
             {this.state.showModal? <SimpleModal router={"Profile"} title={'Usuario alterado com sucesso!'}  />:null}
-            {this.state.showWarning? <SnackbarWarning warning={"Faça o login para acessar"} router={""}/>:null}
             <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
                 <AppBar/>
             </Grid>   
