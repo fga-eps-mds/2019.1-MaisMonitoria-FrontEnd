@@ -12,7 +12,8 @@
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
     "firebase": "^5.9.4",
-    "react-test-renderer": "^16.8.6"
+    "react-test-renderer": "^16.8.6",
+    "sinon": "^7.3.2"
   },
   "scripts": {
     "start": "react-scripts start",

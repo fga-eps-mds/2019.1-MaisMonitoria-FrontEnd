@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test if AppBarrWithBack renders correctly 1`] = `undefined`;
+
+exports[`Testing AppBarWithBack component Test if AppBarWithBack renders correctly 1`] = `
+<SimpleAppBar
+  classes={
+    Object {
+      "root": "SimpleAppBar-root-1",
+    }
+  }
+/>
+`;

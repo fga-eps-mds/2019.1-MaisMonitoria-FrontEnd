@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Test if Course renders correctly 1`] = `undefined`;
+
+exports[`Test if Profile renders correctly 1`] = `undefined`;

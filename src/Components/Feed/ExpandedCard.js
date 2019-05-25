@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, Typography,Button } from "@material-ui/core";
 import firebase from 'firebase';
 import axios from 'axios';
-import AppBar from './AppBar';
+import AppBar from './AppBarWithBack';
 import './ExpandedCard.css'
 
 
