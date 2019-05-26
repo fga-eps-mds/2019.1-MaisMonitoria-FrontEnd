@@ -24,7 +24,6 @@ class TelaFeed extends Component {
 
     componentDidMount() {
         var token = {};
-
         firebase.auth().onAuthStateChanged(user =>{
             this.setState({isSignedIn: !!user});
             if(user){
@@ -39,8 +38,6 @@ class TelaFeed extends Component {
             }else{
                 
                 this.props.history.push('/');
-                // this.setState({ showWarning: true });
-                
             }
           });
     }
@@ -79,5 +76,6 @@ class TelaFeed extends Component {
 TelaFeed.propTypes = {
     warning: PropTypes.bool.isRequired,
   };
+
 
 export default withRouter(TelaFeed);
