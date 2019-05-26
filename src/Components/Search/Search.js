@@ -4,9 +4,9 @@ import { Grid} from '@material-ui/core' ;
 import AppBar from './AppBarSearch';
 import firebase from 'firebase';
 import axios from 'axios';
-
 import Card from '../Feed/Card';
 import '../Feed/feed.css'
+
 
 const initialState = {
     expanded: false,
@@ -18,38 +18,48 @@ class Search extends Component {
     constructor(props){
         super(props)
         this.state = initialState
-    }
+        
+    }  
+     state = {
+        
+         showWarning: false,
+     }
+    
+
     reset(){
     
         this.setState(initialState)
     }
-            
+
+    componentDidMount() {   
+         firebase.auth().onAuthStateChanged(user =>{
+            this.setState({isSignedIn: !!user});
+             if(!user){
+                this.props.history.push('/');
+            }
+        })   
+    }
+    
     changesearch(search) {
-        
-            this.setState({search});
-            var token = {
-                search: search,
-            };
-            if(!search ){
-                setTimeout(function() { 
-                this.reset()
-            }.bind(this), 500)
-            }
-            else{
-                firebase.auth().onAuthStateChanged(user =>{
-                    this.setState({isSignedIn: !!user});
-                    if(user){
-                        firebase.auth().currentUser.getIdToken().then(function(idToken){
-                            token["access_token"] = idToken;
-                        });
-                            axios.post(process.env.REACT_APP_GATEWAY+"/search_tutoring/", token)
-                            .then(res => {
-                                let person = res.data
-                                this.setState({data:person})    
-                            });         
-                        }
-                  });
-            }
+
+        this.setState({search});
+        var token = {
+            search: search,
+        };
+        if(!search ){
+            setTimeout(function() { 
+            this.reset()
+        }.bind(this), 500)
+        }
+                      
+            firebase.auth().currentUser.getIdToken().then(function(idToken){
+                token["access_token"] = idToken;
+                });
+            axios.post(process.env.REACT_APP_GATEWAY+"/search_tutoring/", token)
+            .then(res => {
+                let person = res.data
+                this.setState({data:person})
+                 });                                           
     }
     
   render() {
