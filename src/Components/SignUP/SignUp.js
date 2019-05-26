@@ -33,6 +33,7 @@ class SignUp extends Component {
       name: '',
       passwordconfirm: '',
       course: '',
+      telegram:'',
       photo: null,
     },
     isAuthenticated: false,
@@ -99,6 +100,7 @@ class SignUp extends Component {
     fd.append('name', user.name)
     fd.append('course', user.course)
     fd.append('photo', user.photo)
+    fd.append('telegram', user.telegram)
     const header = { headers: { 'content-type': 'multipart/form-data' } }
 
     await axios.post(process.env.REACT_APP_GATEWAY+"/create_user/", fd, header).then((x)=>{
@@ -146,9 +148,7 @@ class SignUp extends Component {
                 margin="normal"
                 placeholder="@"
                 type="text"
-                onChange={(event)=>this.setState({
-                  telegram: event.target.value,
-                })}
+                onChange={(event)=>this.setState({ ...this.state, user: { ...this.state.user, telegram: event.target.value } })}
                 />
             </Grid>
             <Grid item>

@@ -1,7 +1,7 @@
 export const validateRegister = user => {
-    const {email,password,course,name} = user;
+    const {email,password,course,name, telegram} = user;
     
-    if(email === '' || password === '' || name === '' || course === '') return false;
+    if(email === '' || password === '' || name === '' || course === '' || telegram === '') return false;
     return true;
     
 }
