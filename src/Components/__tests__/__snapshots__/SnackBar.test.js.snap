@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Snackbars component Test if Snackbars renders correctly 1`] = `
+<CustomizedSnackbars
+  classes={
+    Object {
+      "margin": "CustomizedSnackbars-margin-1",
+    }
+  }
+/>
+`;

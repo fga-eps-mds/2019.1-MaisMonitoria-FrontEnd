@@ -37,13 +37,21 @@ const styles1 = theme => ({
     fontSize: 20,
   },
   iconVariant: {
-    opacity: 0.9,
+    opacity: 1.1,
     marginRight: theme.spacing.unit,
   },
   message: {
-    display: 'flex',
+    display: 'top',
     alignItems: 'center',
   },
+  fab: {
+    margin: 0,
+    top: 0,
+    right: 4,
+    left: 'auto',
+    position: 'fixed',
+  },
+
 });
 
 function MySnackbarContent(props) {
@@ -81,7 +89,7 @@ const styles2 = theme => ({
   },
 });
 
-class CustomizedSnackbars extends React.Component {
+class SnackbarWarning extends React.Component {
   state = {
     open: true,
   };
@@ -93,20 +101,22 @@ class CustomizedSnackbars extends React.Component {
   };
 
   render() {
-    const { sucess } = this.props;
-
+    const { warning } = this.props;
+    
     return (
-      <div>
-        <Snackbar
+      <div >
           
-          open={this.state.open}
-          autoHideDuration={2000}
-          onClose={this.handleClose}
+        <Snackbar
+        
+        open={this.state.open}
+        autoHideDuration={2000}
+        onClose={this.handleClose}
         >
           <MySnackbarContentWrapper
+            
             onClose={this.handleClose}
-            variant="success"
-            message={sucess}
+            variant="warning"
+            message={warning}
           />
         </Snackbar>
       </div>
@@ -114,11 +124,11 @@ class CustomizedSnackbars extends React.Component {
   }
 }
 
-CustomizedSnackbars.propTypes = {
+SnackbarWarning.propTypes = {
   classes: PropTypes.object.isRequired,
   router: PropTypes.string.isRequired,
-  sucess: PropTypes.string.isRequired,
+  warning: PropTypes.string.isRequired,
 };
 
-CustomizedSnackbars = withRouter(CustomizedSnackbars);
-export default withStyles(styles2)(CustomizedSnackbars);
+SnackbarWarning = withRouter(SnackbarWarning);
+export default withStyles(styles2)(SnackbarWarning);

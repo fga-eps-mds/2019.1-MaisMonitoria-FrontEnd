@@ -6,11 +6,12 @@ import Course from './Course.js';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import firebase from 'firebase';
-import './EditProfile.css'
+import './EditProfile.css';
 import { validateEditProfile, validateName, success } from '../../Helpers/validates.js';
 import SimpleModal from '../SimpleModal';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CustomizedSnackbars from '../SimpleModal/Snackbars';
+import SnackbarWarning from '../SimpleModal/SnackBarsWarning';
 
 
 const theme = createMuiTheme({
@@ -41,6 +42,8 @@ class EditProfile extends Component {
         errorName: false,
         showError: false,
         photo: null,
+        isSignedin: false,
+        showWarning: false
     }
 
     componentDidMount(){
@@ -58,10 +61,12 @@ class EditProfile extends Component {
               
                 axios.post(process.env.REACT_APP_GATEWAY+"/get_user/", token).then(user=>{
                     userData = user.data;
-                    this.setState({name:userData["name"],course:userData["course"],email:userData["email"], photo:userData["photo"]}) 
+                    this.setState({name:userData["name"], telegram:userData["telegram"], course:userData["course"],email:userData["email"], photo:userData["photo"]}) 
                    
                 });  
-            }     
+            }else{
+                this.props.history.push('/');
+            }
         })
     }
 
@@ -73,7 +78,7 @@ class EditProfile extends Component {
         fd.append('course', this.state.course)
         fd.append('email', this.state.email)
         fd.append('photo', this.state.photo)
-        
+        fd.append('telegram', this.state.telegram)
 
         this.setState({ showError: false });
         this.setState({ errorName: false });

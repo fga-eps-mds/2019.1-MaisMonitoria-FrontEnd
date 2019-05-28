@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import { Grid, Button } from '@material-ui/core' ;
+import AppBarProfile from '../AppBar/AppBarProfile';
+import Card from '../Feed/Card';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Link, withRouter } from 'react-router-dom';
 import firebase from 'firebase';
 
 import AppBar from '../AppBar/AppBar';
-import Card from '../Feed/Card';
 import ProfileTab from '../ProfileTab/ProfileTab';
 
 import './Profile.css';
+import SimpleModal from '../SimpleModal';
+import SnackbarWarning from '../SimpleModal/SnackBarsWarning';
+
 
 
 const theme = createMuiTheme({
@@ -35,6 +39,7 @@ class Profile extends Component {
         monitorEmail: '',
         tutoring: [],
         monitorPhoto: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzaLMnex1QwV83TBQgxLTaoDAQlFswsYy62L3mO4Su-CMkk3jX',
+        showWarning: false,
     }
     
 
@@ -43,14 +48,19 @@ class Profile extends Component {
         let token = {}
         firebase.auth().onAuthStateChanged(user =>{
             if(user){
+                
                 firebase.auth().currentUser.getIdToken().then(function(idToken){
                     token["access_token"] = idToken;
+                    console.log(user);
                 })
               
                 axios.post(process.env.REACT_APP_GATEWAY+"/get_user/", token).then(user=>{
                     userData = user.data;
                     this.setState({monitorName:userData["name"], monitorCourse:userData["course"], tutoring:userData["monitoring"], photo:userData["photo"]}) 
                 });  
+            }else{
+                
+                this.props.history.push('/');
             }     
         })
     }
@@ -66,9 +76,10 @@ class Profile extends Component {
           }
         return(
             <div style={{overflowX:'hidden'}}>
+                {/* {this.state.showWarning? <SnackbarWarning warning={"Faça o login para acessar"} router={""}/>:null} */}
                 <div style={{overflowX:'hidden'}} >
                     <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
-                        <AppBar/>    
+                        <AppBarProfile/>    
                     </Grid>
                 </div> 
                 <div>   

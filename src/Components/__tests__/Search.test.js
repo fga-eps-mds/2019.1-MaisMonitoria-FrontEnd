@@ -5,7 +5,16 @@ import toJson from 'enzyme-to-json';
 import Adapter from 'enzyme-adapter-react-16';
 import Enzyme from 'enzyme';
 import renderer from 'react-test-renderer';
+import firebase from 'firebase';
 
+firebase.initializeApp({
+  apiKey: '...',
+  authDomain: '...',
+  databaseURL: '...',
+  projectId: '...',
+  storageBucket: '...',
+  messagingSenderId: '...',
+});
 
 Enzyme.configure({adapter: new Adapter()});
 

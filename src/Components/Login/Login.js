@@ -10,7 +10,10 @@ import Spinner from '../Loader/Spinner';
 import CustomizedSnackbars from '../SimpleModal/Snackbars';
 import logo from '../../Assets/img/Logo.png';
 import './Login.css';
+import SnackBarsWarning from '../SimpleModal/SnackBarsWarning';
+import '../Feed/Feed.js';
 
+// console.log({warning});
 
 const theme = createMuiTheme({
   palette: {
@@ -35,8 +38,9 @@ class Login extends Component {
     isLoading: false
   };
   
-
+  
   login = async (e) => {
+    
     
     const { email, password } = this.state;
     if(!email || !password){

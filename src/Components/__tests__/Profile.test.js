@@ -16,10 +16,9 @@ firebase.initializeApp({
 
 const profile = jest.fn();
 
-
-  it('Test if Course renders correctly', () =>{
-    const tree = renderer.create(
-      <Router><Profile profile={profile}/></Router>
-      )
-      expect(toJson(tree)).toMatchSnapshot()
-  });
+it('Test if Profile renders correctly', () =>{
+  const tree = renderer.create(
+    <Router><Profile profile={profile}/></Router>
+    )
+    expect(toJson(tree)).toMatchSnapshot()
+});

@@ -1,5 +1,5 @@
 import React from 'react';
-import SignUp from '../SignUP/SignUp';
+import AppBar from '../Feed/AppBarWithBack';
 import toJson from 'enzyme-to-json';
 import renderer from 'react-test-renderer';
 import { MemoryRouter as Router } from 'react-router-dom';
@@ -14,11 +14,12 @@ firebase.initializeApp({
   messagingSenderId: '...',
 });
 
-const signUp = jest.fn();
+const appBar = jest.fn();
 
-it('Test if SignUp renders correctly', () =>{
-  const tree = renderer.create(
-    <Router><SignUp signUp={signUp}/></Router>
-    )
-    expect(toJson(tree)).toMatchSnapshot()
-});
+
+  it('Test if Course renders correctly', () =>{
+    const tree = renderer.create(
+      <Router><AppBar appBar={appBar}/></Router>
+      )
+      expect(toJson(tree)).toMatchSnapshot()
+  });
