@@ -10,6 +10,8 @@ import Spinner from '../Loader/Spinner';
 import logo from '../../Assets/img/Logo.png';
 import './ForgotPassword.css';
 
+import CustomizedSnackbars from '../SimpleModal/Snackbars';
+
 
 const theme = createMuiTheme({
   palette: {
@@ -19,20 +21,23 @@ const theme = createMuiTheme({
   typography: { useNextVariants: true },
 });
 
-
 class ForgotPassword extends Component {
   state = {
     
     emailAddress:'',
     isAuthenticated: false,
     error: "",
-    isLoading: false
+    isLoading: false,
+    showError: false,
   };
   
   forgotpassword = async (a) => {      
     const { emailAddress} = this.state;
+    this.setState({ showError: false });
+
     if(!emailAddress){
       this.setState({ error: "Digite o email" });
+      this.setState({ showError: true });
       a.preventDefault();
         
     }else{
@@ -44,12 +49,12 @@ class ForgotPassword extends Component {
         this.props.history.push(route);
       }).catch(()=>{
         this.setState({ error: "Email inválido" });
+        this.setState({ showError: true });
       });
       this.setState({isLoading:false});  
     };
   }
   
-
   render() {
     return (
       <div className="ForgotPasswordBackground">
@@ -68,7 +73,7 @@ class ForgotPassword extends Component {
               })}
               />
           </Grid>
-          {this.state.error && <p>{this.state.error}</p>}
+            {this.state.showError? <CustomizedSnackbars error={this.state.error}/>:null}
           </Grid>
           {this.state.isLoading ? <Spinner />:
           <Grid container alignContent="center" justify="center" direction="column" spacing={16} alignItems="center" style={{marginTop: 25}}>
