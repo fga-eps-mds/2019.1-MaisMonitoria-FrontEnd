@@ -11,7 +11,7 @@ import logo from '../../Assets/img/Logo.png';
 import './ForgotPassword.css';
 
 import CustomizedSnackbars from '../SimpleModal/Snackbars';
-
+import SimpleModal from '../SimpleModal';
 
 const theme = createMuiTheme({
   palette: {
@@ -29,6 +29,7 @@ class ForgotPassword extends Component {
     error: "",
     isLoading: false,
     showError: false,
+    showModal: false,
   };
   
   forgotpassword = async (a) => {      
@@ -45,8 +46,9 @@ class ForgotPassword extends Component {
       await firebase.auth().sendPasswordResetEmail(emailAddress)
       .then(()=>{
         this.setState({isAuthenticated: true});          
-        const route = this.state.isAuthenticated?"/":"/ForgotPassword"
-        this.props.history.push(route);
+        // const route = this.state.isAuthenticated?"/":"/ForgotPassword"
+        // this.props.history.push(route);
+        this.setState({ showModal: true });
       }).catch(()=>{
         this.setState({ error: "Email inválido" });
         this.setState({ showError: true });
@@ -58,6 +60,7 @@ class ForgotPassword extends Component {
   render() {
     return (
       <div className="ForgotPasswordBackground">
+        {this.state.showModal? <SimpleModal router={""} title={'Solicitação foi enviada para o email!'}  />:null}
         <Grid container  alignContent="center" justify="center" direction="column" alignItems="center">
           <div style={{ padding: 80 }}>
         <Grid container  alignContent="center" justify="center" direction="column" alignItems="center" spacing={24}>
