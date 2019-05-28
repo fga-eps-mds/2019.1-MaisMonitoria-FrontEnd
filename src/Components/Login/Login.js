@@ -10,10 +10,8 @@ import Spinner from '../Loader/Spinner';
 import CustomizedSnackbars from '../SimpleModal/Snackbars';
 import logo from '../../Assets/img/Logo.png';
 import './Login.css';
-import SnackBarsWarning from '../SimpleModal/SnackBarsWarning';
 import '../Feed/Feed.js';
 
-// console.log({warning});
 
 const theme = createMuiTheme({
   palette: {
@@ -51,7 +49,7 @@ class Login extends Component {
       this.setState({ isLoading: true });
       await firebase.auth().signInWithEmailAndPassword(email, password).then((user)=>{
         this.setState({ isAuthenticated: true });
-        const route = this.state.isAuthenticated?"/":"/Login"
+        const route = this.state.isAuthenticated?"/Feed":"/"
         this.props.history.push(route);
       }).catch((except)=>{
         this.setState({ error: "Email ou Senha inválidos." });
@@ -101,7 +99,7 @@ class Login extends Component {
               <Grid  container alignContent="center" justify="center" direction="column" spacing={24} alignItems="center" style={{marginTop: 25}}>
                 <Grid item >
                   <MuiThemeProvider theme={theme}>
-                    <Button component={Link} to={this.state.isAuthenticated?"/Feed":"/"} variant="outlined" color="primary" onClick={this.login}>
+                    <Button variant="outlined" color="primary" onClick={this.login}>
                         Login
                     </Button>
                   </MuiThemeProvider>
@@ -125,4 +123,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);
