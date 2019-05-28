@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 import firebase from 'firebase';
 import axios from 'axios';
 import {withRouter} from 'react-router-dom';
+import Spinner from '../Loader/Spinner';
 
 import Course from '../EditProfile/Course'
 import { errors } from '../../Helpers/errors';
@@ -42,9 +43,9 @@ class SignUp extends Component {
     errorSenha: "",
     showModal: false,
     showError: false,
-    
+    isLoading: false
   };
-
+  
   register = async (e) => {
     const { user } = this.state;  
     var aux = {}
@@ -53,7 +54,6 @@ class SignUp extends Component {
     this.setState({ errorName: false });
     this.setState({ errorSenha: "" });
     this.setState({ showError: false });
-  
     
     if(!validateRegister(user))//valida se os campos obrigatorios foram preenchidos
     {
@@ -83,17 +83,16 @@ class SignUp extends Component {
       return;
     }
     
-    await firebase.auth().createUserWithEmailAndPassword(user.email, user.password).then(()=>{
-        
+    this.setState({ isLoading: true });
+    await firebase.auth().createUserWithEmailAndPassword(user.email, user.password).then(()=>{      
         firebase.auth().currentUser.getIdToken().then((idToken)=> {  
-
           aux = { 'token': idToken };        
-          });
-        }).catch((error)=>{
+        });
+    }).catch((error)=>{
           this.setState({error: errors[error.code]});
           this.setState({ showError: true });
-
     });
+    this.setState({ isLoading: false });
 
     const fd = new FormData();
     fd.append('access_token', aux['token'])
@@ -108,17 +107,17 @@ class SignUp extends Component {
         this.setState({showModal:true});
       }
     });
-  
   }
+
   render() {
     return (
       <div className="SignUpBackground" style={{overflowY:'scroll'}}>
-      {this.state.showModal? <SimpleModal router={""} title={'Usuario criado com sucesso!'}  />:null}
+        {this.state.showModal? <SimpleModal router={""} title={'Usuario criado com sucesso!'}  />:null}
         <Grid style={{paddingLeft:10}}>
           <Grid container alignContent="center" justify="center" direction="column" alignItems="center" spacing={8}>
             <img src={logo} alt="Logo" width="120" height="120"/>
           </Grid>
-          <Grid container alignContent="center" justify="center" direction="column" alignItems="center" spacing={24}>
+          <Grid container alignContent="center" justify="center" direction="column" alignItems="center" spacing={24}>         
             <Grid item >
               <TextField 
               error = {this.state.errorName}
@@ -128,7 +127,7 @@ class SignUp extends Component {
               margin="normal"
               onChange={(event)=>this.setState({ ...this.state, user: { ...this.state.user, name: event.target.value } })}
               />
-            </Grid>
+            </Grid>          
             <Grid item >
               <TextField
                 required= "true"
@@ -138,10 +137,9 @@ class SignUp extends Component {
                 type="email"
                 onChange={(event)=>this.setState({ ...this.state, user: { ...this.state.user, email: event.target.value } })}
                 />
-            </Grid>
+            </Grid>            
             <Grid item >
               <TextField
-                
                 required= "true"
                 id="telegramTextField"
                 label="Telegram"
@@ -150,11 +148,10 @@ class SignUp extends Component {
                 type="text"
                 onChange={(event)=>this.setState({ ...this.state, user: { ...this.state.user, telegram: event.target.value } })}
                 />
-            </Grid>
+            </Grid>            
             <Grid item>
                 <Course action={(course)=>{this.setState({...this.state,user: {...this.state.user, course}})}}/>
-            </Grid>
-                    
+            </Grid>            
             <Grid item >
               <TextField
                 error = {this.state.errorSenha }
@@ -165,7 +162,7 @@ class SignUp extends Component {
                 type="password"
                 onChange={(event)=>this.setState({ ...this.state, user: { ...this.state.user, password: event.target.value } })}
                 />
-            </Grid>
+            </Grid>            
             <Grid item >
               <TextField
                 error = {this.state.errorSenha }
@@ -186,7 +183,6 @@ class SignUp extends Component {
                 onChange={(event)=>this.setState({
                   photo: event.target.files[0],
                 })}
-                
               /> 
               <label htmlFor="raised-button-file"> 
               <MuiThemeProvider theme={theme}>
@@ -196,11 +192,12 @@ class SignUp extends Component {
               </MuiThemeProvider>
               </label>  
             </Grid>
-
-            </Grid>
-            <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center">
-              {this.state.showError? <CustomizedSnackbars error={this.state.error}/>:null}
-            </Grid>
+          </Grid>
+          <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center">
+            {this.state.showError? <CustomizedSnackbars error={this.state.error}/>:null}
+          </Grid>
+          
+          { this.state.isLoading ? <Spinner />:
             <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center" style={{marginTop: 25}}>
               <Grid item >
                 <MuiThemeProvider theme={theme}>
@@ -216,11 +213,11 @@ class SignUp extends Component {
                   </Button>
                 </MuiThemeProvider>
               </Grid>
-        
             </Grid>
-          </Grid>
-            
-        </div>
+          }
+
+        </Grid>
+      </div>
     );   
   }
 }
