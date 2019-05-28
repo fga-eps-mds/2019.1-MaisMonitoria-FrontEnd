@@ -10,8 +10,9 @@ import Search from './Components/Search/Search';
 import Tab from './Components/Tab/Tab.js';
 import ExpandedCard from './Components/Feed/ExpandedCard';
 import EditProfile from './Components/EditProfile/EditProfile';
-import RegisterMonitoring from './Components/RegisterMonitoring/RegisterMonitoring'
-import Profile from './Components/Profile/Profile'
+import EditMonitoring from './Components/EditMonitoring/EditMonitoring';
+import RegisterMonitoring from './Components/RegisterMonitoring/RegisterMonitoring';
+import Profile from './Components/Profile/Profile';
 import * as serviceWorker from './serviceWorker';
 import './index.css';
 
@@ -25,6 +26,7 @@ ReactDOM.render((
                         <Route path="/RegisterMonitoring" component={RegisterMonitoring}/>
                         <Route path="/EditProfile" component={EditProfile}/>
                         <Route path="/expandedcard/:id_tutoring" component={ExpandedCard}/>
+                        <Route path="/EditMonitoring" component={EditMonitoring}/>
                         <div>
                             <Route path="/Feed" component={TelaFeed}/>
                             <Route path="/Search" component={Search}/>  
@@ -33,8 +35,7 @@ ReactDOM.render((
                                 <Tab/>            
                             </div>
                         </div>               
-                    </Switch>
-                    
+                    </Switch>                
         </Router>
 
 ), document.getElementById('root'));
