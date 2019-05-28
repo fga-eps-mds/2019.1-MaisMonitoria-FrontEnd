@@ -82,11 +82,7 @@ function SimpleAppBar(props) {
                 id="long-menu"
                 anchorEl={anchorEl}
                 open={open}            
-                onClose={handleClose2}
-
-                                
-                
-              >
+                onClose={handleClose2}>
                 <MenuItem onClick={handleClose}>Sair</MenuItem>
               </Menu>
             </div>

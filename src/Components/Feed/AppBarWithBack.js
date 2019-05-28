@@ -5,7 +5,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import logo from '../../Assets/img/Logo.png';
-import { Grid, Button } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 
  
 import { ReactComponent as Back } from '../../Assets/svg/arrow-left.svg';
@@ -62,5 +62,4 @@ SimpleAppBar.propTypes = {
 };
 
 document.body.classList.add("no-sroll")
-
 export default withStyles(styles)(SimpleAppBar);
