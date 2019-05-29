@@ -6,6 +6,8 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import axios from 'axios';
 import { Link, withRouter } from 'react-router-dom';
 import firebase from 'firebase';
+import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 
 import AppBar from '../AppBar/AppBar';
 import ProfileTab from '../ProfileTab/ProfileTab';
@@ -29,17 +31,33 @@ const theme = createMuiTheme({
           },
         },
     },
+
+  });
+  const styles = () => ({
+   
+  
+    perfil: {
+      width:120,
+      height:120,
+      marginLeft: 10,
+      marginTop: 70,
+      marginBottom: 5,
+      borderRadius: 70,
+    }
+  
   });
 
 class Profile extends Component {
 
-    state = {   
+    state = { 
+    
         monitorName:'',
         monitorCourse: '',
         monitorEmail: '',
         tutoring: [],
         monitorPhoto: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzaLMnex1QwV83TBQgxLTaoDAQlFswsYy62L3mO4Su-CMkk3jX',
-        showWarning: false,
+        showWarning: false
+        
     }
     
 
@@ -67,6 +85,7 @@ class Profile extends Component {
 
     render(){
 
+        const { classes } = this.props;
         var photoUrl = this.state.photo
 
         if( photoUrl != null ){
@@ -85,7 +104,7 @@ class Profile extends Component {
                 <div>   
                     <Grid container justify={'flex-start'} direction={'row'} alignContent={'center'} spacing={24} alignItems={'center'}>
                         <Grid item>
-                            <img src={photoUrl} className="ProfilePic" alt={"Profile pic"} style={{width: 130,height:130, marginTop:80, marginLeft:10,}}></img>
+                            <img className={classes.perfil} src={photoUrl} ></img>
                         </Grid>
                         <Grid item>
                             <Grid container justify={'flex-start'} direction={'column'} alignContent={'flex-start'} alignItems={'flex-start'} spacing={24}  style={{paddingTop:80}} alignItems={'center'}>
@@ -126,4 +145,8 @@ class Profile extends Component {
     }
 }
 
-export default Profile;
+Profile.propTypes = {
+    classes: PropTypes.object.isRequired,
+  };
+
+  export default withStyles(styles)(Profile);

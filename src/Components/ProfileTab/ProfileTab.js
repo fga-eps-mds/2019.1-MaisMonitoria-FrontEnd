@@ -25,6 +25,8 @@ class ProfileTab extends React.Component {
 
   handleChange = (event, value) => {
     this.setState({ value });
+    
+    
   };
 
   render() {
@@ -40,8 +42,7 @@ class ProfileTab extends React.Component {
           centered
         >
           <Tab label="A ministrar" />
-          <Tab label="A assistir" disabled />
-          <Tab label="Historico"disabled />
+          <Tab label="Curtidas"  />
         </Tabs>
         </MuiThemeProvider>
       </Paper>
