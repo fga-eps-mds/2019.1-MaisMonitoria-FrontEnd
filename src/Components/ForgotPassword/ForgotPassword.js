@@ -75,31 +75,30 @@ class ForgotPassword extends Component {
               emailAddress: event.target.value,
               })}
               />
-          </Grid>
-            {this.state.showError? <CustomizedSnackbars error={this.state.error}/>:null}
-          </Grid>
-          {this.state.isLoading ? <Spinner />:
-          <Grid container alignContent="center" justify="center" direction="column" spacing={16} alignItems="center" style={{marginTop: 25}}>
-          <Grid item >
-            <MuiThemeProvider theme={theme}>
-              <Button variant="outlined" color="primary" onClick={this.forgotpassword}>
-                Enviar
-              </Button>
-            </MuiThemeProvider>
               </Grid>
-            <Grid item >
-              <MuiThemeProvider theme={theme}>
-                <Button component={Link} to="/" variant="outlined" color="primary">
-                  Voltar
-                </Button>
-              </MuiThemeProvider>
+              {this.state.showError? <CustomizedSnackbars error={this.state.error}/>:null}
             </Grid>
-            
-            </Grid>
-          } 
-            </div>
-            </Grid>  
-        </div>
+            {this.state.isLoading ? <Spinner />:
+              <Grid container alignContent="center" justify="center" direction="column" spacing={16} alignItems="center" style={{marginTop: 25}}>
+                <Grid item >
+                  <MuiThemeProvider theme={theme}>
+                    <Button variant="outlined" color="primary" onClick={this.forgotpassword}>
+                      Enviar
+                    </Button>
+                  </MuiThemeProvider>
+                </Grid>
+                <Grid item >
+                  <MuiThemeProvider theme={theme}>
+                    <Button component={Link} to="/" variant="outlined" color="primary">
+                      Voltar
+                    </Button>
+                  </MuiThemeProvider>
+                </Grid>
+              </Grid>
+            } 
+          </div>
+        </Grid>  
+      </div>
     );   
   }
 }

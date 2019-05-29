@@ -63,7 +63,6 @@ class ExpandedCard extends React.Component {
     var texto =  this.state.telegram;
     var er = texto;
     texto = er.replace('@','');
-    console.log(texto);   
         
     var photoUrl = this.state.photo;
     if( photoUrl != null ){
