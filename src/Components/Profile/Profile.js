@@ -8,13 +8,14 @@ import { Link, withRouter } from 'react-router-dom';
 import firebase from 'firebase';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
+import Typography from '@material-ui/core/Typography';
+
 
 import AppBar from '../AppBar/AppBar';
 import ProfileTab from '../ProfileTab/ProfileTab';
 
 import './Profile.css';
-import SimpleModal from '../SimpleModal';
-import SnackbarWarning from '../SimpleModal/SnackBarsWarning';
+
 
 
 
@@ -109,10 +110,15 @@ class Profile extends Component {
                         <Grid item>
                             <Grid container justify={'flex-start'} direction={'column'} alignContent={'flex-start'} alignItems={'flex-start'} spacing={24}  style={{paddingTop:80}} alignItems={'center'}>
                                 <Grid item>
+                                <Typography component="h5" variant="h5">
                                     Name: {this.state.monitorName}
+                                </Typography>
+
                                 </Grid>
                                 <Grid item>
+                                <Typography component="h5" variant="h5">
                                     Curso: {this.state.monitorCourse}
+                                </Typography>
                                 </Grid>
                                 <Grid item>
                                     <MuiThemeProvider theme={theme}>

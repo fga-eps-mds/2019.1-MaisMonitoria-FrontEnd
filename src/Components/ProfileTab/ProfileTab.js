@@ -3,6 +3,8 @@ import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+
 
 const theme = createMuiTheme({
   palette: {
@@ -41,8 +43,8 @@ class ProfileTab extends React.Component {
           variant="fullWidth"
           centered
         >
-          <Tab label="A ministrar" />
-          <Tab label="Curtidas"  />
+          <Tab value="1" label="A ministrar" />
+          <Tab value="2" label="Curtidas"  />
         </Tabs>
         </MuiThemeProvider>
       </Paper>
