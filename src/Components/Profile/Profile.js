@@ -51,7 +51,6 @@ class Profile extends Component {
                 
                 firebase.auth().currentUser.getIdToken().then(function(idToken){
                     token["access_token"] = idToken;
-                    console.log(user);
                 })
               
                 axios.post(process.env.REACT_APP_GATEWAY+"/get_user/", token).then(user=>{

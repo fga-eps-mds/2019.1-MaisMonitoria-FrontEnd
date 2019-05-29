@@ -55,43 +55,42 @@ class ForgotPassword extends Component {
       <div className="ForgotPasswordBackground">
         <Grid container  alignContent="center" justify="center" direction="column" alignItems="center">
           <div style={{ padding: 80 }}>
-        <Grid container  alignContent="center" justify="center" direction="column" alignItems="center" spacing={24}>
-          <img src={logo} alt="Logo" />
-          <Grid item >
-            <TextField
-              id="emailTextField"
-              label="Email"
-              margin="normal"
-              value={this.state.emailAddress}
-              onChange={(event)=>this.setState({
-              emailAddress: event.target.value,
-              })}
-              />
-          </Grid>
-          {this.state.error && <p>{this.state.error}</p>}
-          </Grid>
-          {this.state.isLoading ? <Spinner />:
-          <Grid container alignContent="center" justify="center" direction="column" spacing={16} alignItems="center" style={{marginTop: 25}}>
-          <Grid item >
-            <MuiThemeProvider theme={theme}>
-              <Button variant="outlined" color="primary" onClick={this.forgotpassword}>
-                Enviar
-              </Button>
-            </MuiThemeProvider>
+            <Grid container  alignContent="center" justify="center" direction="column" alignItems="center" spacing={24}>
+              <img src={logo} alt="Logo" />
+              <Grid item >
+                <TextField
+                  id="emailTextField"
+                  label="Email"
+                  margin="normal"
+                  value={this.state.emailAddress}
+                  onChange={(event)=>this.setState({
+                  emailAddress: event.target.value,
+                  })}
+                  />
               </Grid>
-            <Grid item >
-              <MuiThemeProvider theme={theme}>
-                <Button component={Link} to="/" variant="outlined" color="primary">
-                  Voltar
-                </Button>
-              </MuiThemeProvider>
+              {this.state.error && <p>{this.state.error}</p>}
             </Grid>
-            
-            </Grid>
-          } 
-            </div>
-            </Grid>  
-        </div>
+            {this.state.isLoading ? <Spinner />:
+              <Grid container alignContent="center" justify="center" direction="column" spacing={16} alignItems="center" style={{marginTop: 25}}>
+                <Grid item >
+                  <MuiThemeProvider theme={theme}>
+                    <Button variant="outlined" color="primary" onClick={this.forgotpassword}>
+                      Enviar
+                    </Button>
+                  </MuiThemeProvider>
+                </Grid>
+                <Grid item >
+                  <MuiThemeProvider theme={theme}>
+                    <Button component={Link} to="/" variant="outlined" color="primary">
+                      Voltar
+                    </Button>
+                  </MuiThemeProvider>
+                </Grid>
+              </Grid>
+            } 
+          </div>
+        </Grid>  
+      </div>
     );   
   }
 }
