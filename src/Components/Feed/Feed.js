@@ -50,7 +50,7 @@ class TelaFeed extends Component {
                 <AppBar/>    
             </Grid> 
             <div>
-            <Grid container justify="center" direction="column" alignItems="center" spacing={8} style={{paddingTop:70}}>
+            <Grid container justify="center" direction="column" alignItems="center" style={{paddingTop:70,marginTop:10, paddingBottom:40}}>
                 {this.state.data.map(function(item, i){
                     return (
                         <Grid item key={i} lg={12} sm={12} container style={{paddingBottom:3}} >

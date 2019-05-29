@@ -51,11 +51,12 @@ const theme = createMuiTheme({
 class Profile extends Component {
 
     state = { 
-    
+        
         monitorName:'',
         monitorCourse: '',
         monitorEmail: '',
         tutoring: [],
+        likes: [],
         monitorPhoto: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzaLMnex1QwV83TBQgxLTaoDAQlFswsYy62L3mO4Su-CMkk3jX',
         showWarning: false
         
@@ -133,17 +134,12 @@ class Profile extends Component {
                 </div>
                 <div className="profileBackground">
                     <Grid container justify={'center'} alignContent={'center'} alignItems={'center'} >
-                        <Grid item xs={12} style={{marginTop:10}} className="profileBackground">
-                            <ProfileTab/>
+                        <Grid item xs={12} style={{marginTop:10, paddingBottom:40}} className="profileBackground">
+                            <ProfileTab
+                                tutoring={this.state.tutoring.map(item => ({ ...item, photoUrl }))}
+                                // likes={this.state.likes.map(item => ({ ...item, photoUrl }))}
+                            />
                         </Grid>
-                        {this.state.tutoring.map(function(item, i){
-                            return (
-                                <Grid item key={i} lg={12} sm={12} container >
-                                    <Card name_monitoring={item.name} matter={item.subject} photo={photoUrl}
-                                           description={item.description} id_tutoring={item.id_tutoring_session}/>
-                                </Grid>
-                            );
-                        })}
                     </Grid>
                 </div>
             </div>

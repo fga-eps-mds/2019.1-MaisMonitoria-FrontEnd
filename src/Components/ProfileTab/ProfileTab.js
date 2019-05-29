@@ -4,6 +4,16 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import { Grid } from '@material-ui/core' ;
+import Card from '../Feed/Card';
+
+function TabContainer(props) {
+  return (
+    <Typography component="div" style={{ padding: 8 * 3 }}>
+      {props.children}
+    </Typography>
+  );
+}
 
 
 const theme = createMuiTheme({
@@ -26,9 +36,8 @@ class ProfileTab extends React.Component {
   };
 
   handleChange = (event, value) => {
+    console.log(value);
     this.setState({ value });
-    
-    
   };
 
   render() {
@@ -43,9 +52,22 @@ class ProfileTab extends React.Component {
           variant="fullWidth"
           centered
         >
-          <Tab value="1" label="A ministrar" />
-          <Tab value="2" label="Curtidas"  />
+          <Tab value={0} label="A ministrar" />
+          <Tab value={1} label="Curtidas"  />
         </Tabs>
+        {this.state.value === 0 &&
+          <TabContainer>
+            {this.props.tutoring.map(function(item, i){
+                return (
+                  <Grid item key={i} lg={12} sm={12} container >
+                      <Card name_monitoring={item.name} matter={item.subject} photo={item.photoUrl}
+                          description={item.description} id_tutoring={item.id_tutoring_session}/>
+                  </Grid>
+                );
+            })}
+          </TabContainer>
+        }
+        {this.state.value === 1 && <TabContainer>Curtidas</TabContainer>}
         </MuiThemeProvider>
       </Paper>
     );
