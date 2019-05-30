@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 
 import AppBar from '../AppBar/AppBar';
 import ProfileTab from '../ProfileTab/ProfileTab';
+import Tab from '../Tab/Tab';
 
 import './Profile.css';
 
@@ -143,6 +144,7 @@ class Profile extends Component {
                             />
                         </Grid>
                     </Grid>
+                    <Tab/>
                 </div>
             </div>
         )

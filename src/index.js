@@ -7,35 +7,45 @@ import TelaFeed from './Components/Feed/Feed';
 import SignUp from './Components/SignUP/SignUp';
 import ForgotPassword from './Components/ForgotPassword/ForgotPassword';
 import Search from './Components/Search/Search';
-import Tab from './Components/Tab/Tab.js';
+
 import ExpandedCard from './Components/Feed/ExpandedCard';
 import EditProfile from './Components/EditProfile/EditProfile';
 import RegisterMonitoring from './Components/RegisterMonitoring/RegisterMonitoring'
 import Profile from './Components/Profile/Profile'
 import * as serviceWorker from './serviceWorker';
+import NotFound from './Notfound'
 import './index.css';
+
+
 
 
 ReactDOM.render((
         <Router>    
                     <Switch> 
                         <Route exact path="/" component={App}/>
-                        <Route path="/SignUp" component={SignUp}/>
+                        <Route path="/SignUp" component={SignUp}/>                        
                         <Route path="/ForgotPassword" component={ForgotPassword}/>   
                         <Route path="/RegisterMonitoring" component={RegisterMonitoring}/>
                         <Route path="/EditProfile" component={EditProfile}/>
-                        <Route path="/expandedcard/:id_tutoring" component={ExpandedCard}/>
-                        <div>
+                        <Route path="/expandedcard/:id_tutoring" component={ExpandedCard}/> 
+                        
                             <Route path="/Feed" component={TelaFeed}/>
                             <Route path="/Search" component={Search}/>  
                             <Route path="/Profile" component={Profile}/>
-                            <div>
-                                <Tab/>            
-                            </div>
-                        </div>               
+                            
+                                           
+                           
+                            
+                        
+                        <Route path="*" component={NotFound}/>          
                     </Switch>
                     
+                    
+                    
+                    
         </Router>
+        
 
 ), document.getElementById('root'));
+
 serviceWorker.register()

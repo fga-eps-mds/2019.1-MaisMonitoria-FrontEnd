@@ -6,7 +6,7 @@ import firebase from 'firebase';
 import axios from 'axios';
 import Card from '../Feed/Card';
 import '../Feed/feed.css'
-
+import Tab from '../Tab/Tab';
 
 const initialState = {
     expanded: false,
@@ -87,6 +87,7 @@ class Search extends Component {
                     );
                 })}
             </Grid>
+            <Tab/>
         </div>
     );   
   }
