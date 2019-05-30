@@ -10,7 +10,7 @@ import { ReactComponent as Logo } from '../../Assets/svg/telegram.svg';
 import { ReactComponent as Like } from '../../Assets/svg/like.svg';
 import Fab from '@material-ui/core/Fab';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import {Link} from 'react-router-dom';
+import {Link } from 'react-router-dom';
 
 const theme = createMuiTheme({
     palette: {
@@ -29,6 +29,7 @@ class ExpandedCard extends React.Component {
         monitorName: '',
         photo: '',
         telegram:'',
+        id_monitor:'',
     }
 
     componentDidMount() {
@@ -59,7 +60,7 @@ class ExpandedCard extends React.Component {
     
         
   render() {
-
+    
     var texto =  this.state.telegram;
     var er = texto;
     texto = er.replace('@','');

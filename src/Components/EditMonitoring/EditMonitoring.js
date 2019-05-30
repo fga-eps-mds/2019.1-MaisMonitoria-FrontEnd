@@ -13,7 +13,6 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CustomizedSnackbars from '../SimpleModal/Snackbars';
 import SnackbarWarning from '../SimpleModal/SnackBarsWarning';
 
-
 const theme = createMuiTheme({
     palette: {
       primary: { main: '#44a1f2' },
@@ -41,29 +40,34 @@ class EditMonitoring extends Component {
         showWarning: false
     }
 
-    // componentDidMount(){
-    //     this.getUserData();
-    // }
+    componentDidMount(){
+        this.getTutoringData();
+    }
 
-    // getUserData = () =>{
-    //     let userData = {};
-    //     let token = {}
-    //     firebase.auth().onAuthStateChanged(user =>{
-    //         if(user){
-    //             firebase.auth().currentUser.getIdToken().then(function(idToken){
-    //                 token["access_token"] = idToken;
-    //             })
-              
-    //             axios.post(process.env.REACT_APP_GATEWAY+"/get_user/", token).then(user=>{
-    //                 userData = user.data;
-    //                 this.setState({name:userData["name"], telegram:userData["telegram"], course:userData["course"],email:userData["email"], photo:userData["photo"]}) 
-                   
-    //             });  
-    //         }else{
-    //             this.props.history.push('/');
-    //         }
-    //     })
-    // }
+     getTutoringData = () =>{
+        var token = {};
+        var idTutoring = this.props.match.params.id_tutoring;
+
+        firebase.auth().onAuthStateChanged(user =>{
+            // this.setState({isSignedIn: !!user});
+            if(user){
+                firebase.auth().currentUser.getIdToken().then(function(idToken){
+                    token["access_token"] = idToken;
+                    token["id_tutoring_session"] = idTutoring;
+                });
+                
+                axios.post(process.env.REACT_APP_GATEWAY+"/get_tutoring/", token)
+                    .then(res => {
+                        const person = res.data
+                        this.setState({tutoringName:person["name"], tutoringTheme:person["subject"], 
+                                       tutoringDescription:person["description"]}) 
+                        
+                    });
+            }else{
+                this.props.history.push('/');
+            }
+        });
+    }
 
     // EditMonitoring = (e) =>{
     //     const header = { headers: { 'content-type': 'multipart/form-data' } }
@@ -74,25 +78,7 @@ class EditMonitoring extends Component {
     //     fd.append('email', this.state.email)
     //     fd.append('photo', this.state.photo)
     //     fd.append('telegram', this.state.telegram)
-
-    //     this.setState({ showError: false });
-    //     this.setState({ errorName: false });
-    //     if(!validateEditMonitoring(this.state))
-    //     {
-    //         this.setState({ error: "Digite os campos obrigatórios" });
-    //         this.setState({ showError: true });
-    //         e.preventDefault();
-    //         return; 
-    //     }
-
-    //     if(!validateName(this.state)){
-    //         this.setState({ errorName: true });
-    //         this.setState({ error: "Nome inválido" });
-    //         this.setState({ showError: true });
-    //         e.preventDefault();
-    //         return;
-    //     }
-
+ 
     //     firebase.auth().onAuthStateChanged(user =>{
     //         if(user){
     //             firebase.auth().currentUser.getIdToken().then(function(idToken){  

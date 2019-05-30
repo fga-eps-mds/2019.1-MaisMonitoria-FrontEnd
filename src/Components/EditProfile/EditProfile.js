@@ -11,7 +11,6 @@ import { validateEditProfile, validateName, success } from '../../Helpers/valida
 import SimpleModal from '../SimpleModal';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CustomizedSnackbars from '../SimpleModal/Snackbars';
-import SnackbarWarning from '../SimpleModal/SnackBarsWarning';
 
 
 const theme = createMuiTheme({
@@ -134,7 +133,7 @@ class EditProfile extends Component {
                         multiline
                         Maxrows="4"
                         margin="normal"
-                        defaultValue={this.state.name}
+                        value={this.state.name}
                         onChange={(event)=>this.setState({
                             name: event.target.value,
                         })}
@@ -142,7 +141,6 @@ class EditProfile extends Component {
                 </Grid>
                 <Grid item> 
                     <TextField
-                        // error = {this.state.errorSenha }
                         required= "true"
                         id="telegram"
                         label="Telegram"
@@ -150,7 +148,7 @@ class EditProfile extends Component {
                         Maxrows="4"
                         placeholder="@"
                         margin="normal"
-                        defaultValue={this.state.telegram}
+                        value={this.state.telegram}
                         onChange={(event)=>this.setState({
                             telegram: event.target.value,
                         })}
