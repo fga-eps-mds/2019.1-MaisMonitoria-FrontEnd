@@ -151,15 +151,10 @@ class SignUp extends Component {
                 />
             </Grid>            
             <Grid item>
-<<<<<<< HEAD
-                <Course action={(course)=>{this.setState({...this.state,user: {...this.state.user, course}})}}/>
-            </Grid>            
-=======
                 <Course action={(course)=>{this.setState({...this.state,user: 
                   {...this.state.user, course}})}}/>
             </Grid>
                     
->>>>>>> f0bdaa4fd139588fa1153e223d3ab7c08fae476a
             <Grid item >
               <TextField
                 error = {this.state.errorSenha }
