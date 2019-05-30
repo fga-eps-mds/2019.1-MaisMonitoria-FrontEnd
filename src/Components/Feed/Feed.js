@@ -9,11 +9,9 @@ import firebase from 'firebase';
 import Card from './Card.js';
 import ButtonSizes from '../GenericButtons/Add.js';
 import './feed.css';
-import SnackbarWarning from '../SimpleModal/SnackBarsWarning';
 
 import {withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
-
 
 
 class TelaFeed extends Component {
@@ -45,7 +43,6 @@ class TelaFeed extends Component {
   render() {  
     return (
         <div style={{overflowX:'hidden'}} className="FeedBackground">
-                {/*  */}
             <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
                 <AppBar/>    
             </Grid> 

@@ -55,20 +55,18 @@ class SignUp extends Component {
     this.setState({ showError: false });
   
     
-    if(!validateRegister(user))//valida se os campos obrigatorios foram preenchidos
+    if(!validateRegister(user))
     {
       this.setState({ error: "Digite os campos obrigatórios" });
       this.setState({ showError: true });
-      // e.preventDefault();
       return;
     }
 
-    if(!validateName(user))//valida se os campos obrigatorios foram preenchidos
+    if(!validateName(user))
     {
       this.setState({ errorName: true });
       this.setState({ error: "Nome inválido" });
       this.setState({ showError: true });
-      
       e.preventDefault();
       return;
     }
@@ -126,7 +124,8 @@ class SignUp extends Component {
               id="nomeTextField"
               label="Nome"
               margin="normal"
-              onChange={(event)=>this.setState({ ...this.state, user: { ...this.state.user, name: event.target.value } })}
+              onChange={(event)=>this.setState({ ...this.state, user: 
+                { ...this.state.user, name: event.target.value } })}
               />
             </Grid>
             <Grid item >
@@ -136,7 +135,8 @@ class SignUp extends Component {
                 label="Email"
                 margin="normal"
                 type="email"
-                onChange={(event)=>this.setState({ ...this.state, user: { ...this.state.user, email: event.target.value } })}
+                onChange={(event)=>this.setState({ ...this.state, user: 
+                  { ...this.state.user, email: event.target.value } })}
                 />
             </Grid>
             <Grid item >
@@ -148,11 +148,13 @@ class SignUp extends Component {
                 margin="normal"
                 placeholder="@"
                 type="text"
-                onChange={(event)=>this.setState({ ...this.state, user: { ...this.state.user, telegram: event.target.value } })}
+                onChange={(event)=>this.setState({ ...this.state, user: 
+                  { ...this.state.user, telegram: event.target.value } })}
                 />
             </Grid>
             <Grid item>
-                <Course action={(course)=>{this.setState({...this.state,user: {...this.state.user, course}})}}/>
+                <Course action={(course)=>{this.setState({...this.state,user: 
+                  {...this.state.user, course}})}}/>
             </Grid>
                     
             <Grid item >
@@ -163,7 +165,8 @@ class SignUp extends Component {
                 label="Senha"
                 margin="normal"
                 type="password"
-                onChange={(event)=>this.setState({ ...this.state, user: { ...this.state.user, password: event.target.value } })}
+                onChange={(event)=>this.setState({ ...this.state, user: 
+                  { ...this.state.user, password: event.target.value } })}
                 />
             </Grid>
             <Grid item >
@@ -174,7 +177,8 @@ class SignUp extends Component {
                 label="Repetir senha"
                 margin="normal"
                 type="password"
-                onChange={(event)=>this.setState({ ...this.state, user: { ...this.state.user, passwordconfirm: event.target.value } })}
+                onChange={(event)=>this.setState({ ...this.state, user: 
+                  { ...this.state.user, passwordconfirm: event.target.value } })}
                 />
             </Grid>
             <Grid item>              
@@ -183,10 +187,8 @@ class SignUp extends Component {
                 id="raised-button-file" 
                 multiple 
                 type="file" 
-                onChange={(event)=>this.setState({
-                  photo: event.target.files[0],
-                })}
-                
+                onChange={(event)=>this.setState({...this.state, user:
+                  {...this.state.user,photo: event.target.files[0],}})}
               /> 
               <label htmlFor="raised-button-file"> 
               <MuiThemeProvider theme={theme}>
