@@ -10,6 +10,8 @@ import Spinner from '../Loader/Spinner';
 import logo from '../../Assets/img/Logo.png';
 import './ForgotPassword.css';
 
+import CustomizedSnackbars from '../SimpleModal/Snackbars';
+import SimpleModal from '../SimpleModal';
 
 const theme = createMuiTheme({
   palette: {
@@ -19,20 +21,24 @@ const theme = createMuiTheme({
   typography: { useNextVariants: true },
 });
 
-
 class ForgotPassword extends Component {
   state = {
     
     emailAddress:'',
     isAuthenticated: false,
     error: "",
-    isLoading: false
+    isLoading: false,
+    showError: false,
+    showModal: false,
   };
   
   forgotpassword = async (a) => {      
     const { emailAddress} = this.state;
+    this.setState({ showError: false });
+
     if(!emailAddress){
       this.setState({ error: "Digite o email" });
+      this.setState({ showError: true });
       a.preventDefault();
         
     }else{
@@ -40,19 +46,21 @@ class ForgotPassword extends Component {
       await firebase.auth().sendPasswordResetEmail(emailAddress)
       .then(()=>{
         this.setState({isAuthenticated: true});          
-        const route = this.state.isAuthenticated?"/":"/ForgotPassword"
-        this.props.history.push(route);
+        // const route = this.state.isAuthenticated?"/":"/ForgotPassword"
+        // this.props.history.push(route);
+        this.setState({ showModal: true });
       }).catch(()=>{
         this.setState({ error: "Email inválido" });
+        this.setState({ showError: true });
       });
       this.setState({isLoading:false});  
     };
   }
   
-
   render() {
     return (
       <div className="ForgotPasswordBackground">
+        {this.state.showModal? <SimpleModal router={""} title={'Solicitação foi enviada para o email!'}  />:null}
         <Grid container  alignContent="center" justify="center" direction="column" alignItems="center">
           <div style={{ padding: 80 }}>
         <Grid container  alignContent="center" justify="center" direction="column" alignItems="center" spacing={24}>
@@ -67,31 +75,30 @@ class ForgotPassword extends Component {
               emailAddress: event.target.value,
               })}
               />
-          </Grid>
-          {this.state.error && <p>{this.state.error}</p>}
-          </Grid>
-          {this.state.isLoading ? <Spinner />:
-          <Grid container alignContent="center" justify="center" direction="column" spacing={16} alignItems="center" style={{marginTop: 25}}>
-          <Grid item >
-            <MuiThemeProvider theme={theme}>
-              <Button variant="outlined" color="primary" onClick={this.forgotpassword}>
-                Enviar
-              </Button>
-            </MuiThemeProvider>
               </Grid>
-            <Grid item >
-              <MuiThemeProvider theme={theme}>
-                <Button component={Link} to="/" variant="outlined" color="primary">
-                  Voltar
-                </Button>
-              </MuiThemeProvider>
+              {this.state.showError? <CustomizedSnackbars error={this.state.error}/>:null}
             </Grid>
-            
-            </Grid>
-          } 
-            </div>
-            </Grid>  
-        </div>
+            {this.state.isLoading ? <Spinner />:
+              <Grid container alignContent="center" justify="center" direction="column" spacing={16} alignItems="center" style={{marginTop: 25}}>
+                <Grid item >
+                  <MuiThemeProvider theme={theme}>
+                    <Button variant="outlined" color="primary" onClick={this.forgotpassword}>
+                      Enviar
+                    </Button>
+                  </MuiThemeProvider>
+                </Grid>
+                <Grid item >
+                  <MuiThemeProvider theme={theme}>
+                    <Button component={Link} to="/" variant="outlined" color="primary">
+                      Voltar
+                    </Button>
+                  </MuiThemeProvider>
+                </Grid>
+              </Grid>
+            } 
+          </div>
+        </Grid>  
+      </div>
     );   
   }
 }
