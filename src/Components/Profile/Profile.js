@@ -58,7 +58,8 @@ class Profile extends Component {
         tutoring: [],
         likes: [],
         monitorPhoto: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzaLMnex1QwV83TBQgxLTaoDAQlFswsYy62L3mO4Su-CMkk3jX',
-        showWarning: false
+        showWarning: false,
+        
         
     }
     
@@ -71,12 +72,13 @@ class Profile extends Component {
                 
                 firebase.auth().currentUser.getIdToken().then(function(idToken){
                     token["access_token"] = idToken;
-                    console.log(user);
+                    
                 })
               
                 axios.post(process.env.REACT_APP_GATEWAY+"/get_user/", token).then(user=>{
                     userData = user.data;
-                    this.setState({monitorName:userData["name"], monitorCourse:userData["course"], tutoring:userData["monitoring"], photo:userData["photo"]}) 
+                    this.setState({monitorName:userData["name"], monitorCourse:userData["course"], tutoring:userData["monitoring"], photo:userData["photo"], likes:userData["liked_tutoring_sessions"], teste:userData["liked_tutoring_sessions.monitor.ph"]}) 
+                    
                 });  
             }else{
                 
@@ -136,8 +138,8 @@ class Profile extends Component {
                     <Grid container justify={'center'} alignContent={'center'} alignItems={'center'} >
                         <Grid item xs={12} style={{marginTop:10, paddingBottom:40}} className="profileBackground">
                             <ProfileTab
-                                tutoring={this.state.tutoring.map(item => ({ ...item, photoUrl }))}
-                                // likes={this.state.likes.map(item => ({ ...item, photoUrl }))}
+                                tutoring={this.state.tutoring.map(item => ({ ...item,  photoUrl}))}
+                                likes={this.state.likes.map(item => ({ ...item, photoUrl}))}
                             />
                         </Grid>
                     </Grid>

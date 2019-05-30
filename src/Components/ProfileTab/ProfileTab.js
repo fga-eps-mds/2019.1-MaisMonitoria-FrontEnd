@@ -6,6 +6,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { Grid } from '@material-ui/core' ;
 import Card from '../Feed/Card';
+// import CardProfile from '../Profile/CardProfile';
 
 function TabContainer(props) {
   return (
@@ -36,7 +37,7 @@ class ProfileTab extends React.Component {
   };
 
   handleChange = (event, value) => {
-    console.log(value);
+    
     this.setState({ value });
   };
 
@@ -67,7 +68,14 @@ class ProfileTab extends React.Component {
             })}
           </TabContainer>
         }
-        {this.state.value === 1 && <TabContainer>Curtidas</TabContainer>}
+        {this.state.value === 1 && <TabContainer>{this.props.likes.map(function(item, i){
+                return (
+                  <Grid item key={i} lg={12} sm={12} container >
+                      <Card name_monitoring={item.tutoring_session.name} matter={item.tutoring_session.subject} photo = {item.tutoring_session.monitor.photo}
+                          description={item.tutoring_session.description} id_tutoring={item.tutoring_session.id_tutoring_session}/>
+                  </Grid>
+                );
+            })}</TabContainer>}
         </MuiThemeProvider>
       </Paper>
     );
