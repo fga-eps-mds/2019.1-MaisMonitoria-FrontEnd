@@ -30,6 +30,7 @@ class ExpandedCard extends React.Component {
         photo: '',
         telegram:'',
         id_monitor:'',
+        id_user:'',
     }
 
     componentDidMount() {
@@ -39,6 +40,7 @@ class ExpandedCard extends React.Component {
         firebase.auth().onAuthStateChanged(user =>{
             this.setState({isSignedIn: !!user});
             if(user){
+                this.setState({id_user:user.uid})
                 firebase.auth().currentUser.getIdToken().then(function(idToken){
                     token["access_token"] = idToken;
                     token["id_tutoring_session"] = idTutoring;
@@ -46,10 +48,11 @@ class ExpandedCard extends React.Component {
                 
                 axios.post(process.env.REACT_APP_GATEWAY+"/get_tutoring/", token)
                     .then(res => {
-                        const person = res.data
+                        const person = res.data;
                         this.setState({tutoringName:person["name"], tutoringTheme:person["subject"], tutoringDescription:person["description"],
-                                      monitorName: person.monitor["name"], photo:person.monitor["photo"], telegram:person.monitor["telegram"]}) 
-                        
+                                      monitorName: person.monitor["name"], photo:person.monitor["photo"], telegram:person.monitor["telegram"],
+                                        id_monitor:person.monitor.user_account_id}) 
+                                    
                     });
             }
         });
@@ -60,7 +63,6 @@ class ExpandedCard extends React.Component {
     
         
   render() {
-    
     var texto =  this.state.telegram;
     var er = texto;
     texto = er.replace('@','');
@@ -93,7 +95,7 @@ class ExpandedCard extends React.Component {
                             </Typography>
                         </Grid>
                         <Grid container justify="center" direction="column" alignItems="center" alignContent="center" >
-                                                    
+                        {(this.state.id_monitor === this.state.id_user)? <h1>monitor</h1>: null}                           
                         </Grid>
                     </Grid>
                 </Grid>
