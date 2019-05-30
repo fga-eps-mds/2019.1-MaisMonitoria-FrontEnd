@@ -61,7 +61,7 @@ class EditProfile extends Component {
               
                 axios.post(process.env.REACT_APP_GATEWAY+"/get_user/", token).then(user=>{
                     userData = user.data;
-                    this.setState({name:userData["name"], telegram:userData["telegram"], course:userData["course"],email:userData["email"], photo:userData["photo"]}) 
+                    this.setState({name:userData.name, telegram:userData.telegram, course:userData.course, email:userData.email, photo:userData.photo}) 
                    
                 });  
             }else{
@@ -150,6 +150,7 @@ class EditProfile extends Component {
                         Maxrows="4"
                         placeholder="@"
                         margin="normal"
+                        defaultValue={this.state.telegram}
                         onChange={(event)=>this.setState({
                             telegram: event.target.value,
                         })}

@@ -134,14 +134,14 @@ class EditMonitoring extends Component {
                     <TextField
                         // error = {this.state.errorSenha }
                         required= "true"
-                        id="telegram"
-                        label="Telegram"
+                        id="subject"
+                        label="Matéria"
                         multiline
                         Maxrows="4"
                         placeholder="@"
                         margin="normal"
                         onChange={(event)=>this.setState({
-                            telegram: event.target.value,
+                            subject: event.target.value,
                         })}
                     />
                 </Grid>
@@ -150,7 +150,7 @@ class EditMonitoring extends Component {
                         // error = {this.state.errorSenha }
 
                         id="description"
-                        label="descrição"
+                        label="Descrição"
                         multiline
                         Maxrows="4"
                         placeholder=""
@@ -164,7 +164,7 @@ class EditMonitoring extends Component {
                 {/* <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center">
                     {this.state.showError? <CustomizedSnackbars error={this.state.error}/>:null}
                 </Grid> */}
-            <Grid container justify="center" alignContent="center" alignItems="center" direction="row" spacing={24}>
+            <Grid container style={{paddingTop:50}} justify="center" alignContent="center" alignItems="center" direction="row" spacing={24}>
                 <Grid item>
                     <MuiThemeProvider theme={theme}>
                         <Button component={Link} variant="contained" onClick={this.EditMonitoring} color="primary">
