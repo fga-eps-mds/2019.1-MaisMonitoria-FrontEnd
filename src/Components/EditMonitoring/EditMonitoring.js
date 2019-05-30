@@ -1,26 +1,25 @@
 import React, { Component } from 'react';
-import { Grid, Button } from '@material-ui/core' ;
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { Grid, Button, TextField } from '@material-ui/core' ;
+import AppBar from '../AppBar/AppBar.js';
+import Pp from '../../Assets/img/Pp.png';
+
+import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Link, withRouter } from 'react-router-dom';
 import firebase from 'firebase';
-import AppBarProfile from '../AppBar/AppBarProfile';
-import Card from '../Feed/Card';
 
-import AppBar from '../AppBar/AppBar';
-import ProfileTab from '../ProfileTab/ProfileTab';
-
-// import './Profile.css';
+import { validateEditProfile, validateName, success } from '../../Helpers/validates.js';
 import SimpleModal from '../SimpleModal';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import CustomizedSnackbars from '../SimpleModal/Snackbars';
 import SnackbarWarning from '../SimpleModal/SnackBarsWarning';
 
 
 const theme = createMuiTheme({
     palette: {
       primary: { main: '#44a1f2' },
-      secondary: { main: '#ff0000' },
+      secondary: { main: '#fafafa' },
     },
-    typography: { useNextVariants: true },
+    typography: { useNextVariants: false },
     overrides: {
         MuiButton: {
           raisedPrimary: {
@@ -28,92 +27,163 @@ const theme = createMuiTheme({
           },
         },
     },
-});
+  });
 
 class EditMonitoring extends Component {
 
-    state = {   
-        monitoring: {
-            name:'',
-            subject: '',
-            description: '',
-        }
+    state = {
+        name:'',
+        subject: '',
+        description: '',
+        showModal: false,
+        errorName: false,
+        showError: false,
+        showWarning: false
     }
 
-    // componentDidMount() {
+    // componentDidMount(){
+    //     this.getUserData();
+    // }
+
+    // getUserData = () =>{
     //     let userData = {};
     //     let token = {}
     //     firebase.auth().onAuthStateChanged(user =>{
     //         if(user){
-                
     //             firebase.auth().currentUser.getIdToken().then(function(idToken){
     //                 token["access_token"] = idToken;
-    //                 console.log(user);
     //             })
               
     //             axios.post(process.env.REACT_APP_GATEWAY+"/get_user/", token).then(user=>{
     //                 userData = user.data;
-    //                 this.setState({monitorName:userData["name"], monitorCourse:userData["course"], tutoring:userData["monitoring"], photo:userData["photo"]}) 
+    //                 this.setState({name:userData["name"], telegram:userData["telegram"], course:userData["course"],email:userData["email"], photo:userData["photo"]}) 
+                   
     //             });  
     //         }else{
-                
     //             this.props.history.push('/');
-    //         }     
+    //         }
     //     })
     // }
 
-    render(){
+    // EditMonitoring = (e) =>{
+    //     const header = { headers: { 'content-type': 'multipart/form-data' } }
+    //     const fd = new FormData();
 
-        return(
-            <div style={{overflowX:'hidden'}}>
-                {/* {this.state.showWarning? <SnackbarWarning warning={"Faça o login para acessar"} router={""}/>:null} */}
-                <div style={{overflowX:'hidden'}} >
-                    <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
-                        <AppBarProfile/>    
-                    </Grid>
-                </div> 
-                <div>   
-                    <Grid container justify={'flex-start'} direction={'row'} alignContent={'center'} spacing={24} alignItems={'center'}>
-                        <Grid item>
-                            <Grid container justify={'flex-start'} direction={'column'} alignContent={'flex-start'} alignItems={'flex-start'} spacing={24}  style={{paddingTop:80}} alignItems={'center'}>
-                                <Grid item>
-                                    Nome: {this.state.monitoring.name}
-                                </Grid>
-                                <Grid item>
-                                    Matéria: {this.state.monitoring.subject}
-                                </Grid>
-                                <Grid item>
-                                    Descrição: {this.state.monitoring.description}
-                                </Grid>
-                                <Grid item>
-                                    <MuiThemeProvider theme={theme}>
-                                        <Button variant="contained" component={Link} to="/EditProfile"  color="primary">
-                                            Editar monitoria
-                                        </Button>
-                                    </MuiThemeProvider>
-                                </Grid>
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                </div>
-                {/* <div className="profileBackground">
-                    <Grid container justify={'center'} alignContent={'center'} alignItems={'center'} >
-                        <Grid item xs={12} style={{marginTop:10}} className="profileBackground">
-                            <ProfileTab/>
-                        </Grid>
-                        {this.state.tutoring.map(function(item, i){
-                            return (
-                                <Grid item key={i} lg={12} sm={12} container >
-                                    <Card name_monitoring={item.name} matter={item.subject} photo={photoUrl}
-                                           description={item.description} id_tutoring={item.id_tutoring_session}/>
-                                </Grid>
-                            );
+    //     fd.append('name', this.state.name)
+    //     fd.append('course', this.state.course)
+    //     fd.append('email', this.state.email)
+    //     fd.append('photo', this.state.photo)
+    //     fd.append('telegram', this.state.telegram)
+
+    //     this.setState({ showError: false });
+    //     this.setState({ errorName: false });
+    //     if(!validateEditMonitoring(this.state))
+    //     {
+    //         this.setState({ error: "Digite os campos obrigatórios" });
+    //         this.setState({ showError: true });
+    //         e.preventDefault();
+    //         return; 
+    //     }
+
+    //     if(!validateName(this.state)){
+    //         this.setState({ errorName: true });
+    //         this.setState({ error: "Nome inválido" });
+    //         this.setState({ showError: true });
+    //         e.preventDefault();
+    //         return;
+    //     }
+
+    //     firebase.auth().onAuthStateChanged(user =>{
+    //         if(user){
+    //             firebase.auth().currentUser.getIdToken().then(function(idToken){  
+    //                 fd.append('access_token', idToken)        
+    //             })
+              
+    //             axios.post(process.env.REACT_APP_GATEWAY+"/update_user/", fd, header).then((x)=>{
+    //                 if(success(x)) this.setState({showModal:true});
+    //           })
+    //         }     
+    //     })
+    // }
+    
+  render() {
+    return (
+        
+        <div style={{overflowX:'hidden'}} className="editBackground"> 
+            {/* {this.state.showModal? <SimpleModal router={"Profile"} title={'Usuario alterado com sucesso!'}  />:null} */}
+            <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
+                <AppBar/>
+            </Grid>  
+            <Grid style={{paddingTop:50}} container alignContent="center" alignItems="center" justify="flex-end" direction="column" >
+                <Grid item xs={12}> 
+                    <TextField
+                        error = {this.state.errorName }
+                        required= "true"
+                        id="name"
+                        label="Nome"
+                        multiline
+                        Maxrows="4"
+                        margin="normal"
+                        defaultValue={this.state.name}
+                        onChange={(event)=>this.setState({
+                            name: event.target.value,
                         })}
-                    </Grid>
-                </div> */}
-            </div>
-        )
-    }
+                    />
+                </Grid>
+                <Grid item> 
+                    <TextField
+                        // error = {this.state.errorSenha }
+                        required= "true"
+                        id="telegram"
+                        label="Telegram"
+                        multiline
+                        Maxrows="4"
+                        placeholder="@"
+                        margin="normal"
+                        onChange={(event)=>this.setState({
+                            telegram: event.target.value,
+                        })}
+                    />
+                </Grid>
+                <Grid item> 
+                    <TextField
+                        // error = {this.state.errorSenha }
+
+                        id="description"
+                        label="descrição"
+                        multiline
+                        Maxrows="4"
+                        placeholder=""
+                        margin="normal"
+                        onChange={(event)=>this.setState({
+                            description: event.target.value,
+                        })}
+                    />
+                </Grid>
+            </Grid>
+                {/* <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center">
+                    {this.state.showError? <CustomizedSnackbars error={this.state.error}/>:null}
+                </Grid> */}
+            <Grid container justify="center" alignContent="center" alignItems="center" direction="row" spacing={24}>
+                <Grid item>
+                    <MuiThemeProvider theme={theme}>
+                        <Button component={Link} variant="contained" onClick={this.EditMonitoring} color="primary">
+                            Confirmar
+                        </Button>
+                    </MuiThemeProvider>
+                </Grid>
+                <Grid item>
+                    <MuiThemeProvider theme={theme}>
+                        <Button component={Link} to="/Profile" variant="contained" color="primary">
+                            Cancelar
+                        </Button>
+                    </MuiThemeProvider>
+                </Grid>
+            </Grid>
+        </div>
+        
+    );   
+  }
 }
 
 export default EditMonitoring;
