@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Button, TextField } from '@material-ui/core' ;
 import AppBar from '../AppBar/AppBar.js';
-import Pp from '../../Assets/img/Pp.png';
 
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -11,7 +10,6 @@ import { validateEditMonitoring, success } from '../../Helpers/validates.js';
 import SimpleModal from '../SimpleModal';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CustomizedSnackbars from '../SimpleModal/Snackbars';
-import SnackbarWarning from '../SimpleModal/SnackBarsWarning';
 
 const theme = createMuiTheme({
     palette: {
@@ -79,13 +77,12 @@ class EditMonitoring extends Component {
         if(!validateEditMonitoring(this.state)){
             this.setState({error:'Digite os campos obrigatórios'});
             this.setState({showError:true});
+            return;
         }
         token["id_tutoring_session"] = idTutoring;
         token["name"] = this.state.name;
         token["subject"] = this.state.subject;
         token["description"] = this.state.description;
-        
-       
 
         firebase.auth().onAuthStateChanged(user =>{
             if(user){
@@ -101,7 +98,6 @@ class EditMonitoring extends Component {
     }
     
   render() {
-    console.log(this.state.name);
     return (
         
         <div style={{overflowX:'hidden'}} className="editBackground"> 
@@ -109,7 +105,7 @@ class EditMonitoring extends Component {
             <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
                 <AppBar/>
             </Grid>  
-            <Grid style={{paddingTop:50}} container alignContent="center" alignItems="center" justify="flex-end" direction="column" >
+            <Grid style={{paddingTop:150}} container alignContent="center" alignItems="center" justify="flex-end" direction="column" >
                 <Grid item xs={12}> 
                     <TextField
                         error = {this.state.errorName }
@@ -132,7 +128,7 @@ class EditMonitoring extends Component {
                         label="Matéria"
                         multiline
                         Maxrows="4"
-                        placeholder="@"
+                        placeholder=""
                         margin="normal"
                         value={this.state.subject}
                         onChange={(event)=>this.setState({
@@ -142,6 +138,7 @@ class EditMonitoring extends Component {
                 </Grid>
                 <Grid item> 
                     <TextField
+                        required= "true"
                         id="description"
                         label="Descrição"
                         multiline
@@ -155,10 +152,10 @@ class EditMonitoring extends Component {
                     />
                 </Grid>
             </Grid>
-                <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center">
+                <Grid container style={{paddingTop:20}} alignContent="center" justify="center" direction="row" spacing={24} alignItems="center">
                     {this.state.showError? <CustomizedSnackbars error={this.state.error}/>:null}
                 </Grid> 
-            <Grid container style={{paddingTop:50}} justify="center" alignContent="center" alignItems="center" direction="row" spacing={24}>
+            <Grid container style={{paddingTop:5}} justify="center" alignContent="center" alignItems="center" direction="row" spacing={24}>
                 <Grid item>
                     <MuiThemeProvider theme={theme}>
                         <Button component={Link} variant="contained" onClick={this.EditMonitoring} color="primary">
@@ -168,7 +165,7 @@ class EditMonitoring extends Component {
                 </Grid>
                 <Grid item>
                     <MuiThemeProvider theme={theme}>
-                        <Button component={Link} to="/Profile" variant="contained" color="primary">
+                        <Button component={Link} to={`/expandedCard/${this.props.match.params.id_tutoring}`} variant="contained" color="primary">
                             Cancelar
                         </Button>
                     </MuiThemeProvider>
