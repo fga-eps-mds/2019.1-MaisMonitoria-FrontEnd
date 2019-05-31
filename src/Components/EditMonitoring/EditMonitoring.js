@@ -33,10 +33,12 @@ class EditMonitoring extends Component {
         subject: '',
         description: '',
         showModal: false,
-        errorName: false,
         showError: false,
         showWarning: false,
         Error:'',
+        nameError: '',
+        subjectError: '',
+        descriptionError: '',
     }
 
     componentDidMount(){
@@ -71,14 +73,38 @@ class EditMonitoring extends Component {
     EditMonitoring = (e) =>{
         this.setState({showError:false});
         this.setState({showModal:false});
+
+        this.setState({nameError:''});
+        this.setState({subjectError:''});
+        this.setState({descriptionError:''});
+
         var idTutoring = this.props.match.params.id_tutoring;
         var token = {};
+
+        if(!this.state.name){
+            this.setState({error:'Digite os campos obrigatórios'});
+            this.setState({nameError:'true'});
+            this.setState({showError:true});
+        }
+
+        if(!this.state.subject){
+            this.setState({error:'Digite os campos obrigatórios'});
+            this.setState({subjectError:'true'});
+            this.setState({showError:true});
+        }
+
+        if(!this.state.description){
+            this.setState({error:'Digite os campos obrigatórios'});
+            this.setState({descriptionError:'true'});
+            this.setState({showError:true})
+        }
 
         if(!validateEditMonitoring(this.state)){
             this.setState({error:'Digite os campos obrigatórios'});
             this.setState({showError:true});
             return;
         }
+
         token["id_tutoring_session"] = idTutoring;
         token["name"] = this.state.name;
         token["subject"] = this.state.subject;
@@ -98,6 +124,7 @@ class EditMonitoring extends Component {
     }
     
   render() {
+    console.log(this.state.nameError);
     return (
         
         <div style={{overflowX:'hidden'}} className="editBackground"> 
@@ -108,7 +135,7 @@ class EditMonitoring extends Component {
             <Grid style={{paddingTop:150}} container alignContent="center" alignItems="center" justify="flex-end" direction="column" >
                 <Grid item xs={12}> 
                     <TextField
-                        error = {this.state.errorName }
+                        error = {this.state.nameError}
                         required= "true"
                         id="name"
                         label="Nome"
@@ -123,6 +150,7 @@ class EditMonitoring extends Component {
                 </Grid>
                 <Grid item> 
                     <TextField
+                        error = {this.state.subjectError}
                         required= "true"
                         id="subject"
                         label="Matéria"
@@ -138,6 +166,7 @@ class EditMonitoring extends Component {
                 </Grid>
                 <Grid item> 
                     <TextField
+                        error = {this.state.descriptionError}
                         required= "true"
                         id="description"
                         label="Descrição"
