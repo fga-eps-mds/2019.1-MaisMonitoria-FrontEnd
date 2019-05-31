@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import firebase from 'firebase';
 
-import { validateEditProfile, validateName, success } from '../../Helpers/validates.js';
+import { validateEditMonitoring, success } from '../../Helpers/validates.js';
 import SimpleModal from '../SimpleModal';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CustomizedSnackbars from '../SimpleModal/Snackbars';
@@ -37,7 +37,8 @@ class EditMonitoring extends Component {
         showModal: false,
         errorName: false,
         showError: false,
-        showWarning: false
+        showWarning: false,
+        Error:'',
     }
 
     componentDidMount(){
@@ -47,7 +48,9 @@ class EditMonitoring extends Component {
      getTutoringData = () =>{
         var token = {};
         var idTutoring = this.props.match.params.id_tutoring;
-        console.log('idtutoring',idTutoring);
+        this.setState({showError:false});
+        this.setState({showModal:false});
+
         firebase.auth().onAuthStateChanged(user =>{
             if(user){
                 firebase.auth().currentUser.getIdToken().then(function(idToken){
@@ -68,10 +71,15 @@ class EditMonitoring extends Component {
     }
     
     EditMonitoring = (e) =>{
-        const fd = new FormData();
+        this.setState({showError:false});
+        this.setState({showModal:false});
         var idTutoring = this.props.match.params.id_tutoring;
         var token = {};
 
+        if(!validateEditMonitoring(this.state)){
+            this.setState({error:'Digite os campos obrigatórios'});
+            this.setState({showError:true});
+        }
         token["id_tutoring_session"] = idTutoring;
         token["name"] = this.state.name;
         token["subject"] = this.state.subject;
@@ -97,7 +105,7 @@ class EditMonitoring extends Component {
     return (
         
         <div style={{overflowX:'hidden'}} className="editBackground"> 
-            {/* {this.state.showModal? <SimpleModal router={"Profile"} title={'Usuario alterado com sucesso!'}  />:null} */}
+            {this.state.showModal? <SimpleModal router={`/expandedCard/${this.props.match.params.id_tutoring}`} title={'Monitoria alterada com sucesso!'}  />:null} 
             <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
                 <AppBar/>
             </Grid>  
@@ -147,9 +155,9 @@ class EditMonitoring extends Component {
                     />
                 </Grid>
             </Grid>
-                {/* <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center">
+                <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center">
                     {this.state.showError? <CustomizedSnackbars error={this.state.error}/>:null}
-                </Grid> */}
+                </Grid> 
             <Grid container style={{paddingTop:50}} justify="center" alignContent="center" alignItems="center" direction="row" spacing={24}>
                 <Grid item>
                     <MuiThemeProvider theme={theme}>
