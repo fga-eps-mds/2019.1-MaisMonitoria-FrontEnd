@@ -90,7 +90,7 @@ class SignUp extends Component {
           this.setState({error: errors[error.code]});
           this.setState({ showError: true });
     });
-    this.setState({ isLoading: false });
+    // this.setState({ isLoading: false });
 
     const fd = new FormData();
     fd.append('access_token', aux['token'])
@@ -200,26 +200,26 @@ class SignUp extends Component {
           <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center">
             {this.state.showError? <CustomizedSnackbars error={this.state.error}/>:null}
           </Grid>
-          
-          { this.state.isLoading ? <Spinner />:
-            <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center" style={{marginTop: 25}}>
-              <Grid item >
-                <MuiThemeProvider theme={theme}>
-                  <Button component={Link}  variant="outlined" onClick={this.register} color="primary">
-                  Registrar
-                  </Button>
-                </MuiThemeProvider>
+          <Grid item style={{marginTop:25}}>
+            { this.state.isLoading ? <Spinner />:
+              <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center" style={{marginTop: -25}}>
+                <Grid item >
+                  <MuiThemeProvider theme={theme}>
+                    <Button component={Link}  variant="outlined" onClick={this.register} color="primary">
+                    Registrar
+                    </Button>
+                  </MuiThemeProvider>
+                </Grid>
+                <Grid item>
+                  <MuiThemeProvider theme={theme}>
+                    <Button component={Link} to="/" variant="outlined" color="primary" >
+                      Cancelar
+                    </Button>
+                  </MuiThemeProvider>
+                </Grid>
               </Grid>
-              <Grid item>
-                <MuiThemeProvider theme={theme}>
-                  <Button component={Link} to="/" variant="outlined" color="primary" >
-                    Cancelar
-                  </Button>
-                </MuiThemeProvider>
-              </Grid>
-            </Grid>
-          }
-
+            }
+          </Grid>
         </Grid>
       </div>
     );   
