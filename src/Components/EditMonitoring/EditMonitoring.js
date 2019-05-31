@@ -59,9 +59,8 @@ class EditMonitoring extends Component {
                 axios.post(process.env.REACT_APP_GATEWAY+"/get_tutoring/", token)
                     .then(res => {
                         const person = res.data
-                        this.setState({tutoringName:person["name"], tutoringTheme:person["subject"], 
-                                       tutoringDescription:person["description"]}) 
-                        
+                        this.setState({name:person.name, subject:person.subject, 
+                                       description:person.description}) 
                     });
             }else{
                 this.props.history.push('/');
@@ -110,7 +109,7 @@ class EditMonitoring extends Component {
                         multiline
                         Maxrows="4"
                         margin="normal"
-                        defaultValue={this.state.name}
+                        value={this.state.name}
                         onChange={(event)=>this.setState({
                             name: event.target.value,
                         })}
