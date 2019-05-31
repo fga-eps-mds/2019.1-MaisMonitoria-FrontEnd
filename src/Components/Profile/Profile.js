@@ -6,6 +6,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import axios from 'axios';
 import { Link, withRouter } from 'react-router-dom';
 import firebase from 'firebase';
+import Spinner from '../Loader/Spinner';
 
 import AppBar from '../AppBar/AppBar';
 import ProfileTab from '../ProfileTab/ProfileTab';
@@ -40,12 +41,14 @@ class Profile extends Component {
         tutoring: [],
         monitorPhoto: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzaLMnex1QwV83TBQgxLTaoDAQlFswsYy62L3mO4Su-CMkk3jX',
         showWarning: false,
+        isLoading: false
     }
     
-
     componentDidMount() {
         let userData = {};
         let token = {}
+        
+        this.setState({ isLoading: true });
         firebase.auth().onAuthStateChanged(user =>{
             if(user){
                 
@@ -56,9 +59,9 @@ class Profile extends Component {
                 axios.post(process.env.REACT_APP_GATEWAY+"/get_user/", token).then(user=>{
                     userData = user.data;
                     this.setState({monitorName:userData["name"], monitorCourse:userData["course"], tutoring:userData["monitoring"], photo:userData["photo"]}) 
-                });  
-            }else{
-                
+                });
+                this.setState({ isLoading: false });  
+            }else{        
                 this.props.history.push('/');
             }     
         })
@@ -75,7 +78,6 @@ class Profile extends Component {
           }
         return(
             <div style={{overflowX:'hidden'}}>
-                {/* {this.state.showWarning? <SnackbarWarning warning={"Faça o login para acessar"} router={""}/>:null} */}
                 <div style={{overflowX:'hidden'}} >
                     <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
                         <AppBarProfile/>    
@@ -87,38 +89,42 @@ class Profile extends Component {
                             <img src={photoUrl} className="ProfilePic" alt={"Profile pic"} style={{width: 130,height:130, marginTop:80, marginLeft:10,}}></img>
                         </Grid>
                         <Grid item>
-                            <Grid container justify={'flex-start'} direction={'column'} alignContent={'flex-start'} alignItems={'flex-start'} spacing={24}  style={{paddingTop:80}} alignItems={'center'}>
-                                <Grid item>
-                                    Name: {this.state.monitorName}
-                                </Grid>
-                                <Grid item>
-                                    Curso: {this.state.monitorCourse}
-                                </Grid>
-                                <Grid item>
-                                    <MuiThemeProvider theme={theme}>
-                                        <Button variant="contained" component={Link} to="/EditProfile"  color="primary">
-                                            Editar perfil
-                                        </Button>
-                                    </MuiThemeProvider>
-                                </Grid>
-                            </Grid>
+                            {this.state.isLoading ? <Spinner />:
+                                <Grid container justify={'flex-start'} direction={'column'} alignContent={'flex-start'} alignItems={'flex-start'} spacing={24}  style={{paddingTop:80}} alignItems={'center'}>
+                                    <Grid item>
+                                        Nome: {this.state.monitorName}
+                                    </Grid>
+                                    <Grid item>
+                                        Curso: {this.state.monitorCourse}
+                                    </Grid>
+                                    <Grid item>
+                                        <MuiThemeProvider theme={theme}>
+                                            <Button variant="contained" component={Link} to="/EditProfile"  color="primary">
+                                                Editar perfil
+                                            </Button>
+                                        </MuiThemeProvider>
+                                    </Grid>
+                                </Grid> 
+                            }
                         </Grid>
                     </Grid>
                 </div>
                 <div className="profileBackground">
-                    <Grid container justify={'center'} alignContent={'center'} alignItems={'center'} >
-                        <Grid item xs={12} style={{marginTop:10}} className="profileBackground">
-                            <ProfileTab/>
+                    {this.state.isLoading ? <Spinner style={{paddingTop:100}, {marginTop:400}}/>:
+                        <Grid container justify={'center'} alignContent={'center'} alignItems={'center'} >
+                            <Grid item xs={12} style={{marginTop:10}} className="profileBackground">
+                                <ProfileTab/>
+                            </Grid>
+                            {this.state.tutoring.map(function(item, i){
+                                return (
+                                    <Grid item key={i} lg={12} sm={12} container >
+                                        <Card name_monitoring={item.name} matter={item.subject} photo={photoUrl}
+                                            description={item.description} id_tutoring={item.id_tutoring_session}/>
+                                    </Grid>
+                                );
+                            })}
                         </Grid>
-                        {this.state.tutoring.map(function(item, i){
-                            return (
-                                <Grid item key={i} lg={12} sm={12} container >
-                                    <Card name_monitoring={item.name} matter={item.subject} photo={photoUrl}
-                                           description={item.description} id_tutoring={item.id_tutoring_session}/>
-                                </Grid>
-                            );
-                        })}
-                    </Grid>
+                    }
                 </div>
             </div>
         )
