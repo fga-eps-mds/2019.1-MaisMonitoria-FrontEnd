@@ -47,7 +47,7 @@ class EditMonitoring extends Component {
      getTutoringData = () =>{
         var token = {};
         var idTutoring = this.props.match.params.id_tutoring;
-
+        console.log('idtutoring',idTutoring);
         firebase.auth().onAuthStateChanged(user =>{
             // this.setState({isSignedIn: !!user});
             if(user){
@@ -67,7 +67,7 @@ class EditMonitoring extends Component {
             }
         });
     }
-
+    
     // EditMonitoring = (e) =>{
     //     const header = { headers: { 'content-type': 'multipart/form-data' } }
     //     const fd = new FormData();
@@ -92,6 +92,7 @@ class EditMonitoring extends Component {
     // }
     
   render() {
+    console.log(this.state.name);
     return (
         
         <div style={{overflowX:'hidden'}} className="editBackground"> 
@@ -117,7 +118,6 @@ class EditMonitoring extends Component {
                 </Grid>
                 <Grid item> 
                     <TextField
-                        // error = {this.state.errorSenha }
                         required= "true"
                         id="subject"
                         label="Matéria"
@@ -125,6 +125,7 @@ class EditMonitoring extends Component {
                         Maxrows="4"
                         placeholder="@"
                         margin="normal"
+                        value={this.state.subject}
                         onChange={(event)=>this.setState({
                             subject: event.target.value,
                         })}
@@ -132,14 +133,13 @@ class EditMonitoring extends Component {
                 </Grid>
                 <Grid item> 
                     <TextField
-                        // error = {this.state.errorSenha }
-
                         id="description"
                         label="Descrição"
                         multiline
                         Maxrows="4"
                         placeholder=""
                         margin="normal"
+                        value={this.state.description}
                         onChange={(event)=>this.setState({
                             description: event.target.value,
                         })}

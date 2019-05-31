@@ -26,7 +26,7 @@ ReactDOM.render((
                         <Route path="/RegisterMonitoring" component={RegisterMonitoring}/>
                         <Route path="/EditProfile" component={EditProfile}/>
                         <Route path="/expandedcard/:id_tutoring" component={ExpandedCard}/>
-                        <Route path="/EditMonitoring" component={EditMonitoring}/>
+                        <Route path="/EditMonitoring/:id_tutoring" component={EditMonitoring}/>
                         <div>
                             <Route path="/Feed" component={TelaFeed}/>
                             <Route path="/Search" component={Search}/>  
