@@ -16,7 +16,6 @@ import {withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 
-
 class TelaFeed extends Component {
     state =  {
         data : [],
@@ -46,7 +45,6 @@ class TelaFeed extends Component {
   render() {  
     return (
         <div style={{overflowX:'hidden'}} className="FeedBackground">
-                {/*  */}
             <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
                 <AppBar/>    
             </Grid> 

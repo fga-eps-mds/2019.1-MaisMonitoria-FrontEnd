@@ -98,22 +98,18 @@ class CustomizedSnackbars extends React.Component {
     return (
       <div>
         <Snackbar
-          
           open={this.state.open}
           autoHideDuration={2000}
-          onClose={this.handleClose}
-        >
+          onClose={this.handleClose}>
           <MySnackbarContentWrapper
             onClose={this.handleClose}
             variant="success"
-            message={sucess}
-          />
+            message={sucess}/>
         </Snackbar>
       </div>
     );
   }
 }
-
 CustomizedSnackbars.propTypes = {
   classes: PropTypes.object.isRequired,
   router: PropTypes.string.isRequired,
