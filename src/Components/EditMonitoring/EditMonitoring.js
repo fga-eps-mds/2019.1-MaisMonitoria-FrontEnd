@@ -49,7 +49,6 @@ class EditMonitoring extends Component {
         var idTutoring = this.props.match.params.id_tutoring;
         console.log('idtutoring',idTutoring);
         firebase.auth().onAuthStateChanged(user =>{
-            // this.setState({isSignedIn: !!user});
             if(user){
                 firebase.auth().currentUser.getIdToken().then(function(idToken){
                     token["access_token"] = idToken;
@@ -68,28 +67,30 @@ class EditMonitoring extends Component {
         });
     }
     
-    // EditMonitoring = (e) =>{
-    //     const header = { headers: { 'content-type': 'multipart/form-data' } }
-    //     const fd = new FormData();
+    EditMonitoring = (e) =>{
+        const fd = new FormData();
+        var idTutoring = this.props.match.params.id_tutoring;
+        var token = {};
 
-    //     fd.append('name', this.state.name)
-    //     fd.append('course', this.state.course)
-    //     fd.append('email', this.state.email)
-    //     fd.append('photo', this.state.photo)
-    //     fd.append('telegram', this.state.telegram)
- 
-    //     firebase.auth().onAuthStateChanged(user =>{
-    //         if(user){
-    //             firebase.auth().currentUser.getIdToken().then(function(idToken){  
-    //                 fd.append('access_token', idToken)        
-    //             })
+        token["id_tutoring_session"] = idTutoring;
+        token["name"] = this.state.name;
+        token["subject"] = this.state.subject;
+        token["description"] = this.state.description;
+        
+       
+
+        firebase.auth().onAuthStateChanged(user =>{
+            if(user){
+                firebase.auth().currentUser.getIdToken().then(function(idToken){  
+                    token["access_token"] = idToken;      
+                })
               
-    //             axios.post(process.env.REACT_APP_GATEWAY+"/update_user/", fd, header).then((x)=>{
-    //                 if(success(x)) this.setState({showModal:true});
-    //           })
-    //         }     
-    //     })
-    // }
+                axios.post(process.env.REACT_APP_GATEWAY+"/update_tutoring/", token).then((x)=>{
+                    if(success(x)) this.setState({showModal:true});
+              })
+            }     
+        })
+    }
     
   render() {
     console.log(this.state.name);
