@@ -69,7 +69,7 @@ class TelaFeed extends Component {
                         <ButtonSizes component={Link} to="/Profile"/>
                     </Grid>
                 </Grid>
-                <Tab/> 
+                <Tab ind={0}/>
             </div>
         </div>
     );   

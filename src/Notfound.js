@@ -1,27 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PageNotFound from './Assets/img/PageNotFound.png';
-import Typography from '@material-ui/core/Typography';
-
-const useStyles = ()=> ( {
-    root: {
-      width: '100%',
-      maxWidth: 500,
-    },
-  });
+import { Grid} from '@material-ui/core' ;
+import Typography from '@material-ui/core/Typography'; 
 
 
 const NotFound = () => (
-<div>
-    <center>
-        <Link to="/">
-            <Typography variant="h3" gutterBottom>
-                Erro 404, página não encontrada!
-            </Typography>
-        </Link>
-    </center>
-<center><Link to="/">clique para voltar pra o login</Link></center>
-</div>
+    <div>
+        <Grid container direction="column" justify="center" alignItems="center" spacing={24} style={{paddingTop:50, marginLeft: 'auto', marginRight:'auto', position: 'fixed' }}>
+            <Grid item>
+            <Link to="/">
+                <Typography variant="h3" gutterBottom>
+                    Erro 404, página não encontrada!
+                </Typography>
+            </Link>
+            </Grid>
+            <Grid item>
+            <Link 
+                to="/">clique para voltar pra o login
+            </Link>
+            </Grid>
+        </Grid>
+    </div>
 );
 
 

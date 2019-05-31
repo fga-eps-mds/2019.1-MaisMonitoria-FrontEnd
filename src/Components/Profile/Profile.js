@@ -144,7 +144,7 @@ class Profile extends Component {
                             />
                         </Grid>
                     </Grid>
-                    <Tab/>
+                    <Tab ind={1}/>
                 </div>
             </div>
         )

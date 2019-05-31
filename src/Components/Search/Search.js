@@ -87,7 +87,7 @@ class Search extends Component {
                     );
                 })}
             </Grid>
-            <Tab/>
+            <Tab ind={3}/>
         </div>
     );   
   }
