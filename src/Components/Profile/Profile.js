@@ -88,9 +88,9 @@ class Profile extends Component {
                         <Grid item>
                             <img src={photoUrl} className="ProfilePic" alt={"Profile pic"} style={{width: 130,height:130, marginTop:80, marginLeft:10,}}></img>
                         </Grid>
-                        <Grid item>
+                        <Grid item style={{marginTop:70}}>
                             {this.state.isLoading ? <Spinner />:
-                                <Grid container justify={'flex-start'} direction={'column'} alignContent={'flex-start'} alignItems={'flex-start'} spacing={24}  style={{paddingTop:80}} alignItems={'center'}>
+                                <Grid container justify={'flex-start'} direction={'column'} alignContent={'flex-start'} alignItems={'flex-start'} spacing={24} style={{paddingTop:80, marginTop:-70}} alignItems={'center'}>
                                     <Grid item>
                                         Nome: {this.state.monitorName}
                                     </Grid>
@@ -110,21 +110,23 @@ class Profile extends Component {
                     </Grid>
                 </div>
                 <div className="profileBackground">
-                    {this.state.isLoading ? <Spinner style={{paddingTop:100}, {marginTop:400}}/>:
-                        <Grid container justify={'center'} alignContent={'center'} alignItems={'center'} >
-                            <Grid item xs={12} style={{marginTop:10}} className="profileBackground">
-                                <ProfileTab/>
+                    <Grid item style = {{marginTop:125}} >
+                        {this.state.isLoading ? <Spinner />:
+                            <Grid container justify={'center'} alignContent={'center'} alignItems={'center'} style={{marginTop:-125}}>
+                                <Grid item xs={12} style={{marginTop:10}} className="profileBackground">
+                                    <ProfileTab/>
+                                </Grid>
+                                {this.state.tutoring.map(function(item, i){
+                                    return (
+                                        <Grid item key={i} lg={12} sm={12} container >
+                                            <Card name_monitoring={item.name} matter={item.subject} photo={photoUrl}
+                                                description={item.description} id_tutoring={item.id_tutoring_session}/>
+                                        </Grid>
+                                    );
+                                })}
                             </Grid>
-                            {this.state.tutoring.map(function(item, i){
-                                return (
-                                    <Grid item key={i} lg={12} sm={12} container >
-                                        <Card name_monitoring={item.name} matter={item.subject} photo={photoUrl}
-                                            description={item.description} id_tutoring={item.id_tutoring_session}/>
-                                    </Grid>
-                                );
-                            })}
-                        </Grid>
-                    }
+                        }
+                    </Grid>
                 </div>
             </div>
         )
