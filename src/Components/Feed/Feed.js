@@ -63,15 +63,17 @@ class TelaFeed extends Component {
                     })}
                 </Grid>
             </div>
-            {this.state.isLoading ? <Spinner style={{margin:50}} />:
-                <div>
-                    <Grid container>
-                        <Grid>
-                            <ButtonSizes component={Link} to="/Profile"/>
+            <Grid item style={{marginTop:225}}>
+                {this.state.isLoading ? <Spinner />:
+                    <div>
+                        <Grid container style={{marginTop:-225}}>
+                            <Grid>
+                                <ButtonSizes component={Link} to="/Profile"/>
+                            </Grid>
                         </Grid>
-                    </Grid>
-                </div>
-            }
+                    </div>
+                }
+            </Grid>
         </div>
     );   
   }
