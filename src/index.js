@@ -28,15 +28,9 @@ ReactDOM.render((
                         <Route path="/RegisterMonitoring" component={RegisterMonitoring}/>
                         <Route path="/EditProfile" component={EditProfile}/>
                         <Route path="/expandedcard/:id_tutoring" component={ExpandedCard}/> 
-                        
-                            <Route path="/Feed" component={TelaFeed}/>
-                            <Route path="/Search" component={Search}/>  
-                            <Route path="/Profile" component={Profile}/>
-                            
-                                           
-                           
-                            
-                        
+                        <Route path="/Feed" component={TelaFeed}/>
+                        <Route path="/Search" component={Search}/>  
+                        <Route path="/Profile" component={Profile}/>
                         <Route path="*" component={NotFound}/>          
                     </Switch>
                     
