@@ -26,6 +26,7 @@ const theme = createMuiTheme({
 
 
 class SignUp extends Component {
+  
   state = {
     user :{
       email: '',
@@ -42,8 +43,31 @@ class SignUp extends Component {
     errorSenha: "",
     showModal: false,
     showError: false,
-    
+    file: null,
+    imagePreviewUrl: ''
   };
+  constructor(props) {
+    super(props);
+    this._handleImageChange = this._handleImageChange.bind(this);
+  }
+
+  _handleImageChange(event) {
+    event.preventDefault();
+
+    let reader = new FileReader();
+    let file = event.target.files[0];
+
+    reader.onloadend = () => {
+      this.setState({
+        file: file,
+        imagePreviewUrl: reader.result
+      });
+      this.setState({ ...this.state, user: 
+        { ...this.state.user, photo: file} })
+    }
+
+    reader.readAsDataURL(file)
+  }
 
   register = async (e) => {
     const { user } = this.state;  
@@ -109,6 +133,11 @@ class SignUp extends Component {
   
   }
   render() {
+    let {imagePreviewUrl} = this.state;
+    let $imagePreview = null;
+    if (imagePreviewUrl) {
+      $imagePreview = (<img style={{borderRadius:'90px', width:'120px', height:'120px'}} src={imagePreviewUrl} />);
+    }
     return (
       <div className="SignUpBackground" style={{overflowY:'scroll'}}>
       {this.state.showModal? <SimpleModal router={""} title={'Usuario criado com sucesso!'}  />:null}
@@ -181,14 +210,14 @@ class SignUp extends Component {
                   { ...this.state.user, passwordconfirm: event.target.value } })}
                 />
             </Grid>
+            {$imagePreview}
             <Grid item>              
               <input 
-                accept="image/*" 
+                accept=".png, .jpeg" 
                 id="raised-button-file" 
                 multiple 
                 type="file" 
-                onChange={(event)=>this.setState({...this.state, user:
-                  {...this.state.user,photo: event.target.files[0],}})}
+                onChange={this._handleImageChange}
               /> 
               <label htmlFor="raised-button-file"> 
               <MuiThemeProvider theme={theme}>
