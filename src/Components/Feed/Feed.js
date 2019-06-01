@@ -9,6 +9,8 @@ import firebase from 'firebase';
 import Card from './Card.js';
 import ButtonSizes from '../GenericButtons/Add.js';
 import './feed.css';
+import SnackbarWarning from '../SimpleModal/SnackBarsWarning';
+import Tab from '../Tab/Tab';
 
 import {withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -47,7 +49,7 @@ class TelaFeed extends Component {
                 <AppBar/>    
             </Grid> 
             <div>
-            <Grid container justify="center" direction="column" alignItems="center" spacing={8} style={{paddingTop:70}}>
+            <Grid container justify="center" direction="column" alignItems="center" style={{paddingTop:70,marginTop:10, paddingBottom:40}}>
                 {this.state.data.map(function(item, i){
                     return (
                         <Grid item key={i} lg={12} sm={12} container style={{paddingBottom:3}} >
@@ -65,6 +67,7 @@ class TelaFeed extends Component {
                         <ButtonSizes component={Link} to="/Profile"/>
                     </Grid>
                 </Grid>
+                <Tab ind={0}/>
             </div>
         </div>
     );   

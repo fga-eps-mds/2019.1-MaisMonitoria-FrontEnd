@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing NotFound component Test if NotFound renders correctly 1`] = `
+<div
+  style={
+    Object {
+      "overflowX": "hidden",
+    }
+  }
+>
+  <WithStyles(Grid)
+    alignItems="stretch"
+    container={true}
+    justify="center"
+    style={
+      Object {
+        "position": "absolute",
+      }
+    }
+  >
+    <WithStyles(SimpleAppBar) />
+  </WithStyles(Grid)>
+  <WithStyles(Grid)
+    alignItems="center"
+    container={true}
+    direction="column"
+    justify="center"
+    spacing={24}
+    style={
+      Object {
+        "marginLeft": "auto",
+        "marginRight": "auto",
+        "paddingTop": 100,
+        "position": "fixed",
+      }
+    }
+  >
+    <WithStyles(Grid)
+      item={true}
+    >
+      <Link
+        to="/"
+      >
+        <WithStyles(Typography)
+          gutterBottom={true}
+          variant="h3"
+        >
+          Erro 404, página não encontrada!
+        </WithStyles(Typography)>
+      </Link>
+    </WithStyles(Grid)>
+    <WithStyles(Grid)
+      item={true}
+    >
+      <Link
+        to="/"
+      >
+        clique para voltar pra o login
+      </Link>
+    </WithStyles(Grid)>
+  </WithStyles(Grid)>
+</div>
+`;
