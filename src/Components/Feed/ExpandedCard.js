@@ -43,11 +43,15 @@ class ExpandedCard extends React.Component {
         id_monitor:'',
         id_user:'',
         id_tutoring:'',
+        likes: '',
+        total_likes:'',
+        name_users_like: [],
     }
 
     componentDidMount() {
         var token = {};
         var idTutoring = this.props.match.params.id_tutoring;
+        
         this.setState({id_tutoring:idTutoring});
         firebase.auth().onAuthStateChanged(user =>{
             this.setState({isSignedIn: !!user});
@@ -61,10 +65,17 @@ class ExpandedCard extends React.Component {
                 axios.post(process.env.REACT_APP_GATEWAY+"/get_tutoring/", token)
                     .then(res => {
                         const person = res.data;
-                        this.setState({tutoringName:person["name"], tutoringTheme:person["subject"], tutoringDescription:person["description"],
-                                      monitorName: person.monitor["name"], photo:person.monitor["photo"], telegram:person.monitor["telegram"],
-                                        id_monitor:person.monitor.user_account_id})          
+
+                        for(var cont =0;cont<=person.total_likes; cont++){
+                            this.state.name_users_like[cont]= person.likes[cont].user_that_likes.name
+                        }
+                        
+                        this.setState({tutoringName:person.name, tutoringTheme:person.subject, tutoringDescription:person.description,
+                                      monitorName: person.monitor.name, photo:person.monitor.photo, telegram:person.monitor.telegram,
+                                        id_monitor:person.monitor.user_account_id, likes:person.likes,
+                                         total_likes:person.total_likes})          
                     });
+            
             }else{
                 this.props.history.push('/');
             }
@@ -86,7 +97,7 @@ class ExpandedCard extends React.Component {
                 });
                 axios.post(process.env.REACT_APP_GATEWAY+"/like_tutoring/", token).then((x)=>{
                     if(success(x)) {
-                      console.log("entrou");
+                      
                     }
                   });
             }
@@ -166,7 +177,6 @@ class ExpandedCard extends React.Component {
                     </Grid>
                 </Grid>
             </div>
-              
             <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center" style={{marginTop: 25}}>
               <Grid item >
                 <MuiThemeProvider theme={theme}>
