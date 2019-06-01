@@ -179,24 +179,26 @@ class EditProfile extends Component {
             <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center">
                 {this.state.showError? <CustomizedSnackbars error={this.state.error}/>:null}
             </Grid>
-            { this.state.isLoading ? <Spinner />: 
-                <Grid container justify="center" alignContent="center" alignItems="center" direction="row" spacing={24}>
-                    <Grid item>
-                        <MuiThemeProvider theme={theme}>
-                            <Button component={Link} variant="contained" onClick={this.editProfile} color="primary">
-                                Confirmar
-                            </Button>
-                        </MuiThemeProvider>
+            <Grid item style={{marginTop:30}} >
+                { this.state.isLoading ? <Spinner />: 
+                    <Grid container justify="center" alignContent="center" alignItems="center" direction="row" spacing={24} style={{marginTop:30}}>
+                        <Grid item>
+                            <MuiThemeProvider theme={theme}>
+                                <Button component={Link} variant="contained" onClick={this.editProfile} color="primary">
+                                    Confirmar
+                                </Button>
+                            </MuiThemeProvider>
+                        </Grid>
+                        <Grid item>
+                            <MuiThemeProvider theme={theme}>
+                                <Button component={Link} to="/Profile" variant="contained" color="primary">
+                                    Cancelar
+                                </Button>
+                            </MuiThemeProvider>
+                        </Grid>
                     </Grid>
-                    <Grid item>
-                        <MuiThemeProvider theme={theme}>
-                            <Button component={Link} to="/Profile" variant="contained" color="primary">
-                                Cancelar
-                            </Button>
-                        </MuiThemeProvider>
-                    </Grid>
-                </Grid>
-            }
+                }
+            </Grid>
         </div> 
     );   
   }
