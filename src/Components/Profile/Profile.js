@@ -10,6 +10,7 @@ import Spinner from '../Loader/Spinner';
 
 import AppBar from '../AppBar/AppBar';
 import ProfileTab from '../ProfileTab/ProfileTab';
+import Tab from '../Tab/Tab';
 
 import './Profile.css';
 import SimpleModal from '../SimpleModal';
@@ -124,6 +125,7 @@ class Profile extends Component {
                                         </Grid>
                                     );
                                 })}
+                                <Tab ind={1}/>
                             </Grid>
                         }
                     </Grid>
