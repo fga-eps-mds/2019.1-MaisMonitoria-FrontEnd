@@ -44,7 +44,14 @@ const theme = createMuiTheme({
       marginTop: 70,
       marginBottom: 5,
       borderRadius: 70,
-    }
+    },
+    
+    root: {
+          width: '100%',
+          maxWidth: 500,
+        },
+      
+      
   
   });
 
@@ -105,23 +112,18 @@ class Profile extends Component {
                         <AppBarProfile/>    
                     </Grid>
                 </div> 
-                <div>   
+                <div className={classes.root}>   
                     <Grid container justify={'flex-start'} direction={'row'} alignContent={'center'} spacing={24} alignItems={'center'}>
                         <Grid item>
                             <img className={classes.perfil} src={photoUrl} ></img>
                         </Grid>
                         <Grid item>
-                            <Grid container justify={'flex-start'} direction={'column'} alignContent={'flex-start'} alignItems={'flex-start'} spacing={24}  style={{paddingTop:80}} alignItems={'center'}>
-                                <Grid item>
-                                <Typography component="h5" variant="h5">
-                                    Name: {this.state.monitorName}
-                                </Typography>
-
+                            <Grid container justify={'flex-start'} direction={'column'} alignContent={'flex-start'} alignItems={'flex-start'} spacing={16}  style={{paddingTop:80}} >
+                                <Grid item>                              
+                                    <h3>Name: {this.state.monitorName}</h3>  
                                 </Grid>
                                 <Grid item>
-                                <Typography component="h5" variant="h5">
-                                    Curso: {this.state.monitorCourse}
-                                </Typography>
+                                    <h4>Curso: {this.state.monitorCourse}</h4>
                                 </Grid>
                                 <Grid item>
                                     <MuiThemeProvider theme={theme}>
