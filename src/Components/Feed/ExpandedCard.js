@@ -83,9 +83,9 @@ class ExpandedCard extends React.Component {
                 <Grid item>                            
                     <img src={photoUrl} style={{width:140, height:140}}></img>
                 </Grid>
-                <Grid item>
+                <Grid item style={{marginTop:50, marginLeft:25}} >
                     {this.state.isLoading ? <Spinner />:    
-                        <Grid container justify="center" direction="column" alignItems="center" alignContent="center">
+                        <Grid container justify="center" direction="column" alignItems="center" alignContent="center" style={{marginTop:-50, marginLeft:-25}}>
                             <Grid item style={{marginTop:50}} style={{marginLeft:50}} >
                                 <h1>Monitor</h1>
                             </Grid>
@@ -99,9 +99,9 @@ class ExpandedCard extends React.Component {
                 </Grid>
             </Grid>
             <div>
-                <Grid item style={{paddingLeft:15}}> 
+                <Grid item style={{marginTop:150, marginLeft:-10}}> 
                     {this.state.isLoading ? <Spinner />:
-                        <Grid container direction="column">
+                        <Grid container direction="column" style={{marginTop:-150, marginLeft:10}}>
                             <Grid item >
                                 <h1>Monitoria</h1>
                             </Grid>
