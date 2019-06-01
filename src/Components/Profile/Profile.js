@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
 import { Grid, Button } from '@material-ui/core' ;
 import AppBarProfile from '../AppBar/AppBarProfile';
-import Card from '../Feed/Card';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import axios from 'axios';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import firebase from 'firebase';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
 
-
-import AppBar from '../AppBar/AppBar';
 import ProfileTab from '../ProfileTab/ProfileTab';
+import Tab from '../Tab/Tab';
 
 import './Profile.css';
 
@@ -144,6 +141,7 @@ class Profile extends Component {
                                 likes={this.state.likes.map(item => ({ ...item, photoUrl}))}
                             />
                         </Grid>
+                        <Tab ind={1}/>
                     </Grid>
                 </div>
             </div>

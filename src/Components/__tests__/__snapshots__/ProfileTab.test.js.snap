@@ -396,7 +396,15 @@ exports[`Testing Add component Test if Add renders correctly 1`] = `
         value={1}
       />
     </WithStyles(Tabs)>
-    <TabContainer />
+    <TabContainer>
+      <WithStyles(Grid)
+        alignItems="center"
+        container={true}
+        direction="column"
+        justify="center"
+        spacing={8}
+      />
+    </TabContainer>
   </MuiThemeProviderOld>
 </WithStyles(Paper)>
 `;

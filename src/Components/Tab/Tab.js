@@ -99,9 +99,7 @@ class IconLabelTabs extends React.Component {
     value: 0,
   };
 
-  handleChange = (event, value) => {
-    this.setState({ value });
-  };
+ 
 
   render() {
     const { classes } = this.props;
@@ -111,8 +109,7 @@ class IconLabelTabs extends React.Component {
       <Paper square className={classes.root}>
       <MuiThemeProvider theme={theme}>
         <Tabs
-          value={this.state.value}
-          onChange={this.handleChange}
+          value={this.props.ind}
           variant="fullWidth"
           indicatorColor="primary"
           textColor="primary"
@@ -120,10 +117,12 @@ class IconLabelTabs extends React.Component {
         >
           <Tab value={0} component={Link} to="/Feed" icon={<HomeIcon />} />
           <Tab value={1} component={Link} to="/Profile" icon={<Profile />} />
-          <Tab value={2} component={Link} to="/Ranking" icon={<RankIcon />} />
+          <Tab value={2}  icon={<RankIcon />} />
           <Tab value={3} component={Link} to="/Search" icon={<SearchIcon />} />
         </Tabs>
+        
       </MuiThemeProvider>
+      
       </Paper>
     
     );
@@ -133,5 +132,9 @@ class IconLabelTabs extends React.Component {
 IconLabelTabs.propTypes = {
   classes: PropTypes.object.isRequired,
 };
+
+IconLabelTabs.defaultProps = {
+  ind: 0,
+ };
 
 export default withStyles(styles)(IconLabelTabs);
