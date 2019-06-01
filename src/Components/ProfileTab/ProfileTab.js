@@ -3,19 +3,6 @@ import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import { Grid } from '@material-ui/core' ;
-import Card from '../Feed/Card';
-// import CardProfile from '../Profile/CardProfile';
-
-function TabContainer(props) {
-  return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
-      {props.children}
-    </Typography>
-  );
-}
-
 
 const theme = createMuiTheme({
   palette: {
@@ -37,7 +24,6 @@ class ProfileTab extends React.Component {
   };
 
   handleChange = (event, value) => {
-    
     this.setState({ value });
   };
 
@@ -53,29 +39,10 @@ class ProfileTab extends React.Component {
           variant="fullWidth"
           centered
         >
-          <Tab value={0} label="A ministrar" />
-          <Tab value={1} label="Curtidas"  />
+          <Tab label="A ministrar" />
+          <Tab label="A assistir" disabled />
+          <Tab label="Historico"disabled />
         </Tabs>
-        {this.state.value === 0 &&
-          <TabContainer>
-            {this.props.tutoring.map(function(item, i){
-                return (
-                  <Grid item key={i} lg={12} sm={12} container >
-                      <Card name_monitoring={item.name} matter={item.subject} photo={item.photoUrl}
-                          description={item.description} id_tutoring={item.id_tutoring_session}/>
-                  </Grid>
-                );
-            })}
-          </TabContainer>
-        }
-        {this.state.value === 1 && <TabContainer>{this.props.likes.map(function(item, i){
-                return (
-                  <Grid item key={i} lg={12} sm={12} container >
-                      <Card name_monitoring={item.tutoring_session.name} matter={item.tutoring_session.subject} photo = {item.tutoring_session.monitor.photo}
-                          description={item.tutoring_session.description} id_tutoring={item.tutoring_session.id_tutoring_session}/>
-                  </Grid>
-                );
-            })}</TabContainer>}
         </MuiThemeProvider>
       </Paper>
     );

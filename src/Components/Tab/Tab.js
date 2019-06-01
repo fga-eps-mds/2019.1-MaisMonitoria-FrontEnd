@@ -117,7 +117,7 @@ class IconLabelTabs extends React.Component {
         >
           <Tab value={0} component={Link} to="/Feed" icon={<HomeIcon />} />
           <Tab value={1} component={Link} to="/Profile" icon={<Profile />} />
-          <Tab value={2} component={Link} to="/Ranking" icon={<RankIcon />} />
+          <Tab value={2}  icon={<RankIcon />} />
           <Tab value={3} component={Link} to="/Search" icon={<SearchIcon />} />
         </Tabs>
         
