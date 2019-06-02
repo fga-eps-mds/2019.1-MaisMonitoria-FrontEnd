@@ -44,16 +44,18 @@ class ExpandedCard extends React.Component {
         id_user:'',
         id_tutoring:'',
         likes: '',
-        total_likes:'',
+        total_likes: 0,
         name_users_like: [],
+        id_users_like: [],
+        user_liked: false,
     }
 
-    componentDidMount() {
+    componentDidMount =  async () => {
         var token = {};
         var idTutoring = this.props.match.params.id_tutoring;
         
         this.setState({id_tutoring:idTutoring});
-        firebase.auth().onAuthStateChanged(user =>{
+        await firebase.auth().onAuthStateChanged(user =>{
             this.setState({isSignedIn: !!user});
             if(user){
                 this.setState({id_user:user.uid})
@@ -65,15 +67,21 @@ class ExpandedCard extends React.Component {
                 axios.post(process.env.REACT_APP_GATEWAY+"/get_tutoring/", token)
                     .then(res => {
                         const person = res.data;
-
-                        for(var cont =0;cont<=person.total_likes; cont++){
-                            this.state.name_users_like[cont]= person.likes[cont].user_that_likes.name
+                        for(let cont = 0; cont < person.total_likes; cont++){
+                             this.state.name_users_like[cont]= person.likes[cont].user_that_likes.name;
                         }
-                        
+                        for(let cont = 0; cont < person.total_likes; cont++){
+                            this.state.id_users_like[cont]= person.likes[cont].user_that_likes.user_account_id;
+                       }
+                       for(let cont = 0; cont < person.total_likes; cont++){
+                            if(this.state.id_users_like[cont] == this.state.id_user){
+                                this.setState({user_liked:true});
+                            }
+                       }
                         this.setState({tutoringName:person.name, tutoringTheme:person.subject, tutoringDescription:person.description,
-                                      monitorName: person.monitor.name, photo:person.monitor.photo, telegram:person.monitor.telegram,
-                                        id_monitor:person.monitor.user_account_id, likes:person.likes,
-                                         total_likes:person.total_likes})          
+                                       monitorName: person.monitor.name, photo:person.monitor.photo, telegram:person.monitor.telegram,
+                                       id_monitor:person.monitor.user_account_id, likes:person.likes,
+                                       total_likes:person.total_likes})          
                     });
             
             }else{
@@ -82,6 +90,16 @@ class ExpandedCard extends React.Component {
         });    
     }
     
+    
+    validateLike = async() => {
+        
+             if(this.user_liked == false){
+                 this.createLike();
+             }
+             
+    
+    }
+
     createLike = async() =>{
         
         var token = {};
@@ -180,7 +198,7 @@ class ExpandedCard extends React.Component {
             <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center" style={{marginTop: 25}}>
               <Grid item >
                 <MuiThemeProvider theme={theme}>
-                    <Fab onClick={this.createLike} color="primary" aria-label="Edit" >
+                    <Fab onClick={this.validateLike} color="primary" aria-label="Edit" >
                         <Like/>
                     </Fab>
                 </MuiThemeProvider>
