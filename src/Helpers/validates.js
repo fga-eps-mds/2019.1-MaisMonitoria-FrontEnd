@@ -49,4 +49,13 @@ export const validateEditProfile= Monitoring => {
     
 }
 
+export const validateEditMonitoring= Monitoring => {
+    const {name,subject,description} = Monitoring;
+    
+     if(!name  || !subject || !description ) return false;
+
+     return true;
+    
+}
+
 export const success=({status})=> status >=200 && status <=300;

@@ -62,7 +62,8 @@ class EditProfile extends Component {
                 })
                 axios.post(process.env.REACT_APP_GATEWAY+"/get_user/", token).then(user=>{
                     userData = user.data;
-                    this.setState({name:userData["name"], telegram:userData["telegram"], course:userData["course"],email:userData["email"], photo:userData["photo"]})                    
+                    this.setState({name:userData.name, telegram:userData.telegram, course:userData.course, email:userData.email, photo:userData.photo}) 
+                   
                 });  
             }else{
                 this.props.history.push('/');
@@ -110,7 +111,6 @@ class EditProfile extends Component {
               })
             }     
         })
-        // this.setState({ isLoading: false });
     }
     
   render() {
@@ -135,7 +135,7 @@ class EditProfile extends Component {
                         multiline
                         Maxrows="4"
                         margin="normal"
-                        defaultValue={this.state.name}
+                        value={this.state.name}
                         onChange={(event)=>this.setState({
                             name: event.target.value,
                         })}
@@ -143,7 +143,6 @@ class EditProfile extends Component {
                 </Grid>
                 <Grid item> 
                     <TextField
-                        // error = {this.state.errorSenha }
                         required= "true"
                         id="telegram"
                         label="Telegram"
@@ -151,6 +150,7 @@ class EditProfile extends Component {
                         Maxrows="4"
                         placeholder="@"
                         margin="normal"
+                        value={this.state.telegram}
                         onChange={(event)=>this.setState({
                             telegram: event.target.value,
                         })}

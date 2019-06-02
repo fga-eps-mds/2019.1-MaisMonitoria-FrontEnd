@@ -10,8 +10,9 @@ import Search from './Components/Search/Search';
 
 import ExpandedCard from './Components/Feed/ExpandedCard';
 import EditProfile from './Components/EditProfile/EditProfile';
-import RegisterMonitoring from './Components/RegisterMonitoring/RegisterMonitoring'
-import Profile from './Components/Profile/Profile'
+import EditMonitoring from './Components/EditMonitoring/EditMonitoring';
+import RegisterMonitoring from './Components/RegisterMonitoring/RegisterMonitoring';
+import Profile from './Components/Profile/Profile';
 import * as serviceWorker from './serviceWorker';
 import NotFound from './Notfound'
 import './index.css';
@@ -27,7 +28,8 @@ ReactDOM.render((
                         <Route path="/ForgotPassword" component={ForgotPassword}/>   
                         <Route path="/RegisterMonitoring" component={RegisterMonitoring}/>
                         <Route path="/EditProfile" component={EditProfile}/>
-                        <Route path="/expandedcard/:id_tutoring" component={ExpandedCard}/> 
+                        <Route path="/expandedcard/:id_tutoring" component={ExpandedCard}/>
+                        <Route path="/EditMonitoring/:id_tutoring" component={EditMonitoring}/>
                         <Route path="/Feed" component={TelaFeed}/>
                         <Route path="/Search" component={Search}/>  
                         <Route path="/Profile" component={Profile}/>

@@ -10,7 +10,10 @@ import { ReactComponent as Logo } from '../../Assets/svg/telegram.svg';
 import { ReactComponent as Like } from '../../Assets/svg/like.svg';
 import Fab from '@material-ui/core/Fab';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import {Link} from 'react-router-dom';
+import {Link } from 'react-router-dom';
+
+import {withRouter} from 'react-router-dom';
+
 
 const theme = createMuiTheme({
     palette: {
@@ -18,6 +21,13 @@ const theme = createMuiTheme({
       secondary: { main: '#11cb5f' },
     },
     typography: { useNextVariants: true },
+    overrides: {
+        MuiButton: {
+          raisedPrimary: {
+            color: 'white',
+          },
+        },
+    },
 });
 
 class ExpandedCard extends React.Component {
@@ -29,17 +39,21 @@ class ExpandedCard extends React.Component {
         monitorName: '',
         photo: '',
         telegram:'',
+        id_monitor:'',
+        id_user:'',
+        id_tutoring:'',
         isLoading: false
     }
 
     componentDidMount() {
         var token = {};
         var idTutoring = this.props.match.params.id_tutoring;
-        
+        this.setState({id_tutoring:idTutoring});
         this.setState({ isLoading: true });
         firebase.auth().onAuthStateChanged(user =>{
             this.setState({isSignedIn: !!user});
             if(user){
+                this.setState({id_user:user.uid})
                 firebase.auth().currentUser.getIdToken().then(function(idToken){
                     token["access_token"] = idToken;
                     token["id_tutoring_session"] = idTutoring;
@@ -47,21 +61,20 @@ class ExpandedCard extends React.Component {
                 
                 axios.post(process.env.REACT_APP_GATEWAY+"/get_tutoring/", token)
                     .then(res => {
-                        const person = res.data
+                        const person = res.data;
                         this.setState({tutoringName:person["name"], tutoringTheme:person["subject"], tutoringDescription:person["description"],
-                                      monitorName: person.monitor["name"], photo:person.monitor["photo"], telegram:person.monitor["telegram"]}) 
-                        
+                                      monitorName: person.monitor["name"], photo:person.monitor["photo"], telegram:person.monitor["telegram"],
+                                        id_monitor:person.monitor.user_account_id})          
                     });
+            }else{
+                this.props.history.push('/');
             }
             this.setState({ isLoading: false });
         });
           
     }
-
-    
         
   render() {
-
     var texto =  this.state.telegram;
     var er = texto;
     texto = er.replace('@','');
@@ -85,6 +98,7 @@ class ExpandedCard extends React.Component {
                 </Grid>
                 <Grid item style={{marginTop:50, marginLeft:25}} >
                     {this.state.isLoading ? <Spinner />:    
+                    <Grid>
                         <Grid container justify="center" direction="column" alignItems="center" alignContent="center" style={{marginTop:-50, marginLeft:-25}}>
                             <Grid item style={{marginTop:50}} style={{marginLeft:50}} >
                                 <h1>Monitor</h1>
@@ -95,6 +109,16 @@ class ExpandedCard extends React.Component {
                                 </Typography>
                             </Grid>
                         </Grid>
+                        <Grid container justify="center" direction="column" alignItems="center" alignContent="center" >
+                        {(this.state.id_monitor === this.state.id_user)? 
+                            <MuiThemeProvider  theme={theme}>
+                                <Button style={{marginTop:40,marginLeft:50}} component={Link} variant="contained" to={`/editmonitoring/${this.state.id_tutoring}`} color="primary">
+                                    Editar
+                                </Button>
+                            </MuiThemeProvider>: null}                           
+                        </Grid>
+                    
+                    </Grid>
                     }
                 </Grid>
             </Grid>
@@ -151,5 +175,5 @@ class ExpandedCard extends React.Component {
   }
 }
 
-
+ExpandedCard = withRouter(ExpandedCard);
 export default (ExpandedCard);
