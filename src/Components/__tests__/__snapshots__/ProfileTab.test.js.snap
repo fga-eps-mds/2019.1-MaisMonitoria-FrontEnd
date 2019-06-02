@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Testing ProfileTab component Test if ProfileTab renders correctly 1`] = `
+exports[`Testing Add component Test if Add renders correctly 1`] = `
 <WithStyles(Paper)
   square={true}
 >
@@ -402,7 +402,3 @@ exports[`Testing ProfileTab component Test if ProfileTab renders correctly 1`] =
   </MuiThemeProviderOld>
 </WithStyles(Paper)>
 `;
-
-exports[`Testing ProfileTab component allows us to set props: baz 1`] = `"baz"`;
-
-exports[`Testing ProfileTab component allows us to set props: profiletab 1`] = `"profiletab"`;
