@@ -81,6 +81,9 @@ class Profile extends Component {
               
                 axios.post(process.env.REACT_APP_GATEWAY+"/get_user/", token).then(user=>{
                     userData = user.data;
+                    if(userData['course'] != 'ENGENHARIAS'){
+                        userData['course'] = 'ENGENHARIA DE ' + userData['course'];
+                    }
                     this.setState({monitorName:userData["name"], monitorCourse:userData["course"], tutoring:userData["monitoring"], photo:userData["photo"], likes:userData["liked_tutoring_sessions"], teste:userData["liked_tutoring_sessions.monitor.ph"]}) 
                     
                 });  
