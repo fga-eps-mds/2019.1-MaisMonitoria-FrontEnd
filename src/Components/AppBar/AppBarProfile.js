@@ -16,7 +16,7 @@ import firebase from 'firebase';
 
 const styles = theme =>({
   root: {
-    position: '',
+    position: 'fixed',
     width: '100%',  
     flexGrow: 1,
     zIndex: 100,

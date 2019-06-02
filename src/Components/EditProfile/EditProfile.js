@@ -11,6 +11,8 @@ import { validateEditProfile, validateName, success } from '../../Helpers/valida
 import SimpleModal from '../SimpleModal';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CustomizedSnackbars from '../SimpleModal/Snackbars';
+import SnackbarWarning from '../SimpleModal/SnackBarsWarning';
+import Spinner from '../Loader/Spinner';
 
 
 const theme = createMuiTheme({
@@ -41,8 +43,8 @@ class EditProfile extends Component {
         errorName: false,
         showError: false,
         photo: null,
-        isSignedin: false,
-        showWarning: false
+        showWarning: false,
+        isLoading: false
     }
 
     componentDidMount(){
@@ -52,12 +54,12 @@ class EditProfile extends Component {
     getUserData = () =>{
         let userData = {};
         let token = {}
+
         firebase.auth().onAuthStateChanged(user =>{
             if(user){
                 firebase.auth().currentUser.getIdToken().then(function(idToken){
                     token["access_token"] = idToken;
                 })
-              
                 axios.post(process.env.REACT_APP_GATEWAY+"/get_user/", token).then(user=>{
                     userData = user.data;
                     this.setState({name:userData.name, telegram:userData.telegram, course:userData.course, email:userData.email, photo:userData.photo}) 
@@ -97,6 +99,7 @@ class EditProfile extends Component {
             return;
         }
 
+        this.setState({ isLoading: true });
         firebase.auth().onAuthStateChanged(user =>{
             if(user){
                 firebase.auth().currentUser.getIdToken().then(function(idToken){  
@@ -112,7 +115,6 @@ class EditProfile extends Component {
     
   render() {
     return (
-        
         <div style={{overflowX:'hidden'}} className="editBackground"> 
             {this.state.showModal? <SimpleModal router={"Profile"} title={'Usuario alterado com sucesso!'}  />:null}
             <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
@@ -158,43 +160,46 @@ class EditProfile extends Component {
                     <Course action={(course)=>{this.setState({course})}}/>
                 </Grid>
                 <Grid item style={{padding:30}}>              
-                <input 
-                    accept="image/*" 
-                    id="raised-button-file" 
-                    multiple 
-                    type="file" 
-                    onChange={(event)=>this.setState({
-                    photo: event.target.files[0],
-                    })}                
-                /> 
-                <label htmlFor="raised-button-file"> 
-                    <Button raised component="span" variant="outlined" color="primary" > 
-                    Escolher foto 
-                    </Button> 
-                </label>  
+                    <input 
+                        accept="image/*" 
+                        id="raised-button-file" 
+                        multiple 
+                        type="file" 
+                        onChange={(event)=>this.setState({
+                        photo: event.target.files[0],
+                        })}                
+                    /> 
+                    <label htmlFor="raised-button-file"> 
+                        <Button raised component="span" variant="outlined" color="primary" > 
+                            Escolher foto 
+                        </Button> 
+                    </label>  
                 </Grid>
             </Grid>
-                <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center">
-                    {this.state.showError? <CustomizedSnackbars error={this.state.error}/>:null}
-                </Grid>
-            <Grid container justify="center" alignContent="center" alignItems="center" direction="row" spacing={24}>
-                <Grid item>
-                    <MuiThemeProvider theme={theme}>
-                        <Button component={Link} variant="contained" onClick={this.editProfile} color="primary">
-                            Confirmar
-                        </Button>
-                    </MuiThemeProvider>
-                </Grid>
-                <Grid item>
-                    <MuiThemeProvider theme={theme}>
-                        <Button component={Link} to="/Profile" variant="contained" color="primary">
-                            Cancelar
-                        </Button>
-                    </MuiThemeProvider>
-                </Grid>
+            <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center">
+                {this.state.showError? <CustomizedSnackbars error={this.state.error}/>:null}
             </Grid>
-        </div>
-        
+            <Grid item style={{marginTop:30}} >
+                { this.state.isLoading ? <Spinner />: 
+                    <Grid container justify="center" alignContent="center" alignItems="center" direction="row" spacing={24} style={{marginTop:30}}>
+                        <Grid item>
+                            <MuiThemeProvider theme={theme}>
+                                <Button component={Link} variant="contained" onClick={this.editProfile} color="primary">
+                                    Confirmar
+                                </Button>
+                            </MuiThemeProvider>
+                        </Grid>
+                        <Grid item>
+                            <MuiThemeProvider theme={theme}>
+                                <Button component={Link} to="/Profile" variant="contained" color="primary">
+                                    Cancelar
+                                </Button>
+                            </MuiThemeProvider>
+                        </Grid>
+                    </Grid>
+                }
+            </Grid>
+        </div> 
     );   
   }
 }
