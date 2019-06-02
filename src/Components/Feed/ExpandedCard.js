@@ -4,7 +4,7 @@ import firebase from 'firebase';
 import axios from 'axios';
 import AppBar from './AppBarWithBack';
 import './ExpandedCard.css'
-
+import Spinner from '../Loader/Spinner';
 
 import { ReactComponent as Logo } from '../../Assets/svg/telegram.svg';
 import { ReactComponent as Like } from '../../Assets/svg/like.svg';
@@ -29,12 +29,14 @@ class ExpandedCard extends React.Component {
         monitorName: '',
         photo: '',
         telegram:'',
+        isLoading: false
     }
 
     componentDidMount() {
         var token = {};
         var idTutoring = this.props.match.params.id_tutoring;
         
+        this.setState({ isLoading: true });
         firebase.auth().onAuthStateChanged(user =>{
             this.setState({isSignedIn: !!user});
             if(user){
@@ -51,8 +53,8 @@ class ExpandedCard extends React.Component {
                         
                     });
             }
+            this.setState({ isLoading: false });
         });
-      
           
     }
 
@@ -81,50 +83,48 @@ class ExpandedCard extends React.Component {
                 <Grid item>                            
                     <img src={photoUrl} style={{width:140, height:140}}></img>
                 </Grid>
-                <Grid item>    
-                    <Grid container justify="center" direction="column" alignItems="center" alignContent="center">
-                        <Grid item style={{marginTop:50}} style={{marginLeft:50}} >
-                            <h1>Monitor</h1>
+                <Grid item style={{marginTop:50, marginLeft:25}} >
+                    {this.state.isLoading ? <Spinner />:    
+                        <Grid container justify="center" direction="column" alignItems="center" alignContent="center" style={{marginTop:-50, marginLeft:-25}}>
+                            <Grid item style={{marginTop:50}} style={{marginLeft:50}} >
+                                <h1>Monitor</h1>
+                            </Grid>
+                            <Grid item>
+                                <Typography style={{marginLeft:50}}>
+                                    Nome: {this.state.monitorName}
+                                </Typography>
+                            </Grid>
                         </Grid>
-                        <Grid item>
-                            <Typography style={{marginLeft:50}}>
-                                Nome: {this.state.monitorName}
-                            </Typography>
-                        </Grid>
-                        <Grid container justify="center" direction="column" alignItems="center" alignContent="center" >
-                                                    
-                        </Grid>
-                    </Grid>
+                    }
                 </Grid>
             </Grid>
             <div>
-                <Grid item style={{paddingLeft:15}}> 
-                    <Grid container direction="column">
-                        <Grid item >
-                            <h1>Monitoria</h1>
+                <Grid item style={{marginTop:150, marginLeft:-10}}> 
+                    {this.state.isLoading ? <Spinner />:
+                        <Grid container direction="column" style={{marginTop:-150, marginLeft:10}}>
+                            <Grid item >
+                                <h1>Monitoria</h1>
+                            </Grid>
+                            <Grid item>
+                                <h3>Matéria:</h3>
+                                <Typography>
+                                    {this.state.tutoringName}
+                                </Typography>
+                            </Grid>
+                            <Grid item>
+                                <h3>Tema:</h3>
+                                <Typography>
+                                    {this.state.tutoringTheme}
+                                </Typography>
+                            </Grid>
+                            <Grid item>
+                                <h3>Descrição:</h3>
+                                <Typography>
+                                    {this.state.tutoringDescription}
+                                </Typography>
+                            </Grid> 
                         </Grid>
-                        <Grid item>
-                            <h3>Matéria:</h3>
-                            <Typography>
-                                {this.state.tutoringName}
-                            </Typography>
-                        </Grid>
-                        <Grid item>
-                            <h3>Tema:</h3>
-                            <Typography>
-                                {this.state.tutoringTheme}
-                            </Typography>
-                        </Grid>
-                        <Grid item>
-                            <h3>Descrição:</h3>
-                            <Typography>
-                                {this.state.tutoringDescription}
-                            </Typography>
-                        </Grid>
-                        <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center" style={{marginTop: 25}} >
-                                                 
-                        </Grid>
-                    </Grid>
+                    }
                 </Grid>
             </div>
               
