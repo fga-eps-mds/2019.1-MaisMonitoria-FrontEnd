@@ -81,8 +81,19 @@ class Profile extends Component {
               
                 axios.post(process.env.REACT_APP_GATEWAY+"/get_user/", token).then(user=>{
                     userData = user.data;
-                    if(userData['course'] != 'ENGENHARIAS'){
+
+                    if(userData['course'] === 'SOFTWARE' || userData['course'] === 'ENERGIA' ){
                         userData['course'] = 'ENGENHARIA DE ' + userData['course'];
+                    }
+                    else if(userData['course'] === 'AERO'){
+                        userData['course'] = 'ENGENHARIA ' +'AEROESPACIAL';
+
+                    }
+                    else if(userData['course'] === 'AUTOMOTIVA' || userData['course'] === 'ELETRONICA'){
+                        userData['course'] = 'ENGENHARIA ' + userData['course'];
+                    }
+                    else{
+                        userData['course']= userData['course'];
                     }
                     this.setState({monitorName:userData["name"], monitorCourse:userData["course"], tutoring:userData["monitoring"], photo:userData["photo"], likes:userData["liked_tutoring_sessions"], teste:userData["liked_tutoring_sessions.monitor.ph"]}) 
                     
