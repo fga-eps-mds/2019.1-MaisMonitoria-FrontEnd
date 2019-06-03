@@ -4,7 +4,7 @@ import AppBar from '../AppBar/AppBar.js';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import firebase from 'firebase';
-
+import Spinner from '../Loader/Spinner';
 
 import Card from './Card.js';
 import ButtonSizes from '../GenericButtons/Add.js';
@@ -20,10 +20,13 @@ class TelaFeed extends Component {
     state =  {
         data : [],
         showWarning: false,
+        isLoading: false
     }
 
     componentDidMount() {
         var token = {};
+
+        this.setState({ isLoading: true });
         firebase.auth().onAuthStateChanged(user =>{
             this.setState({isSignedIn: !!user});
             if(user){
@@ -35,11 +38,12 @@ class TelaFeed extends Component {
                         const person = res.data
                         this.setState({data:person})
                     });
-            }else{
-                
+                this.setState({ isLoading: false });
+            }
+            else{
                 this.props.history.push('/');
             }
-          });
+        });
     }
 
   render() {  
@@ -49,26 +53,30 @@ class TelaFeed extends Component {
                 <AppBar/>    
             </Grid> 
             <div>
-            <Grid container justify="center" direction="column" alignItems="center" spacing={8} style={{paddingTop:60,marginTop:10, paddingBottom:50}}>
-                {this.state.data.map(function(item, i){
-                    return (
-                        <Grid item key={i} lg={12} sm={12} container style={{paddingBottom:3}} >
-                            <Card name_monitoring={item.name} matter={item.subject} 
-                                   description={item.description} photo={item.monitor.photo} 
-                                   monitorName={item.monitor.name} id_tutoring={item.id_tutoring_session} />
-                        </Grid>
-                    );
-                })}
-            </Grid>
-            </div>
-            <div>    
-                <Grid container>
-                    <Grid>
-                        <ButtonSizes component={Link} to="/Profile"/>
-                    </Grid>
+                <Grid container justify="center" direction="column" alignItems="center" spacing={8} style={{paddingTop:70,marginTop:10, paddingBottom:40}}>
+                    {this.state.data.map(function(item, i){
+                        return (
+                            <Grid item key={i} lg={12} sm={12} container style={{paddingBottom:3}} >
+                                <Card name_monitoring={item.name} matter={item.subject} 
+                                    description={item.description} photo={item.monitor.photo} 
+                                    monitorName={item.monitor.name} id_tutoring={item.id_tutoring_session} />
+                            </Grid>
+                        );
+                    })}
                 </Grid>
                 <Tab ind={0}/>
             </div>
+            <Grid item style={{marginTop:225}}>
+                {this.state.isLoading ? <Spinner />:
+                    <div>
+                        <Grid container style={{marginTop:-225}}>
+                            <Grid>
+                                <ButtonSizes component={Link} to="/Profile"/>
+                            </Grid>
+                        </Grid>
+                    </div>
+                }
+            </Grid>
         </div>
     );   
   }

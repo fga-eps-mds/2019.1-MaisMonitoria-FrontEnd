@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import firebase from 'firebase';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
+import Spinner from '../Loader/Spinner';
 
 import ProfileTab from '../ProfileTab/ProfileTab';
 import Tab from '../Tab/Tab';
@@ -63,14 +64,14 @@ class Profile extends Component {
         likes: [],
         monitorPhoto: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzaLMnex1QwV83TBQgxLTaoDAQlFswsYy62L3mO4Su-CMkk3jX',
         showWarning: false,
-        
-        
+        isLoading: false
     }
     
-
     componentDidMount() {
         let userData = {};
         let token = {}
+        
+        this.setState({ isLoading: true });
         firebase.auth().onAuthStateChanged(user =>{
             if(user){
                 
@@ -98,6 +99,7 @@ class Profile extends Component {
                     this.setState({monitorName:userData["name"], monitorCourse:userData["course"], tutoring:userData["monitoring"], photo:userData["photo"], likes:userData["liked_tutoring_sessions"], teste:userData["liked_tutoring_sessions.monitor.ph"]}) 
                     
                 });  
+                this.setState({ isLoading: false });
             }else{
                 
                 this.props.history.push('/');
@@ -117,7 +119,6 @@ class Profile extends Component {
           }
         return(
             <div style={{overflowX:'hidden'}}>
-                {/* {this.state.showWarning? <SnackbarWarning warning={"Faça o login para acessar"} router={""}/>:null} */}
                 <div style={{overflowX:'hidden'}} >
                     <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
                         <AppBarProfile/>    
@@ -129,26 +130,30 @@ class Profile extends Component {
                             <img className={classes.perfil} src={photoUrl} ></img>
                         </Grid>
                         <Grid item>
-                            <Grid container justify={'flex-start'} direction={'column'} alignContent={'flex-start'} alignItems={'flex-start'} spacing={16}  style={{paddingTop:80}} >
-                                <Grid item>                              
-                                    <h3>Name: {this.state.monitorName}</h3>  
+                            {this.state.isLoading ? <Spinner />:
+                                <Grid container justify={'flex-start'} direction={'column'} alignContent={'flex-start'} alignItems={'flex-start'} spacing={16}  style={{paddingTop:80}} >
+                                    <Grid item>                              
+                                        <h3>Name: {this.state.monitorName}</h3>  
+                                    </Grid>
+                                    <Grid item>
+                                        <h4>Curso: {this.state.monitorCourse}</h4>
+                                    </Grid>
+                                    <Grid item>
+                                        <MuiThemeProvider theme={theme}>
+                                            <Button variant="contained" component={Link} to="/EditProfile"  color="primary">
+                                                Editar perfil
+                                            </Button>
+                                        </MuiThemeProvider>
+                                    </Grid>
                                 </Grid>
-                                <Grid item>
-                                    <h4>Curso: {this.state.monitorCourse}</h4>
-                                </Grid>
-                                <Grid item>
-                                    <MuiThemeProvider theme={theme}>
-                                        <Button variant="contained" component={Link} to="/EditProfile"  color="primary">
-                                            Editar perfil
-                                        </Button>
-                                    </MuiThemeProvider>
-                                </Grid>
-                            </Grid>
+                            }
                         </Grid>
                     </Grid>
                 </div>
                 <div className="profileBackground">
-                    <Grid container justify={'center'} alignContent={'center'} alignItems={'center'} >
+                    <Grid item style = {{marginTop:125}} >
+                    {this.state.isLoading ? <Spinner />:
+                        <Grid container justify={'center'} alignContent={'center'} alignItems={'center'} >
                         <Grid item xs={12} style={{marginTop:10, paddingBottom:40}} className="profileBackground">
                             <ProfileTab
                                 tutoring={this.state.tutoring.map(item => ({ ...item,  photoUrl}))}
@@ -156,10 +161,17 @@ class Profile extends Component {
                             />
                         </Grid>
                         <Tab ind={1}/>
+                        </Grid>
+                    
+                    }
                     </Grid>
-                </div>
+                
+                 </div>
+
             </div>
+                    
         )
+                    
     }
 }
 
