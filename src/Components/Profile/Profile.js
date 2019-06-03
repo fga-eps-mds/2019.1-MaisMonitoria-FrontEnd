@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
 import { Grid, Button } from '@material-ui/core' ;
 import AppBarProfile from '../AppBar/AppBarProfile';
-import Card from '../Feed/Card';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import axios from 'axios';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import firebase from 'firebase';
+import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 import Spinner from '../Loader/Spinner';
 
-import AppBar from '../AppBar/AppBar';
 import ProfileTab from '../ProfileTab/ProfileTab';
 import Tab from '../Tab/Tab';
 
 import './Profile.css';
-import SimpleModal from '../SimpleModal';
-import SnackbarWarning from '../SimpleModal/SnackBarsWarning';
+
 
 
 
@@ -31,15 +30,38 @@ const theme = createMuiTheme({
           },
         },
     },
+
+  });
+  const styles = () => ({
+   
+  
+    perfil: {
+      width:120,
+      height:120,
+      marginLeft: 10,
+      marginTop: 70,
+      marginBottom: 5,
+      borderRadius: 70,
+    },
+    
+    root: {
+          width: '100%',
+          maxWidth: 500,
+        },
+      
+      
+  
   });
 
 class Profile extends Component {
 
-    state = {   
+    state = { 
+        
         monitorName:'',
         monitorCourse: '',
         monitorEmail: '',
         tutoring: [],
+        likes: [],
         monitorPhoto: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzaLMnex1QwV83TBQgxLTaoDAQlFswsYy62L3mO4Su-CMkk3jX',
         showWarning: false,
         isLoading: false
@@ -55,14 +77,31 @@ class Profile extends Component {
                 
                 firebase.auth().currentUser.getIdToken().then(function(idToken){
                     token["access_token"] = idToken;
+                    
                 })
               
                 axios.post(process.env.REACT_APP_GATEWAY+"/get_user/", token).then(user=>{
                     userData = user.data;
-                    this.setState({monitorName:userData["name"], monitorCourse:userData["course"], tutoring:userData["monitoring"], photo:userData["photo"]}) 
-                });
-                this.setState({ isLoading: false });  
-            }else{        
+
+                    if(userData['course'] === 'SOFTWARE' || userData['course'] === 'ENERGIA' ){
+                        userData['course'] = 'ENGENHARIA DE ' + userData['course'];
+                    }
+                    else if(userData['course'] === 'AERO'){
+                        userData['course'] = 'ENGENHARIA ' +'AEROESPACIAL';
+
+                    }
+                    else if(userData['course'] === 'AUTOMOTIVA' || userData['course'] === 'ELETRONICA'){
+                        userData['course'] = 'ENGENHARIA ' + userData['course'];
+                    }
+                    else{
+                        userData['course']= userData['course'];
+                    }
+                    this.setState({monitorName:userData["name"], monitorCourse:userData["course"], tutoring:userData["monitoring"], photo:userData["photo"], likes:userData["liked_tutoring_sessions"], teste:userData["liked_tutoring_sessions.monitor.ph"]}) 
+                    
+                });  
+                this.setState({ isLoading: false });
+            }else{
+                
                 this.props.history.push('/');
             }     
         })
@@ -70,6 +109,7 @@ class Profile extends Component {
 
     render(){
 
+        const { classes } = this.props;
         var photoUrl = this.state.photo
 
         if( photoUrl != null ){
@@ -84,19 +124,19 @@ class Profile extends Component {
                         <AppBarProfile/>    
                     </Grid>
                 </div> 
-                <div>   
+                <div className={classes.root}>   
                     <Grid container justify={'flex-start'} direction={'row'} alignContent={'center'} spacing={24} alignItems={'center'}>
                         <Grid item>
-                            <img src={photoUrl} className="ProfilePic" alt={"Profile pic"} style={{width: 130,height:130, marginTop:80, marginLeft:10,}}></img>
+                            <img className={classes.perfil} src={photoUrl} ></img>
                         </Grid>
-                        <Grid item style={{marginTop:70}}>
+                        <Grid item>
                             {this.state.isLoading ? <Spinner />:
-                                <Grid container justify={'flex-start'} direction={'column'} alignContent={'flex-start'} alignItems={'flex-start'} spacing={24} style={{paddingTop:80, marginTop:-70}} alignItems={'center'}>
-                                    <Grid item>
-                                        Nome: {this.state.monitorName}
+                                <Grid container justify={'flex-start'} direction={'column'} alignContent={'flex-start'} alignItems={'flex-start'} spacing={16}  style={{paddingTop:80}} >
+                                    <Grid item>                              
+                                        <h3>Name: {this.state.monitorName}</h3>  
                                     </Grid>
                                     <Grid item>
-                                        Curso: {this.state.monitorCourse}
+                                        <h4>Curso: {this.state.monitorCourse}</h4>
                                     </Grid>
                                     <Grid item>
                                         <MuiThemeProvider theme={theme}>
@@ -105,34 +145,38 @@ class Profile extends Component {
                                             </Button>
                                         </MuiThemeProvider>
                                     </Grid>
-                                </Grid> 
+                                </Grid>
                             }
                         </Grid>
                     </Grid>
                 </div>
                 <div className="profileBackground">
                     <Grid item style = {{marginTop:125}} >
-                        {this.state.isLoading ? <Spinner />:
-                            <Grid container justify={'center'} alignContent={'center'} alignItems={'center'} style={{marginTop:-125}}>
-                                <Grid item xs={12} style={{marginTop:10}} className="profileBackground">
-                                    <ProfileTab/>
-                                </Grid>
-                                {this.state.tutoring.map(function(item, i){
-                                    return (
-                                        <Grid item key={i} lg={12} sm={12} container >
-                                            <Card name_monitoring={item.name} matter={item.subject} photo={photoUrl}
-                                                description={item.description} id_tutoring={item.id_tutoring_session}/>
-                                        </Grid>
-                                    );
-                                })}
-                                <Tab ind={1}/>
-                            </Grid>
-                        }
+                    {this.state.isLoading ? <Spinner />:
+                        <Grid container justify={'center'} alignContent={'center'} alignItems={'center'} >
+                        <Grid item xs={12} style={{marginTop:10, paddingBottom:40}} className="profileBackground">
+                            <ProfileTab
+                                tutoring={this.state.tutoring.map(item => ({ ...item,  photoUrl}))}
+                                likes={this.state.likes.map(item => ({ ...item, photoUrl}))}
+                            />
+                        </Grid>
+                        <Tab ind={1}/>
+                        </Grid>
+                    
+                    }
                     </Grid>
-                </div>
+                
+                 </div>
+
             </div>
+                    
         )
+                    
     }
 }
 
-export default Profile;
+Profile.propTypes = {
+    classes: PropTypes.object.isRequired,
+  };
+
+  export default withStyles(styles)(Profile);
