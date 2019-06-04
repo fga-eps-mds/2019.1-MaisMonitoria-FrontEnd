@@ -45,8 +45,8 @@ const theme = createMuiTheme({
     },
     
     root: {
-          width: '100%',
-          maxWidth: 500,
+        width: '100%',
+        maxWidth: 1000,
         },
       
       
@@ -125,18 +125,18 @@ class Profile extends Component {
                     </Grid>
                 </div> 
                 <div className={classes.root}>   
-                    <Grid container justify={'flex-start'} direction={'row'} alignContent={'center'} spacing={24} alignItems={'center'}>
-                        <Grid item>
+                    <Grid container  direction="row" justify="flex-start" alignItems="flex-start" spacing={24}>
+                        <Grid item >
                             <img className={classes.perfil} src={photoUrl} ></img>
                         </Grid>
-                        <Grid item>
+                        <Grid item xs>
                             {this.state.isLoading ? <Spinner />:
                                 <Grid container justify={'flex-start'} direction={'column'} alignContent={'flex-start'} alignItems={'flex-start'} spacing={16}  style={{paddingTop:80}} >
-                                    <Grid item>                              
-                                        <h3>Name: {this.state.monitorName}</h3>  
+                                    <Grid item>                             
+                                        <h3>{this.state.monitorName}</h3>
                                     </Grid>
                                     <Grid item>
-                                        <h4>Curso: {this.state.monitorCourse}</h4>
+                                        <h4>{this.state.monitorCourse}</h4>
                                     </Grid>
                                     <Grid item>
                                         <MuiThemeProvider theme={theme}>
@@ -151,7 +151,7 @@ class Profile extends Component {
                     </Grid>
                 </div>
                 <div className="profileBackground">
-                    <Grid item style = {{marginTop:125}} >
+                    <Grid item style = {{marginTop:10}} >
                     {this.state.isLoading ? <Spinner />:
                         <Grid container justify={'center'} alignContent={'center'} alignItems={'center'} >
                         <Grid item xs={12} style={{marginTop:10, paddingBottom:40}} className="profileBackground">
