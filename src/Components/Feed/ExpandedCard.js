@@ -45,9 +45,9 @@ class ExpandedCard extends React.Component {
         id_tutoring:'',
         likes: '',
         total_likes: 0,
-        name_users_like: [],
-        id_users_like: [],
+        object_like: [],
         user_liked: false,
+        person: [],
     }
 
     componentDidMount =  async () => {
@@ -66,22 +66,20 @@ class ExpandedCard extends React.Component {
                 
                 axios.post(process.env.REACT_APP_GATEWAY+"/get_tutoring/", token)
                     .then(res => {
-                        const person = res.data;
-                        for(let cont = 0; cont < person.total_likes; cont++){
-                             this.state.name_users_like[cont]= person.likes[cont].user_that_likes.name;
+                        this.setState({person:res.data});
+                        console.log(this.state.person);
+                        for(let cont = 0; cont < this.state.person.total_likes; cont++){
+                            this.state.object_like[cont]= this.state.person.likes[cont];
                         }
-                        for(let cont = 0; cont < person.total_likes; cont++){
-                            this.state.id_users_like[cont]= person.likes[cont].user_that_likes.user_account_id;
-                       }
-                       for(let cont = 0; cont < person.total_likes; cont++){
-                            if(this.state.id_users_like[cont] == this.state.id_user){
+                       for(let cont = 0; cont < this.state.person.total_likes; cont++){
+                            if(this.state.object_like[cont].user_that_likes.user_account_id == this.state.id_user){
                                 this.setState({user_liked:true});
                             }
-                       }
-                        this.setState({tutoringName:person.name, tutoringTheme:person.subject, tutoringDescription:person.description,
-                                       monitorName: person.monitor.name, photo:person.monitor.photo, telegram:person.monitor.telegram,
-                                       id_monitor:person.monitor.user_account_id, likes:person.likes,
-                                       total_likes:person.total_likes})          
+                       } 
+                       this.setState({tutoringName:this.state.person.name, tutoringTheme:this.state.person.subject, tutoringDescription:this.state.person.description,
+                        monitorName: this.state.person.monitor.name, photo:this.state.person.monitor.photo, telegram:this.state.person.monitor.telegram,
+                        id_monitor:this.state.person.monitor.user_account_id, likes:this.state.person.likes,
+                        total_likes:this.state.person.total_likes});      
                     });
             
             }else{
@@ -93,12 +91,12 @@ class ExpandedCard extends React.Component {
     
     validateLike = async() => {
         
-             if(this.user_liked == false){
-                 this.createLike();
-             }
-             
-    
-    }
+        if(this.user_liked == false){
+            this.createLike();
+        }
+        
+
+}
 
     createLike = async() =>{
         
@@ -121,7 +119,33 @@ class ExpandedCard extends React.Component {
             }
         });  
     }
-
+    
+    deleteLike = async() =>{
+        
+        var token = {};
+        var idTutoring = this.props.match.params.id_tutoring;
+        
+        
+        for(let cont = 0; cont < this.state.total_likes; cont++){
+            if(this.state.object_like[cont].user_that_likes.user_account_id == this.state.id_user){
+                token["id_like"] = this.state.object_like[cont].id_like;
+                this.state.object_like.splice(cont, 1);
+            }
+       }
+        await firebase.auth().onAuthStateChanged(user =>{
+            this.setState({isSignedIn: !!user});
+            if(user){
+                firebase.auth().currentUser.getIdToken().then(function(idToken){
+                    token["access_token"] = idToken;
+                });
+                axios.post(process.env.REACT_APP_GATEWAY+"/like_delete/", token).then((x)=>{
+                    if(success(x)) {
+                        
+                    }
+                  });
+            }
+        });
+    }
   render() {
     var texto =  this.state.telegram;
     var er = texto;
