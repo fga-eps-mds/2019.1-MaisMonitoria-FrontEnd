@@ -4,6 +4,8 @@ language: node_js
 
 node_js:
   - "10.15.3"
+python:
+  - "3.6"
 
 services:
   - docker
@@ -32,6 +34,7 @@ deploy:
     - provider: script
       skip_cleanup: true
       script: bash ./scripts/deploy_homolog.sh
+      script: python3 ./scripts/upgrade.py
       on:
         branch: develop
 
