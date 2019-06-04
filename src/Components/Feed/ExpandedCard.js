@@ -50,11 +50,12 @@ class ExpandedCard extends React.Component {
         person: [],
     }
 
-    componentDidMount =  async () => {
+    componentWillMount =  async () => {
         var token = {};
         var idTutoring = this.props.match.params.id_tutoring;
-        
+        this.setState({user_liked:false});
         this.setState({id_tutoring:idTutoring});
+        
         await firebase.auth().onAuthStateChanged(user =>{
             this.setState({isSignedIn: !!user});
             if(user){
@@ -89,15 +90,6 @@ class ExpandedCard extends React.Component {
     }
     
     
-    validateLike = async() => {
-        
-        if(this.user_liked == false){
-            this.createLike();
-        }
-        
-
-}
-
     createLike = async() =>{
         
         var token = {};
@@ -113,7 +105,7 @@ class ExpandedCard extends React.Component {
                 });
                 axios.post(process.env.REACT_APP_GATEWAY+"/like_tutoring/", token).then((x)=>{
                     if(success(x)) {
-                      
+                      this.componentWillMount();
                     }
                   });
             }
@@ -124,7 +116,7 @@ class ExpandedCard extends React.Component {
         
         var token = {};
         var idTutoring = this.props.match.params.id_tutoring;
-        
+        token["tutoring_session"] = idTutoring;
         
         for(let cont = 0; cont < this.state.total_likes; cont++){
             if(this.state.object_like[cont].user_that_likes.user_account_id == this.state.id_user){
@@ -140,7 +132,7 @@ class ExpandedCard extends React.Component {
                 });
                 axios.post(process.env.REACT_APP_GATEWAY+"/like_delete/", token).then((x)=>{
                     if(success(x)) {
-                        
+                        this.componentWillMount();
                     }
                   });
             }
@@ -221,11 +213,16 @@ class ExpandedCard extends React.Component {
             </div>
             <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center" style={{marginTop: 25}}>
               <Grid item >
-                <MuiThemeProvider theme={theme}>
-                    <Fab onClick={this.validateLike} color="primary" aria-label="Edit" >
+                {!this.state.user_liked?<MuiThemeProvider theme={theme}>
+                    <Fab onClick={this.createLike} color="primary" aria-label="Edit" >
                         <Like/>
                     </Fab>
-                </MuiThemeProvider>
+                </MuiThemeProvider>:
+                <MuiThemeProvider theme={theme}>
+                    <Fab onClick={this.deleteLike} color="secundary" aria-label="Edit" >
+                        <Like/>
+                    </Fab>
+                    </MuiThemeProvider>}
               </Grid>
               <Grid item>
                     <a href={"https://"+"t.me/" + texto}>{
