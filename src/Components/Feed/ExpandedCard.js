@@ -115,12 +115,14 @@ class ExpandedCard extends React.Component {
                             </Grid>
                         </Grid>
                         <Grid container justify="center" direction="column" alignItems="center" alignContent="center" >
-                        {(this.state.id_monitor != this.state.id_user)? 
+                        {(this.state.id_monitor !== this.state.id_user)? 
                             <MuiThemeProvider  theme={theme}>
-                                <Button style={{marginTop:40,marginLeft:50}} component={Link} variant="contained" to={`/ProfileMonitor/`} color="primary">
+                                <Button style={{marginTop:40,marginLeft:50}} component={Link} variant="contained" to={`/ProfileMonitor/${this.state.id_monitor}`} color="primary">
                                     Ver perfil
                                 </Button>
-                            </MuiThemeProvider>: null} 
+                                
+                            </MuiThemeProvider>: null }
+                            {console.log(this.state.id_monitor)}
                         {(this.state.id_monitor === this.state.id_user)? 
                             <MuiThemeProvider  theme={theme}>
                                 <Button style={{marginTop:40,marginLeft:50}} component={Link} variant="contained" to={`/editmonitoring/${this.state.id_tutoring}`} color="primary">

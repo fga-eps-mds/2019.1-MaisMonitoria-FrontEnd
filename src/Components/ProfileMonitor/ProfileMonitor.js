@@ -64,40 +64,46 @@ class Profile extends Component {
         likes: [],
         monitorPhoto: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzaLMnex1QwV83TBQgxLTaoDAQlFswsYy62L3mO4Su-CMkk3jX',
         showWarning: false,
-        isLoading: false
+        isLoading: false,
+        id_monitor: '',
     }
     
     componentDidMount() {
-        let userData = {};
-        let token = {}
+        var token = {}
+        var idMonitor = this.props.match.params.id_monitor;
         
+        this.setState({id_monitor:idMonitor});
         this.setState({ isLoading: true });
+        
         firebase.auth().onAuthStateChanged(user =>{
+            this.setState({isSignedIn: !!user});
             if(user){
-                
+                this.setState({id_user:user.uid})
                 firebase.auth().currentUser.getIdToken().then(function(idToken){
                     token["access_token"] = idToken;
-                    
-                })
+                    token["monitor_id"] = idMonitor;
+                });
               
-                axios.post(process.env.REACT_APP_GATEWAY+"/get_user/", token).then(user=>{
-                    userData = user.data;
-
-                    if(userData['course'] === 'SOFTWARE' || userData['course'] === 'ENERGIA' ){
-                        userData['course'] = 'ENGENHARIA DE ' + userData['course'];
+                axios.post(process.env.REACT_APP_GATEWAY+"/get_monitor/", token)
+                .then(res => {
+                    const person = res.data;
+                    if(person['course'] === 'SOFTWARE' || person['course'] === 'ENERGIA' ){
+                        person['course'] = 'ENGENHARIA DE ' + person['course'];
                     }
-                    else if(userData['course'] === 'AERO'){
-                        userData['course'] = 'ENGENHARIA ' +'AEROESPACIAL';
+                    else if(person['course'] === 'AERO'){
+                        person['course'] = 'ENGENHARIA ' +'AEROESPACIAL';
 
                     }
-                    else if(userData['course'] === 'AUTOMOTIVA' || userData['course'] === 'ELETRONICA'){
-                        userData['course'] = 'ENGENHARIA ' + userData['course'];
+                    else if(person['course'] === 'AUTOMOTIVA' || person['course'] === 'ELETRONICA'){
+                        person['course'] = 'ENGENHARIA ' + person['course'];
                     }
                     else{
-                        userData['course']= userData['course'];
+                        person['course']= person['course'];
                     }
-                    this.setState({monitorName:userData["name"], monitorCourse:userData["course"], tutoring:userData["monitoring"], photo:userData["photo"], likes:userData["liked_tutoring_sessions"], teste:userData["liked_tutoring_sessions.monitor.ph"]}) 
-                    
+                    console.log(person);
+                    this.setState({monitorName:person["name"], monitorCourse:person["course"],
+                                photo:person["photo"], id_monitor:person.user_account_id})          
+                
                 });  
                 this.setState({ isLoading: false });
             }else{
@@ -152,7 +158,6 @@ class Profile extends Component {
                         <Grid item xs={12} style={{marginTop:10, paddingBottom:40}} className="profileBackground">
                             <ProfileTab
                                 tutoring={this.state.tutoring.map(item => ({ ...item,  photoUrl}))}
-                                likes={this.state.likes.map(item => ({ ...item, photoUrl}))}
                             />
                         </Grid>
                         <Tab ind={1}/>
