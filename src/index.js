@@ -7,7 +7,7 @@ import TelaFeed from './Components/Feed/Feed';
 import SignUp from './Components/SignUP/SignUp';
 import ForgotPassword from './Components/ForgotPassword/ForgotPassword';
 import Search from './Components/Search/Search';
-
+import ProfileMonitor from './Components/ProfileMonitor/ProfileMonitor';
 import ExpandedCard from './Components/Feed/ExpandedCard';
 import EditProfile from './Components/EditProfile/EditProfile';
 import EditMonitoring from './Components/EditMonitoring/EditMonitoring';
@@ -28,8 +28,9 @@ ReactDOM.render((
                         <Route path="/ForgotPassword" component={ForgotPassword}/>   
                         <Route path="/RegisterMonitoring" component={RegisterMonitoring}/>
                         <Route path="/EditProfile" component={EditProfile}/>
+                        <Route path="/ProfileMonitor" component={ProfileMonitor}/>
                         <Route path="/expandedcard/:id_tutoring" component={ExpandedCard}/>
-                        <Route path="/EditMonitoring/:id_tutoring" component={EditMonitoring}/>
+                        <Route path="/EditMonitoring/:id_tutoring" component={EditMonitoring}/>  
                         <Route path="/Feed" component={TelaFeed}/>
                         <Route path="/Search" component={Search}/>  
                         <Route path="/Profile" component={Profile}/>

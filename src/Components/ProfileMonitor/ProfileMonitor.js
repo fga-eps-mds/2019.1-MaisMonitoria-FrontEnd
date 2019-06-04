@@ -9,10 +9,10 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Spinner from '../Loader/Spinner';
 
-import ProfileTab from '../ProfileTab/ProfileTab';
+import ProfileTab from '../ProfileMonitor/ProfileTabMonitor';
 import Tab from '../Tab/Tab';
 
-import './Profile.css';
+
 
 
 
@@ -138,12 +138,7 @@ class Profile extends Component {
                                     <Grid item>
                                         <h4>{this.state.monitorCourse}</h4>
                                     </Grid>
-                                    <Grid item>
-                                        <MuiThemeProvider theme={theme}>
-                                            <Button variant="contained" component={Link} to="/EditProfile"  color="primary">
-                                                Editar perfil
-                                            </Button>
-                                        </MuiThemeProvider>
+                                    <Grid item>                                        
                                     </Grid>
                                 </Grid>
                             }
