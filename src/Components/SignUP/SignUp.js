@@ -53,8 +53,7 @@ class SignUp extends Component {
   }
 
   componentDidUpdate(prevprops,nextstate){
-    console.log("prevprops", prevprops);
-    console.log("nextstate", nextstate);
+    
   }
 
   _handleImageChange(event) {
@@ -233,7 +232,7 @@ class SignUp extends Component {
               : 
               <Grid item>              
                 <input 
-                  accept=".png, .jpeg" 
+                  accept=".png, .jpg" 
                   id="raised-button-file" 
                   multiple 
                   type="file" 

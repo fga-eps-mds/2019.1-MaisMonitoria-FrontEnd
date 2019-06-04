@@ -55,8 +55,7 @@ class EditProfile extends Component {
       }
     
       componentDidUpdate(prevprops,nextstate){
-        console.log("prevprops", prevprops);
-        console.log("nextstate", nextstate);
+        
       }
     
       _handleImageChange(event) {
@@ -210,7 +209,7 @@ class EditProfile extends Component {
                     :
                     <Grid item style={{padding:30}}>              
                     <input 
-                        accept="image/*" 
+                        accept=".png, .jpg"
                         id="raised-button-file" 
                         multiple 
                         type="file" 
