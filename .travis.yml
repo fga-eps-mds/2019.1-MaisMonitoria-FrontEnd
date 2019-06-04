@@ -19,6 +19,9 @@ stages:
 notifications:
   slack: hora-da-hora:0nFQxr2PykmKhNkJ78xYJMOP
 
+before_install:
+  - pip install requests
+
 jobs:
   include:
     - stage: "Unit test"
@@ -36,7 +39,7 @@ deploy:
     - provider: script
       skip_cleanup: true
       script: bash ./scripts/deploy_homolog.sh
-      script: python3 ./scripts/upgrade.py
+      script: python ./scripts/upgrade.py
       on:
         branch: develop
 
