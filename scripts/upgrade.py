@@ -12,7 +12,7 @@ r = requests.get(os.environ['RANCHER_URL'],
 
 
 for i in r.json()['data']:
-    if i['name'] === os.environ['serviceName']:
+    if i['name'] == os.environ['serviceName']:
         service = i
 
 launchConfig = service['launchConfig']
