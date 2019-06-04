@@ -1,12 +1,8 @@
 import React from 'react';
-import ProfileTab from '../ProfileTab/ProfileTab';
-
+import EditMonitoring from '../EditMonitoring/EditMonitoring';
 import toJson from 'enzyme-to-json';
-
-
-import { shallow } from 'enzyme';
-
 import firebase from 'firebase';
+import { shallow } from 'enzyme';
 
 firebase.initializeApp({
   apiKey: '...',
@@ -17,17 +13,18 @@ firebase.initializeApp({
   messagingSenderId: '...',
 });
 
-let props = {
-    tutoring:{
-        map: jest.fn()
-        
-    }      // You don't need to define the implementation if it's empty
-  };
+let props={
+    match:{
+        params:{
+            id_tutoring:jest.fn()    
+    }}
+};
+
 
 describe('Testing Add component', () => {
     it('Test if Add renders correctly', () =>{
-        jest.fn()
-        const tree = shallow(<ProfileTab {...props}/>);
+        jest.fn();
+        const tree = shallow(<EditMonitoring{...props}/>);
         expect(toJson(tree)).toMatchSnapshot();
     });
-}); 
+});
