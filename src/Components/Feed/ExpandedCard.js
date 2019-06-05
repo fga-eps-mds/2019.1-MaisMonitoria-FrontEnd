@@ -15,11 +15,15 @@ import {Link } from 'react-router-dom';
 import {withRouter} from 'react-router-dom';
 import { async } from 'q';
 import {success} from '../../Helpers/validates';
+import { palette } from '@material-ui/system';
 
 const theme = createMuiTheme({
     palette: {
-      primary: { main: "#44a1f2" },
-      secondary: { main: '#11cb5f' },
+      primary: { main: "#44a1f2",
+                 dark:  "#11cb5f",
+                 contrastText: '#fff'},
+      secondary: { main:"#f44336" },
+      
     },
     typography: { useNextVariants: true },
     overrides: {
@@ -212,6 +216,8 @@ class ExpandedCard extends React.Component {
                 </Grid>
             </div>
             <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center" style={{marginTop: 25}}>
+                
+               
               <Grid item >
                 {!this.state.user_liked?<MuiThemeProvider theme={theme}>
                     <Fab onClick={this.createLike} color="primary" aria-label="Edit" >
@@ -223,6 +229,14 @@ class ExpandedCard extends React.Component {
                         <Like/>
                     </Fab>
                     </MuiThemeProvider>}
+              </Grid>
+              <Grid>
+              <MuiThemeProvider theme={theme}>
+                <Fab color= "primary" variant="extended" aria-label="Delete"  >
+                    Curtidas {this.state.total_likes}
+                </Fab>
+                </MuiThemeProvider>
+
               </Grid>
               <Grid item>
                     <a href={"https://"+"t.me/" + texto}>{
