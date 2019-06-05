@@ -49,6 +49,7 @@ class SignUp extends Component {
   register = async (e) => {
     const { user } = this.state;  
     var aux = {}
+    let token = {}
 
     this.setState({ error: "" });
     this.setState({ errorName: false });
@@ -84,13 +85,13 @@ class SignUp extends Component {
     this.setState({ isLoading: true });
     await firebase.auth().createUserWithEmailAndPassword(user.email, user.password).then(()=>{      
         firebase.auth().currentUser.getIdToken().then((idToken)=> {  
-          aux = { 'token': idToken };        
+          aux = { 'token': idToken };
+          token["access_token"] = idToken;       
         });
     }).catch((error)=>{
           this.setState({error: errors[error.code]});
           this.setState({ showError: true });
     });
-    // this.setState({ isLoading: false });
 
     const fd = new FormData();
     fd.append('access_token', aux['token'])
@@ -100,13 +101,17 @@ class SignUp extends Component {
     fd.append('telegram', user.telegram)
     const header = { headers: { 'content-type': 'multipart/form-data' } }
 
-    await axios.post(process.env.REACT_APP_GATEWAY+"/create_user/", fd, header).then((x)=>{
-      if(success(x)) {
-        this.setState({showModal:true});
+    await axios.post(process.env.REACT_APP_GATEWAY+"/create_user/", fd, header).then((status_created)=>{
+      if(success(status_created)) {
+        axios.post(process.env.REACT_APP_GATEWAY+"/get_user/", token).then((status_get)=>{
+          if(success(status_get)) {
+            this.setState({showModal:true});
+          }
+        });
       }
     });
   }
-
+    
   render() {
     return (
       <div className="SignUpBackground" style={{overflowY:'scroll'}}>
