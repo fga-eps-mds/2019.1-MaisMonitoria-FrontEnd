@@ -3,14 +3,17 @@ import { Grid, Button } from '@material-ui/core' ;
 import AppBarProfile from '../AppBar/AppBarProfile';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import firebase from 'firebase';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Spinner from '../Loader/Spinner';
+import { ReactComponent as Logo } from '../../Assets/svg/telegram.svg';
+import Fab from '@material-ui/core/Fab';
+
 
 import ProfileTab from '../ProfileMonitor/ProfileTabMonitor';
 import Tab from '../Tab/Tab';
+
 
 
 
@@ -56,7 +59,8 @@ const theme = createMuiTheme({
 class Profile extends Component {
 
     state = { 
-        
+        description:'',
+        telegram:'',
         monitorName:'',
         monitorCourse: '',
         monitorEmail: '',
@@ -102,7 +106,7 @@ class Profile extends Component {
                     }
                     console.log(person);
                     this.setState({monitorName:person["name"], monitorCourse:person["course"],
-                                photo:person["photo"], id_monitor:person.user_account_id})          
+                                photo:person["photo"], tutoring:person["monitoring"], description:person["description"], telegram:person["telegram"], id_monitor:person.user_account_id})          
                 
                 });  
                 this.setState({ isLoading: false });
@@ -114,6 +118,9 @@ class Profile extends Component {
     }
 
     render(){
+        var texto =  this.state.telegram;
+        var er = texto;
+        texto = er.replace('@','');
 
         const { classes } = this.props;
         var photoUrl = this.state.photo
@@ -144,7 +151,17 @@ class Profile extends Component {
                                     <Grid item>
                                         <h4>{this.state.monitorCourse}</h4>
                                     </Grid>
-                                    <Grid item>                                        
+                                    <Grid item>
+                                        <h5>{this.state.description}</h5>
+                                    </Grid>
+                                    <Grid item>     
+                                        <a href={"https://"+"t.me/" + texto}>{
+                                            <MuiThemeProvider theme={theme}>
+                                                <Fab color="primary" aria-label="Edit" >
+                                                    <Logo/>
+                                                </Fab>
+                                            </MuiThemeProvider>}
+                                        </a>                                 
                                     </Grid>
                                 </Grid>
                             }
