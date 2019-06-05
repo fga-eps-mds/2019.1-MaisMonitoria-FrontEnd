@@ -147,6 +147,12 @@ class EditProfile extends Component {
     }
     
   render() {
+    var photoUrl = this.state.photo
+    if( photoUrl != null && !this.state.imagePreviewUrl){
+        photoUrl = photoUrl.replace("api-monitoria","localhost")
+      } else {
+        photoUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzaLMnex1QwV83TBQgxLTaoDAQlFswsYy62L3mO4Su-CMkk3jX"
+      }
     return (
         <div style={{overflowX:'hidden'}} className="editBackground"> 
             {this.state.showModal? <SimpleModal router={"Profile"} title={'Usuario alterado com sucesso!'}  />:null}
@@ -161,7 +167,7 @@ class EditProfile extends Component {
                 </Grid> 
                 :
                 <Grid item> 
-                    <img src={Pp} className="ProfilePic" alt="Profilepic" style={{width: 130,height:130,marginTop:80,borderRadius:2}} ></img>
+                    <img src={photoUrl} className="ProfilePic" alt="Profilepic" style={{width: 130,height:130,marginTop:80,borderRadius:2}} ></img>
                 </Grid> }
             </Grid>
             <Grid container justify="center" alignContent="center" alignItems="center" direction="column" >
