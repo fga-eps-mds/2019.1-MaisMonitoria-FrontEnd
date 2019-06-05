@@ -201,7 +201,7 @@ class EditProfile extends Component {
                 {this.state.imagePreviewUrl ? 
                     <Grid item>               
                         <MuiThemeProvider theme={theme}>
-                            <Button onClick={this.erase} raised component="span" variant="outlined" color="primary" > 
+                            <Button onClick={this.erase} raised component="span" variant="contained" color="primary" > 
                                  Remover Foto
                         </Button> 
                         </MuiThemeProvider>
@@ -215,10 +215,12 @@ class EditProfile extends Component {
                         type="file" 
                         onChange={this._handleImageChange}                
                     /> 
-                    <label htmlFor="raised-button-file"> 
-                        <Button raised component="span" variant="outlined" color="primary" > 
-                            Escolher foto 
-                        </Button> 
+                    <label htmlFor="raised-button-file">
+                        <MuiThemeProvider theme={theme}> 
+                            <Button raised component="span" variant="contained" color="primary" > 
+                                Escolher foto 
+                            </Button>
+                        </MuiThemeProvider> 
                     </label>  
                     </Grid>
                 }
