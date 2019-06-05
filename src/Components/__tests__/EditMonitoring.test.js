@@ -21,10 +21,10 @@ let props={
 };
 
 
-describe('Testing Add component', () => {
-    it('Test if Add renders correctly', () =>{
+describe('Testing EditMonitoring component', () => {
+    it('Test if EditMonitoring renders correctly', () =>{
         jest.fn();
-        const tree = shallow(<EditMonitoring{...props}/>);
+        const tree = shallow(<EditMonitoring {...props}/>);
         expect(toJson(tree)).toMatchSnapshot();
     });
 });
