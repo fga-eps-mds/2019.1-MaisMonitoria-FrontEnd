@@ -15,11 +15,6 @@ import ProfileTab from '../ProfileMonitor/ProfileTabMonitor';
 import Tab from '../Tab/Tab';
 
 
-
-
-
-
-
 const theme = createMuiTheme({
     palette: {
       primary: { main: '#44a1f2' },
@@ -51,7 +46,10 @@ const theme = createMuiTheme({
           width: '100%',
           maxWidth: 500,
         },
-      
+    fab:{
+    width:1,
+    height:1,
+    }
       
   
   });
@@ -104,7 +102,7 @@ class Profile extends Component {
                     else{
                         person['course']= person['course'];
                     }
-                    console.log(person);
+                    
                     this.setState({monitorName:person["name"], monitorCourse:person["course"],
                                 photo:person["photo"], tutoring:person["monitoring"], description:person["description"], telegram:person["telegram"], id_monitor:person.user_account_id})          
                 
@@ -145,31 +143,39 @@ class Profile extends Component {
                         <Grid item xs>
                             {this.state.isLoading ? <Spinner />:
                                 <Grid container justify={'flex-start'} direction={'column'} alignContent={'flex-start'} alignItems={'flex-start'} spacing={16}  style={{paddingTop:80}} >
-                                    <Grid item>                              
-                                        <h3>{this.state.monitorName}</h3>  
+                                    <Grid item>
+                                        <Grid container direction={'row'} spacing={16} justify="center" alignItems="center" >
+                                            <Grid item xs >                             
+                                                <h2>{this.state.monitorName}</h2>
+                                            </Grid>
+                                            <Grid item > 
+                                                <a href={"https://"+"t.me/" + texto}>{
+                                                    <MuiThemeProvider theme={theme}>
+                                                        <Fab size="small" color="primary" aria-label="Edit" >
+                                                            <Logo/>
+                                                        </Fab>
+                                                        </MuiThemeProvider>}
+                                                </a>
+                                            </Grid>
+                                        </Grid>
                                     </Grid>
                                     <Grid item>
-                                        <h4>{this.state.monitorCourse}</h4>
+                                        <h3>{this.state.monitorCourse}</h3>
                                     </Grid>
                                     <Grid item>
-                                        <h5>{this.state.description}</h5>
-                                    </Grid>
-                                    <Grid item>     
-                                        <a href={"https://"+"t.me/" + texto}>{
-                                            <MuiThemeProvider theme={theme}>
-                                                <Fab color="primary" aria-label="Edit" >
-                                                    <Logo/>
-                                                </Fab>
-                                            </MuiThemeProvider>}
-                                        </a>                                 
+                                        <h3>Descrição: <h5> {this.state.description}</h5></h3>
                                     </Grid>
                                 </Grid>
                             }
                         </Grid>
+                        
+                        
+                            
                     </Grid>
+                    
                 </div>
                 <div className="profileBackground">
-                    <Grid item style = {{marginTop:10}} >
+                    <Grid item style = {{marginTop:20}} >
                     {this.state.isLoading ? <Spinner />:
                         <Grid container justify={'center'} alignContent={'center'} alignItems={'center'} >
                         <Grid item xs={12} style={{marginTop:10, paddingBottom:40}} className="profileBackground">

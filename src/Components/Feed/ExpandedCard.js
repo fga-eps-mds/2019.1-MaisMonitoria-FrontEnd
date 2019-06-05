@@ -122,7 +122,7 @@ class ExpandedCard extends React.Component {
                                 </Button>
                                 
                             </MuiThemeProvider>: null }
-                            {console.log(this.state.id_monitor)}
+                            
                         {(this.state.id_monitor === this.state.id_user)? 
                             <MuiThemeProvider  theme={theme}>
                                 <Button style={{marginTop:40,marginLeft:50}} component={Link} variant="contained" to={`/editmonitoring/${this.state.id_tutoring}`} color="primary">
