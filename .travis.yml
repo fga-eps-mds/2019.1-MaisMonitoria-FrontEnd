@@ -1,9 +1,13 @@
 sudo: required
 
-language: node_js
+language: 
+  - node_js
+  - python
 
 node_js:
   - "10.15.3"
+python:
+  - "3.6"
 
 services:
   - docker
@@ -14,6 +18,9 @@ stages:
 
 notifications:
   slack: hora-da-hora:0nFQxr2PykmKhNkJ78xYJMOP
+
+before_install:
+  - pip install requests
 
 jobs:
   include:
@@ -32,6 +39,7 @@ deploy:
     - provider: script
       skip_cleanup: true
       script: bash ./scripts/deploy_homolog.sh
+      script: python ./scripts/upgrade.py
       on:
         branch: develop
 
