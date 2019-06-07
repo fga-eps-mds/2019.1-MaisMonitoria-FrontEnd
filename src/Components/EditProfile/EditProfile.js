@@ -46,7 +46,40 @@ class EditProfile extends Component {
         showWarning: false,
         isLoading: false,
         description: '',
+        file: null,
+        imagePreviewUrl: null,
     }
+    constructor(props) {
+        super(props);
+        this._handleImageChange = this._handleImageChange.bind(this);
+        this.erase = this.erase.bind(this);
+      }
+    
+      componentDidUpdate(prevprops,nextstate){
+        
+      }
+    
+      _handleImageChange(event) {
+        event.preventDefault();
+    
+        let reader = new FileReader();
+        let file = event.target.files[0];
+    
+        reader.onloadend = () => {
+          this.setState({...this.state, file:file
+          });
+          this.setState({...this.state, imagePreviewUrl:reader.result})
+          this.setState({...this.state, photo:file})
+        }
+    
+        reader.readAsDataURL(file)
+      }
+    
+      erase(event){
+        event.preventDefault();
+        this.setState({imagePreviewUrl: null});
+        this.setState({photo:null});
+      }
 
     componentDidMount(){
         this.getUserData();
@@ -115,6 +148,12 @@ class EditProfile extends Component {
     }
     
   render() {
+    var photoUrl = this.state.photo
+    if( photoUrl != null && !this.state.imagePreviewUrl){
+        photoUrl = photoUrl.replace("api-monitoria","localhost")
+      } else {
+        photoUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzaLMnex1QwV83TBQgxLTaoDAQlFswsYy62L3mO4Su-CMkk3jX"
+      }
     return (
         <div style={{overflowX:'hidden'}} className="editBackground"> 
             {this.state.showModal? <SimpleModal router={"Profile"} title={'Usuario alterado com sucesso!'}  />:null}
@@ -122,9 +161,15 @@ class EditProfile extends Component {
                 <AppBar/>
             </Grid>   
             <Grid container justify="center" alignContent="center" alignItems="center">
+                
+            {this.state.imagePreviewUrl ? 
                 <Grid item> 
-                    <img src={Pp} className="ProfilePic" alt="Profilepic" style={{width: 130,height:130,marginTop:80,borderRadius:2}} ></img>
-                </Grid>
+                    <img src={this.state.imagePreviewUrl} className="ProfilePic" alt="Profilepic" style={{width: 130,height:130,marginTop:80,borderRadius:2}} ></img>
+                </Grid> 
+                :
+                <Grid item> 
+                    <img src={photoUrl} className="ProfilePic" alt="Profilepic" style={{width: 130,height:130,marginTop:80,borderRadius:2}} ></img>
+                </Grid> }
             </Grid>
             <Grid container justify="center" alignContent="center" alignItems="center" direction="column" >
                 <Grid item xs={12}> 
@@ -174,22 +219,33 @@ class EditProfile extends Component {
                 <Grid item style={{padding:10}}>
                     <Course action={(course)=>{this.setState({course})}}/>
                 </Grid>
-                <Grid item style={{padding:30}}>              
+                {this.state.imagePreviewUrl ? 
+                    <Grid item>               
+                        <MuiThemeProvider theme={theme}>
+                            <Button onClick={this.erase} raised component="span" variant="contained" color="primary" > 
+                                 Remover Foto
+                        </Button> 
+                        </MuiThemeProvider>
+                    </Grid>
+                    :
+                    <Grid item style={{padding:30}}>              
                     <input 
-                        accept="image/*" 
+                        accept=".png, .jpg"
                         id="raised-button-file" 
                         multiple 
                         type="file" 
-                        onChange={(event)=>this.setState({
-                        photo: event.target.files[0],
-                        })}                
+                        onChange={this._handleImageChange}                
                     /> 
-                    <label htmlFor="raised-button-file"> 
-                        <Button raised component="span" variant="outlined" color="primary" > 
-                            Escolher foto 
-                        </Button> 
+                    <label htmlFor="raised-button-file">
+                        <MuiThemeProvider theme={theme}> 
+                            <Button raised component="span" variant="contained" color="primary" > 
+                                Escolher foto 
+                            </Button>
+                        </MuiThemeProvider> 
                     </label>  
-                </Grid>
+                    </Grid>
+                }
+                
             </Grid>
             <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center">
                 {this.state.showError? <CustomizedSnackbars error={this.state.error}/>:null}
