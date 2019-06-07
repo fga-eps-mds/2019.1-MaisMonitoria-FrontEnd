@@ -106,7 +106,8 @@ class ExpandedCard extends React.Component {
                 });
                 axios.post(process.env.REACT_APP_GATEWAY+"/like_tutoring/", token).then((x)=>{
                     if(success(x)) {
-                      this.componentWillMount();
+                        
+                    this.componentWillMount();
                     }
                   });
             }
@@ -137,6 +138,7 @@ class ExpandedCard extends React.Component {
                 });
                 axios.post(process.env.REACT_APP_GATEWAY+"/like_delete/", token).then((x)=>{
                     if(success(x)) {
+                        
                         this.componentWillMount();
                     }
                   });
@@ -241,7 +243,18 @@ class ExpandedCard extends React.Component {
                             </Fab>
                         </MuiThemeProvider>}
                     </a>
-              </Grid>
+              </Grid> 
+            </Grid>
+            <Grid item style={{marginTop:10, marginLeft:100}}> 
+                <Link 
+                    component="button"
+                    variant="body2"
+                    // onClick={() => {
+                    //     alert("I'm a button.");
+                    // }}
+                    >
+                    <h3>{this.state.total_likes} Curtida(s)</h3>
+                </Link>
             </Grid>
         </div>
     );
