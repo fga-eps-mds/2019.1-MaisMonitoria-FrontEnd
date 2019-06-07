@@ -9,11 +9,11 @@ import Spinner from '../Loader/Spinner';
 import Card from './Card.js';
 import ButtonSizes from '../GenericButtons/Add.js';
 import './feed.css';
-import SnackbarWarning from '../SimpleModal/SnackBarsWarning';
 import Tab from '../Tab/Tab';
 
 import {withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 
 
 class TelaFeed extends Component {
@@ -54,7 +54,7 @@ class TelaFeed extends Component {
             </Grid> 
             <div>
                 <Grid container justify="center" direction="column" alignItems="center" spacing={8} style={{paddingTop:70,marginTop:10, paddingBottom:40}}>
-                    {this.state.data.map(function(item, i){
+                    {_.map(this.state.data, (item, i) => {
                         return (
                             <Grid item key={i} lg={12} sm={12} container style={{paddingBottom:3}} >
                                 <Card name_monitoring={item.name} matter={item.subject} 
