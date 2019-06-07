@@ -4,7 +4,7 @@ import firebase from 'firebase';
 import axios from 'axios';
 import AppBar from './AppBarWithBack';
 import './ExpandedCard.css'
-
+import Spinner from '../Loader/Spinner';
 
 import { ReactComponent as Logo } from '../../Assets/svg/telegram.svg';
 import { ReactComponent as Like } from '../../Assets/svg/like.svg';
@@ -13,7 +13,6 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import {Link } from 'react-router-dom';
 
 import {withRouter} from 'react-router-dom';
-import { async } from 'q';
 import {success} from '../../Helpers/validates';
 
 const theme = createMuiTheme({
@@ -48,6 +47,7 @@ class ExpandedCard extends React.Component {
         object_like: [],
         user_liked: false,
         person: [],
+        isLoading: false
     }
 
     componentWillMount =  async () => {
@@ -57,7 +57,9 @@ class ExpandedCard extends React.Component {
         this.setState({id_tutoring:idTutoring});
         
         await firebase.auth().onAuthStateChanged(user =>{
-            this.setState({isSignedIn: !!user});
+        this.setState({id_tutoring:idTutoring});
+        this.setState({ isLoading: true });
+        this.setState({isSignedIn: !!user});
             if(user){
                 this.setState({id_user:user.uid})
                 firebase.auth().currentUser.getIdToken().then(function(idToken){
@@ -82,7 +84,7 @@ class ExpandedCard extends React.Component {
                         id_monitor:this.state.person.monitor.user_account_id, likes:this.state.person.likes,
                         total_likes:this.state.person.total_likes});      
                     });
-            
+                    this.setState({ isLoading: false });
             }else{
                 this.props.history.push('/');
             }
@@ -109,6 +111,10 @@ class ExpandedCard extends React.Component {
                     }
                   });
             }
+        else{
+            this.props.history.push('/');
+        }
+        this.setState({ isLoading: false });
         });  
     }
     
@@ -160,15 +166,18 @@ class ExpandedCard extends React.Component {
                 <Grid item>                            
                     <img src={photoUrl} style={{width:140, height:140}}></img>
                 </Grid>
-                <Grid item>    
-                    <Grid container justify="center" direction="column" alignItems="center" alignContent="center">
-                        <Grid item style={{marginTop:50}} style={{marginLeft:50}} >
-                            <h1>Monitor</h1>
-                        </Grid>
-                        <Grid item>
-                            <Typography style={{marginLeft:50}}>
-                                Nome: {this.state.monitorName}
-                            </Typography>
+                <Grid item style={{marginTop:50, marginLeft:25}} >
+                    {this.state.isLoading ? <Spinner />:    
+                    <Grid>
+                        <Grid container justify="center" direction="column" alignItems="center" alignContent="center" style={{marginTop:-50, marginLeft:-25}}>
+                            <Grid item style={{marginTop:50}} style={{marginLeft:50}} >
+                                <h1>Monitor</h1>
+                            </Grid>
+                            <Grid item>
+                                <Typography style={{marginLeft:50}}>
+                                    Nome: {this.state.monitorName}
+                                </Typography>
+                            </Grid>
                         </Grid>
                         <Grid container justify="center" direction="column" alignItems="center" alignContent="center" >
                         {(this.state.id_monitor === this.state.id_user)? 
@@ -178,37 +187,38 @@ class ExpandedCard extends React.Component {
                                 </Button>
                             </MuiThemeProvider>: null}                           
                         </Grid>
+                    
                     </Grid>
+                    }
                 </Grid>
             </Grid>
             <div>
-                <Grid item style={{paddingLeft:15}}> 
-                    <Grid container direction="column">
-                        <Grid item >
-                            <h1>Monitoria</h1>
+                <Grid item style={{marginTop:150, marginLeft:-10}}> 
+                    {this.state.isLoading ? <Spinner />:
+                        <Grid container direction="column" style={{marginTop:-150, marginLeft:10}}>
+                            <Grid item >
+                                <h1>Monitoria</h1>
+                            </Grid>
+                            <Grid item>
+                                <h3>Matéria:</h3>
+                                <Typography>
+                                    {this.state.tutoringName}
+                                </Typography>
+                            </Grid>
+                            <Grid item>
+                                <h3>Tema:</h3>
+                                <Typography>
+                                    {this.state.tutoringTheme}
+                                </Typography>
+                            </Grid>
+                            <Grid item>
+                                <h3>Descrição:</h3>
+                                <Typography>
+                                    {this.state.tutoringDescription}
+                                </Typography>
+                            </Grid> 
                         </Grid>
-                        <Grid item>
-                            <h3>Matéria:</h3>
-                            <Typography>
-                                {this.state.tutoringName}
-                            </Typography>
-                        </Grid>
-                        <Grid item>
-                            <h3>Tema:</h3>
-                            <Typography>
-                                {this.state.tutoringTheme}
-                            </Typography>
-                        </Grid>
-                        <Grid item>
-                            <h3>Descrição:</h3>
-                            <Typography>
-                                {this.state.tutoringDescription}
-                            </Typography>
-                        </Grid>
-                        <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center" style={{marginTop: 25}} >
-                                                 
-                        </Grid>
-                    </Grid>
+                    }
                 </Grid>
             </div>
             <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center" style={{marginTop: 25}}>

@@ -95,27 +95,29 @@ class Login extends Component {
               </Grid>
               {this.state.showError? <CustomizedSnackbars error={this.state.error}/>:null}
             </Grid>
-            { this.state.isLoading ? <Spinner />: 
-              <Grid  container alignContent="center" justify="center" direction="column" spacing={24} alignItems="center" style={{marginTop: 25}}>
-                <Grid item >
-                  <MuiThemeProvider theme={theme}>
-                    <Button variant="outlined" color="primary" onClick={this.login}>
-                        Login
-                    </Button>
-                  </MuiThemeProvider>
-                </Grid>  
-                <Grid item>
-                  <MuiThemeProvider theme={theme}>
-                    <Button component={Link} to="/SignUp" variant="outlined" color="primary">
-                      Registrar
-                    </Button>
-                  </MuiThemeProvider>
-                </Grid>  
-                <Link to="/ForgotPassword" style={{color:'#bdbdbd'}} >
-                  Esqueceu sua senha ?
-                </Link>
-              </Grid>
-            }
+            <Grid item style={{marginTop:50}}>
+              { this.state.isLoading ? <Spinner />: 
+                <Grid  container alignContent="center" justify="center" direction="column" spacing={24} alignItems="center" style={{marginTop:-50}}>
+                  <Grid item >
+                    <MuiThemeProvider theme={theme}>
+                      <Button variant="outlined" color="primary" onClick={this.login}>
+                          Login
+                      </Button>
+                    </MuiThemeProvider>
+                  </Grid>  
+                  <Grid item>
+                    <MuiThemeProvider theme={theme}>
+                      <Button component={Link} to="/SignUp" variant="outlined" color="primary">
+                        Registrar
+                      </Button>
+                    </MuiThemeProvider>
+                  </Grid>  
+                  <Link to="/ForgotPassword" style={{color:'#bdbdbd'}} >
+                    Esqueceu sua senha ?
+                  </Link>
+                </Grid>
+              }
+            </Grid>
           </div>
         </Grid>
       </div>

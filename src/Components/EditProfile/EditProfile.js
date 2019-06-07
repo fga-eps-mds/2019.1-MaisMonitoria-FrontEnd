@@ -12,6 +12,7 @@ import SimpleModal from '../SimpleModal';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CustomizedSnackbars from '../SimpleModal/Snackbars';
 import SnackbarWarning from '../SimpleModal/SnackBarsWarning';
+import Spinner from '../Loader/Spinner';
 
 
 const theme = createMuiTheme({
@@ -42,9 +43,42 @@ class EditProfile extends Component {
         errorName: false,
         showError: false,
         photo: null,
-        isSignedin: false,
-        showWarning: false
+        showWarning: false,
+        isLoading: false,
+        file: null,
+        imagePreviewUrl: null,
     }
+    constructor(props) {
+        super(props);
+        this._handleImageChange = this._handleImageChange.bind(this);
+        this.erase = this.erase.bind(this);
+      }
+    
+      componentDidUpdate(prevprops,nextstate){
+        
+      }
+    
+      _handleImageChange(event) {
+        event.preventDefault();
+    
+        let reader = new FileReader();
+        let file = event.target.files[0];
+    
+        reader.onloadend = () => {
+          this.setState({...this.state, file:file
+          });
+          this.setState({...this.state, imagePreviewUrl:reader.result})
+          this.setState({...this.state, photo:file})
+        }
+    
+        reader.readAsDataURL(file)
+      }
+    
+      erase(event){
+        event.preventDefault();
+        this.setState({imagePreviewUrl: null});
+        this.setState({photo:null});
+      }
 
     componentDidMount(){
         this.getUserData();
@@ -53,15 +87,15 @@ class EditProfile extends Component {
     getUserData = () =>{
         let userData = {};
         let token = {}
+
         firebase.auth().onAuthStateChanged(user =>{
             if(user){
                 firebase.auth().currentUser.getIdToken().then(function(idToken){
                     token["access_token"] = idToken;
                 })
-              
                 axios.post(process.env.REACT_APP_GATEWAY+"/get_user/", token).then(user=>{
                     userData = user.data;
-                    this.setState({name:userData["name"], telegram:userData["telegram"], course:userData["course"],email:userData["email"], photo:userData["photo"]}) 
+                    this.setState({name:userData.name, telegram:userData.telegram, course:userData.course, email:userData.email, photo:userData.photo}) 
                    
                 });  
             }else{
@@ -98,6 +132,7 @@ class EditProfile extends Component {
             return;
         }
 
+        this.setState({ isLoading: true });
         firebase.auth().onAuthStateChanged(user =>{
             if(user){
                 firebase.auth().currentUser.getIdToken().then(function(idToken){  
@@ -112,17 +147,28 @@ class EditProfile extends Component {
     }
     
   render() {
+    var photoUrl = this.state.photo
+    if( photoUrl != null && !this.state.imagePreviewUrl){
+        photoUrl = photoUrl.replace("api-monitoria","localhost")
+      } else {
+        photoUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzaLMnex1QwV83TBQgxLTaoDAQlFswsYy62L3mO4Su-CMkk3jX"
+      }
     return (
-        
         <div style={{overflowX:'hidden'}} className="editBackground"> 
             {this.state.showModal? <SimpleModal router={"Profile"} title={'Usuario alterado com sucesso!'}  />:null}
             <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
                 <AppBar/>
             </Grid>   
             <Grid container justify="center" alignContent="center" alignItems="center">
+                
+            {this.state.imagePreviewUrl ? 
                 <Grid item> 
-                    <img src={Pp} className="ProfilePic" alt="Profilepic" style={{width: 130,height:130,marginTop:80,borderRadius:2}} ></img>
-                </Grid>
+                    <img src={this.state.imagePreviewUrl} className="ProfilePic" alt="Profilepic" style={{width: 130,height:130,marginTop:80,borderRadius:2}} ></img>
+                </Grid> 
+                :
+                <Grid item> 
+                    <img src={photoUrl} className="ProfilePic" alt="Profilepic" style={{width: 130,height:130,marginTop:80,borderRadius:2}} ></img>
+                </Grid> }
             </Grid>
             <Grid container justify="center" alignContent="center" alignItems="center" direction="column" >
                 <Grid item xs={12}> 
@@ -134,7 +180,7 @@ class EditProfile extends Component {
                         multiline
                         Maxrows="4"
                         margin="normal"
-                        defaultValue={this.state.name}
+                        value={this.state.name}
                         onChange={(event)=>this.setState({
                             name: event.target.value,
                         })}
@@ -142,7 +188,6 @@ class EditProfile extends Component {
                 </Grid>
                 <Grid item> 
                     <TextField
-                        // error = {this.state.errorSenha }
                         required= "true"
                         id="telegram"
                         label="Telegram"
@@ -150,6 +195,7 @@ class EditProfile extends Component {
                         Maxrows="4"
                         placeholder="@"
                         margin="normal"
+                        value={this.state.telegram}
                         onChange={(event)=>this.setState({
                             telegram: event.target.value,
                         })}
@@ -158,44 +204,58 @@ class EditProfile extends Component {
                 <Grid item style={{padding:10}}>
                     <Course action={(course)=>{this.setState({course})}}/>
                 </Grid>
-                <Grid item style={{padding:30}}>              
-                <input 
-                    accept="image/*" 
-                    id="raised-button-file" 
-                    multiple 
-                    type="file" 
-                    onChange={(event)=>this.setState({
-                    photo: event.target.files[0],
-                    })}                
-                /> 
-                <label htmlFor="raised-button-file"> 
-                    <Button raised component="span" variant="outlined" color="primary" > 
-                    Escolher foto 
-                    </Button> 
-                </label>  
-                </Grid>
+                {this.state.imagePreviewUrl ? 
+                    <Grid item>               
+                        <MuiThemeProvider theme={theme}>
+                            <Button onClick={this.erase} raised component="span" variant="contained" color="primary" > 
+                                 Remover Foto
+                        </Button> 
+                        </MuiThemeProvider>
+                    </Grid>
+                    :
+                    <Grid item style={{padding:30}}>              
+                    <input 
+                        accept=".png, .jpg"
+                        id="raised-button-file" 
+                        multiple 
+                        type="file" 
+                        onChange={this._handleImageChange}                
+                    /> 
+                    <label htmlFor="raised-button-file">
+                        <MuiThemeProvider theme={theme}> 
+                            <Button raised component="span" variant="contained" color="primary" > 
+                                Escolher foto 
+                            </Button>
+                        </MuiThemeProvider> 
+                    </label>  
+                    </Grid>
+                }
+                
             </Grid>
-                <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center">
-                    {this.state.showError? <CustomizedSnackbars error={this.state.error}/>:null}
-                </Grid>
-            <Grid container justify="center" alignContent="center" alignItems="center" direction="row" spacing={24}>
-                <Grid item>
-                    <MuiThemeProvider theme={theme}>
-                        <Button component={Link} variant="contained" onClick={this.editProfile} color="primary">
-                            Confirmar
-                        </Button>
-                    </MuiThemeProvider>
-                </Grid>
-                <Grid item>
-                    <MuiThemeProvider theme={theme}>
-                        <Button component={Link} to="/Profile" variant="contained" color="primary">
-                            Cancelar
-                        </Button>
-                    </MuiThemeProvider>
-                </Grid>
+            <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center">
+                {this.state.showError? <CustomizedSnackbars error={this.state.error}/>:null}
             </Grid>
-        </div>
-        
+            <Grid item style={{marginTop:30}} >
+                { this.state.isLoading ? <Spinner />: 
+                    <Grid container justify="center" alignContent="center" alignItems="center" direction="row" spacing={24} style={{marginTop:30}}>
+                        <Grid item>
+                            <MuiThemeProvider theme={theme}>
+                                <Button component={Link} variant="contained" onClick={this.editProfile} color="primary">
+                                    Confirmar
+                                </Button>
+                            </MuiThemeProvider>
+                        </Grid>
+                        <Grid item>
+                            <MuiThemeProvider theme={theme}>
+                                <Button component={Link} to="/Profile" variant="contained" color="primary">
+                                    Cancelar
+                                </Button>
+                            </MuiThemeProvider>
+                        </Grid>
+                    </Grid>
+                }
+            </Grid>
+        </div> 
     );   
   }
 }

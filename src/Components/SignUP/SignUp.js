@@ -26,6 +26,7 @@ const theme = createMuiTheme({
 
 
 class SignUp extends Component {
+  
   state = {
     user :{
       email: '',
@@ -42,8 +43,42 @@ class SignUp extends Component {
     errorSenha: "",
     showModal: false,
     showError: false,
-    
+    file: null,
+    imagePreviewUrl: null,
   };
+  constructor(props) {
+    super(props);
+    this._handleImageChange = this._handleImageChange.bind(this);
+    this.erase = this.erase.bind(this);
+  }
+
+  componentDidUpdate(prevprops,nextstate){
+    
+  }
+
+  _handleImageChange(event) {
+    event.preventDefault();
+
+    let reader = new FileReader();
+    let file = event.target.files[0];
+
+    reader.onloadend = () => {
+      this.setState({...this.state, file:file
+      });
+      this.setState({...this.state, imagePreviewUrl:reader.result})
+      this.setState({ ...this.state, user: 
+        { ...this.state.user, photo: file} })
+    }
+
+    reader.readAsDataURL(file)
+  }
+
+  erase(event){
+    event.preventDefault();
+    this.setState({imagePreviewUrl: null});
+    this.setState({user:{photo:null}});
+    
+  }
 
   register = async (e) => {
     const { user } = this.state;  
@@ -109,6 +144,10 @@ class SignUp extends Component {
   
   }
   render() {
+    let $imagePreview = null;
+    if (this.state.imagePreviewUrl) {
+      $imagePreview = (<img style={{borderRadius:'90px', width:'120px', height:'120px'}} src={this.state.imagePreviewUrl} />);
+    }
     return (
       <div className="SignUpBackground" style={{overflowY:'scroll'}}>
       {this.state.showModal? <SimpleModal router={""} title={'Usuario criado com sucesso!'}  />:null}
@@ -181,25 +220,33 @@ class SignUp extends Component {
                   { ...this.state.user, passwordconfirm: event.target.value } })}
                 />
             </Grid>
-            <Grid item>              
-              <input 
-                accept="image/*" 
-                id="raised-button-file" 
-                multiple 
-                type="file" 
-                onChange={(event)=>this.setState({...this.state, user:
-                  {...this.state.user,photo: event.target.files[0],}})}
-              /> 
-              <label htmlFor="raised-button-file"> 
-              <MuiThemeProvider theme={theme}>
-                <Button raised component="span" variant="outlined" color="primary" > 
-                  Escolher foto 
-                </Button> 
-              </MuiThemeProvider>
-              </label>  
+            {$imagePreview}
+            {this.state.imagePreviewUrl ? 
+              <Grid item>               
+                <MuiThemeProvider theme={theme}>
+                  <Button onClick={this.erase} raised component="span" variant="outlined" color="primary" > 
+                    Remover Foto
+                  </Button> 
+                </MuiThemeProvider>
+              </Grid>
+              : 
+              <Grid item>              
+                <input 
+                  accept=".png, .jpg" 
+                  id="raised-button-file" 
+                  multiple 
+                  type="file" 
+                  onChange={this._handleImageChange}
+                  /> 
+                <label htmlFor="raised-button-file"> 
+                <MuiThemeProvider theme={theme}>
+                  <Button  raised component="span" variant="outlined" color="primary" > 
+                    Escolher foto 
+                  </Button> 
+                </MuiThemeProvider>
+                </label>  
             </Grid>
-
-            </Grid>
+            }
             <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center">
               {this.state.showError? <CustomizedSnackbars error={this.state.error}/>:null}
             </Grid>
@@ -218,10 +265,9 @@ class SignUp extends Component {
                   </Button>
                 </MuiThemeProvider>
               </Grid>
-        
             </Grid>
           </Grid>
-            
+          </Grid> 
         </div>
     );   
   }

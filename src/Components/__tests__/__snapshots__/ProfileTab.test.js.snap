@@ -389,16 +389,22 @@ exports[`Testing Add component Test if Add renders correctly 1`] = `
     >
       <WithStyles(Tab)
         label="A ministrar"
+        value={0}
       />
       <WithStyles(Tab)
-        disabled={true}
-        label="A assistir"
-      />
-      <WithStyles(Tab)
-        disabled={true}
-        label="Historico"
+        label="Curtidas"
+        value={1}
       />
     </WithStyles(Tabs)>
+    <TabContainer>
+      <WithStyles(Grid)
+        alignItems="center"
+        container={true}
+        direction="column"
+        justify="center"
+        spacing={8}
+      />
+    </TabContainer>
   </MuiThemeProviderOld>
 </WithStyles(Paper)>
 `;
