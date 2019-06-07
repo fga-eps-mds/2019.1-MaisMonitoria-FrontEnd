@@ -55,9 +55,11 @@ class ExpandedCard extends React.Component {
         var idTutoring = this.props.match.params.id_tutoring;
         this.setState({user_liked:false});
         this.setState({id_tutoring:idTutoring});
+        
+        await firebase.auth().onAuthStateChanged(user =>{
+        this.setState({id_tutoring:idTutoring});
         this.setState({ isLoading: true });
-        firebase.auth().onAuthStateChanged(user =>{
-            this.setState({isSignedIn: !!user});
+        this.setState({isSignedIn: !!user});
             if(user){
                 this.setState({id_user:user.uid})
                 firebase.auth().currentUser.getIdToken().then(function(idToken){
@@ -81,7 +83,7 @@ class ExpandedCard extends React.Component {
                         id_monitor:this.state.person.monitor.user_account_id, likes:this.state.person.likes,
                         total_likes:this.state.person.total_likes});      
                     });
-            
+                    this.setState({ isLoading: false });
             }else{
                 this.props.history.push('/');
             }
@@ -108,6 +110,10 @@ class ExpandedCard extends React.Component {
                     }
                   });
             }
+        else{
+            this.props.history.push('/');
+        }
+        this.setState({ isLoading: false });
         });  
     }
     

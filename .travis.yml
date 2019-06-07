@@ -14,7 +14,9 @@ services:
 
 stages:
   - Unit test
-  - Build docker image
+  - Deploy image homolog
+  - Deploy image prodution
+  - Upgrade service
 
 notifications:
   slack: hora-da-hora:0nFQxr2PykmKhNkJ78xYJMOP
@@ -29,20 +31,19 @@ jobs:
       script:
         - yarn run test -u --coverage
         - ./node_modules/.bin/codecov -t ${CODECOV_TOKEN}
-
-deploy:
-    - provider: script
-      skip_cleanup: true
-      script: bash ./scripts/deploy_prod.sh
-      on:
-        branch: master
-    - provider: script
-      skip_cleanup: true
+    - stage: "Deploy image homolog"
+      name: "Deploy image homolog"
+      if: branch = develop
       script: bash ./scripts/deploy_homolog.sh
+    - stage: "Deploy image prodution"
+      name: "Deploy image prodution"
+      if: branch = master
+      script: bash ./scripts/deploy_prod.sh
+    - stage: "Upgrade service"
+      name: "Upgrade service"
+      if: branch = develop
       script: python ./scripts/upgrade.py
-      on:
-        branch: develop
-
+      
 addons:
   apt:
     packages:

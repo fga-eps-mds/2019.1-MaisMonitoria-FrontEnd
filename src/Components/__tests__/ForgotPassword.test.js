@@ -1,19 +1,17 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import ForgotPassword from '../ForgotPassword/ForgotPassword';
 import toJson from 'enzyme-to-json';
-import Adapter from 'enzyme-adapter-react-16';
-import Enzyme from 'enzyme';
-
-Enzyme.configure({adapter: new Adapter()});
+import { MemoryRouter as Router } from 'react-router-dom';
+import renderer from 'react-test-renderer';
 
 
+const forgotpassword = jest.fn();
 
-describe('Testing ForgotPassword component', () => {
-    it('Test if ForgotPassword renders correctly', () =>{
-        const tree = shallow(<ForgotPassword/>);
+describe('Testing Tab component', () => {
+    it('Test if Tab renders correctly', () =>{
+        const tree = renderer.create(
+            <Router><ForgotPassword forgotpassword={forgotpassword}/></Router>
+          )
         expect(toJson(tree)).toMatchSnapshot();
     });
-    
-    
 });
