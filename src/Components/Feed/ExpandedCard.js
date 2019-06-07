@@ -91,59 +91,73 @@ class ExpandedCard extends React.Component {
     }
     
     
-    createLike = async() =>{
-        
-        var token = {};
-        var idTutoring = this.props.match.params.id_tutoring;
-        token["user_that_likes"] = this.state.id_user;
-        token["tutoring_session"] = idTutoring;
 
-        firebase.auth().onAuthStateChanged(user =>{
-            this.setState({isSignedIn: !!user});
-            if(user){
-                firebase.auth().currentUser.getIdToken().then(function(idToken){
-                    token["access_token"] = idToken;
-                });
-                axios.post(process.env.REACT_APP_GATEWAY+"/like_tutoring/", token).then((x)=>{
-                    if(success(x)) {
-                        
-                    this.componentWillMount();
+    createLike = async() =>{
+       
+        setTimeout(function() {
+            if(this.state.user_liked !=true){
+                var token = {};
+                var idTutoring = this.props.match.params.id_tutoring;
+                token["user_that_likes"] = this.state.id_user;
+                token["tutoring_session"] = idTutoring;
+
+                firebase.auth().onAuthStateChanged(user =>{
+                    this.setState({isSignedIn: !!user});
+                    if(user){
+                        firebase.auth().currentUser.getIdToken().then(function(idToken){
+                            token["access_token"] = idToken;
+                        });
+                        axios.post(process.env.REACT_APP_GATEWAY+"/like_tutoring/", token).then((x)=>{
+                            if(success(x)) {
+                                this.componentWillMount();
+                            }
+                        });
                     }
-                  });
-            }
-        else{
-            this.props.history.push('/');
-        }
-        this.setState({ isLoading: false });
-        });  
+                else{
+                    this.props.history.push('/');
+                }
+                this.setState({ isLoading: false });
+                });   
+                this.setState({user_liked:true});
+            } 
+
+        }.bind(this), 50)
+          
     }
+
+    
     
     deleteLike = async() =>{
-        
-        var token = {};
-        var idTutoring = this.props.match.params.id_tutoring;
-        token["tutoring_session"] = idTutoring;
-        
-        for(let cont = 0; cont < this.state.total_likes; cont++){
-            if(this.state.object_like[cont].user_that_likes.user_account_id == this.state.id_user){
-                token["id_like"] = this.state.object_like[cont].id_like;
-                this.state.object_like.splice(cont, 1);
-            }
-       }
-        await firebase.auth().onAuthStateChanged(user =>{
-            this.setState({isSignedIn: !!user});
-            if(user){
-                firebase.auth().currentUser.getIdToken().then(function(idToken){
-                    token["access_token"] = idToken;
-                });
-                axios.post(process.env.REACT_APP_GATEWAY+"/like_delete/", token).then((x)=>{
-                    if(success(x)) {
-                        
-                        this.componentWillMount();
+        setTimeout(function() {
+            if(this.state.user_liked !=false){
+                var token = {};
+                var idTutoring = this.props.match.params.id_tutoring;
+                token["tutoring_session"] = idTutoring;
+                
+                for(let cont = 0; cont < this.state.total_likes; cont++){
+                    if(this.state.object_like[cont].user_that_likes.user_account_id == this.state.id_user){
+                        token["id_like"] = this.state.object_like[cont].id_like;
+                        this.state.object_like.splice(cont, 1);
                     }
-                  });
+                }
+                await firebase.auth().onAuthStateChanged(user =>{
+                    this.setState({isSignedIn: !!user});
+                    if(user){
+                        firebase.auth().currentUser.getIdToken().then(function(idToken){
+                            token["access_token"] = idToken;
+                        });
+                        axios.post(process.env.REACT_APP_GATEWAY+"/like_delete/", token).then((x)=>{
+                            if(success(x)) {
+                                
+                                this.componentWillMount();
+                            }
+                        });
+                    }
+                });
+
+
             }
-        });
+        }.bind(this), 50)
     }
   render() {
     var texto =  this.state.telegram;
@@ -154,7 +168,7 @@ class ExpandedCard extends React.Component {
     if( photoUrl != null ){
         photoUrl = photoUrl.replace("api-monitoria","localhost")
       } else {
-        photoUrl = "https://cdn-eleicoes.gazetadopovo.com.br/fotos/sao-paulo/deputado-federal/batore-1444.jpg"
+        photoUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzaLMnex1QwV83TBQgxLTaoDAQlFswsYy62L3mO4Su-CMkk3jX"
       }
 
     return (
