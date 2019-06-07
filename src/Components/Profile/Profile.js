@@ -13,6 +13,7 @@ import ProfileTab from '../ProfileTab/ProfileTab';
 import Tab from '../Tab/Tab';
 
 import './Profile.css';
+import _ from 'lodash';
 
 
 
@@ -156,8 +157,8 @@ class Profile extends Component {
                         <Grid container justify={'center'} alignContent={'center'} alignItems={'center'} >
                         <Grid item xs={12} style={{marginTop:10, paddingBottom:40}} className="profileBackground">
                             <ProfileTab
-                                tutoring={this.state.tutoring.map(item => ({ ...item,  photoUrl}))}
-                                likes={this.state.likes.map(item => ({ ...item, photoUrl}))}
+                                tutoring= {_.map(this.state.tutoring, item  => ({ ...item,  photoUrl}))}
+                                likes={_.map(this.state.likes, item => ({ ...item, photoUrl}))}
                             />
                         </Grid>
                         <Tab ind={1}/>

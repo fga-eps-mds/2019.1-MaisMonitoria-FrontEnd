@@ -6,7 +6,8 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { Grid } from '@material-ui/core' ;
 import Card from '../Feed/Card';
-// import CardProfile from '../Profile/CardProfile';
+import _ from 'lodash';
+
 
 function TabContainer(props) {
   return (
@@ -60,7 +61,7 @@ class ProfileTab extends React.Component {
           <TabContainer>
             <Grid container justify="center" direction="column" alignItems="center" spacing={8}>
 
-              {this.props.tutoring.map(function(item, i){
+              {_.map(this.props.tutoring, (item, i) => {
                 return (
                   <Grid item key={i} lg={12} sm={12} container >
                       <Card name_monitoring={item.name} matter={item.subject} photo={item.photoUrl}

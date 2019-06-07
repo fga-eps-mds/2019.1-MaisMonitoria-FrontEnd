@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import Spinner from '../Loader/Spinner';
 import { ReactComponent as Logo } from '../../Assets/svg/telegram.svg';
 import Fab from '@material-ui/core/Fab';
-
+import _ from 'lodash';
 
 import ProfileTab from '../ProfileMonitor/ProfileTabMonitor';
 import Tab from '../Tab/Tab';
@@ -180,7 +180,7 @@ class Profile extends Component {
                         <Grid container justify={'center'} alignContent={'center'} alignItems={'center'} >
                         <Grid item xs={12} style={{marginTop:10, paddingBottom:40}} className="profileBackground">
                             <ProfileTab
-                                tutoring={this.state.tutoring.map(item => ({ ...item,  photoUrl}))}
+                                tutoring= {_.map(this.state.tutoring, item  => ({ ...item,  photoUrl}))}
                             />
                         </Grid>
                         <Tab ind={1}/>
