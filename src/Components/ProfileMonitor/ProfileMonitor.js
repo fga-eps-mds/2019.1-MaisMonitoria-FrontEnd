@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Grid, Button } from '@material-ui/core' ;
-import AppBarProfile from '../AppBar/AppBarProfile';
+import { Grid} from '@material-ui/core' ;
+import AppBarProfile from '../Feed/AppBarWithBack';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import axios from 'axios';
 import firebase from 'firebase';
