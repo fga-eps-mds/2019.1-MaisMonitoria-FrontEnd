@@ -172,7 +172,7 @@ class ExpandedCard extends React.Component {
         <div className='div'>
             
             <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
-               <AppBar/>    
+               <AppBar router={"/Feed"}/>    
             </Grid>            
             <Grid container justify="center" direction="row" style={{paddingTop:80, paddingLeft:15,paddingBottom:15}} className="teste" >              
                 <Grid item>                            

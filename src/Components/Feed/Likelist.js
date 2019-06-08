@@ -76,7 +76,7 @@ class LikeList extends React.Component {
     return (
         <div className='div'>
         <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
-               <AppBar/>    
+               <AppBar router={`/expandedCard/${this.props.match.params.id_tutoring}`}/>    
         </Grid>
         <Grid justify="center" direction="column" alignItems="center"  style={{paddingTop:70,marginTop:10, paddingBottom:40}}> 
          
