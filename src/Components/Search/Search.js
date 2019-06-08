@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import { Grid} from '@material-ui/core' ;
 import AppBar from './AppBarSearch';
@@ -7,6 +6,9 @@ import axios from 'axios';
 import Card from '../Feed/Card';
 import '../Feed/feed.css'
 import Tab from '../Tab/Tab';
+
+import _ from 'lodash';
+
 
 const initialState = {
     expanded: false,
@@ -76,8 +78,8 @@ class Search extends Component {
             <Grid container  justify="center" alignItems="stretch">
                 <AppBar changesearch={this.changesearch.bind(this)} search={this.state.search}/>
             </Grid>
-            <Grid container  justify="center" direction="column" alignItems="center" style={{paddingTop:80}} spacing={8} >
-            {this.state.data.map(function(item, i){
+            <Grid container  justify="center" direction="column" alignItems="center" style={{paddingTop:80, paddingBottom:60}} spacing={8} >
+                {_.map(this.state.data, (item, i) => {
                     return (
                         <Grid item key={i} lg={12} sm={12} container style={{paddingBottom:3}} style={{backgroundColor:'#eeeeee'}} >
                             <Card name_monitoring={item.name} matter={item.subject} 

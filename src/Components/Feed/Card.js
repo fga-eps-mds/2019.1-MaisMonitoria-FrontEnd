@@ -32,6 +32,7 @@ class ContractCard extends React.Component {
     name_monitoring:'', 
     matter:'',
     id_tutoring:'',
+
   }
 
   render() {

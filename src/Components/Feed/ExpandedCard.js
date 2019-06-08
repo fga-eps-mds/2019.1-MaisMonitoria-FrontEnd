@@ -174,10 +174,15 @@ class ExpandedCard extends React.Component {
             <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
                <AppBar router={"/Feed"}/>    
             </Grid>            
-            <Grid container justify="center" direction="row" style={{paddingTop:80, paddingLeft:15,paddingBottom:15}} className="teste" >              
-                <Grid item>                            
+            <Grid container justify="center" direction="row" style={{paddingTop:80, paddingLeft:15,paddingBottom:15}} className="teste" >
+                {(this.state.id_monitor != this.state.id_user)? 
+                <Grid item>                        
+                    <Link to="/ProfileMonitor"><img src={photoUrl} style={{width:140, height:140}}></img></Link>
+                </Grid>: null} 
+                {(this.state.id_monitor === this.state.id_user)? 
+                <Grid item>                        
                     <img src={photoUrl} style={{width:140, height:140}}></img>
-                </Grid>
+                </Grid>: null} 
                 <Grid item style={{marginTop:50, marginLeft:25}} >
                     {this.state.isLoading ? <Spinner />:    
                     <Grid>
@@ -192,6 +197,14 @@ class ExpandedCard extends React.Component {
                             </Grid>
                         </Grid>
                         <Grid container justify="center" direction="column" alignItems="center" alignContent="center" >
+                        {(this.state.id_monitor !== this.state.id_user)? 
+                            <MuiThemeProvider  theme={theme}>
+                                <Button style={{marginTop:40,marginLeft:50}} component={Link} variant="contained" to={`/ProfileMonitor/${this.state.id_monitor}`} color="primary">
+                                    Ver perfil
+                                </Button>
+                                
+                            </MuiThemeProvider>: null }
+                            
                         {(this.state.id_monitor === this.state.id_user)? 
                             <MuiThemeProvider  theme={theme}>
                                 <Button style={{marginTop:40,marginLeft:50}} component={Link} variant="contained" to={`/editmonitoring/${this.state.id_tutoring}`} color="primary">

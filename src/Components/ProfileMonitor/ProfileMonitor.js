@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
-import { Grid, Button } from '@material-ui/core' ;
-import AppBarProfile from '../AppBar/AppBarProfile';
+import { Grid} from '@material-ui/core' ;
+import AppBarProfile from '../Feed/AppBarWithBack';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import firebase from 'firebase';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Spinner from '../Loader/Spinner';
-
-import ProfileTab from '../ProfileTab/ProfileTab';
-import Tab from '../Tab/Tab';
-
-import './Profile.css';
+import { ReactComponent as Logo } from '../../Assets/svg/telegram.svg';
+import Fab from '@material-ui/core/Fab';
 import _ from 'lodash';
 
-
+import ProfileTab from '../ProfileMonitor/ProfileTabMonitor';
+import Tab from '../Tab/Tab';
 
 
 const theme = createMuiTheme({
@@ -46,10 +43,13 @@ const theme = createMuiTheme({
     },
     
     root: {
-        width: '100%',
-        maxWidth: 1000,
+          width: '100%',
+          maxWidth: 500,
         },
-      
+    fab:{
+    width:1,
+    height:1,
+    }
       
   
   });
@@ -57,7 +57,8 @@ const theme = createMuiTheme({
 class Profile extends Component {
 
     state = { 
-        
+        description:'',
+        telegram:'',
         monitorName:'',
         monitorCourse: '',
         monitorEmail: '',
@@ -65,40 +66,46 @@ class Profile extends Component {
         likes: [],
         monitorPhoto: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzaLMnex1QwV83TBQgxLTaoDAQlFswsYy62L3mO4Su-CMkk3jX',
         showWarning: false,
-        isLoading: false
+        isLoading: false,
+        id_monitor: '',
     }
     
     componentDidMount() {
-        let userData = {};
-        let token = {}
+        var token = {}
+        var idMonitor = this.props.match.params.id_monitor;
         
+        this.setState({id_monitor:idMonitor});
         this.setState({ isLoading: true });
+        
         firebase.auth().onAuthStateChanged(user =>{
+            this.setState({isSignedIn: !!user});
             if(user){
-                
+                this.setState({id_user:user.uid})
                 firebase.auth().currentUser.getIdToken().then(function(idToken){
                     token["access_token"] = idToken;
-                    
-                })
+                    token["monitor_id"] = idMonitor;
+                });
               
-                axios.post(process.env.REACT_APP_GATEWAY+"/get_user/", token).then(user=>{
-                    userData = user.data;
-
-                    if(userData['course'] === 'SOFTWARE' || userData['course'] === 'ENERGIA' ){
-                        userData['course'] = 'ENGENHARIA DE ' + userData['course'];
+                axios.post(process.env.REACT_APP_GATEWAY+"/get_monitor/", token)
+                .then(res => {
+                    const person = res.data;
+                    if(person['course'] === 'SOFTWARE' || person['course'] === 'ENERGIA' ){
+                        person['course'] = 'ENGENHARIA DE ' + person['course'];
                     }
-                    else if(userData['course'] === 'AERO'){
-                        userData['course'] = 'ENGENHARIA ' +'AEROESPACIAL';
+                    else if(person['course'] === 'AERO'){
+                        person['course'] = 'ENGENHARIA ' +'AEROESPACIAL';
 
                     }
-                    else if(userData['course'] === 'AUTOMOTIVA' || userData['course'] === 'ELETRONICA'){
-                        userData['course'] = 'ENGENHARIA ' + userData['course'];
+                    else if(person['course'] === 'AUTOMOTIVA' || person['course'] === 'ELETRONICA'){
+                        person['course'] = 'ENGENHARIA ' + person['course'];
                     }
                     else{
-                        userData['course']= userData['course'];
+                        person['course']= person['course'];
                     }
-                    this.setState({monitorName:userData["name"], monitorCourse:userData["course"], tutoring:userData["monitoring"], photo:userData["photo"], likes:userData["liked_tutoring_sessions"], teste:userData["liked_tutoring_sessions.monitor.ph"]}) 
                     
+                    this.setState({monitorName:person["name"], monitorCourse:person["course"],
+                                photo:person["photo"], tutoring:person["monitoring"], description:person["description"], telegram:person["telegram"], id_monitor:person.user_account_id})          
+                
                 });  
                 this.setState({ isLoading: false });
             }else{
@@ -109,6 +116,9 @@ class Profile extends Component {
     }
 
     render(){
+        var texto =  this.state.telegram;
+        var er = texto;
+        texto = er.replace('@','');
 
         const { classes } = this.props;
         var photoUrl = this.state.photo
@@ -126,39 +136,51 @@ class Profile extends Component {
                     </Grid>
                 </div> 
                 <div className={classes.root}>   
-                    <Grid container  direction="row" justify="flex-start" alignItems="flex-start" spacing={24}>
-                        <Grid item >
+                    <Grid container justify={'flex-start'} direction={'row'} alignContent={'center'} spacing={24} alignItems={'center'}>
+                        <Grid item>
                             <img className={classes.perfil} src={photoUrl} ></img>
                         </Grid>
                         <Grid item xs>
                             {this.state.isLoading ? <Spinner />:
                                 <Grid container justify={'flex-start'} direction={'column'} alignContent={'flex-start'} alignItems={'flex-start'} spacing={16}  style={{paddingTop:80}} >
-                                    <Grid item>                              
-                                        <h3>{this.state.monitorName}</h3>  
+                                    <Grid item>
+                                        <Grid container direction={'row'} spacing={16} justify="center" alignItems="center" >
+                                            <Grid item xs >                             
+                                                <h2>{this.state.monitorName}</h2>
+                                            </Grid>
+                                            <Grid item > 
+                                                <a href={"https://"+"t.me/" + texto}>{
+                                                    <MuiThemeProvider theme={theme}>
+                                                        <Fab size="small" color="primary" aria-label="Edit" >
+                                                            <Logo/>
+                                                        </Fab>
+                                                        </MuiThemeProvider>}
+                                                </a>
+                                            </Grid>
+                                        </Grid>
                                     </Grid>
                                     <Grid item>
-                                        <h4>{this.state.monitorCourse}</h4>
+                                        <h3>{this.state.monitorCourse}</h3>
                                     </Grid>
                                     <Grid item>
-                                        <MuiThemeProvider theme={theme}>
-                                            <Button variant="contained" component={Link} to="/EditProfile"  color="primary">
-                                                Editar perfil
-                                            </Button>
-                                        </MuiThemeProvider>
+                                        <h3>Descrição: <h5> {this.state.description}</h5></h3>
                                     </Grid>
                                 </Grid>
                             }
                         </Grid>
+                        
+                        
+                            
                     </Grid>
+                    
                 </div>
                 <div className="profileBackground">
-                    <Grid item style = {{marginTop:10}} >
+                    <Grid item style = {{marginTop:20}} >
                     {this.state.isLoading ? <Spinner />:
                         <Grid container justify={'center'} alignContent={'center'} alignItems={'center'} >
                         <Grid item xs={12} style={{marginTop:10, paddingBottom:40}} className="profileBackground">
                             <ProfileTab
                                 tutoring= {_.map(this.state.tutoring, item  => ({ ...item,  photoUrl}))}
-                                likes={_.map(this.state.likes, item => ({ ...item, photoUrl}))}
                             />
                         </Grid>
                         <Tab ind={1}/>

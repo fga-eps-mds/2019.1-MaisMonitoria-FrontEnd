@@ -45,6 +45,7 @@ class EditProfile extends Component {
         photo: null,
         showWarning: false,
         isLoading: false,
+        description: '',
         file: null,
         imagePreviewUrl: null,
     }
@@ -95,8 +96,7 @@ class EditProfile extends Component {
                 })
                 axios.post(process.env.REACT_APP_GATEWAY+"/get_user/", token).then(user=>{
                     userData = user.data;
-                    this.setState({name:userData.name, telegram:userData.telegram, course:userData.course, email:userData.email, photo:userData.photo}) 
-                   
+                    this.setState({name:userData.name, telegram:userData.telegram, course:userData.course, email:userData.email, photo:userData.photo, description:userData.description}) 
                 });  
             }else{
                 this.props.history.push('/');
@@ -113,7 +113,8 @@ class EditProfile extends Component {
         fd.append('email', this.state.email)
         fd.append('photo', this.state.photo)
         fd.append('telegram', this.state.telegram)
-
+        fd.append('description', this.state.description)
+        
         this.setState({ showError: false });
         this.setState({ errorName: false });
         if(!validateEditProfile(this.state))
@@ -198,6 +199,20 @@ class EditProfile extends Component {
                         value={this.state.telegram}
                         onChange={(event)=>this.setState({
                             telegram: event.target.value,
+                        })}
+                    />
+                </Grid>
+                <Grid item> 
+                    <TextField
+                        id="description"
+                        label="Descrição"
+                        multiline
+                        rows="4"
+                        margin="normal"
+                        value={this.state.description}
+                        variant="outlined"
+                        onChange={(event) => this.setState({
+                            description: event.target.value,
                         })}
                     />
                 </Grid>
