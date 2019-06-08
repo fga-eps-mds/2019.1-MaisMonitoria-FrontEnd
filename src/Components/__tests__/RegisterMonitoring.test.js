@@ -16,12 +16,12 @@ firebase.initializeApp({
 });
 
 
-const profile = jest.fn();
+const registerMonitoring = jest.fn();
 
 
   it('Test if Course renders correctly', () =>{
     const tree = renderer.create(
-      <Router><RegisterMonitoring profile={profile}/></Router>
+      <Router><RegisterMonitoring registerMonitoring={registerMonitoring}/></Router>
       )
       expect(toJson(tree)).toMatchSnapshot()
   });

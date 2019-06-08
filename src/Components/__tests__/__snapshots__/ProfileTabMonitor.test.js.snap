@@ -399,7 +399,19 @@ exports[`Testing ProfileTabMonitor component Test if ProfileTabMonitor renders c
         direction="column"
         justify="center"
         spacing={8}
-      />
+      >
+        <WithStyles(Grid)
+          container={true}
+          item={true}
+          key="map"
+          lg={12}
+          sm={12}
+        >
+          <WithStyles(ContractCard)
+            name_monitoring="mockConstructor"
+          />
+        </WithStyles(Grid)>
+      </WithStyles(Grid)>
     </TabContainer>
   </MuiThemeProviderOld>
 </WithStyles(Paper)>

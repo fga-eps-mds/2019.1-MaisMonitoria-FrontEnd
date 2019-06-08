@@ -4,6 +4,7 @@ exports[`Testing ProfileTabMonitor component Test if ProfileTabMonitor renders c
 <Profile
   classes={
     Object {
+      "fab": "Profile-fab-3",
       "perfil": "Profile-perfil-1",
       "root": "Profile-root-2",
     }
