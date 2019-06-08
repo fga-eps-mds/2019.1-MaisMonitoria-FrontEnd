@@ -4,16 +4,11 @@ import firebase from 'firebase';
 import axios from 'axios';
 import AppBar from './AppBarWithBack';
 import './ExpandedCard.css'
-import Spinner from '../Loader/Spinner';
 
-import { ReactComponent as Logo } from '../../Assets/svg/telegram.svg';
-import { ReactComponent as Like } from '../../Assets/svg/like.svg';
-import Fab from '@material-ui/core/Fab';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import {Link } from 'react-router-dom';
+import { createMuiTheme } from '@material-ui/core/styles';
+
 
 import {withRouter} from 'react-router-dom';
-import {success} from '../../Helpers/validates';
 import Card from '../Feed/CardLike';
 
 

@@ -258,14 +258,13 @@ class ExpandedCard extends React.Component {
             </Grid>
             <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center" style={{marginTop: 25}}> 
                 <Grid item>
-                    <Link 
-                        component="button"
-                        variant="body2"
-                        to={`/likeList/${this.state.id_tutoring}`}
-                    
-                        >
+                {this.state.total_likes != 0?
+                    <Link component="button" variant="body2" to={`/likeList/${this.state.id_tutoring}`}>
                         <h3>{this.state.total_likes} Curtida(s)</h3>
-                    </Link>
+                    </Link>: 
+                    <Link component="button" variant="body2">
+                        <h3>{this.state.total_likes} Curtida(s)</h3>
+                    </Link>}
                 </Grid>
             </Grid>
         </div>
