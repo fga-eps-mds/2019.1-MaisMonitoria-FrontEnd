@@ -13,3 +13,10 @@ down:
 
 stop:
 	make down
+
+test:
+	sudo docker-compose exec frontend yarn test
+	
+cov-test:
+	sudo docker-compose exec frontend yarn test --coverage
+
