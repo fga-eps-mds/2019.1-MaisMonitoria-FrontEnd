@@ -33,7 +33,7 @@ const styles = {
 };
 
 function SimpleAppBar(props) {
-  const { classes } = props;
+  const { classes,router } = props;
 
   return (
 
@@ -42,7 +42,7 @@ function SimpleAppBar(props) {
       <AppBar position="static" color="primary" style={{ background: '#1DA1F2' }}>
         <Toolbar>
             <MuiThemeProvider theme={theme}>
-                <Icon style= {{margin: 0}} component={Link} to="/Feed" color="primary" aria-label="Edit" >
+                <Icon style= {{margin: 0}} component={Link} to={router} color="primary" aria-label="Edit" >
                     <Back/>
                 </Icon>
             </MuiThemeProvider>
@@ -59,7 +59,12 @@ function SimpleAppBar(props) {
 
 SimpleAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
+  router: PropTypes.string,
 };
+
+SimpleAppBar.defaultProps = {
+  router: "/Feed",
+ };
 
 document.body.classList.add("no-sroll")
 export default withStyles(styles)(SimpleAppBar);
