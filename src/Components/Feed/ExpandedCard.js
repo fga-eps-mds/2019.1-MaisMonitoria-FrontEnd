@@ -94,7 +94,7 @@ class ExpandedCard extends React.Component {
 
     createLike = async() =>{
        
-        setTimeout(function() {
+        await  setTimeout(function() {
             if(this.state.user_liked !=true){
                 var token = {};
                 var idTutoring = this.props.match.params.id_tutoring;
@@ -113,23 +113,20 @@ class ExpandedCard extends React.Component {
                             }
                         });
                     }
-                else{
-                    this.props.history.push('/');
-                }
                 this.setState({ isLoading: false });
                 });   
                 this.setState({user_liked:true});
             } 
 
-        }.bind(this), 50)
+        }.bind(this), 100)
           
     }
 
     
     
     deleteLike = async() =>{
-        setTimeout(function() {
-            if(this.state.user_liked !=false){
+        await setTimeout(function() {
+             if(this.state.user_liked !=false){
                 var token = {};
                 var idTutoring = this.props.match.params.id_tutoring;
                 token["tutoring_session"] = idTutoring;
@@ -140,7 +137,7 @@ class ExpandedCard extends React.Component {
                         this.state.object_like.splice(cont, 1);
                     }
                 }
-                await firebase.auth().onAuthStateChanged(user =>{
+                 firebase.auth().onAuthStateChanged(user =>{
                     this.setState({isSignedIn: !!user});
                     if(user){
                         firebase.auth().currentUser.getIdToken().then(function(idToken){
@@ -154,10 +151,10 @@ class ExpandedCard extends React.Component {
                         });
                     }
                 });
-
+                this.setState({user_liked:false});
 
             }
-        }.bind(this), 50)
+        }.bind(this), 200)
     }
   render() {
     var texto =  this.state.telegram;
@@ -259,15 +256,17 @@ class ExpandedCard extends React.Component {
                     </a>
               </Grid> 
             </Grid>
-            <Grid item style={{marginTop:10, marginLeft:100}}> 
-                <Link 
-                    component="button"
-                    variant="body2"
-                     to={`/likeList/${this.state.id_tutoring}`}
-                 
-                    >
-                    <h3>{this.state.total_likes} Curtida(s)</h3>
-                </Link>
+            <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center" style={{marginTop: 25}}> 
+                <Grid item>
+                    <Link 
+                        component="button"
+                        variant="body2"
+                        to={`/likeList/${this.state.id_tutoring}`}
+                    
+                        >
+                        <h3>{this.state.total_likes} Curtida(s)</h3>
+                    </Link>
+                </Grid>
             </Grid>
         </div>
     );

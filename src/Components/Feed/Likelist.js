@@ -14,7 +14,9 @@ import {Link } from 'react-router-dom';
 
 import {withRouter} from 'react-router-dom';
 import {success} from '../../Helpers/validates';
-import Card from '../Feed/Card';
+import Card from '../Feed/CardLike';
+
+
 const theme = createMuiTheme({
     palette: {
       primary: { main: "#44a1f2" },
@@ -31,50 +33,7 @@ const theme = createMuiTheme({
 });
 
 class LikeList extends React.Component {
-    
-    // state = {
-        
-    // }
-
-    // componentWillMount =  async () => {
-    //     var token = {};
-    //     var idTutoring = this.props.match.params.id_tutoring;
-    //     this.setState({user_liked:false});
-    //     this.setState({id_tutoring:idTutoring});
-        
-    //     await firebase.auth().onAuthStateChanged(user =>{
-    //     this.setState({id_tutoring:idTutoring});
-    //     this.setState({ isLoading: true });
-    //     this.setState({isSignedIn: !!user});
-    //         if(user){
-    //             this.setState({id_user:user.uid})
-    //             firebase.auth().currentUser.getIdToken().then(function(idToken){
-    //                 token["access_token"] = idToken;
-    //                 token["id_tutoring_session"] = idTutoring;
-    //             });
-                
-    //             axios.post(process.env.REACT_APP_GATEWAY+"/get_tutoring/", token)
-    //                 .then(res => {
-    //                     this.setState({person:res.data});
-    //                     for(let cont = 0; cont < this.state.person.total_likes; cont++){
-    //                         this.state.object_like[cont]= this.state.person.likes[cont];
-    //                     }
-    //                    for(let cont = 0; cont < this.state.person.total_likes; cont++){
-    //                         if(this.state.object_like[cont].user_that_likes.user_account_id == this.state.id_user){
-    //                             this.setState({user_liked:true});
-    //                         }
-    //                    } 
-    //                    this.setState({tutoringName:this.state.person.name, tutoringTheme:this.state.person.subject, tutoringDescription:this.state.person.description,
-    //                     monitorName: this.state.person.monitor.name, photo:this.state.person.monitor.photo, telegram:this.state.person.monitor.telegram,
-    //                     id_monitor:this.state.person.monitor.user_account_id, likes:this.state.person.likes,
-    //                     total_likes:this.state.person.total_likes});      
-    //                 });
-    //                 this.setState({ isLoading: false });
-    //         }else{
-    //             this.props.history.push('/');
-    //         }
-    //     });    
-    // }
+ 
     state={
       person: [],
       id_user:'',
@@ -124,16 +83,16 @@ class LikeList extends React.Component {
         <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
                <AppBar/>    
         </Grid>
-        {/* <Grid justify="center" direction="column" alignItems="center"  style={{paddingTop:70,marginTop:10, paddingBottom:40}}> 
+        <Grid justify="center" direction="column" alignItems="center"  style={{paddingTop:70,marginTop:10, paddingBottom:40}}> 
          
           <h1>{this.state.likes.map(function(item, i){
             return (
                 <Grid item key={i} lg={12} sm={12} container style={{paddingBottom:3}} >
-                    <Card name_monitoring={item.user_that_likes.name}photo={item.user_that_likes.photo}  />
+                    <Card name_user={item.user_that_likes.name}photo={item.user_that_likes.photo}  />
                 </Grid>
             );
           })}</h1>
-        </Grid> */}
+        </Grid>
       
        </div>
     );
