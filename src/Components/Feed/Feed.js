@@ -14,8 +14,6 @@ import Tab from '../Tab/Tab';
 import {withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import InfiniteLoader from 'react-infinite-loader'
-import ReactDOM from 'react-dom'
 
 
 class TelaFeed extends Component {
