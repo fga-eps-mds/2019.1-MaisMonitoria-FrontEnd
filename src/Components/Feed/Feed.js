@@ -14,6 +14,8 @@ import Tab from '../Tab/Tab';
 import {withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import InfiniteLoader from 'react-infinite-loader'
+import ReactDOM from 'react-dom'
 
 
 class TelaFeed extends Component {
@@ -35,7 +37,7 @@ class TelaFeed extends Component {
                 });
                 axios.post(process.env.REACT_APP_GATEWAY+"/all_tutoring/", token)
                     .then(res => {
-                        const person = res.data
+                        const person = res.data.results
                         this.setState({data:person})
                     });
                 this.setState({ isLoading: false });

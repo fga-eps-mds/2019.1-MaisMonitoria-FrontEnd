@@ -59,7 +59,7 @@ class Search extends Component {
                 });
             axios.post(process.env.REACT_APP_GATEWAY+"/search_tutoring/", token)
             .then(res => {
-                let person = res.data
+                let person = res.data.results
                 this.setState({data:person})
                  });                                           
     }
