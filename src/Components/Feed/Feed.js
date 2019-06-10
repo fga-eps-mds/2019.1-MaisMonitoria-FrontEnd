@@ -26,7 +26,9 @@ class TelaFeed extends Component {
             isLoading: false,
             next: '',
             previous: null,
-            page : 2
+            page : 2,
+            endlist:false,
+            aux:false
         };
 
         window.onscroll = () => {         
@@ -40,50 +42,56 @@ class TelaFeed extends Component {
     
     loadMore(){
         setTimeout(function() { 
-            
-        console.log("yes")
-            const next = this.state.next;
-            console.log(next)
-            if(next != null){
-                console.log("yestt")
-                const page= this.state.page;
-                var token = {};
+            console.log("yes")
+                const next = this.state.next;
+                if(next != null){
+                    console.log("yestt")
+                    const page= this.state.page;
+                    var token = {
+                        page:''
+                    };
 
-                this.setState({ isLoading: true });
-                firebase.auth().onAuthStateChanged(user =>{
-                    this.setState({isSignedIn: !!user});
-                    if(user){
-                        firebase.auth().currentUser.getIdToken().then(function(idToken){
-                            token["access_token"] = idToken;
-                        });
-                        // axios.post(process.env.REACT_APP_GATEWAY+`/all_tutoring/?page=${page}`, token)
-                        //     .then(res => {
-                        //         const prox = null;
-                        //         const ante = res.data.previous;
-                        //         const person = res.data.results;
-                        //         console.log(person);
-                        //         this.setState({data:[...this.state.data,...person],next:prox,previous:ante});
-                                
-                        //         if(prox!= null){
-                        //             page= page +1;
-                        //             this.setState({page:page});
-                        //         }
-                        //     });
-                    }
-                    else{
-                        this.props.history.push('/');
-                    }
-                });
-            
-            
-            
-            }
-        }.bind(this), 500)
+                    this.setState({ isLoading: true });
+                    firebase.auth().onAuthStateChanged(user =>{
+                        this.setState({isSignedIn: !!user});
+                        if(user){
+                            firebase.auth().currentUser.getIdToken().then(function(idToken){
+                                token["access_token"] = idToken;
+                            });
+                            token["page"]= this.state.page;
+                            axios.post(process.env.REACT_APP_GATEWAY+"/all_tutoring/", token)
+                                .then(res => {
+                                    const prox = res.data.next;
+                                    const ante = res.data.previous;
+                                    const person = res.data.results;
+                                    this.setState({data:[...this.state.data,...person],next:prox,previous:ante});
+
+                                    if(prox!= null){
+                                        page= page +1;
+                                        this.setState({page:page});
+                                    }
+                                    else{
+                                        this.setState({endlist:true})
+                                    }
+                                });
+                        }
+                        else{
+                            this.props.history.push('/');
+                        }
+                    });
+                
+                
+                
+                }
+        }.bind(this), 1500)
+        this.setState({ isLoading: false });
       };
 
     componentDidMount() {
        
-        var token = {};
+        var token = {
+            page:''
+        };
 
         this.setState({ isLoading: true });
         firebase.auth().onAuthStateChanged(user =>{
@@ -92,6 +100,7 @@ class TelaFeed extends Component {
                 firebase.auth().currentUser.getIdToken().then(function(idToken){
                     token["access_token"] = idToken;
                 });
+
                 axios.post(process.env.REACT_APP_GATEWAY+"/all_tutoring/", token)
                     .then(res => {
                         const pages = res.data.next;
@@ -128,8 +137,11 @@ class TelaFeed extends Component {
                                     description={item.description} photo={item.monitor.photo} 
                                     monitorName={item.monitor.name} id_tutoring={item.id_tutoring_session} />
                             </Grid>
+
                         );
-                    })}
+
+                    })}                  
+                    {this.state.endlist?<h4>Não há mais monitorias</h4>:null}
                 </Grid>
                 <Tab ind={0}/>
             </div>
