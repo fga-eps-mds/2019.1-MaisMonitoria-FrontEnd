@@ -17,7 +17,6 @@ import _ from 'lodash';
 
 
 class TelaFeed extends Component {
-   
     constructor(props) {
         super(props);
         this.state = {
@@ -25,74 +24,58 @@ class TelaFeed extends Component {
             showWarning: false,
             isLoading: false,
             next: '',
-            previous: null,
             page : 2,
             endlist:false,
-            aux:false
+            aux : true
         };
 
         window.onscroll = () => {         
           if (document.documentElement.scrollHeight-document.documentElement.scrollTop===document.documentElement.clientHeight) {
-            
             this.loadMore()
-            
           }
         };
       }
     
     loadMore(){
-        setTimeout(function() { 
-            console.log("yes")
-                const next = this.state.next;
-                if(next != null){
-                    console.log("yestt")
-                    const page= this.state.page;
-                    var token = {
-                        page:''
-                    };
-
-                    this.setState({ isLoading: true });
-                    firebase.auth().onAuthStateChanged(user =>{
-                        this.setState({isSignedIn: !!user});
-                        if(user){
-                            firebase.auth().currentUser.getIdToken().then(function(idToken){
-                                token["access_token"] = idToken;
-                            });
-                            token["page"]= this.state.page;
-                            axios.post(process.env.REACT_APP_GATEWAY+"/all_tutoring/", token)
-                                .then(res => {
-                                    const prox = res.data.next;
-                                    const ante = res.data.previous;
-                                    const person = res.data.results;
-                                    this.setState({data:[...this.state.data,...person],next:prox,previous:ante});
-
-                                    if(prox!= null){
-                                        page= page +1;
-                                        this.setState({page:page});
-                                    }
-                                    else{
-                                        this.setState({endlist:true})
-                                    }
-                                });
-                        }
-                        else{
-                            this.props.history.push('/');
-                        }
+        const next = this.state.next;
+        if(next != null){
+            this.setState({ aux: true });
+            var page= this.state.page;
+            var token = {
+                page:''
+            };
+            firebase.auth().onAuthStateChanged(user =>{
+                this.setState({isSignedIn: !!user});
+                if(user){
+                    firebase.auth().currentUser.getIdToken().then(function(idToken){
+                        token["access_token"] = idToken;
                     });
-                
-                
-                
+                    token["page"]= this.state.page;
+                    axios.post(process.env.REACT_APP_GATEWAY+"/all_tutoring/", token)
+                        .then(res => {
+                            const prox = res.data.next;
+                            const person = res.data.results;
+                            this.setState({data:[...this.state.data,...person],next:prox});
+                            if(prox!= null){
+                                page= page +1;
+                                this.setState({page:page, aux: false});
+                            }
+                            else{
+                                this.setState({endlist:true, aux: false})
+                            }
+                        });
                 }
-        }.bind(this), 1500)
-        this.setState({ isLoading: false });
+                else{
+                    this.props.history.push('/');
+                }
+            });
+        }
       };
 
     componentDidMount() {
-       
         var token = {
             page:''
         };
-
         this.setState({ isLoading: true });
         firebase.auth().onAuthStateChanged(user =>{
             this.setState({isSignedIn: !!user});
@@ -100,14 +83,12 @@ class TelaFeed extends Component {
                 firebase.auth().currentUser.getIdToken().then(function(idToken){
                     token["access_token"] = idToken;
                 });
-
                 axios.post(process.env.REACT_APP_GATEWAY+"/all_tutoring/", token)
                     .then(res => {
                         const pages = res.data.next;
                         const ante = res.data.previous;
                         const person = res.data.results;
                         this.setState({data:person,next:pages,previous:ante});
-                        console.log(this.state.next)
                     });
                 this.setState({ isLoading: false });
             }
@@ -117,13 +98,8 @@ class TelaFeed extends Component {
         });
     }
    
-
-    
-   
-
   render() {  
-    return (
-             
+    return (     
         <div style={{overflowX:'hidden'}} className="FeedBackground">
             <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
                 <AppBar/>    
@@ -137,11 +113,10 @@ class TelaFeed extends Component {
                                     description={item.description} photo={item.monitor.photo} 
                                     monitorName={item.monitor.name} id_tutoring={item.id_tutoring_session} />
                             </Grid>
-
                         );
-
-                    })}                  
-                    {this.state.endlist?<h4>Não há mais monitorias</h4>:null}
+                    })}
+                    {!this.state.isLoading && this.state.aux?<Spinner />:null}
+                    {this.state.endlist?<h4>Não há mais monitorias!</h4>:null} 
                 </Grid>
                 <Tab ind={0}/>
             </div>
