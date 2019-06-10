@@ -19,8 +19,6 @@ services:
     depends_on:
       - db
     image: maismonitoria/api_monitoria:homolog
-    volumes:
-      - .:/code
     ports:
       - "8001:8001"
     networks:
@@ -35,8 +33,6 @@ services:
   api_gateway:
     container_name: api-gateway
     image: maismonitoria/api_gateway:homolog
-    volumes:
-      - .:/code
     ports:
       - "8000:8000"
     networks:
