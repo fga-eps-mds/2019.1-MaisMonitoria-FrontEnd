@@ -57,16 +57,17 @@ class Login extends Component {
         firebase.auth().currentUser.getIdToken().then((idToken)=> {   
           token["access_token"] = idToken;                
         });
-        
-        if(success(user)){
           axios.post(process.env.REACT_APP_GATEWAY+"/get_user/", token).then((status_get)=>{
-            if(success(status_get)) {
+            if(status_get.data.user_account_id) {
               this.setState({ isAuthenticated: true });
               const route = this.state.isAuthenticated?"/Feed":"/"
               this.props.history.push(route);
+            }else{
+              this.setState({ error: "Usuario não cadastrado." });
+              this.setState({ showError: true });
             }
           });
-        }
+        
       }).catch((except)=>{
         this.setState({ error: "Email ou Senha inválidos." });
         this.setState({ showError: true });

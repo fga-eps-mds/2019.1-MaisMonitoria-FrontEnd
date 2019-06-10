@@ -104,7 +104,7 @@ class SignUp extends Component {
     await axios.post(process.env.REACT_APP_GATEWAY+"/create_user/", fd, header).then((status_created)=>{
       if(success(status_created)) {
         axios.post(process.env.REACT_APP_GATEWAY+"/get_user/", token).then((status_get)=>{
-          if(success(status_get)) {
+          if(status_get.data.user_account_id) {
             this.setState({showModal:true});
           }
         });
