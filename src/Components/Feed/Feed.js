@@ -17,13 +17,72 @@ import _ from 'lodash';
 
 
 class TelaFeed extends Component {
-    state =  {
-        data : [],
-        showWarning: false,
-        isLoading: false
-    }
+   
+    constructor(props) {
+        super(props);
+        this.state = {
+            data : [],
+            showWarning: false,
+            isLoading: false,
+            next: '',
+            previous: null,
+            page : 2
+        };
+
+        window.onscroll = () => {         
+          if (document.documentElement.scrollHeight-document.documentElement.scrollTop===document.documentElement.clientHeight) {
+            
+            this.loadMore()
+            
+          }
+        };
+      }
+    
+    loadMore(){
+        setTimeout(function() { 
+            
+        console.log("yes")
+            const next = this.state.next;
+            console.log(next)
+            if(next != null){
+                console.log("yestt")
+                const page= this.state.page;
+                var token = {};
+
+                this.setState({ isLoading: true });
+                firebase.auth().onAuthStateChanged(user =>{
+                    this.setState({isSignedIn: !!user});
+                    if(user){
+                        firebase.auth().currentUser.getIdToken().then(function(idToken){
+                            token["access_token"] = idToken;
+                        });
+                        // axios.post(process.env.REACT_APP_GATEWAY+`/all_tutoring/?page=${page}`, token)
+                        //     .then(res => {
+                        //         const prox = null;
+                        //         const ante = res.data.previous;
+                        //         const person = res.data.results;
+                        //         console.log(person);
+                        //         this.setState({data:[...this.state.data,...person],next:prox,previous:ante});
+                                
+                        //         if(prox!= null){
+                        //             page= page +1;
+                        //             this.setState({page:page});
+                        //         }
+                        //     });
+                    }
+                    else{
+                        this.props.history.push('/');
+                    }
+                });
+            
+            
+            
+            }
+        }.bind(this), 500)
+      };
 
     componentDidMount() {
+       
         var token = {};
 
         this.setState({ isLoading: true });
@@ -35,8 +94,11 @@ class TelaFeed extends Component {
                 });
                 axios.post(process.env.REACT_APP_GATEWAY+"/all_tutoring/", token)
                     .then(res => {
-                        const person = res.data.results
-                        this.setState({data:person})
+                        const pages = res.data.next;
+                        const ante = res.data.previous;
+                        const person = res.data.results;
+                        this.setState({data:person,next:pages,previous:ante});
+                        console.log(this.state.next)
                     });
                 this.setState({ isLoading: false });
             }
@@ -45,9 +107,14 @@ class TelaFeed extends Component {
             }
         });
     }
+   
+
+    
+   
 
   render() {  
     return (
+             
         <div style={{overflowX:'hidden'}} className="FeedBackground">
             <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
                 <AppBar/>    
@@ -78,6 +145,7 @@ class TelaFeed extends Component {
                 }
             </Grid>
         </div>
+        
     );   
   }
 }
