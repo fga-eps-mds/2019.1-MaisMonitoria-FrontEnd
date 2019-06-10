@@ -65,6 +65,13 @@ class Login extends Component {
             }else{
               this.setState({ error: "Usuario não cadastrado." });
               this.setState({ showError: true });
+              var user = firebase.auth().currentUser;
+              user.delete().then(function() {
+                      
+              }).catch(function(error) {
+                
+              });
+
             }
           });
         

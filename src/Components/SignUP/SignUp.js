@@ -106,6 +106,16 @@ class SignUp extends Component {
         axios.post(process.env.REACT_APP_GATEWAY+"/get_user/", token).then((status_get)=>{
           if(status_get.data.user_account_id) {
             this.setState({showModal:true});
+          }else{
+            this.setState({ error: "Erro ao cadastrar." });
+            this.setState({ showError: true });
+            var user = firebase.auth().currentUser;
+
+            user.delete().then(function() {
+              
+            }).catch(function(error) {
+              
+            });
           }
         });
       }
