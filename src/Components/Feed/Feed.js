@@ -26,7 +26,7 @@ class TelaFeed extends Component {
             next: '',
             page : 2,
             endlist:false,
-            aux : true
+            aux : false
         };
 
         window.onscroll = () => {         
