@@ -6,8 +6,8 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { Grid } from '@material-ui/core' ;
 import Card from '../Feed/Card';
-
 import _ from 'lodash';
+
 
 function TabContainer(props) {
   return (
@@ -54,8 +54,8 @@ class ProfileTab extends React.Component {
           variant="fullWidth"
           centered
         >
-          <Tab value={0} label="A ministrar" />
-          <Tab value={1} label="Curtidas"  />
+          <Tab value={0} label="Monitorias" />
+          
         </Tabs>
         {this.state.value === 0 &&
           <TabContainer>
@@ -72,19 +72,9 @@ class ProfileTab extends React.Component {
             </Grid>
           </TabContainer>
         }
-        {this.state.value === 1 && 
-          <TabContainer>
-            <Grid container justify="center" direction="column" alignItems="center" spacing={8}>
-              {_.map(this.props.likes, (item, i) => {
-                return (
-                  <Grid item key={i} lg={12} sm={12} container >
-                      <Card name_monitoring={item.tutoring_session.name} matter={item.tutoring_session.subject} photo = {item.tutoring_session.monitor.photo}
-                          description={item.tutoring_session.description} id_tutoring={item.tutoring_session.id_tutoring_session}/>
-                  </Grid>
-                );
-            })}
-            </Grid>
-          </TabContainer>}
+        
+            
+         
         </MuiThemeProvider>
       </Paper>
     );

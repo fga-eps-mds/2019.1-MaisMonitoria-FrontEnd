@@ -1,10 +1,9 @@
 import React from 'react';
-import RegisterMonitoring from '../RegisterMonitoring/RegisterMonitoring';
-import renderer from 'react-test-renderer';
+import LikeList from '../Feed/Likelist';
 import toJson from 'enzyme-to-json';
-import firebase from 'firebase';
+import renderer from 'react-test-renderer';
 import { MemoryRouter as Router } from 'react-router-dom';
-
+import firebase from 'firebase';
 
 firebase.initializeApp({
   apiKey: '...',
@@ -15,13 +14,12 @@ firebase.initializeApp({
   messagingSenderId: '...',
 });
 
+const likeList = jest.fn();
 
-const registerMonitoring = jest.fn();
 
-
-  it('Test if Course renders correctly', () =>{
+  it('Test if likedlist renders correctly', () =>{
     const tree = renderer.create(
-      <Router><RegisterMonitoring registerMonitoring={registerMonitoring}/></Router>
+      <Router><LikeList likeList={likeList}/></Router>
       )
       expect(toJson(tree)).toMatchSnapshot()
   });

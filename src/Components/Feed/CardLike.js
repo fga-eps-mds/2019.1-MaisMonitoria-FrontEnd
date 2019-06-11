@@ -28,11 +28,8 @@ const styles = () => ({
 class ContractCard extends React.Component {
   
   state =  {  
-    lista : [],
-    name_monitoring:'', 
-    matter:'',
-    id_tutoring:'',
-
+    id_user:''
+    
   }
 
   render() {
@@ -47,16 +44,14 @@ class ContractCard extends React.Component {
 
     return (
       <Card className={classes.card} >
-        <Link to={`/expandedcard/${this.props.id_tutoring}`}>
+        {/* <Link to={`/expandedcard/${this.props.id_tutoring}`}> */}
         <Grid container alignContent="center" direction="row" >
           <Grid item>
             <Grid container direction="column" alignContent="center" alignItems="center" >
               <Grid item>
                 <img className={classes.teste}  src={photoUrl}></img>
               </Grid>
-              <Grid item>
-                {this.props.monitorName}
-              </Grid>
+             
             </Grid>
           </Grid>
           <Grid item>
@@ -64,17 +59,14 @@ class ContractCard extends React.Component {
               <Grid item> 
                 <CardContent>
                   <Typography component="h5" variant="h5">
-                  {this.props.name_monitoring}
-                  </Typography>
-                  <Typography>
-                  {this.props.description}
-                  </Typography>               
+                  {this.props.name_user}
+                  </Typography>        
                 </CardContent>
                 </Grid>
             </Grid>
           </Grid>
         </Grid>
-        </Link>
+        {/* </Link> */}
       </Card>
     );
   }
