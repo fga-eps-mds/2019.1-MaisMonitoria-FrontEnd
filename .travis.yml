@@ -14,6 +14,7 @@ services:
 
 stages:
   - Unit test
+  - Deploy image development
   - Deploy image homolog
   - Deploy image prodution
   - Upgrade service
@@ -31,6 +32,10 @@ jobs:
       script:
         - yarn run test -u --coverage
         - ./node_modules/.bin/codecov -t ${CODECOV_TOKEN}
+    - stage: "Deploy image development"
+      name: "Deploy image development"
+      if: branch = develop
+      script: bash ./scripts/deploy_dev.sh
     - stage: "Deploy image homolog"
       name: "Deploy image homolog"
       if: branch = develop
