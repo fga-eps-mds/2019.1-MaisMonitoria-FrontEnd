@@ -29,7 +29,6 @@ class ContractCard extends React.Component {
   
   state =  {  
     id_user:''
-    
   }
 
   render() {
@@ -43,8 +42,9 @@ class ContractCard extends React.Component {
     }
 
     return (
+      
       <Card className={classes.card} >
-        {/* <Link to={`/expandedcard/${this.props.id_tutoring}`}> */}
+        <Link to={`/ProfileMonitor/${this.props.tutor}`}> 
         <Grid container alignContent="center" direction="row" >
           <Grid item>
             <Grid container direction="column" alignContent="center" alignItems="center" >
@@ -66,7 +66,7 @@ class ContractCard extends React.Component {
             </Grid>
           </Grid>
         </Grid>
-        {/* </Link> */}
+         </Link> 
       </Card>
     );
   }
