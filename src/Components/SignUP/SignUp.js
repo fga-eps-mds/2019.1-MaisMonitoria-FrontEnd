@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 import firebase from 'firebase';
 import axios from 'axios';
 import {withRouter} from 'react-router-dom';
-
+import Spinner from '../Loader/Spinner';
 import Course from '../EditProfile/Course'
 import { errors } from '../../Helpers/errors';
 import SimpleModal from '../SimpleModal';
@@ -14,7 +14,6 @@ import CustomizedSnackbars from '../SimpleModal/Snackbars';
 import logo from '../../Assets/img/Logo.png';
 import { validateRegister, success, validateName, validatepasswordconfirm } from '../../Helpers/validates';
 import './SignUp.css';
-
 
 const theme = createMuiTheme({
   palette: {
@@ -38,6 +37,7 @@ class SignUp extends Component {
       photo: null,
     },
     isAuthenticated: false,
+    isLoading: false,
     error: "",
     errorName: false,
     errorSenha: "",
@@ -46,6 +46,7 @@ class SignUp extends Component {
     file: null,
     imagePreviewUrl: null,
   };
+
   constructor(props) {
     super(props);
     this._handleImageChange = this._handleImageChange.bind(this);
@@ -76,8 +77,7 @@ class SignUp extends Component {
   erase(event){
     event.preventDefault();
     this.setState({imagePreviewUrl: null});
-    this.setState({user:{photo:null}});
-    
+    this.setState({user:{photo:null}}); 
   }
 
   register = async (e) => {
@@ -89,11 +89,11 @@ class SignUp extends Component {
     this.setState({ errorSenha: "" });
     this.setState({ showError: false });
   
-    
     if(!validateRegister(user))
     {
       this.setState({ error: "Digite os campos obrigatórios" });
       this.setState({ showError: true });
+      
       return;
     }
 
@@ -102,6 +102,7 @@ class SignUp extends Component {
       this.setState({ errorName: true });
       this.setState({ error: "Nome inválido" });
       this.setState({ showError: true });
+      
       e.preventDefault();
       return;
     }
@@ -116,6 +117,7 @@ class SignUp extends Component {
       return;
     }
     
+    this.setState({ isLoading: true });
     await firebase.auth().createUserWithEmailAndPassword(user.email, user.password).then(()=>{
         
         firebase.auth().currentUser.getIdToken().then((idToken)=> {  
@@ -125,7 +127,7 @@ class SignUp extends Component {
         }).catch((error)=>{
           this.setState({error: errors[error.code]});
           this.setState({ showError: true });
-
+          this.setState({ isLoading: false });
     });
 
     const fd = new FormData();
@@ -141,8 +143,8 @@ class SignUp extends Component {
         this.setState({showModal:true});
       }
     });
-  
   }
+
   render() {
     let $imagePreview = null;
     if (this.state.imagePreviewUrl) {
@@ -179,8 +181,7 @@ class SignUp extends Component {
                 />
             </Grid>
             <Grid item >
-              <TextField
-                
+              <TextField                
                 required= "true"
                 id="telegramTextField"
                 label="Telegram"
@@ -194,8 +195,7 @@ class SignUp extends Component {
             <Grid item>
                 <Course action={(course)=>{this.setState({...this.state,user: 
                   {...this.state.user, course}})}}/>
-            </Grid>
-                    
+            </Grid>             
             <Grid item >
               <TextField
                 error = {this.state.errorSenha }
@@ -245,30 +245,34 @@ class SignUp extends Component {
                   </Button> 
                 </MuiThemeProvider>
                 </label>  
-            </Grid>
+              </Grid>
             }
             <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center">
               {this.state.showError? <CustomizedSnackbars error={this.state.error}/>:null}
             </Grid>
-            <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center" style={{marginTop: 25}}>
-              <Grid item >
-                <MuiThemeProvider theme={theme}>
-                  <Button component={Link}  variant="outlined" onClick={this.register} color="primary">
-                  Registrar
-                  </Button>
-                </MuiThemeProvider>
-              </Grid>
-              <Grid item>
-                <MuiThemeProvider theme={theme}>
-                  <Button component={Link} to="/" variant="outlined" color="primary" >
-                    Cancelar
-                  </Button>
-                </MuiThemeProvider>
-              </Grid>
+            <Grid item style={{marginTop: 25}}>
+              {this.state.isLoading ? <Spinner />:
+                  <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center" style={{marginTop: 0}}>
+                    <Grid item >
+                      <MuiThemeProvider theme={theme}>
+                        <Button component={Link}  variant="outlined" onClick={this.register} color="primary">
+                        Registrar
+                        </Button>
+                      </MuiThemeProvider>
+                    </Grid>
+                    <Grid item>
+                      <MuiThemeProvider theme={theme}>
+                        <Button component={Link} to="/" variant="outlined" color="primary" >
+                          Cancelar
+                        </Button>
+                      </MuiThemeProvider>
+                    </Grid>
+                  </Grid>
+                }
             </Grid>
           </Grid>
-          </Grid> 
-        </div>
+        </Grid> 
+      </div>
     );   
   }
 }
