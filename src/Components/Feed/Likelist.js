@@ -31,6 +31,7 @@ class LikeList extends React.Component {
       id_user:'',
       likes:[],
       total_likes:0,
+      id:''
     }
 
     componentDidMount=  async () =>{
@@ -49,7 +50,7 @@ class LikeList extends React.Component {
                     .then(res => {
                       this.setState({person:res.data});
                       this.setState({ likes:this.state.person.likes,
-                      total_likes:this.state.person.total_likes});
+                      total_likes:this.state.person.total_likes,id:idTutoring});
                     });
                    
             }else{
@@ -68,10 +69,10 @@ class LikeList extends React.Component {
             <h1>{this.state.likes.map(function(item, i){
               return (
                 <Grid item key={i} lg={12} sm={12} container style={{paddingBottom:3}} >
-                    <Card name_user={item.user_that_likes.name}photo={item.user_that_likes.photo} tutor ={item.user_that_likes.user_account_id}   />
+                    <Card name_user={item.user_that_likes.name}photo={item.user_that_likes.photo} user ={item.user_that_likes.user_account_id}  id_tutoring ={this.state.id} />
                 </Grid>
               );
-            })}
+            },this)}
             </h1>
           </Grid>  
        </div>

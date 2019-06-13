@@ -34,7 +34,6 @@ class ContractCard extends React.Component {
   render() {
     const { classes } = this.props;
     var photoUrl = this.props.photo;
-    
     if( photoUrl != null ){
       photoUrl = photoUrl.replace("api-monitoria","localhost")
     } else {
@@ -44,7 +43,7 @@ class ContractCard extends React.Component {
     return (
       
       <Card className={classes.card} >
-        <Link to={`/ProfileMonitor/${this.props.tutor}`}> 
+        <Link to={{pathname:`/ProfileMonitor/${this.props.user}`,state:{id_tutoring:this.props.id_tutoring}}}> 
         <Grid container alignContent="center" direction="row" >
           <Grid item>
             <Grid container direction="column" alignContent="center" alignItems="center" >
