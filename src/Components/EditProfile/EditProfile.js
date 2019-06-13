@@ -48,6 +48,7 @@ class EditProfile extends Component {
         description: '',
         file: null,
         imagePreviewUrl: null,
+        defaultImage: null,
     }
     constructor(props) {
         super(props);
@@ -96,7 +97,7 @@ class EditProfile extends Component {
                 })
                 axios.post(process.env.REACT_APP_GATEWAY+"/get_user/", token).then(user=>{
                     userData = user.data;
-                    this.setState({name:userData.name, telegram:userData.telegram, course:userData.course, email:userData.email, photo:userData.photo, description:userData.description}) 
+                    this.setState({name:userData.name, telegram:userData.telegram, course:userData.course, email:userData.email, defaultImage:userData.photo, description:userData.description}) 
                 });  
             }else{
                 this.props.history.push('/');
@@ -148,7 +149,7 @@ class EditProfile extends Component {
     }
     
   render() {
-    var photoUrl = this.state.photo
+    var photoUrl = this.state.defaultImage
     if( photoUrl != null && !this.state.imagePreviewUrl){
         photoUrl = photoUrl.replace("api-monitoria","localhost")
       } else {
