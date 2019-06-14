@@ -269,9 +269,8 @@ class ExpandedCard extends React.Component {
                     <Link component="button" variant="body2" to={`/likeList/${this.state.id_tutoring}`}>
                         <h3>{this.state.total_likes} Curtida(s)</h3>
                     </Link>: 
-                    <Link component="button" variant="body2">
                         <h3>{this.state.total_likes} Curtida(s)</h3>
-                    </Link>}
+                    }
                 </Grid>
             </Grid>
         </div>

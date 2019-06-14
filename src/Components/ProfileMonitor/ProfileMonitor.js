@@ -145,7 +145,7 @@ class Profile extends Component {
                                 <Grid container justify={'flex-start'} direction={'column'} alignContent={'flex-start'} alignItems={'flex-start'} spacing={16}  style={{paddingTop:80}} >
                                     <Grid item>
                                         <Grid container direction={'row'} spacing={16} justify="center" alignItems="center" >
-                                            <Grid item xs >                             
+                                            <Grid item xs>                             
                                                 <h2>{this.state.monitorName}</h2>
                                             </Grid>
                                             <Grid item > 
@@ -154,7 +154,7 @@ class Profile extends Component {
                                                         <Fab size="small" color="primary" aria-label="Edit" >
                                                             <Logo/>
                                                         </Fab>
-                                                        </MuiThemeProvider>}
+                                                    </MuiThemeProvider>}
                                                 </a>
                                             </Grid>
                                         </Grid>
@@ -163,16 +163,12 @@ class Profile extends Component {
                                         <h3>{this.state.monitorCourse}</h3>
                                     </Grid>
                                     <Grid item>
-                                        <h3>Descrição: <h5> {this.state.description}</h5></h3>
+                                    <h3>Descrição:</h3>{this.state.description}
                                     </Grid>
                                 </Grid>
                             }
-                        </Grid>
-                        
-                        
-                            
-                    </Grid>
-                    
+                        </Grid>      
+                    </Grid>                 
                 </div>
                 <div className="profileBackground">
                     <Grid item style = {{marginTop:20}} >
@@ -185,14 +181,10 @@ class Profile extends Component {
                         </Grid>
                         <Tab ind={1}/>
                         </Grid>
-                    
                     }
                     </Grid>
-                
                  </div>
-
-            </div>
-                    
+            </div>           
         )
                     
     }

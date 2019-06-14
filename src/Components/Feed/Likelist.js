@@ -7,7 +7,6 @@ import './ExpandedCard.css'
 
 import { createMuiTheme } from '@material-ui/core/styles';
 
-
 import {withRouter} from 'react-router-dom';
 import Card from '../Feed/CardLike';
 
@@ -47,28 +46,18 @@ class LikeList extends React.Component {
                     token["access_token"] = idToken;
                     token["id_tutoring_session"] = idTutoring;
                 });
-                
                 axios.post(process.env.REACT_APP_GATEWAY+"/get_tutoring/", token)
                     .then(res => {
                       this.setState({person:res.data});
                       this.setState({ likes:this.state.person.likes,
-                      total_likes:this.state.person.total_likes});
-                      
-                           
-                    });
-                   
+                      total_likes:this.state.person.total_likes});       
+                    }); 
             }else{
                 this.props.history.push('/');
             }
-        });  
-      
-
-      
-    
+        });   
     }
-    
-    
-   
+
   render() {
       
     
@@ -78,15 +67,14 @@ class LikeList extends React.Component {
         <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
                <AppBar router={`/expandedCard/${this.props.match.params.id_tutoring}`}/>    
         </Grid>
-        <Grid justify="center" direction="column" alignItems="center"  style={{paddingTop:70,marginTop:10, paddingBottom:40}}> 
-         
-          <h1>{this.state.likes.map(function(item, i){
+        <Grid container justify="center" direction="column" alignItems="center"  style={{paddingTop:70,marginTop:10, paddingBottom:40}}> 
+          {this.state.likes.map(function(item, i){
             return (
-                <Grid item key={i} lg={12} sm={12} container style={{paddingBottom:3}} >
+                <Grid key={i} container style={{paddingBottom:3}} >
                     <Card name_user={item.user_that_likes.name}photo={item.user_that_likes.photo}  />
                 </Grid>
             );
-          })}</h1>
+          })}
         </Grid>
       
        </div>

@@ -164,7 +164,7 @@ class EditProfile extends Component {
                 <Grid item xs={12}> 
                     <TextField
                         error = {this.state.errorName }
-                        required= "true"
+                        required= {true}
                         id="name"
                         label="Nome"
                         multiline
@@ -178,7 +178,7 @@ class EditProfile extends Component {
                 </Grid>
                 <Grid item> 
                     <TextField
-                        required= "true"
+                        required= {true}
                         id="telegram"
                         label="Telegram"
                         multiline
@@ -227,7 +227,7 @@ class EditProfile extends Component {
                     /> 
                     <label htmlFor="raised-button-file">
                         <MuiThemeProvider theme={theme}> 
-                            <Button raised component="span" variant="contained" color="primary" > 
+                            <Button raised="true" component="span" variant="contained" color="primary" > 
                                 Escolher foto 
                             </Button>
                         </MuiThemeProvider> 
@@ -244,7 +244,7 @@ class EditProfile extends Component {
                     <Grid container justify="center" alignContent="center" alignItems="center" direction="row" spacing={24} style={{marginTop:30}}>
                         <Grid item>
                             <MuiThemeProvider theme={theme}>
-                                <Button component={Link} variant="contained" onClick={this.editProfile} color="primary">
+                                <Button variant="contained" onClick={this.editProfile} color="primary">
                                     Confirmar
                                 </Button>
                             </MuiThemeProvider>

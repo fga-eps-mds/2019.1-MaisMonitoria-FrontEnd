@@ -59,9 +59,9 @@ class ContractCard extends React.Component {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item>
+          <Grid item xs>
             <Grid container justify='center'>
-              <Grid item> 
+              <Grid item xs> 
                 <CardContent>
                   <Typography component="h5" variant="h5">
                   {this.props.name_monitoring}

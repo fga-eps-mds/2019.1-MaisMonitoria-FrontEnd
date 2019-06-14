@@ -12,7 +12,6 @@ import './feed.css';
 import Tab from '../Tab/Tab';
 
 import {withRouter} from 'react-router-dom';
-import PropTypes from 'prop-types';
 import _ from 'lodash';
 
 
@@ -136,9 +135,6 @@ class TelaFeed extends Component {
     );   
   }
 }
-TelaFeed.propTypes = {
-    warning: PropTypes.bool.isRequired,
-  };
 
 
 export default withRouter(TelaFeed);

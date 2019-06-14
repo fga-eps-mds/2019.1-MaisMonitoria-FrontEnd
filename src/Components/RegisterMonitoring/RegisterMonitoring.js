@@ -11,7 +11,7 @@ import AppBar from '../AppBar/AppBar.js';
 import SimpleModal from '../SimpleModal';
 import CustomizedSnackbars from '../SimpleModal/Snackbars';
 import Spinner from '../Loader/Spinner';
-import { async } from 'q';
+
 
 const theme = createMuiTheme({
     palette: {
@@ -63,7 +63,6 @@ class RegisterMonitoring extends Component {
             return;
         }
         this.setState({ isLoading: true });
-        console.log("entrou no if")
         firebase.auth().currentUser.getIdToken().then(function(idToken){
             token["name"] = monitoring.name;
             token["access_token"] = idToken;
