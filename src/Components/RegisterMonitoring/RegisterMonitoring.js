@@ -11,6 +11,7 @@ import AppBar from '../AppBar/AppBar.js';
 import SimpleModal from '../SimpleModal';
 import CustomizedSnackbars from '../SimpleModal/Snackbars';
 import Spinner from '../Loader/Spinner';
+import { async } from 'q';
 
 const theme = createMuiTheme({
     palette: {
@@ -40,11 +41,18 @@ class RegisterMonitoring extends Component {
         showError: false,
         isLoading: false
     }
-
-    registerMonitoring = (e) =>{
+    componentDidMount() {   
+        firebase.auth().onAuthStateChanged(user =>{
+           this.setState({isSignedIn: !!user});
+            if(!user){
+               this.props.history.push('/');
+           }
+       })   
+   }
+    registerMonitoring = async (e) =>{
         var token = {};
         const {monitoring} = this.state;
-
+    
         this.setState({ showError: false });
         this.setState({ error: "" });
         
@@ -55,24 +63,21 @@ class RegisterMonitoring extends Component {
             return;
         }
         this.setState({ isLoading: true });
-        firebase.auth().onAuthStateChanged(user =>{
-            this.setState({isSignedIn: !!user});
-            if(user){
-                firebase.auth().currentUser.getIdToken().then(function(idToken){
-                    token["name"] = monitoring.name;
-                    token["access_token"] = idToken;
-                    token["subject"] = monitoring.subject;
-                    token["description"] = monitoring.description;
-                });      
-                axios.post(process.env.REACT_APP_GATEWAY+"/create_tutoring/", token).then((x)=>{
-                    if(success(x)) this.setState({showModal:true});;
-                });
-            }
+        console.log("entrou no if")
+        firebase.auth().currentUser.getIdToken().then(function(idToken){
+            token["name"] = monitoring.name;
+            token["access_token"] = idToken;
+            token["subject"] = monitoring.subject;
+            token["description"] = monitoring.description;
+        });      
+        axios.post(process.env.REACT_APP_GATEWAY+"/create_tutoring/", token).then((x)=>{
+            if(success(x)) this.setState({showModal:true});;
         });
         // this.setState({ isLoading: false });
     }
 
   render() {
+      
     return (
         <div style={{overflowX:'hidden'}}>
             {this.state.showModal? <SimpleModal router={"Feed"} title={'Monitoria cadastrada com sucesso!'}  />:null}
