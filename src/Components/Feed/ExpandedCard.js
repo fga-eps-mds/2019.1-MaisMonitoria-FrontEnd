@@ -101,9 +101,7 @@ class ExpandedCard extends React.Component {
                 token["user_that_likes"] = this.state.id_user;
                 token["tutoring_session"] = idTutoring;
 
-                firebase.auth().onAuthStateChanged(user =>{
-                    this.setState({isSignedIn: !!user});
-                    if(user){
+
                         firebase.auth().currentUser.getIdToken().then(function(idToken){
                             token["access_token"] = idToken;
                         });
@@ -114,9 +112,8 @@ class ExpandedCard extends React.Component {
                         });
                     }
                 this.setState({ isLoading: false });
-                });   
                 this.setState({user_liked:true});
-            } 
+            
 
         }.bind(this), 100)
           
@@ -137,20 +134,17 @@ class ExpandedCard extends React.Component {
                         this.state.object_like.splice(cont, 1);
                     }
                 }
-                 firebase.auth().onAuthStateChanged(user =>{
-                    this.setState({isSignedIn: !!user});
-                    if(user){
-                        firebase.auth().currentUser.getIdToken().then(function(idToken){
-                            token["access_token"] = idToken;
-                        });
-                        axios.post(process.env.REACT_APP_GATEWAY+"/like_delete/", token).then((x)=>{
-                            if(success(x)) {
-                                
-                                this.componentWillMount();
-                            }
-                        });
+                
+                firebase.auth().currentUser.getIdToken().then(function(idToken){
+                    token["access_token"] = idToken;
+                });
+                axios.post(process.env.REACT_APP_GATEWAY+"/like_delete/", token).then((x)=>{
+                    if(success(x)) {
+                        
+                        this.componentWillMount();
                     }
                 });
+                    
                 this.setState({user_liked:false});
 
             }

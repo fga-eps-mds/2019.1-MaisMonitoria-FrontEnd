@@ -16,8 +16,6 @@ import './Profile.css';
 import _ from 'lodash';
 
 
-
-
 const theme = createMuiTheme({
     palette: {
       primary: { main: '#44a1f2' },

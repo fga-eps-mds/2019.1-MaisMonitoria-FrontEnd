@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Button, TextField } from '@material-ui/core' ;
 import AppBar from '../AppBar/AppBar.js';
-import Pp from '../../Assets/img/Pp.png';
 import Course from './Course.js';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -11,7 +10,6 @@ import { validateEditProfile, validateName, success } from '../../Helpers/valida
 import SimpleModal from '../SimpleModal';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CustomizedSnackbars from '../SimpleModal/Snackbars';
-import SnackbarWarning from '../SimpleModal/SnackBarsWarning';
 import Spinner from '../Loader/Spinner';
 
 
@@ -54,11 +52,7 @@ class EditProfile extends Component {
         this._handleImageChange = this._handleImageChange.bind(this);
         this.erase = this.erase.bind(this);
       }
-    
-      componentDidUpdate(prevprops,nextstate){
-        
-      }
-    
+       
       _handleImageChange(event) {
         event.preventDefault();
     
