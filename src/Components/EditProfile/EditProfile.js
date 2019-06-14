@@ -134,17 +134,12 @@ class EditProfile extends Component {
         }
 
         this.setState({ isLoading: true });
-        firebase.auth().onAuthStateChanged(user =>{
-            if(user){
                 firebase.auth().currentUser.getIdToken().then(function(idToken){  
                     fd.append('access_token', idToken)        
                 })
-              
                 axios.post(process.env.REACT_APP_GATEWAY+"/update_user/", fd, header).then((x)=>{
                     if(success(x)) this.setState({showModal:true});
               })
-            }     
-        })
     }
     
   render() {
