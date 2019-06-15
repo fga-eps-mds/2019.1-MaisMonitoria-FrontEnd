@@ -13,6 +13,7 @@ exports[`Testing ProfileTabMonitor component Test if ProfileTabMonitor renders c
     Object {
       "params": Object {
         "id_monitor": [MockFunction],
+        "id_tutoring_session": [MockFunction],
       },
     }
   }

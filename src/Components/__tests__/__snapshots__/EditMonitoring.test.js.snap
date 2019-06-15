@@ -35,15 +35,12 @@ exports[`Testing EditMonitoring component Test if EditMonitoring renders correct
   >
     <WithStyles(Grid)
       item={true}
-      xs={12}
+      md-auto={true}
     >
       <TextField
-        Maxrows="4"
         error=""
         id="name"
-        label="Nome"
-        margin="normal"
-        multiline={true}
+        label="Tema"
         onChange={[Function]}
         required="true"
         select={false}
@@ -53,16 +50,14 @@ exports[`Testing EditMonitoring component Test if EditMonitoring renders correct
     </WithStyles(Grid)>
     <WithStyles(Grid)
       item={true}
+      md-auto={true}
     >
       <TextField
-        Maxrows="4"
         error=""
         id="subject"
         label="Matéria"
         margin="normal"
-        multiline={true}
         onChange={[Function]}
-        placeholder=""
         required="true"
         select={false}
         value=""
@@ -71,20 +66,20 @@ exports[`Testing EditMonitoring component Test if EditMonitoring renders correct
     </WithStyles(Grid)>
     <WithStyles(Grid)
       item={true}
+      md-auto={true}
     >
       <TextField
-        Maxrows="4"
         error=""
         id="description"
         label="Descrição"
         margin="normal"
         multiline={true}
         onChange={[Function]}
-        placeholder=""
-        required="true"
+        placeholder="Descrição"
+        required={false}
         select={false}
         value=""
-        variant="standard"
+        variant="outlined"
       />
     </WithStyles(Grid)>
   </WithStyles(Grid)>

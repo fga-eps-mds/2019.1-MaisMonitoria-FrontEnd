@@ -11,6 +11,7 @@ import SimpleModal from '../SimpleModal';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CustomizedSnackbars from '../SimpleModal/Snackbars';
 
+
 const theme = createMuiTheme({
     palette: {
       primary: { main: '#44a1f2' },
@@ -39,6 +40,7 @@ class EditMonitoring extends Component {
         nameError: '',
         subjectError: '',
         descriptionError: '',
+        
     }
 
     componentDidMount(){
@@ -135,34 +137,43 @@ class EditMonitoring extends Component {
             <Grid style={{paddingTop:150}} container alignContent="center" alignItems="center" justify="flex-end" direction="column" >
                 <Grid item md-auto>
                     <TextField
-                    error = {this.state.error}
+                    error = {this.state.nameError}
                     required= "true"
-                    id="temaTextField"
+                    id="name"
                     label="Tema"
-                    margin="normal"
-                    onChange={(event)=>this.setState({ ...this.state, monitoring: { ...this.state.monitoring, name: event.target.value } })}
+                    value={this.state.name}	
+                    onChange={(event)=>this.setState({	
+                        name: event.target.value,	
+                    })}
                     />
                 </Grid>
                 <Grid item md-auto>
                     <TextField
-                    error = {this.state.error}
+                    error = {this.state.subjectError}
                     required= "true"
-                    id="temaTextField"
+                    id="subject"
                     label="Matéria"
                     margin="normal"
-                    onChange={(event)=>this.setState({ ...this.state, monitoring: { ...this.state.monitoring, subject: event.target.value } })}
-                    />
+                    value={this.state.subject}	
+                    onChange={(event)=>this.setState({	
+                        subject: event.target.value,	
+                    })}                    />
                 </Grid>
                 <Grid  item md-auto>
                     <TextField
-                        id="descricaoTextfild"
+                        error = {this.state.descriptionError}
+                        id="description"
                         label="Descrição"
                         placeholder="Descrição"
                         multiline
                         margin="normal"
                         variant="outlined"
-                        onChange={(event)=>this.setState({ ...this.state, monitoring: { ...this.state.monitoring, description: event.target.value } })}
-                        />
+                        value = {this.state.description}
+                        onChange = {(event)=> this.setState({
+                            description: event.target.value,
+                        })}
+
+                    />
                     
                 </Grid>
             </Grid>
