@@ -74,7 +74,7 @@ class ExpandedCard extends React.Component {
                             this.state.object_like[cont]= this.state.person.likes[cont];
                         }
                        for(let cont = 0; cont < this.state.person.total_likes; cont++){
-                            if(this.state.object_like[cont].user_that_likes.user_account_id == this.state.id_user){
+                            if(this.state.object_like[cont].user_that_likes.user_account_id === this.state.id_user){
                                 this.setState({user_liked:true});
                             }
                        } 
@@ -95,7 +95,7 @@ class ExpandedCard extends React.Component {
     createLike = async() =>{
        
         await  setTimeout(function() {
-            if(this.state.user_liked !=true){
+            if(this.state.user_liked !==true){
                 var token = {};
                 var idTutoring = this.props.match.params.id_tutoring;
                 token["user_that_likes"] = this.state.id_user;
@@ -123,13 +123,13 @@ class ExpandedCard extends React.Component {
     
     deleteLike = async() =>{
         await setTimeout(function() {
-             if(this.state.user_liked !=false){
+             if(this.state.user_liked !==false){
                 var token = {};
                 var idTutoring = this.props.match.params.id_tutoring;
                 token["tutoring_session"] = idTutoring;
                 
                 for(let cont = 0; cont < this.state.total_likes; cont++){
-                    if(this.state.object_like[cont].user_that_likes.user_account_id == this.state.id_user){
+                    if(this.state.object_like[cont].user_that_likes.user_account_id === this.state.id_user){
                         token["id_like"] = this.state.object_like[cont].id_like;
                         this.state.object_like.splice(cont, 1);
                     }
@@ -169,19 +169,19 @@ class ExpandedCard extends React.Component {
                <AppBar router={"/Feed"}/>    
             </Grid>            
             <Grid container justify="center" direction="row" style={{paddingTop:80, paddingLeft:15,paddingBottom:15}} className="teste" >
-                {(this.state.id_monitor != this.state.id_user)? 
+                {(this.state.id_monitor !== this.state.id_user)? 
                 <Grid item>                        
-                    <Link to="/ProfileMonitor"><img src={photoUrl} style={{width:140, height:140}}></img></Link>
+                    <Link to="/ProfileMonitor"><img src={photoUrl} style={{width:140, height:140}} alt=''></img></Link>
                 </Grid>: null} 
                 {(this.state.id_monitor === this.state.id_user)? 
                 <Grid item>                        
-                    <img src={photoUrl} style={{width:140, height:140}}></img>
+                    <img src={photoUrl} style={{width:140, height:140}} alt=''></img>
                 </Grid>: null} 
                 <Grid item style={{marginTop:50, marginLeft:25}} >
                     {this.state.isLoading ? <Spinner />:    
                     <Grid>
                         <Grid container justify="center" direction="column" alignItems="center" alignContent="center" style={{marginTop:-50, marginLeft:-25}}>
-                            <Grid item style={{marginTop:50}} style={{marginLeft:50}} >
+                            <Grid item style={{marginTop:5, marginLeft:50}} >
                                 <h1>Monitor</h1>
                             </Grid>
                             <Grid item>
@@ -254,7 +254,7 @@ class ExpandedCard extends React.Component {
                     </MuiThemeProvider>}
               </Grid>
               <Grid item>
-                    <a href={"https://"+"t.me/" + texto}>{
+                    <a href={"https://t.me/" + texto}>{
                         <MuiThemeProvider theme={theme}>
                             <Fab color="primary" aria-label="Edit" >
                                 <Logo/>
@@ -265,7 +265,7 @@ class ExpandedCard extends React.Component {
             </Grid>
             <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center" style={{marginTop: 25}}> 
                 <Grid item>
-                {this.state.total_likes != 0?
+                {this.state.total_likes !== 0?
                     <Link component="button" variant="body2" to={`/likeList/${this.state.id_tutoring}`}>
                         <h3>{this.state.total_likes} Curtida(s)</h3>
                     </Link>: 

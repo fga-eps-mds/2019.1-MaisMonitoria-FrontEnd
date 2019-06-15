@@ -86,14 +86,11 @@ class Profile extends Component {
                         userData['course'] = 'ENGENHARIA DE ' + userData['course'];
                     }
                     else if(userData['course'] === 'AERO'){
-                        userData['course'] = 'ENGENHARIA ' +'AEROESPACIAL';
+                        userData['course'] = 'ENGENHARIA AEROESPACIAL';
 
                     }
                     else if(userData['course'] === 'AUTOMOTIVA' || userData['course'] === 'ELETRONICA'){
                         userData['course'] = 'ENGENHARIA ' + userData['course'];
-                    }
-                    else{
-                        userData['course']= userData['course'];
                     }
                     this.setState({monitorName:userData["name"], monitorCourse:userData["course"], tutoring:userData["monitoring"], photo:userData["photo"], likes:userData["liked_tutoring_sessions"], teste:userData["liked_tutoring_sessions.monitor.ph"]}) 
                     
@@ -126,7 +123,7 @@ class Profile extends Component {
                 <div className={classes.root}>   
                     <Grid container  direction="row" justify="flex-start" alignItems="flex-start" spacing={24}>
                         <Grid item >
-                            <img className={classes.perfil} src={photoUrl} ></img>
+                            <img className={classes.perfil} src={photoUrl} alt=''></img>
                         </Grid>
                         <Grid item xs>
                             {this.state.isLoading ? <Spinner />:

@@ -93,14 +93,11 @@ class Profile extends Component {
                         person['course'] = 'ENGENHARIA DE ' + person['course'];
                     }
                     else if(person['course'] === 'AERO'){
-                        person['course'] = 'ENGENHARIA ' +'AEROESPACIAL';
+                        person['course'] = 'ENGENHARIA AEROESPACIAL';
 
                     }
                     else if(person['course'] === 'AUTOMOTIVA' || person['course'] === 'ELETRONICA'){
                         person['course'] = 'ENGENHARIA ' + person['course'];
-                    }
-                    else{
-                        person['course']= person['course'];
                     }
                     
                     this.setState({monitorName:person["name"], monitorCourse:person["course"],
@@ -138,7 +135,7 @@ class Profile extends Component {
                 <div className={classes.root}>   
                     <Grid container justify={'flex-start'} direction={'row'} alignContent={'center'} spacing={24} alignItems={'center'}>
                         <Grid item>
-                            <img className={classes.perfil} src={photoUrl} ></img>
+                            <img className={classes.perfil} src={photoUrl} alt='' ></img>
                         </Grid>
                         <Grid item xs>
                             {this.state.isLoading ? <Spinner />:
@@ -149,7 +146,7 @@ class Profile extends Component {
                                                 <h2>{this.state.monitorName}</h2>
                                             </Grid>
                                             <Grid item > 
-                                                <a href={"https://"+"t.me/" + texto}>{
+                                                <a href={"https://t.me/" + texto}>{
                                                     <MuiThemeProvider theme={theme}>
                                                         <Fab size="small" color="primary" aria-label="Edit" >
                                                             <Logo/>

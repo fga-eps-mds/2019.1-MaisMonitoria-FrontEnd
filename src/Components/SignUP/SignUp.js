@@ -146,7 +146,7 @@ class SignUp extends Component {
   render() {
     let $imagePreview = null;
     if (this.state.imagePreviewUrl) {
-      $imagePreview = (<img style={{borderRadius:'90px', width:'120px', height:'120px'}} src={this.state.imagePreviewUrl} />);
+      $imagePreview = (<img style={{borderRadius:'90px', width:'120px', height:'120px'}} src={this.state.imagePreviewUrl} alt =''  />);
     }
     return (
       <div className="SignUpBackground" style={{overflowY:'scroll'}}>

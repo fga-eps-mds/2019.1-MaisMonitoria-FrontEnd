@@ -52,7 +52,7 @@ class ContractCard extends React.Component {
           <Grid item>
             <Grid container direction="column" alignContent="center" alignItems="center" >
               <Grid item>
-                <img className={classes.teste}  src={photoUrl}></img>
+                <img className={classes.teste}  src={photoUrl} alt = ''></img>
               </Grid>
               <Grid item>
                 {this.props.monitorName}

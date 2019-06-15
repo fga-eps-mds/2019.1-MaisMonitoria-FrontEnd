@@ -1,30 +1,13 @@
 import React from 'react';
-import { Grid, Typography,Button } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import firebase from 'firebase';
 import axios from 'axios';
 import AppBar from './AppBarWithBack';
 import './ExpandedCard.css'
 
-import { createMuiTheme } from '@material-ui/core/styles';
-
 import {withRouter} from 'react-router-dom';
 import Card from '../Feed/CardLike';
 
-
-const theme = createMuiTheme({
-    palette: {
-      primary: { main: "#44a1f2" },
-      secondary: { main: '#11cb5f' },
-    },
-    typography: { useNextVariants: true },
-    overrides: {
-        MuiButton: {
-          raisedPrimary: {
-            color: 'white',
-          },
-        },
-    },
-});
 
 class LikeList extends React.Component {
  
