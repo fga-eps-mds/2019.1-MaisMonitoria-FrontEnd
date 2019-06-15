@@ -133,52 +133,37 @@ class EditMonitoring extends Component {
                 <AppBar/>
             </Grid>  
             <Grid style={{paddingTop:150}} container alignContent="center" alignItems="center" justify="flex-end" direction="column" >
-                <Grid item xs={12}> 
+                <Grid item md-auto>
                     <TextField
-                        error = {this.state.nameError}
-                        required= "true"
-                        id="name"
-                        label="Nome"
-                        multiline
-                        Maxrows="4"
-                        margin="normal"
-                        value={this.state.name}
-                        onChange={(event)=>this.setState({
-                            name: event.target.value,
-                        })}
+                    error = {this.state.error}
+                    required= "true"
+                    id="temaTextField"
+                    label="Tema"
+                    margin="normal"
+                    onChange={(event)=>this.setState({ ...this.state, monitoring: { ...this.state.monitoring, name: event.target.value } })}
                     />
                 </Grid>
-                <Grid item> 
+                <Grid item md-auto>
                     <TextField
-                        error = {this.state.subjectError}
-                        required= "true"
-                        id="subject"
-                        label="Matéria"
-                        multiline
-                        Maxrows="4"
-                        placeholder=""
-                        margin="normal"
-                        value={this.state.subject}
-                        onChange={(event)=>this.setState({
-                            subject: event.target.value,
-                        })}
+                    error = {this.state.error}
+                    required= "true"
+                    id="temaTextField"
+                    label="Matéria"
+                    margin="normal"
+                    onChange={(event)=>this.setState({ ...this.state, monitoring: { ...this.state.monitoring, subject: event.target.value } })}
                     />
                 </Grid>
-                <Grid item> 
+                <Grid  item md-auto>
                     <TextField
-                        error = {this.state.descriptionError}
-                        required= "true"
-                        id="description"
+                        id="descricaoTextfild"
                         label="Descrição"
+                        placeholder="Descrição"
                         multiline
-                        Maxrows="4"
-                        placeholder=""
                         margin="normal"
-                        value={this.state.description}
-                        onChange={(event)=>this.setState({
-                            description: event.target.value,
-                        })}
-                    />
+                        variant="outlined"
+                        onChange={(event)=>this.setState({ ...this.state, monitoring: { ...this.state.monitoring, description: event.target.value } })}
+                        />
+                    
                 </Grid>
             </Grid>
                 <Grid container style={{paddingTop:20}} alignContent="center" justify="center" direction="row" spacing={24} alignItems="center">
