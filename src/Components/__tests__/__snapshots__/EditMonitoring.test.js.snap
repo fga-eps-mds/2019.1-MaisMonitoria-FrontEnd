@@ -42,7 +42,7 @@ exports[`Testing EditMonitoring component Test if EditMonitoring renders correct
         id="name"
         label="Tema"
         onChange={[Function]}
-        required="true"
+        required={true}
         select={false}
         value=""
         variant="standard"
@@ -484,7 +484,6 @@ exports[`Testing EditMonitoring component Test if EditMonitoring renders correct
       >
         <WithStyles(Button)
           color="primary"
-          component={[Function]}
           onClick={[Function]}
           variant="contained"
         >

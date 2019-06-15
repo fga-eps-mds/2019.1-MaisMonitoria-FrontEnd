@@ -107,26 +107,21 @@ class EditMonitoring extends Component {
             return;
         }
 
-        token["id_tutoring_session"] = idTutoring;
-        token["name"] = this.state.name;
-        token["subject"] = this.state.subject;
-        token["description"] = this.state.description;
+        token.id_tutoring_session = idTutoring;
+        token.name = this.state.name;
+        token.subject = this.state.subject;
+        token.description = this.state.description;
 
-        firebase.auth().onAuthStateChanged(user =>{
-            if(user){
-                firebase.auth().currentUser.getIdToken().then(function(idToken){  
-                    token["access_token"] = idToken;      
-                })
-              
-                axios.post(process.env.REACT_APP_GATEWAY+"/update_tutoring/", token).then((x)=>{
-                    if(success(x)) this.setState({showModal:true});
-              })
-            }     
+        firebase.auth().currentUser.getIdToken().then(function(idToken){  
+            token["access_token"] = idToken;      
+        })
+        
+        axios.post(process.env.REACT_APP_GATEWAY+"/update_tutoring/", token).then((x)=>{
+            if(success(x)) this.setState({showModal:true});
         })
     }
     
   render() {
-    console.log(this.state.nameError);
     return (
         
         <div style={{overflowX:'hidden'}} className="editBackground"> 
@@ -183,7 +178,7 @@ class EditMonitoring extends Component {
             <Grid container style={{paddingTop:5}} justify="center" alignContent="center" alignItems="center" direction="row" spacing={24}>
                 <Grid item>
                     <MuiThemeProvider theme={theme}>
-                        <Button component={Link} variant="contained" onClick={this.EditMonitoring} color="primary">
+                        <Button variant="contained" onClick={this.EditMonitoring} color="primary">
                             Confirmar
                         </Button>
                     </MuiThemeProvider>

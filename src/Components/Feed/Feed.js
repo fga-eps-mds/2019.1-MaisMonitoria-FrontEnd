@@ -12,7 +12,6 @@ import './feed.css';
 import Tab from '../Tab/Tab';
 
 import {withRouter} from 'react-router-dom';
-import PropTypes from 'prop-types';
 import _ from 'lodash';
 
 
@@ -105,7 +104,7 @@ class TelaFeed extends Component {
                 <AppBar/>    
             </Grid> 
             <div>
-                <Grid container justify="center" direction="column" alignItems="center" spacing={8} style={{paddingTop:70,marginTop:10, paddingBottom:50}}>
+                <Grid container justify="center" direction="column" alignItems="center" spacing={8} style={{paddingTop:70, marginTop:10, paddingBottom:50}}>
                     {_.map(this.state.data, (item, i) => {
                         return (
                             <Grid item key={i} lg={12} sm={12} container style={{paddingBottom:3}} >
@@ -136,9 +135,6 @@ class TelaFeed extends Component {
     );   
   }
 }
-TelaFeed.propTypes = {
-    warning: PropTypes.bool.isRequired,
-  };
 
 
 export default withRouter(TelaFeed);
