@@ -44,7 +44,6 @@ class ExpandedCard extends React.Component {
         id_tutoring:'',
         likes: '',
         total_likes: 0,
-        object_like: [],
         user_liked: false,
         person: [],
         isLoading: false
@@ -71,17 +70,16 @@ class ExpandedCard extends React.Component {
                     .then(res => {
                         this.setState({person:res.data});
                         for(let cont = 0; cont < this.state.person.total_likes; cont++){
-                            this.state.object_like[cont]= this.state.person.likes[cont];
-                        }
-                       for(let cont = 0; cont < this.state.person.total_likes; cont++){
-                            if(this.state.object_like[cont].user_that_likes.user_account_id == this.state.id_user){
+                            if(this.state.person.likes[cont].user_that_likes.user_account_id === this.state.id_user){
+                                this.setState({id_liked:this.state.person.likes[cont].id_like});
                                 this.setState({user_liked:true});
                             }
-                       } 
+                        }
                        this.setState({tutoringName:this.state.person.name, tutoringTheme:this.state.person.subject, tutoringDescription:this.state.person.description,
-                        monitorName: this.state.person.monitor.name, photo:this.state.person.monitor.photo, telegram:this.state.person.monitor.telegram,
-                        id_monitor:this.state.person.monitor.user_account_id, likes:this.state.person.likes,
-                        total_likes:this.state.person.total_likes});      
+                                        monitorName: this.state.person.monitor.name, photo:this.state.person.monitor.photo, telegram:this.state.person.monitor.telegram,
+                                        id_monitor:this.state.person.monitor.user_account_id, likes:this.state.person.likes,
+                                        total_likes:this.state.person.total_likes
+                                    });      
                     });
                     this.setState({ isLoading: false });
             }else{
@@ -95,15 +93,11 @@ class ExpandedCard extends React.Component {
     createLike = async() =>{
        
         await  setTimeout(function() {
-            if(this.state.user_liked !=true){
+            if(this.state.user_liked !==true){
                 var token = {};
                 var idTutoring = this.props.match.params.id_tutoring;
                 token["user_that_likes"] = this.state.id_user;
                 token["tutoring_session"] = idTutoring;
-
-                firebase.auth().onAuthStateChanged(user =>{
-                    this.setState({isSignedIn: !!user});
-                    if(user){
                         firebase.auth().currentUser.getIdToken().then(function(idToken){
                             token["access_token"] = idToken;
                         });
@@ -114,48 +108,31 @@ class ExpandedCard extends React.Component {
                         });
                     }
                 this.setState({ isLoading: false });
-                });   
                 this.setState({user_liked:true});
-            } 
-
-        }.bind(this), 100)
-          
+        }.bind(this), 200)          
     }
 
-    
     
     deleteLike = async() =>{
         await setTimeout(function() {
-             if(this.state.user_liked !=false){
+             if(this.state.user_liked !==false){
                 var token = {};
                 var idTutoring = this.props.match.params.id_tutoring;
                 token["tutoring_session"] = idTutoring;
-                
-                for(let cont = 0; cont < this.state.total_likes; cont++){
-                    if(this.state.object_like[cont].user_that_likes.user_account_id == this.state.id_user){
-                        token["id_like"] = this.state.object_like[cont].id_like;
-                        this.state.object_like.splice(cont, 1);
-                    }
-                }
-                 firebase.auth().onAuthStateChanged(user =>{
-                    this.setState({isSignedIn: !!user});
-                    if(user){
-                        firebase.auth().currentUser.getIdToken().then(function(idToken){
-                            token["access_token"] = idToken;
-                        });
-                        axios.post(process.env.REACT_APP_GATEWAY+"/like_delete/", token).then((x)=>{
-                            if(success(x)) {
-                                
-                                this.componentWillMount();
-                            }
-                        });
+                token["id_like"] = this.state.id_liked;
+                firebase.auth().currentUser.getIdToken().then(function(idToken){
+                    token["access_token"] = idToken;
+                });
+                axios.post(process.env.REACT_APP_GATEWAY+"/like_delete/", token).then((x)=>{
+                    if(success(x)) {
+                        this.componentWillMount();
                     }
                 });
                 this.setState({user_liked:false});
-
             }
         }.bind(this), 200)
     }
+
   render() {
     var texto =  this.state.telegram;
     var er = texto;
@@ -175,19 +152,19 @@ class ExpandedCard extends React.Component {
                <AppBar router={"/Feed"}/>    
             </Grid>            
             <Grid container justify="center" direction="row" style={{paddingTop:80, paddingLeft:15,paddingBottom:15}} className="teste" >
-                {(this.state.id_monitor != this.state.id_user)? 
+                {(this.state.id_monitor !== this.state.id_user)? 
                 <Grid item>                        
-                    <Link to="/ProfileMonitor"><img src={photoUrl} style={{width:140, height:140}}></img></Link>
+                    <Link to="/ProfileMonitor"><img src={photoUrl} style={{width:140, height:140}} alt=''></img></Link>
                 </Grid>: null} 
                 {(this.state.id_monitor === this.state.id_user)? 
                 <Grid item>                        
-                    <img src={photoUrl} style={{width:140, height:140}}></img>
+                    <img src={photoUrl} style={{width:140, height:140}} alt=''></img>
                 </Grid>: null} 
                 <Grid item style={{marginTop:50, marginLeft:25}} >
                     {this.state.isLoading ? <Spinner />:    
                     <Grid>
                         <Grid container justify="center" direction="column" alignItems="center" alignContent="center" style={{marginTop:-50, marginLeft:-25}}>
-                            <Grid item style={{marginTop:50}} style={{marginLeft:50}} >
+                            <Grid item style={{marginTop:5, marginLeft:50}} >
                                 <h1>Monitor</h1>
                             </Grid>
                             <Grid item>
@@ -260,7 +237,7 @@ class ExpandedCard extends React.Component {
                     </MuiThemeProvider>}
               </Grid>
               <Grid item>
-                    <a href={"https://"+"t.me/" + texto}>{
+                    <a href={"https://t.me/" + texto}>{
                         <MuiThemeProvider theme={theme}>
                             <Fab color="primary" aria-label="Edit" >
                                 <Logo/>
@@ -271,13 +248,12 @@ class ExpandedCard extends React.Component {
             </Grid>
             <Grid container alignContent="center" justify="center" direction="row" spacing={24} alignItems="center" style={{marginTop: 25}}> 
                 <Grid item>
-                {this.state.total_likes != 0?
+                {this.state.total_likes !== 0?
                     <Link component="button" variant="body2" to={`/likeList/${this.state.id_tutoring}`}>
                         <h3>{this.state.total_likes} Curtida(s)</h3>
                     </Link>: 
-                    <Link component="button" variant="body2">
                         <h3>{this.state.total_likes} Curtida(s)</h3>
-                    </Link>}
+                    }
                 </Grid>
             </Grid>
         </div>
