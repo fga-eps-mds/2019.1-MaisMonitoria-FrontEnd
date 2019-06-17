@@ -98,14 +98,11 @@ class Profile extends Component {
                         person['course'] = 'ENGENHARIA DE ' + person['course'];
                     }
                     else if(person['course'] === 'AERO'){
-                        person['course'] = 'ENGENHARIA ' +'AEROESPACIAL';
+                        person['course'] = 'ENGENHARIA AEROESPACIAL';
 
                     }
                     else if(person['course'] === 'AUTOMOTIVA' || person['course'] === 'ELETRONICA'){
                         person['course'] = 'ENGENHARIA ' + person['course'];
-                    }
-                    else{
-                        person['course']= person['course'];
                     }
                     
                     this.setState({monitorName:person["name"], monitorCourse:person["course"],
@@ -147,23 +144,23 @@ class Profile extends Component {
                 <div className={classes.root}>   
                     <Grid container justify={'flex-start'} direction={'row'} alignContent={'center'} spacing={24} alignItems={'center'}>
                         <Grid item>
-                            <img className={classes.perfil} src={photoUrl} ></img>
+                            <img className={classes.perfil} src={photoUrl} alt='' ></img>
                         </Grid>
                         <Grid item xs>
                             {this.state.isLoading ? <Spinner />:
                                 <Grid container justify={'flex-start'} direction={'column'} alignContent={'flex-start'} alignItems={'flex-start'} spacing={16}  style={{paddingTop:80}} >
                                     <Grid item>
                                         <Grid container direction={'row'} spacing={16} justify="center" alignItems="center" >
-                                            <Grid item xs >                             
+                                            <Grid item xs>                             
                                                 <h2>{this.state.monitorName}</h2>
                                             </Grid>
                                             <Grid item > 
-                                                <a href={"https://"+"t.me/" + texto}>{
+                                                <a href={"https://t.me/" + texto}>{
                                                     <MuiThemeProvider theme={theme}>
                                                         <Fab size="small" color="primary" aria-label="Edit" >
                                                             <Logo/>
                                                         </Fab>
-                                                        </MuiThemeProvider>}
+                                                    </MuiThemeProvider>}
                                                 </a>
                                             </Grid>
                                         </Grid>
@@ -172,16 +169,12 @@ class Profile extends Component {
                                         <h3>{this.state.monitorCourse}</h3>
                                     </Grid>
                                     <Grid item>
-                                        <h3>Descrição: <h5> {this.state.description}</h5></h3>
+                                    <h3>Descrição:</h3>{this.state.description}
                                     </Grid>
                                 </Grid>
                             }
-                        </Grid>
-                        
-                        
-                            
-                    </Grid>
-                    
+                        </Grid>      
+                    </Grid>                 
                 </div>
                 <div className="profileBackground">
                     <Grid item style = {{marginTop:20}} >
@@ -194,14 +187,10 @@ class Profile extends Component {
                         </Grid>
                         <Tab ind={1}/>
                         </Grid>
-                    
                     }
                     </Grid>
-                
                  </div>
-
-            </div>
-                    
+            </div>           
         )
                     
     }
