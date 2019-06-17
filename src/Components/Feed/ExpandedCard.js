@@ -254,7 +254,7 @@ class ExpandedCard extends React.Component {
                     </MuiThemeProvider>}
               </Grid>
               <Grid item>
-                    <a href={"https://t.me/" + texto}>{
+                    <a href={"https://t.me/" + texto} target="_blank">{
                         <MuiThemeProvider theme={theme}>
                             <Fab color="primary" aria-label="Edit" >
                                 <Logo/>
