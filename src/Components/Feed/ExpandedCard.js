@@ -65,7 +65,6 @@ class ExpandedCard extends React.Component {
                     token["access_token"] = idToken;
                     token["id_tutoring_session"] = idTutoring;
                 });
-                
                 axios.post(process.env.REACT_APP_GATEWAY+"/get_tutoring/", token)
                     .then(res => {
                         this.setState({person:res.data});
@@ -128,6 +127,7 @@ class ExpandedCard extends React.Component {
                         this.componentWillMount();
                     }
                 });
+                    
                 this.setState({user_liked:false});
             }
         }.bind(this), 200)

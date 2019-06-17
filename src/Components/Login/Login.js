@@ -72,10 +72,10 @@ class Login extends Component {
                   id="emailTextField"
                   label="Email"
                   margin="normal"
-                  required= "true"
+                  required= {true}
                   value={this.state.email}
                   onChange={(event)=>this.setState({
-                  email: event.target.value,
+                    email: event.target.value,
                   })}
                   />
               </Grid>
@@ -86,7 +86,7 @@ class Login extends Component {
                   label="Senha"
                   margin="normal"
                   type="password"
-                  required= "true"
+                  required= {true}
                   value={this.state.password}
                   onChange={(event)=>this.setState({
                   password: event.target.value,
