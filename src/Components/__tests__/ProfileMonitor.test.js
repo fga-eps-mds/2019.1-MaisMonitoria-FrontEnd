@@ -17,7 +17,8 @@ firebase.initializeApp({
 var props = {
     match:{
         params:{
-            id_monitor:jest.fn()
+            id_monitor:jest.fn(),
+            id_tutoring_session:jest.fn()
         }  
     } 
   };

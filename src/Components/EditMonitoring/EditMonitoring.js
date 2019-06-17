@@ -11,6 +11,7 @@ import SimpleModal from '../SimpleModal';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CustomizedSnackbars from '../SimpleModal/Snackbars';
 
+
 const theme = createMuiTheme({
     palette: {
       primary: { main: '#44a1f2' },
@@ -39,6 +40,7 @@ class EditMonitoring extends Component {
         nameError: '',
         subjectError: '',
         descriptionError: '',
+        
     }
 
     componentDidMount(){
@@ -130,9 +132,9 @@ class EditMonitoring extends Component {
             <Grid style={{paddingTop:150}} container alignContent="center" alignItems="center" justify="flex-end" direction="column" >
                 <Grid item md-auto>
                     <TextField
-                    error = {this.state.error}
+                    error = {this.state.nameError}
                     required= "true"
-                    id="temaTextField"
+                    id="name"
                     label="Tema"
                     margin="normal"
                     value={this.state.name}
@@ -159,7 +161,6 @@ class EditMonitoring extends Component {
                 <Grid  item md-auto>
                     <TextField
                         error = {this.state.descriptionError}
-                        required= {true}
                         id="description"
                         label="Descrição"
                         placeholder=""
