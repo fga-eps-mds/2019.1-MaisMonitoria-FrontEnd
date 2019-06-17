@@ -5,6 +5,7 @@ import axios from 'axios';
 import AppBar from './AppBarWithBack';
 import './ExpandedCard.css'
 import Spinner from '../Loader/Spinner';
+import AlertDialog from '../SimpleModal/AlertDialog';
 
 import { ReactComponent as Logo } from '../../Assets/svg/telegram.svg';
 import { ReactComponent as Like } from '../../Assets/svg/like.svg';
@@ -202,10 +203,8 @@ class ExpandedCard extends React.Component {
                         {(this.state.id_monitor === this.state.id_user)?
                           <Grid container direction="row" justify="center" alignItems="center" >
                             <MuiThemeProvider  theme={theme}>
-                                <Grid item xs>
-                                    <Button style={{marginTop:40, marginLeft:-10}} component={Link} variant="contained" color="primary" >
-                                        Excluir
-                                    </Button>
+                                <Grid item xs style={{marginTop:40, marginLeft:-10}}>
+                                    <AlertDialog/>
                                 </Grid>
                                 <Grid item xs>
                                     <Button style={{marginTop:40, marginLeft:10}} component={Link} variant="contained" to={`/editmonitoring/${this.state.id_tutoring}`} color="primary">
