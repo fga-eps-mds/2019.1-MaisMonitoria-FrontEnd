@@ -6,6 +6,10 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import firebase from 'firebase';
+import axios from 'axios';
+import {success} from '../../Helpers/validates';
+import {withRouter} from 'react-router-dom';
 
 
 const theme = createMuiTheme({
@@ -23,45 +27,71 @@ const theme = createMuiTheme({
     },
   });
 
-export default function AlertDialog() {
-  const [open, setOpen] = React.useState(false);
+  
+class  AlertDialog extends React.Component {
 
-  function handleClickOpen() {
-    setOpen(true);
+  state = { 
+    open: false,
+    setOpen: false,
+  }
+  
+  delete_tutoring= ()=>{
+    var token= {};
+    var idTutoring = this.props.match.params.id_tutoring; 
+      token["id_tutoring"] = idTutoring;
+      console.log()
+    firebase.auth().currentUser.getIdToken().then(function(idToken){
+      token["access_token"] = idToken;
+     
+    });
+  
+    axios.post(process.env.REACT_APP_GATEWAY+"/delete_tutoring/", token)
+        .then(res => {
+          if(success(res)){
+            this.props.history.push('/Feed');
+          } 
+        });
+  }
+  handleClickOpen = ()=> {
+    this.setState({open: true});
   }
 
-  function handleClose() {
-    setOpen(false);
+  handleClose = ()=>{
+    this.setState({setOpen: false});
+    this.props.history.push('/Feed');
   }
-
-  return (
-    <div>
-        <MuiThemeProvider theme={theme}>
-            <Button variant="contained" color="primary" onClick={handleClickOpen}>
-                excluir
-            </Button>
-        </MuiThemeProvider>
-        <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-deion"
-        >
-            <DialogTitle id="alert-dialog-title">{"Excluir Monitoria?"}</DialogTitle>
-            <DialogContent>
-            <DialogContentText id="alert-dialog-deion">
-                Deseja realmente excluir a monitoria?
-            </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-            <Button onClick={handleClose} color="primary">
-                cancelar
-            </Button>
-            <Button onClick={handleClose} color="primary" autoFocus>
-                excluir
-            </Button>
-            </DialogActions>
-      </Dialog>
-    </div>
-  );
+render(){
+    return (
+      <div>
+          <MuiThemeProvider theme={theme}>
+              <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
+                  excluir
+              </Button>
+          </MuiThemeProvider>
+          <Dialog
+          open={this.state.open}
+          onClose={this.handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-deion"
+          >
+              <DialogTitle id="alert-dialog-title">{"Excluir Monitoria?"}</DialogTitle>
+              <DialogContent>
+              <DialogContentText id="alert-dialog-deion">
+                  Deseja realmente excluir a monitoria?
+              </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+              <Button onClick={this.handleClose} color="primary">
+                  cancelar
+              </Button>
+              <Button onClick={this.delete_tutoring} color="primary" autoFocus>
+                  excluir
+              </Button>
+              </DialogActions>
+        </Dialog>
+      </div>
+    );
+  }
 }
+
+export default withRouter(AlertDialog);
