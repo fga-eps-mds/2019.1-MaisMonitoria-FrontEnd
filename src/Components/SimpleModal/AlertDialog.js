@@ -39,7 +39,6 @@ class  AlertDialog extends React.Component {
     var token= {};
     var idTutoring = this.props.match.params.id_tutoring; 
       token["id_tutoring"] = idTutoring;
-      console.log()
     firebase.auth().currentUser.getIdToken().then(function(idToken){
       token["access_token"] = idToken;
      
