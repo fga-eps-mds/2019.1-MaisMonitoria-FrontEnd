@@ -8,7 +8,6 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import {withRouter} from 'react-router-dom';
 import Card from '../Feed/CardLike';
 
-
 class LikeList extends React.Component {
  
     state={

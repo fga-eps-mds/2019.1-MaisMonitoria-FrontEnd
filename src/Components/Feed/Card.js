@@ -52,22 +52,22 @@ class ContractCard extends React.Component {
             <Grid item>
               <Grid container direction="column" alignContent="center" alignItems="center" >
                 <Grid item>
-                  <img className={classes.teste}  src={photoUrl}></img>
+                  <img className={classes.teste}  src={photoUrl} alt = ''></img>
                 </Grid>
                 <Grid item>
                   {this.props.monitorName}
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item>
+            <Grid item xs>
               <Grid container justify='center'>
-                <Grid item> 
+                <Grid item xs> 
                   <CardContent>
                     <Typography component="h5" variant="h5">
-                    {this.props.name_monitoring}
+                      {this.props.name_monitoring}
                     </Typography>
                     <Typography>
-                    {this.props.description}
+                      {this.props.description}
                     </Typography>               
                   </CardContent>
                   </Grid>
