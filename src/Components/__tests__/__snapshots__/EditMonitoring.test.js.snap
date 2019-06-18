@@ -38,14 +38,13 @@ exports[`Testing EditMonitoring component Test if EditMonitoring renders correct
       xs={12}
     >
       <TextField
-        Maxrows="4"
         error=""
         id="name"
         label="Nome"
         margin="normal"
         multiline={true}
         onChange={[Function]}
-        required="true"
+        required={true}
         select={false}
         value=""
         variant="standard"
@@ -55,7 +54,6 @@ exports[`Testing EditMonitoring component Test if EditMonitoring renders correct
       item={true}
     >
       <TextField
-        Maxrows="4"
         error=""
         id="subject"
         label="Matéria"
@@ -63,7 +61,7 @@ exports[`Testing EditMonitoring component Test if EditMonitoring renders correct
         multiline={true}
         onChange={[Function]}
         placeholder=""
-        required="true"
+        required={true}
         select={false}
         value=""
         variant="standard"
@@ -73,7 +71,6 @@ exports[`Testing EditMonitoring component Test if EditMonitoring renders correct
       item={true}
     >
       <TextField
-        Maxrows="4"
         error=""
         id="description"
         label="Descrição"
@@ -81,7 +78,7 @@ exports[`Testing EditMonitoring component Test if EditMonitoring renders correct
         multiline={true}
         onChange={[Function]}
         placeholder=""
-        required="true"
+        required={true}
         select={false}
         value=""
         variant="standard"
@@ -489,7 +486,6 @@ exports[`Testing EditMonitoring component Test if EditMonitoring renders correct
       >
         <WithStyles(Button)
           color="primary"
-          component={[Function]}
           onClick={[Function]}
           variant="contained"
         >

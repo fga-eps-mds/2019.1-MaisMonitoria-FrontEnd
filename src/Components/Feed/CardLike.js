@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import { Link } from 'react-router-dom'
 import CardContent from '@material-ui/core/CardContent';
 import { Grid, Typography } from "@material-ui/core";
 
@@ -48,7 +47,7 @@ class ContractCard extends React.Component {
           <Grid item>
             <Grid container direction="column" alignContent="center" alignItems="center" >
               <Grid item>
-                <img className={classes.teste}  src={photoUrl}></img>
+                <img className={classes.teste}  src={photoUrl} alt=''></img>
               </Grid>
              
             </Grid>

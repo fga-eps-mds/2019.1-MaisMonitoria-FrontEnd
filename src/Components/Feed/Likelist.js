@@ -1,28 +1,17 @@
 import React from 'react';
-import { Grid, Typography,Button } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import firebase from 'firebase';
 import axios from 'axios';
 import AppBar from './AppBarWithBack';
 import './ExpandedCard.css'
+<<<<<<< HEAD
 import { createMuiTheme } from '@material-ui/core/styles';
+=======
+
+>>>>>>> d10c1b87572633d32c6adc77805c130b4ac81021
 import {withRouter} from 'react-router-dom';
 import Card from '../Feed/CardLike';
 
-
-const theme = createMuiTheme({
-    palette: {
-      primary: { main: "#44a1f2" },
-      secondary: { main: '#11cb5f' },
-    },
-    typography: { useNextVariants: true },
-    overrides: {
-        MuiButton: {
-          raisedPrimary: {
-            color: 'white',
-          },
-        },
-    },
-});
 
 class LikeList extends React.Component {
  
@@ -45,7 +34,6 @@ class LikeList extends React.Component {
                     token["access_token"] = idToken;
                     token["id_tutoring_session"] = idTutoring;
                 });
-                
                 axios.post(process.env.REACT_APP_GATEWAY+"/get_tutoring/", token)
                     .then(res => {
                       this.setState({person:res.data});
