@@ -4,11 +4,7 @@ import firebase from 'firebase';
 import axios from 'axios';
 import AppBar from './AppBarWithBack';
 import './ExpandedCard.css'
-<<<<<<< HEAD
 import { createMuiTheme } from '@material-ui/core/styles';
-=======
-
->>>>>>> d10c1b87572633d32c6adc77805c130b4ac81021
 import {withRouter} from 'react-router-dom';
 import Card from '../Feed/CardLike';
 
