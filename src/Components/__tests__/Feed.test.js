@@ -17,7 +17,7 @@ firebase.initializeApp({
 const feed = jest.fn();
 
 
-  it('Test if Course renders correctly', () =>{
+  it('Test if Feed renders correctly', () =>{
     const tree = renderer.create(
       <Router><Feed feed={feed}/></Router>
       )

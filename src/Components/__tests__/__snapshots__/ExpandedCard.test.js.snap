@@ -5,3 +5,5 @@ exports[`Testing Add component Test if Add renders correctly 1`] = `
   <Component />
 </Route>
 `;
+
+exports[`Testing Add component Test if Course renders correctly 1`] = `undefined`;
