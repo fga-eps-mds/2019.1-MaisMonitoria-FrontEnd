@@ -21,7 +21,7 @@ let props = {
     tutoring:{
         map: jest.fn()
         
-    }      // You don't need to define the implementation if it's empty
+    }
   };
 
 describe('Testing ProfileTabMonitor component', () => {

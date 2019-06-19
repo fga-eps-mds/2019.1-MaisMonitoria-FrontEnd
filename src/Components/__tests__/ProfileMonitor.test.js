@@ -22,8 +22,8 @@ var props = {
     } 
   };
 
-describe('Testing ProfileTabMonitor component', () => {
-    it('Test if ProfileTabMonitor renders correctly', () =>{
+describe('Testing ProfileMonitor component', () => {
+    it('Test if ProfileMonitor renders correctly', () =>{
         jest.fn()
         const tree = shallow(<ProfileMonitor {...props}/>);
         expect(toJson(tree)).toMatchSnapshot();

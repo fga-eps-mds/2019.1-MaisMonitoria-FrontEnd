@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Button, TextField } from '@material-ui/core' ;
 import AppBar from '../AppBar/AppBar.js';
-import Pp from '../../Assets/img/Pp.png';
 import Course from './Course.js';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -11,7 +10,6 @@ import { validateEditProfile, validateName, success } from '../../Helpers/valida
 import SimpleModal from '../SimpleModal';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CustomizedSnackbars from '../SimpleModal/Snackbars';
-import SnackbarWarning from '../SimpleModal/SnackBarsWarning';
 import Spinner from '../Loader/Spinner';
 
 
@@ -56,11 +54,7 @@ class EditProfile extends Component {
         this._handleImageChange = this._handleImageChange.bind(this);
         this.erase = this.erase.bind(this);
       }
-    
-      componentDidUpdate(prevprops,nextstate){
-        
-      }
-    
+       
       _handleImageChange(event) {
         event.preventDefault();
     
@@ -137,17 +131,12 @@ class EditProfile extends Component {
         }
 
         this.setState({ isLoading: true });
-        firebase.auth().onAuthStateChanged(user =>{
-            if(user){
                 firebase.auth().currentUser.getIdToken().then(function(idToken){  
                     fd.append('access_token', idToken)        
                 })
-              
                 axios.post(process.env.REACT_APP_GATEWAY+"/update_user/", fd, header).then((x)=>{
                     if(success(x)) this.setState({showModal:true});
               })
-            }     
-        })
     }
     
   render() {
@@ -179,7 +168,7 @@ class EditProfile extends Component {
                 <Grid item xs={12}> 
                     <TextField
                         error = {this.state.errorName }
-                        required= "true"
+                        required= {true}
                         id="name"
                         label="Nome"
                         multiline
@@ -193,7 +182,7 @@ class EditProfile extends Component {
                 </Grid>
                 <Grid item> 
                     <TextField
-                        required= "true"
+                        required= {true}
                         id="telegram"
                         label="Telegram"
                         multiline
@@ -242,7 +231,7 @@ class EditProfile extends Component {
                     /> 
                     <label htmlFor="raised-button-file">
                         <MuiThemeProvider theme={theme}> 
-                            <Button raised component="span" variant="contained" color="primary" > 
+                            <Button raised="true" component="span" variant="contained" color="primary" > 
                                 Escolher foto 
                             </Button>
                         </MuiThemeProvider> 
@@ -259,7 +248,7 @@ class EditProfile extends Component {
                     <Grid container justify="center" alignContent="center" alignItems="center" direction="row" spacing={24} style={{marginTop:30}}>
                         <Grid item>
                             <MuiThemeProvider theme={theme}>
-                                <Button component={Link} variant="contained" onClick={this.editProfile} color="primary">
+                                <Button variant="contained" onClick={this.editProfile} color="primary">
                                     Confirmar
                                 </Button>
                             </MuiThemeProvider>

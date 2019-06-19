@@ -1,10 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import ExpandedCard from '../Feed/ExpandedCard';
-import toJson from 'enzyme-to-json';
+import AlertDialog from '../SimpleModal/AlertDialog';
 import firebase from 'firebase';
+import {shallow} from 'enzyme';
 import renderer from 'react-test-renderer';
 import { MemoryRouter as Router } from 'react-router-dom';
+import toJson from 'enzyme-to-json';
 
 firebase.initializeApp({
   apiKey: '...',
@@ -15,24 +15,23 @@ firebase.initializeApp({
   messagingSenderId: '...',
 });
 
-let props = {
+let props={
     match:{
         params:{
-            id_tutoring: jest.fn()
-        }
-    }      
-  };
-const expandedcard= jest.fn();
+            id_tutoring:jest.fn()    
+    }}
+};
+const alertdialog= jest.fn();
 
-describe('Testing Add component', () => {
-    it('Test if Add renders correctly', () =>{
-        jest.fn()
-        const tree = shallow(<ExpandedCard {...props}/>);
+describe('Testing AlertDialog component', () => {
+    it('Test if AlertDialog renders correctly', () =>{
+        jest.fn();
+        const tree = shallow(<AlertDialog {...props}/>);
         expect(toJson(tree)).toMatchSnapshot();
     });
-    it('Test if Course renders correctly', () =>{
+    it('Test if AlertDialog renders correctly', () =>{
       const tree = renderer.create(
-        <Router><ExpandedCard expandedcard={expandedcard}/></Router>
+        <Router><AlertDialog alertdialog={alertdialog}/></Router>
         )
         expect(toJson(tree)).toMatchSnapshot()
     });
