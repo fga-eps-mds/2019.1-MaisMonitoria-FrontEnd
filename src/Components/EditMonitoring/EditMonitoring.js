@@ -105,26 +105,21 @@ class EditMonitoring extends Component {
             return;
         }
 
-        token["id_tutoring_session"] = idTutoring;
-        token["name"] = this.state.name;
-        token["subject"] = this.state.subject;
-        token["description"] = this.state.description;
+        token.id_tutoring_session = idTutoring;
+        token.name = this.state.name;
+        token.subject = this.state.subject;
+        token.description = this.state.description;
 
-        firebase.auth().onAuthStateChanged(user =>{
-            if(user){
-                firebase.auth().currentUser.getIdToken().then(function(idToken){  
-                    token["access_token"] = idToken;      
-                })
-              
-                axios.post(process.env.REACT_APP_GATEWAY+"/update_tutoring/", token).then((x)=>{
-                    if(success(x)) this.setState({showModal:true});
-              })
-            }     
+        firebase.auth().currentUser.getIdToken().then(function(idToken){  
+            token["access_token"] = idToken;      
+        })
+        
+        axios.post(process.env.REACT_APP_GATEWAY+"/update_tutoring/", token).then((x)=>{
+            if(success(x)) this.setState({showModal:true});
         })
     }
     
   render() {
-    console.log(this.state.nameError);
     return (
         
         <div style={{overflowX:'hidden'}} className="editBackground"> 
@@ -136,11 +131,10 @@ class EditMonitoring extends Component {
                 <Grid item xs={12}> 
                     <TextField
                         error = {this.state.nameError}
-                        required= "true"
+                        required= {true}
                         id="name"
                         label="Nome"
                         multiline
-                        Maxrows="4"
                         margin="normal"
                         value={this.state.name}
                         onChange={(event)=>this.setState({
@@ -151,11 +145,10 @@ class EditMonitoring extends Component {
                 <Grid item> 
                     <TextField
                         error = {this.state.subjectError}
-                        required= "true"
+                        required= {true}
                         id="subject"
                         label="Matéria"
                         multiline
-                        Maxrows="4"
                         placeholder=""
                         margin="normal"
                         value={this.state.subject}
@@ -167,11 +160,10 @@ class EditMonitoring extends Component {
                 <Grid item> 
                     <TextField
                         error = {this.state.descriptionError}
-                        required= "true"
+                        required= {true}
                         id="description"
                         label="Descrição"
                         multiline
-                        Maxrows="4"
                         placeholder=""
                         margin="normal"
                         value={this.state.description}
@@ -187,7 +179,7 @@ class EditMonitoring extends Component {
             <Grid container style={{paddingTop:5}} justify="center" alignContent="center" alignItems="center" direction="row" spacing={24}>
                 <Grid item>
                     <MuiThemeProvider theme={theme}>
-                        <Button component={Link} variant="contained" onClick={this.EditMonitoring} color="primary">
+                        <Button variant="contained" onClick={this.EditMonitoring} color="primary">
                             Confirmar
                         </Button>
                     </MuiThemeProvider>
