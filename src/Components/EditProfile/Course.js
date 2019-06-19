@@ -14,15 +14,12 @@ const styles = theme => ({
     flexWrap: 'wrap',
   },
   formControl: {
-    margin: theme.spacing.unit,
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing.unit * 2,
+    minWidth: 200,
   },
 });
 
 class SimpleSelect extends React.Component {
+
   state = {
     selectedCourse:'',
     labelWidth: 0,
@@ -34,12 +31,21 @@ class SimpleSelect extends React.Component {
     });
   }
 
+  componentWillReceiveProps(nextProps){
+    if(nextProps.curso !== this.props.curso){
+      this.setState({
+        selectedCourse: nextProps.curso
+      });
+    }
+  }
+  
   handleChange = event => {
     this.props.action(event.target.value);
     this.setState({ selectedCourse: event.target.value });
   };
 
   render() {
+  
     const { classes } = this.props;
 
     return (
