@@ -5,7 +5,6 @@ import lightBlue from '@material-ui/core/colors/lightBlue';
 import  {Link}  from 'react-router-dom';
 import firebase from 'firebase';
 import axios from 'axios';
-import { success } from '../../Helpers/validates';
 
 import { withRouter } from 'react-router-dom';
 
@@ -65,13 +64,6 @@ class Login extends Component {
             }else{
               this.setState({ error: "Usuario não cadastrado." });
               this.setState({ showError: true });
-              var user = firebase.auth().currentUser;
-              user.delete().then(function() {
-                      
-              }).catch(function(error) {
-                
-              });
-
             }
           });
         

@@ -15,7 +15,6 @@ import logo from '../../Assets/img/Logo.png';
 import { validateRegister, success, validateName, validatepasswordconfirm } from '../../Helpers/validates';
 import './SignUp.css';
 
-
 const theme = createMuiTheme({
   palette: {
     primary: { main: lightBlue[50] },
@@ -52,7 +51,7 @@ class SignUp extends Component {
     this.erase = this.erase.bind(this);
   }
 
-  componentDidUpdate(prevprops,nextstate){
+  componentDidMount(){
     
   }
 
@@ -83,14 +82,13 @@ class SignUp extends Component {
   register = async (e) => {
     const { user } = this.state;  
     var aux = {}
-    let token = {}
-
+    
+    
     this.setState({ error: "" });
     this.setState({ errorName: false });
     this.setState({ errorSenha: "" });
     this.setState({ showError: false });
-  
-    
+      
     if(!validateRegister(user))
     {
       this.setState({ error: "Digite os campos obrigatórios" });
@@ -123,6 +121,9 @@ class SignUp extends Component {
           aux = { 'token': idToken };        
           });
         }).catch((error)=>{
+          if(error.code === 'auth/email-already-in-use'){
+            
+          }
           this.setState({error: errors[error.code]});
           this.setState({ showError: true });
     });
@@ -135,26 +136,21 @@ class SignUp extends Component {
     fd.append('telegram', user.telegram)
     const header = { headers: { 'content-type': 'multipart/form-data' } }
 
-    await axios.post(process.env.REACT_APP_GATEWAY+"/create_user/", fd, header).then((status_created)=>{
-      if(success(status_created)) {
-        axios.post(process.env.REACT_APP_GATEWAY+"/get_user/", token).then((status_get)=>{
-          if(status_get.data.user_account_id) {
-            this.setState({showModal:true});
-          }else{
-            this.setState({ error: "Erro ao cadastrar." });
-            this.setState({ showError: true });
-            var user = firebase.auth().currentUser;
-
-            user.delete().then(function() {
-              
-            }).catch(function(error) {
-              
-            });
-          }
-        });
+    await axios.post(process.env.REACT_APP_GATEWAY+"/create_user/", fd, header).then((status_create)=>{
+      if(success(status_create)){
+        this.setState({showModal:true});
       }
+    }).catch(()=>{
+        this.setState({ error: "Erro ao cadastrar, tente novamente." });
+        this.setState({ showError: true });
+        var user = firebase.auth().currentUser;
+
+        user.delete().then(function() {
+          
+        }).catch(function(error) {
+          
+        });
     });
-  
   }
     
   render() {
