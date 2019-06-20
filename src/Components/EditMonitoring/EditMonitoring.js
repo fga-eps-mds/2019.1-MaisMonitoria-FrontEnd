@@ -161,6 +161,7 @@ class EditMonitoring extends Component {
                 <Grid  item md-auto>
                     <TextField
                         error = {this.state.descriptionError}
+                        required = {true}
                         id="description"
                         label="Descrição"
                         placeholder=""

@@ -32,9 +32,9 @@ export const validatepasswordconfirm = user => {
 }
 
 export const validateRegisterMonitoring = Monitoring => {
-    const {name,subject} = Monitoring;
+    const {name,subject,description} = Monitoring;
     
-     if(!name  || !subject) return false;
+     if(!name  || !subject || !description) return false;
 
      return true;
     
