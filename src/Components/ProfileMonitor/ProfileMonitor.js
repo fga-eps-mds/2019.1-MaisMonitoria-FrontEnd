@@ -146,7 +146,7 @@ class Profile extends Component {
                                                 <h2>{this.state.monitorName}</h2>
                                             </Grid>
                                             <Grid item > 
-                                                <a href={"https://t.me/" + texto}>{
+                                                <a href={"https://t.me/" + texto} target="_blank"  rel="noopener noreferrer">{
                                                     <MuiThemeProvider theme={theme}>
                                                         <Fab size="small" color="primary" aria-label="Edit" >
                                                             <Logo/>
