@@ -41,8 +41,9 @@ exports[`Testing EditMonitoring component Test if EditMonitoring renders correct
         error=""
         id="name"
         label="Tema"
+        margin="normal"
         onChange={[Function]}
-        required={true}
+        required="true"
         select={false}
         value=""
         variant="standard"
@@ -57,8 +58,10 @@ exports[`Testing EditMonitoring component Test if EditMonitoring renders correct
         id="subject"
         label="Matéria"
         margin="normal"
+        multiline={true}
         onChange={[Function]}
-        required="true"
+        placeholder=""
+        required={true}
         select={false}
         value=""
         variant="standard"
@@ -75,7 +78,7 @@ exports[`Testing EditMonitoring component Test if EditMonitoring renders correct
         margin="normal"
         multiline={true}
         onChange={[Function]}
-        placeholder="Descrição"
+        placeholder=""
         required={false}
         select={false}
         value=""

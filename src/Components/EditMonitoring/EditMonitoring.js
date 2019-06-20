@@ -167,7 +167,7 @@ class EditMonitoring extends Component {
                         placeholder=""
                         multiline
                         margin="normal"
-                        // variant="outlined"
+                        variant="outlined"
                         value={this.state.description}
                         onChange={(event)=>this.setState({
                             description: event.target.value,
