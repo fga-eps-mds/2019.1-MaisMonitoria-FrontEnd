@@ -138,8 +138,11 @@ class SignUp extends Component {
 
     await axios.post(process.env.REACT_APP_GATEWAY+"/create_user/", fd, header).then((x)=>{
       if(success(x)) {
+        console.log(x);
         this.setState({showModal:true});
       }
+    }).catch((error)=>{
+        console.log(error);
     });
   
   }
