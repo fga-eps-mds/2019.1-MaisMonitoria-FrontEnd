@@ -12,6 +12,7 @@ services:
       - REACT_APP_PATH_KEY=${REACT_APP_PATH_KEY}
       - REACT_APP_AUTH=${REACT_APP_AUTH}
       - REACT_APP_GATEWAY=${REACT_APP_GATEWAY}
+      - URL_SERVICE_MONITORIA=${URL_SERVICE_MONITORIA}
     networks:
       - api-backend
     tty: true  

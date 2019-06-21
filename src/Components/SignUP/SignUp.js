@@ -136,20 +136,18 @@ class SignUp extends Component {
     fd.append('telegram', user.telegram)
     const header = { headers: { 'content-type': 'multipart/form-data' } }
 
-    await axios.post(process.env.REACT_APP_GATEWAY+"/create_user/", fd, header).then((status_create)=>{
-      if(success(status_create)){
+    await axios.post(process.env.REACT_APP_GATEWAY+"/create_user/", fd, header).then((x)=>{
+      if(success(x)) {
+        
         this.setState({showModal:true});
       }
-    }).catch(()=>{
+    }).catch(()=>{   
+      var user = firebase.auth().currentUser;
+
+      user.delete().then(function() {
         this.setState({ error: "Erro ao cadastrar, tente novamente." });
         this.setState({ showError: true });
-        var user = firebase.auth().currentUser;
-
-        user.delete().then(function() {
-          
-        }).catch(function(error) {
-          
-        });
+      })
     });
   }
     

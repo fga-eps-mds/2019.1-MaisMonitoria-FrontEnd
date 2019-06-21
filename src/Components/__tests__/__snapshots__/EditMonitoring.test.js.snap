@@ -35,16 +35,15 @@ exports[`Testing EditMonitoring component Test if EditMonitoring renders correct
   >
     <WithStyles(Grid)
       item={true}
-      xs={12}
+      md-auto={true}
     >
       <TextField
         error=""
         id="name"
-        label="Nome"
+        label="Tema"
         margin="normal"
-        multiline={true}
         onChange={[Function]}
-        required={true}
+        required="true"
         select={false}
         value=""
         variant="standard"
@@ -52,6 +51,7 @@ exports[`Testing EditMonitoring component Test if EditMonitoring renders correct
     </WithStyles(Grid)>
     <WithStyles(Grid)
       item={true}
+      md-auto={true}
     >
       <TextField
         error=""
@@ -69,6 +69,7 @@ exports[`Testing EditMonitoring component Test if EditMonitoring renders correct
     </WithStyles(Grid)>
     <WithStyles(Grid)
       item={true}
+      md-auto={true}
     >
       <TextField
         error=""
@@ -78,10 +79,10 @@ exports[`Testing EditMonitoring component Test if EditMonitoring renders correct
         multiline={true}
         onChange={[Function]}
         placeholder=""
-        required={true}
+        required={false}
         select={false}
         value=""
-        variant="standard"
+        variant="outlined"
       />
     </WithStyles(Grid)>
   </WithStyles(Grid)>

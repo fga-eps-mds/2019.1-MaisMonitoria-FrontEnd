@@ -40,6 +40,7 @@ services:
     environment:
       - PATH_USER=${PATH_USER}
       - FIREBASE_KEY=${FIREBASE_KEY}
+      - URL_SERVICE_MONITORIA=${URL_SERVICE_MONITORIA}
 
   frontend:
     container_name: "frontend"
