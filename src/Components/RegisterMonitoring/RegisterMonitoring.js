@@ -109,6 +109,8 @@ class RegisterMonitoring extends Component {
                     </Grid>
                     <Grid  item md-auto>
                         <TextField
+                            error = {this.state.error}
+                            required="true"   
                             id="descricaoTextfild"
                             label="Descrição"
                             placeholder="Descrição"

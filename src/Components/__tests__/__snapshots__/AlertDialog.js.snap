@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing AlertDialog component Test if AlertDialog renders correctly 1`] = `
+<Route>
+  <Component />
+</Route>
+`;
+
+exports[`Testing AlertDialog component Test if AlertDialog renders correctly 2`] = `undefined`;

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Testing ProfileTabMonitor component Test if ProfileTabMonitor renders correctly 1`] = `
+exports[`Testing ProfileMonitor component Test if ProfileMonitor renders correctly 1`] = `
 <Profile
   classes={
     Object {
@@ -13,6 +13,7 @@ exports[`Testing ProfileTabMonitor component Test if ProfileTabMonitor renders c
     Object {
       "params": Object {
         "id_monitor": [MockFunction],
+        "id_tutoring_session": [MockFunction],
       },
     }
   }
