@@ -4,6 +4,8 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import  {Link}  from 'react-router-dom';
 import firebase from 'firebase';
+import axios from 'axios';
+
 import { withRouter } from 'react-router-dom';
 
 import Spinner from '../Loader/Spinner';
@@ -38,19 +40,33 @@ class Login extends Component {
   
   
   login = async (e) => {
-    
-    
+   
     const { email, password } = this.state;
+    let token = {};
+
     if(!email || !password){
       this.setState({ error: "Preencha e-mail e senha para continuar!" });
       this.setState({ showError: true});
       e.preventDefault();
-    }else{
+    }
+    
+    else{
       this.setState({ isLoading: true });
       await firebase.auth().signInWithEmailAndPassword(email, password).then((user)=>{
-        this.setState({ isAuthenticated: true });
-        const route = this.state.isAuthenticated?"/Feed":"/"
-        this.props.history.push(route);
+        firebase.auth().currentUser.getIdToken().then((idToken)=> {   
+          token["access_token"] = idToken;                
+        });
+          axios.post(process.env.REACT_APP_GATEWAY+"/get_user/", token).then((status_get)=>{
+            if(status_get.data.user_account_id) {
+              this.setState({ isAuthenticated: true });
+              const route = this.state.isAuthenticated?"/Feed":"/"
+              this.props.history.push(route);
+            }else{
+              this.setState({ error: "Usuario não cadastrado." });
+              this.setState({ showError: true });
+            }
+          });
+        
       }).catch((except)=>{
         this.setState({ error: "Email ou Senha inválidos." });
         this.setState({ showError: true });

@@ -15,7 +15,6 @@ import logo from '../../Assets/img/Logo.png';
 import { validateRegister, success, validateName, validatepasswordconfirm } from '../../Helpers/validates';
 import './SignUp.css';
 
-
 const theme = createMuiTheme({
   palette: {
     primary: { main: lightBlue[50] },
@@ -52,7 +51,7 @@ class SignUp extends Component {
     this.erase = this.erase.bind(this);
   }
 
-  componentDidUpdate(prevprops,nextstate){
+  componentDidMount(){
     
   }
 
@@ -83,13 +82,13 @@ class SignUp extends Component {
   register = async (e) => {
     const { user } = this.state;  
     var aux = {}
-
+    
+    
     this.setState({ error: "" });
     this.setState({ errorName: false });
     this.setState({ errorSenha: "" });
     this.setState({ showError: false });
-  
-    
+      
     if(!validateRegister(user))
     {
       this.setState({ error: "Digite os campos obrigatórios" });
@@ -119,13 +118,14 @@ class SignUp extends Component {
     await firebase.auth().createUserWithEmailAndPassword(user.email, user.password).then(()=>{
         
         firebase.auth().currentUser.getIdToken().then((idToken)=> {  
-
           aux = { 'token': idToken };        
           });
         }).catch((error)=>{
+          if(error.code === 'auth/email-already-in-use'){
+            
+          }
           this.setState({error: errors[error.code]});
           this.setState({ showError: true });
-
     });
 
     const fd = new FormData();
@@ -138,14 +138,19 @@ class SignUp extends Component {
 
     await axios.post(process.env.REACT_APP_GATEWAY+"/create_user/", fd, header).then((x)=>{
       if(success(x)) {
-        console.log(x);
+        
         this.setState({showModal:true});
       }
-    }).catch((error)=>{
-        console.log(error);
+    }).catch(()=>{   
+      var user = firebase.auth().currentUser;
+
+      user.delete().then(function() {
+        this.setState({ error: "Erro ao cadastrar, tente novamente." });
+        this.setState({ showError: true });
+      })
     });
-  
   }
+    
   render() {
     let $imagePreview = null;
     if (this.state.imagePreviewUrl) {
