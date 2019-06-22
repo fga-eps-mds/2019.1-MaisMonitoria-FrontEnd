@@ -101,13 +101,13 @@ class TelaFeed extends Component {
     return (     
         <div style={{overflowX:'hidden'}} className="FeedBackground">
             <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
-                <AppBar/>    
+                <AppBar />    
             </Grid> 
             <div>
-                <Grid container justify="center" direction="column" alignItems="center" spacing={8} style={{paddingTop:70, marginTop:10, paddingBottom:50}}>
+                <Grid container justify="center" direction="column" alignItems="center" spacing={8} style={{paddingTop: 46, marginTop:10, paddingBottom:50}}>
                     {_.map(this.state.data, (item, i) => {
                         return (
-                            <Grid item key={i} lg={12} sm={12} container style={{paddingBottom:3}} >
+                            <Grid item key={i} lg={12} sm={12} container style={{paddingBottom:2}} >
                                 <Card name_monitoring={item.name} matter={item.subject} 
                                     description={item.description} photo={item.monitor.photo} 
                                     monitorName={item.monitor.name} id_tutoring={item.id_tutoring_session} />
