@@ -48,32 +48,32 @@ class ContractCard extends React.Component {
     return (
       <Card className={classes.card} >
         <Link to={`/expandedcard/${this.props.id_tutoring}`}>
-        <Grid container alignContent="center" direction="row" >
-          <Grid item>
-            <Grid container direction="column" alignContent="center" alignItems="center" >
-              <Grid item>
-                <img className={classes.teste}  src={photoUrl} alt = ''></img>
-              </Grid>
-              <Grid item>
-                {this.props.monitorName}
-              </Grid>
-            </Grid>
-          </Grid>
-          <Grid item xs>
-            <Grid container justify='center'>
-              <Grid item xs> 
-                <CardContent>
-                  <Typography component="h5" variant="h5">
-                  {this.props.name_monitoring}
-                  </Typography>
-                  <Typography>
-                  {this.props.description}
-                  </Typography>               
-                </CardContent>
+          <Grid container alignContent="center" direction="row" >
+            <Grid item>
+              <Grid container direction="column" alignContent="center" alignItems="center" >
+                <Grid item>
+                  <img className={classes.teste}  src={photoUrl} alt = ''></img>
                 </Grid>
+                <Grid item>
+                  {this.props.monitorName}
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid item xs>
+              <Grid container justify='center'>
+                <Grid item xs> 
+                  <CardContent>
+                    <Typography component="h5" variant="h5">
+                      {this.props.name_monitoring}
+                    </Typography>
+                    <Typography>
+                      {this.props.description}
+                    </Typography>               
+                  </CardContent>
+                  </Grid>
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
         </Link>
       </Card>
     );

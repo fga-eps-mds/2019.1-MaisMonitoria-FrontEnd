@@ -68,12 +68,17 @@ class Profile extends Component {
         showWarning: false,
         isLoading: false,
         id_monitor: '',
+        id_tutoring_session:''
     }
     
     componentDidMount() {
         var token = {}
         var idMonitor = this.props.match.params.id_monitor;
         
+        if(this.props.location.state.id_tutoring){
+            this.setState({id_tutoring_session:this.props.location.state.id_tutoring});
+        }  
+             
         this.setState({id_monitor:idMonitor});
         this.setState({ isLoading: true });
         
@@ -129,7 +134,11 @@ class Profile extends Component {
             <div style={{overflowX:'hidden'}}>
                 <div style={{overflowX:'hidden'}} >
                     <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
-                        <AppBarProfile/>    
+                    {this.state.id_tutoring_session? 
+                        <AppBarProfile router={`/likeList/${this.state.id_tutoring_session}`}/>
+                        :
+                        <AppBarProfile/>
+                    }    
                     </Grid>
                 </div> 
                 <div className={classes.root}>   

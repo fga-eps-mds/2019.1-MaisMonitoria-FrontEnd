@@ -13,7 +13,6 @@ exports[`Testing ProfileMonitor component Test if ProfileMonitor renders correct
     Object {
       "params": Object {
         "id_monitor": [MockFunction],
-        "id_tutoring_session": [MockFunction],
       },
     }
   }

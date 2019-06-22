@@ -4,10 +4,9 @@ import firebase from 'firebase';
 import axios from 'axios';
 import AppBar from './AppBarWithBack';
 import './ExpandedCard.css'
-
+import { createMuiTheme } from '@material-ui/core/styles';
 import {withRouter} from 'react-router-dom';
 import Card from '../Feed/CardLike';
-
 
 class LikeList extends React.Component {
  
@@ -15,7 +14,8 @@ class LikeList extends React.Component {
       person: [],
       id_user:'',
       likes:[],
-      total_likes:0
+      total_likes:0,
+      id:''
     }
 
     componentDidMount=  async () =>{
@@ -33,33 +33,31 @@ class LikeList extends React.Component {
                     .then(res => {
                       this.setState({person:res.data});
                       this.setState({ likes:this.state.person.likes,
-                      total_likes:this.state.person.total_likes});       
-                    }); 
+                      total_likes:this.state.person.total_likes,id:idTutoring});
+                    });
+                   
             }else{
                 this.props.history.push('/');
             }
-        });   
+        });  
     }
 
   render() {
-      
-    
-
     return (
         <div className='div'>
-        <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
-               <AppBar router={`/expandedCard/${this.props.match.params.id_tutoring}`}/>    
-        </Grid>
-        <Grid container justify="center" direction="column" alignItems="center"  style={{paddingTop:70,marginTop:10, paddingBottom:40}}> 
-          {this.state.likes.map(function(item, i){
-            return (
-                <Grid key={i} container style={{paddingBottom:3}} >
-                    <Card name_user={item.user_that_likes.name}photo={item.user_that_likes.photo}  />
+          <Grid style={{position: "absolute"}} container justify="center" alignItems="stretch">
+            <AppBar router={`/expandedCard/${this.props.match.params.id_tutoring}`}/>    
+          </Grid>
+          <Grid justify="center" direction="column" alignItems="center"  style={{paddingTop:70,marginTop:10, paddingBottom:40}}> 
+            <h1>{this.state.likes.map(function(item, i){
+              return (
+                <Grid item key={i} lg={12} sm={12} container style={{paddingBottom:3}} >
+                    <Card name_user={item.user_that_likes.name}photo={item.user_that_likes.photo} user ={item.user_that_likes.user_account_id}  id_tutoring ={this.state.id} />
                 </Grid>
-            );
-          })}
-        </Grid>
-      
+              );
+            },this)}
+            </h1>
+          </Grid>  
        </div>
     );
   }

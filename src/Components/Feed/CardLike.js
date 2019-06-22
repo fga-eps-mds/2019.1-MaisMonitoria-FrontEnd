@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { Grid, Typography } from "@material-ui/core";
+import { Link } from 'react-router-dom';
 
 import './Card.css'
 
@@ -28,13 +29,11 @@ class ContractCard extends React.Component {
   
   state =  {  
     id_user:''
-    
   }
 
   render() {
     const { classes } = this.props;
     var photoUrl = this.props.photo;
-    
     if( photoUrl != null ){
       photoUrl = photoUrl.replace("api-monitoria","localhost")
     } else {
@@ -42,8 +41,9 @@ class ContractCard extends React.Component {
     }
 
     return (
+      
       <Card className={classes.card} >
-        {/* <Link to={`/expandedcard/${this.props.id_tutoring}`}> */}
+        <Link to={{pathname:`/ProfileMonitor/${this.props.user}`,state:{id_tutoring:this.props.id_tutoring}}}>
         <Grid container alignContent="center" direction="row" >
           <Grid item>
             <Grid container direction="column" alignContent="center" alignItems="center" >
@@ -65,7 +65,7 @@ class ContractCard extends React.Component {
             </Grid>
           </Grid>
         </Grid>
-        {/* </Link> */}
+         </Link> 
       </Card>
     );
   }
