@@ -79,7 +79,7 @@ exports[`Testing EditMonitoring component Test if EditMonitoring renders correct
         multiline={true}
         onChange={[Function]}
         placeholder=""
-        required={false}
+        required={true}
         select={false}
         value=""
         variant="outlined"
