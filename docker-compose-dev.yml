@@ -40,13 +40,13 @@ services:
     environment:
       - PATH_USER=${PATH_USER}
       - FIREBASE_KEY=${FIREBASE_KEY}
-
+      - URL_SERVICE_MONITORIA=${URL_SERVICE_MONITORIA}
+      
   frontend:
     container_name: "frontend"
     build: ./
     ports:
       - "3000:3000"
-    command: bash -c "bash"
     volumes:
       - ./:/app
     environment:
