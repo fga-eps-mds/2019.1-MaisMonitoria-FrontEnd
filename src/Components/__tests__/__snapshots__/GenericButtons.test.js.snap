@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing GenerictButtons component Test if GenericButtons renders correctly 1`] = `
+<CustomizedButtons
+  classes={
+    Object {
+      "bootstrapRoot": "CustomizedButtons-bootstrapRoot-3",
+      "cssRoot": "CustomizedButtons-cssRoot-2",
+      "margin": "CustomizedButtons-margin-1",
+    }
+  }
+/>
+`;

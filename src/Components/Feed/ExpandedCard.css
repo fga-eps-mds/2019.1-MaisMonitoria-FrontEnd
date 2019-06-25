@@ -1,0 +1,17 @@
+.profilePicture{
+    width: 120;
+    height:90;
+}
+
+.teste{
+    background-color: #eeeeee;
+}
+
+.div {
+    overflow: hidden;
+  }
+
+.editButton{
+    padding-top:20%;
+    
+}

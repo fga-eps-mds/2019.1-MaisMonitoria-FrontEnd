@@ -2,14 +2,24 @@ default:
 	make build
 	
 build:
-	sudo docker-compose build
+	docker-compose build
+
+all:
+	docker-compose -f docker-compose-dev.yml up
 
 run:
-	sudo docker-compose up -d
-	sudo docker exec -it frontend bash -c "yarn; bash" 
+	docker-compose up -d
+	docker exec -it frontend bash -c "yarn; yarn start" 
 
 down:
-	sudo docker-compose down
+	docker-compose down
 
 stop:
 	make down
+
+test:
+	sudo docker-compose exec frontend yarn test
+	
+cov-test:
+	sudo docker-compose exec frontend yarn test --coverage
+

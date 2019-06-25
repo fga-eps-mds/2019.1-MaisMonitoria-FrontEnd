@@ -1,32 +1,55 @@
 sudo: required
 
-language: node_js
+language: 
+  - node_js
+  - python
 
 node_js:
   - "10.15.3"
+python:
+  - "3.6"
 
 services:
   - docker
 
+stages:
+  - Unit test
+  - Deploy image development
+  - Deploy image homolog
+  - Deploy image prodution
+  - Upgrade service
+
 notifications:
   slack: hora-da-hora:0nFQxr2PykmKhNkJ78xYJMOP
 
-before_script:
-  - docker build -t maismonitoria/frontend .
-  - docker run maismonitoria/frontend yarn build 
+before_install:
+  - pip install requests
 
-stages:
-  - name: deploy docker image
-  
 jobs:
   include:
-    - stage: deploy docker image
-      script: 
-        - bash scripts/deploy_image.sh
-      on:
-        branch: master
+    - stage: "Unit test"
+      name: "Unit test"
+      script:
+        - yarn run test -u --coverage
+        - ./node_modules/.bin/codecov -t ${CODECOV_TOKEN}
+    - stage: "Deploy image development"
+      name: "Deploy image development"
+      if: branch = develop
+      script: bash ./scripts/deploy_dev.sh
+    - stage: "Deploy image homolog"
+      name: "Deploy image homolog"
+      if: branch = develop
+      script: bash ./scripts/deploy_homolog.sh
+    - stage: "Deploy image prodution"
+      name: "Deploy image prodution"
+      if: branch = master
+      script: bash ./scripts/deploy_prod.sh
+    - stage: "Upgrade service"
+      name: "Upgrade service"
+      if: branch = develop
+      script: python ./scripts/upgrade.py
+      
 addons:
   apt:
     packages:
       - docker-ce
-

@@ -1,0 +1,63 @@
+version: '3'
+
+services:
+  db:
+    container_name: db
+    restart: always
+    image: postgres
+    environment:
+      - POSTGRES_NAME=${POSTGRES_NAME}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - "5433:5432"
+    networks:
+      - api-backend
+    
+  api_monitoria:
+    container_name: api-monitoria
+    depends_on:
+      - db
+    image: maismonitoria/api_monitoria:homolog
+    ports:
+      - "8001:8001"
+    networks:
+      - api-backend
+    environment:
+      - POSTGRES_NAME=${POSTGRES_NAME}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+
+  api_gateway:
+    container_name: api-gateway
+    image: maismonitoria/api_gateway:homolog
+    ports:
+      - "8000:8000"
+    networks:
+      - api-backend
+    environment:
+      - PATH_USER=${PATH_USER}
+      - FIREBASE_KEY=${FIREBASE_KEY}
+      - URL_SERVICE_MONITORIA=${URL_SERVICE_MONITORIA}
+      
+  frontend:
+    container_name: "frontend"
+    build: ./
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/app
+    environment:
+      - REACT_APP_PATH_KEY=${REACT_APP_PATH_KEY}
+      - REACT_APP_AUTH=${REACT_APP_AUTH}
+      - REACT_APP_GATEWAY=${REACT_APP_GATEWAY}
+    networks:
+      - api-backend
+    tty: true  
+      
+networks:
+  api-backend:
+    external:
+      name: api-backend

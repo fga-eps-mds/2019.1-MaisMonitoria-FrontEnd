@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing AppBarSearch component Test if AppBarSearch renders correctly 1`] = `
+<SearchAppBar
+  classes={
+    Object {
+      "appBar": "SearchAppBar-appBar-3",
+      "grow": "SearchAppBar-grow-2",
+      "inputInput": "SearchAppBar-inputInput-7",
+      "inputRoot": "SearchAppBar-inputRoot-6",
+      "root": "SearchAppBar-root-1",
+      "search": "SearchAppBar-search-4",
+      "searchIcon": "SearchAppBar-searchIcon-5",
+    }
+  }
+/>
+`;

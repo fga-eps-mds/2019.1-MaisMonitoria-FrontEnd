@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing ProfileMonitor component Test if ProfileMonitor renders correctly 1`] = `
+<Profile
+  classes={
+    Object {
+      "fab": "Profile-fab-3",
+      "perfil": "Profile-perfil-1",
+      "root": "Profile-root-2",
+    }
+  }
+  match={
+    Object {
+      "params": Object {
+        "id_monitor": [MockFunction],
+      },
+    }
+  }
+/>
+`;

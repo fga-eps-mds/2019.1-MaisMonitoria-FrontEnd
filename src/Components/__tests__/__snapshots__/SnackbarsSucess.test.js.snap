@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing SnackbarsSucess component Test if SnackbarsSucess renders correctly 1`] = `
+<withRouter(CustomizedSnackbars)
+  classes={
+    Object {
+      "margin": "withRouter-CustomizedSnackbars--margin-1",
+    }
+  }
+/>
+`;

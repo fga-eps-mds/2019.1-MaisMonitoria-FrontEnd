@@ -3,9 +3,20 @@ services:
   frontend:
     container_name: "frontend"
     build: ./
-    command: bash -c "bash"
     ports:
       - "3000:3000"
+    command: bash -c "bash"
     volumes:
       - ./:/app
+    environment:
+      - REACT_APP_PATH_KEY=${REACT_APP_PATH_KEY}
+      - REACT_APP_AUTH=${REACT_APP_AUTH}
+      - REACT_APP_GATEWAY=${REACT_APP_GATEWAY}
+    networks:
+      - api-backend
     tty: true  
+
+networks:
+  api-backend:
+    external:
+      name: api-backend
