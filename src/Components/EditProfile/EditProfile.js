@@ -142,9 +142,9 @@ class EditProfile extends Component {
   render() {
     var cursoMonitor = this.state.monitorCourse.toString();
     var photoUrl = this.state.defaultImage
-    if( photoUrl != null && !this.state.imagePreviewUrl){
+    if( photoUrl != null && !this.state.imagePreviewUrl && window.location.hostname === 'localhost'){
         photoUrl = photoUrl.replace("api-monitoria","localhost")
-      } else {
+      } else if(photoUrl === null){
         photoUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzaLMnex1QwV83TBQgxLTaoDAQlFswsYy62L3mO4Su-CMkk3jX"
       }
     return (

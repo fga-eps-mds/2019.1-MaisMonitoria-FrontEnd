@@ -34,9 +34,9 @@ class ContractCard extends React.Component {
   render() {
     const { classes } = this.props;
     var photoUrl = this.props.photo;
-    if( photoUrl != null ){
+    if( photoUrl != null && window.location.hostname === 'localhost'){
       photoUrl = photoUrl.replace("api-monitoria","localhost")
-    } else {
+    } else if(photoUrl === null){
       photoUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzaLMnex1QwV83TBQgxLTaoDAQlFswsYy62L3mO4Su-CMkk3jX"
     }
 

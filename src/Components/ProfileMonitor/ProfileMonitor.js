@@ -75,8 +75,8 @@ class Profile extends Component {
         var token = {}
         var idMonitor = this.props.match.params.id_monitor;
         
-        if(this.props.location.state.id_tutoring){
-            this.setState({id_tutoring_session:this.props.location.state.id_tutoring});
+        if(this.props.id_tutoring){
+            this.setState({id_tutoring_session:this.props.id_tutoring});
         }  
              
         this.setState({id_monitor:idMonitor});
@@ -125,9 +125,9 @@ class Profile extends Component {
         const { classes } = this.props;
         var photoUrl = this.state.photo
 
-        if( photoUrl != null ){
+        if( photoUrl != null && window.location.hostname === 'localhost'){
             photoUrl = photoUrl.replace("api-monitoria","localhost")
-          } else {
+          } else if(photoUrl === null){
             photoUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzaLMnex1QwV83TBQgxLTaoDAQlFswsYy62L3mO4Su-CMkk3jX"
           }
         return(
